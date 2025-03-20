@@ -5,8 +5,16 @@ typedef struct ARV_BINARIA{
     void *info;
     struct ARV_BINARIA *esq;
     struct ARV_BINARIA *dir;
+    int ID;
 } ARV_BINARIA;
 
+
+typedef struct PLAYLIST
+{
+    char *nome;
+    short int numero_de_musicas;
+    void *musicas_raiz_arvore;
+} PLAYLIST;
 
 
 typedef struct ALBUM{
