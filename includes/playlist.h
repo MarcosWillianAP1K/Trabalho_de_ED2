@@ -13,5 +13,12 @@ typedef struct PLAYLIST
     void *musicas_raiz_arvore;
 } PLAYLIST;
 
+PLAYLIST *alocar_playlist();
+
+PLAYLIST *criar_playlist(char *nome, short int numero_de_musicas, void *raiz);
+
+PLAYLIST *cadastrar_playlist();
+
+void imprimir_playlist(PLAYLIST *playlist);
 
 #endif

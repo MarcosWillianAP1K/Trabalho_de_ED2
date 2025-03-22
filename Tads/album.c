@@ -8,6 +8,10 @@ ALBUM *alocar_album()
 {
     ALBUM *album = (ALBUM *)malloc(sizeof(ALBUM));
     verificar_alocacao(album);
+    album->titulo = NULL;
+    album->data_lancamento = NULL;
+    album->numero_de_musicas = 0;
+    album->musicas_raiz_arvore = NULL;
     return album;
 }
 
@@ -43,7 +47,10 @@ ALBUM *cadastrar_album()
 
 void imprimir_album(ALBUM *album)
 {
-    printf("\nTitulo: %s", album->titulo);
-    printf("\nData de Lancamento: %s", album->data_lancamento);
-    printf("\nNumero de Musicas: %d", album->numero_de_musicas);
+    if(album != NULL)
+    {
+        printf("\nTitulo: %s", album->titulo);
+        printf("\nData de lancamento: %s", album->data_lancamento);
+        printf("\nNumero de musicas: %hd", album->numero_de_musicas);
+    }
 }

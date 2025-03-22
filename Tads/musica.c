@@ -8,7 +8,8 @@ MUSICA *alocar_musica()
     MUSICA *musica = (MUSICA *)malloc(sizeof(MUSICA));
 
     verificar_alocacao(musica);
-
+    musica->titulo = NULL;
+    musica->duracao = NULL;
     return musica;
 }
 
@@ -34,6 +35,9 @@ MUSICA *cadastrar_musica()
 
 void imprimir_musica(MUSICA *musica)
 {
-    printf("\nNome: %s", musica->titulo);
-    printf("\nDuracao: %s", musica->duracao);
+   if(musica != NULL)
+   {
+       printf("\nNome: %s", musica->titulo);
+       printf("\nDuracao: %s", musica->duracao);
+   }
 }
