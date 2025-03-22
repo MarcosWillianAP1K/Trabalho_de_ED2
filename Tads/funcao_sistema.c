@@ -19,8 +19,10 @@ void limpar_tela()
 
 void pausar_tela()
 {
-    printf("\nPressione qualquer tecla para continuar...");
-    getchar();
+    // printf("\nPressione qualquer tecla para continuar...");
+    // getchar();
+
+    system("pause");
 }
 
 void mensagem_erro(char *mensagem)
@@ -46,11 +48,10 @@ void verificar_realocacao(void *ponteiro)
     }
 }
 
-
 char *escrever_string()
 {
     limpar_buffer();
-    #define TAM_PADRAO 20
+#define TAM_PADRAO 20
 
     int tam, cont = 0;
     char *nome = (char *)malloc(TAM_PADRAO * sizeof(char));

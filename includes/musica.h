@@ -9,4 +9,13 @@ typedef struct MUSICA{
 } MUSICA;
 
 
+MUSICA *alocar_musica();
+
+MUSICA *criar_musica(char *titulo, char *duracao);
+
+MUSICA *cadastrar_musica();
+
+void imprimir_musica(MUSICA *musica);
+
+
 #endif

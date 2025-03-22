@@ -16,7 +16,7 @@ typedef struct ARTISTA{
 
 } ARTISTA;
 
-
+ARTISTA *alocar_artista();
 
 ARTISTA *criar_artista(char *nome, char *tipo, char *estilo_musical, short int numero_albuns, void *raiz);
 

@@ -1,52 +1,49 @@
 #include "../includes/album.h"
-
-// #include "../includes/funcao_sistema.h"
-// #include "../includes/artista.h"
-// #include <stdio.h>
-// #include <stdlib.h>
+#include "../includes/funcao_sistema.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 
-// ARTISTA *alocar_artista()
-// {
-//     ARTISTA *artista = (ARTISTA *)malloc(sizeof(ARTISTA));
+ALBUM *alocar_album()
+{
+    ALBUM *album = (ALBUM *)malloc(sizeof(ALBUM));
+    verificar_alocacao(album);
+    return album;
+}
 
-//     verificar_alocacao(artista);
+ALBUM *criar_album(char *titulo, char *data_lancamento, short int numero_de_musicas, void *raiz)
+{
+    ALBUM *album = alocar_album();
+    album->titulo = titulo;
+    album->data_lancamento = data_lancamento;
+    album->numero_de_musicas = numero_de_musicas;
+    album->musicas_raiz_arvore = raiz;
 
-//     return artista;
-// }
+    return album;
+}
 
+ALBUM *cadastrar_album()
+{
+    printf("\nDigite o titulo do album: ");
+    char *titulo = escrever_string();
 
-// ARTISTA *criar_artista(char *nome, char *tipo, char *estilo_musical, short int numero_albuns, void *raiz){
-//     ARTISTA *artista = alocar_artista();
-//     artista->nome = nome;
-//     artista->tipo = tipo;
-//     artista->estilo_musical = estilo_musical;
-//     artista->numero_de_albuns = numero_albuns;
-//     artista->albuns_raiz_arvore = raiz;
-//     return artista;
-// }
+    printf("\nDigite data de lancamento do album: ");
+    char *data_lancamento = escrever_string();
 
+    printf("\nDigite o numero de musical do artista: ");
+    short int numero_de_musicas = 0;
+    while (scanf("%hd", &numero_de_musicas) != 1 || numero_de_musicas < 0)
+    {
+        mensagem_erro("Numero de musicas invalido");
+        limpar_buffer();
+    }
 
+    return criar_album(titulo, data_lancamento, numero_de_musicas, NULL);
+}
 
-// ARTISTA *cadastrar_artista()
-// {
-    
-//     printf("\nDigite o nome do artista: ");
-//     char *nome = escrever_string();
-
-//     printf("\nDigite o tipo do artista: ");
-//     char *tipo = escrever_string();
-
-//     printf("\nDigite o estilo musical do artista: ");
-//     char *estilo_musical = escrever_string();
-
-//     short int numero_albuns = 0;
-//     void *raiz = NULL;
-
-    
-//     return criar_artista(nome, tipo, estilo_musical, numero_albuns, raiz);
-// }
-
-ALBUM *alocar_album(){
-    ALBUM *alby
+void imprimir_album(ALBUM *album)
+{
+    printf("\nTitulo: %s", album->titulo);
+    printf("\nData de Lancamento: %s", album->data_lancamento);
+    printf("\nNumero de Musicas: %d", album->numero_de_musicas);
 }
