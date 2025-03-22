@@ -6,7 +6,6 @@
 #ifndef DADOS_H
 #define DADOS_H
 
-
 typedef union DADOS{
     ARTISTA *artista;
     ALBUM *album;

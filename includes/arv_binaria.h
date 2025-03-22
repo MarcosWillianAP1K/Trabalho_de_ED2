@@ -16,5 +16,4 @@ typedef struct ARV_BINARIA{
 
 
 
-
 #endif

@@ -7,6 +7,8 @@
 #define ALBUM_H
 
 
+
+
 typedef struct ALBUM{
     char *titulo;
     char *data_lancamento;

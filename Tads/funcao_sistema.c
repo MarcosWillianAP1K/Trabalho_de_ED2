@@ -1,0 +1,91 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "../includes/funcao_sistema.h"
+
+void limpar_buffer()
+{
+    // char c;
+    // while ((c = getchar()) != '\n' && c != EOF)
+    //     ;
+
+    fflush(stdin);
+}
+
+void limpar_tela()
+{
+    system("clear");
+}
+
+void pausar_tela()
+{
+    printf("\nPressione qualquer tecla para continuar...");
+    getchar();
+}
+
+void mensagem_erro(char *mensagem)
+{
+    printf("\n\n\033[1;31mERRO: %s\033[0m\n\n", mensagem);
+}
+
+void verificar_alocacao(void *ponteiro)
+{
+    if (ponteiro == NULL)
+    {
+        mensagem_erro("Erro ao alocar memoria");
+        exit(1);
+    }
+}
+
+void verificar_realocacao(void *ponteiro)
+{
+    if (ponteiro == NULL)
+    {
+        mensagem_erro("Erro ao realocar memoria");
+        exit(1);
+    }
+}
+
+
+char *escrever_string()
+{
+    limpar_buffer();
+    #define TAM_PADRAO 20
+
+    int tam, cont = 0;
+    char *nome = (char *)malloc(TAM_PADRAO * sizeof(char));
+
+    if (fgets(nome, TAM_PADRAO * sizeof(char), stdin) != NULL)
+    {
+
+        tam = strlen(nome);
+
+        while (nome[tam - 1] != '\n')
+        {
+            cont++;
+            char *temp = (char *)realloc(nome, (TAM_PADRAO * cont) * sizeof(char));
+
+            verificar_realocacao(temp);
+
+            nome = temp;
+
+            if (fgets(nome + tam, ((TAM_PADRAO * cont) * sizeof(char)) - tam, stdin) == NULL)
+            {
+                break;
+            }
+
+            tam = strlen(nome);
+        }
+    }
+
+    tam = strlen(nome);
+
+    if (nome[tam - 1] == '\n')
+    {
+        nome[tam - 1] = '\0';
+    }
+
+    limpar_buffer();
+
+    return nome;
+}
