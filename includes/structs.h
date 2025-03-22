@@ -1,8 +1,13 @@
 
-
+union Types{
+    int i;
+    float f;
+    char c;
+    char *s;
+};
 
 typedef struct ARV_BINARIA{
-    void *info;
+    union Types *info;
     struct ARV_BINARIA *esq;
     struct ARV_BINARIA *dir;
     int ID;
