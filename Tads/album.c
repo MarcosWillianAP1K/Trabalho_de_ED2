@@ -26,24 +26,6 @@ ALBUM *criar_album(char *titulo, char *data_lancamento, short int numero_de_musi
     return album;
 }
 
-ALBUM *cadastrar_album()
-{
-    printf("\nDigite o titulo do album: ");
-    char *titulo = escrever_string();
-
-    printf("\nDigite data de lancamento do album: ");
-    char *data_lancamento = escrever_string();
-
-    printf("\nDigite o numero de musical do artista: ");
-    short int numero_de_musicas = 0;
-    while (scanf("%hd", &numero_de_musicas) != 1 || numero_de_musicas < 0)
-    {
-        mensagem_erro("Numero de musicas invalido");
-        limpar_buffer();
-    }
-
-    return criar_album(titulo, data_lancamento, numero_de_musicas, NULL);
-}
 
 void imprimir_album(ALBUM *album)
 {

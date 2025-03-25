@@ -1,4 +1,5 @@
 #include "../includes/musica_playlist.h"
+#include "../includes/funcao_sistema.h"
 #include <stdio.h>
 #include <stdlib.h>
 
