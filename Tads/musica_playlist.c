@@ -29,10 +29,10 @@ MUSICA_PLAYLIST *criar_musica_playlist(char *titulo_artista, char *titulo_album,
 MUSICA_PLAYLIST *cadastrar_musica_playlist()
 {
     printf("\nDigite o nome do artista: ");
-    char *titulo_artista = escrever_string();
+    char *titulo_artista = digitar_string();
 
     printf("\nDigite o nome do album: ");
-    char *titulo_album = escrever_string();
+    char *titulo_album = digitar_string();
 
     MUSICA *musica = cadastrar_musica();
 

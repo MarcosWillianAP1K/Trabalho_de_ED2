@@ -25,10 +25,10 @@ MUSICA *criar_musica(char *titulo, char *duracao)
 MUSICA *cadastrar_musica()
 {
     printf("\nDigite o nome da musica: ");
-    char *nome = escrever_string();
+    char *nome = digitar_string();
 
     printf("\nDigite a duracao da musica: ");
-    char *duracao = escrever_string();
+    char *duracao = digitar_string();
 
     return criar_musica(nome, duracao);
 }

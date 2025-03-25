@@ -16,8 +16,10 @@ void verificar_alocacao(void *ponteiro);
 
 void verificar_realocacao(void *ponteiro);
 
-char *escrever_string();
+char *digitar_string();
 
+short int digitar_short_int();
 
+char digitar_um_caracter();
 
 #endif

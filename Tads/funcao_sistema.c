@@ -48,7 +48,7 @@ void verificar_realocacao(void *ponteiro)
     }
 }
 
-char *escrever_string()
+char *digitar_string()
 {
     limpar_buffer();
 #define TAM_PADRAO 20
@@ -89,4 +89,26 @@ char *escrever_string()
     limpar_buffer();
 
     return nome;
+}
+
+
+short int digitar_short_int()
+{
+    short int numero = 0;
+    
+    while (scanf("%hd", &numero) != 1 || numero < 0)
+    {
+        mensagem_erro("Numero invalido: ");
+        limpar_buffer();
+    }
+
+}
+
+char digitar_um_caracter()
+{
+    char c;
+    scanf("%c", &c);
+    limpar_buffer();
+
+    return c;
 }

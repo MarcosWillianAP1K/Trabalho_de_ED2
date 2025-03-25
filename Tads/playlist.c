@@ -25,15 +25,10 @@ PLAYLIST *criar_playlist(char *nome, short int numero_de_musicas, void *raiz)
 PLAYLIST *cadastrar_playlist()
 {
     printf("\nDigite o nome da playlist: ");
-    char *nome = escrever_string();
+    char *nome = digitar_string();
 
     printf("\nDigite o numero de musicas da playlist: ");
-    short int numero_de_musicas = 0;
-    while (scanf("%hd", &numero_de_musicas) != 1 || numero_de_musicas < 0)
-    {
-        mensagem_erro("Numero de musicas invalido");
-        limpar_buffer();
-    }
+    short int numero_de_musicas = digitar_short_int();
 
     return criar_playlist(nome, numero_de_musicas, NULL);
 }
