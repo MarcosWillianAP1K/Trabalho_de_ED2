@@ -7,6 +7,8 @@
 #ifndef DADOS_H
 #define DADOS_H
 
+
+
 typedef union DADOS{
     ARTISTA *artista;
     ALBUM *album;
@@ -17,6 +19,27 @@ typedef union DADOS{
 
 DADOS *alocar_dados();
 
-void liberar_dados(DADOS *dados);
+void imprimir_dados_artista(DADOS *dados);
+
+void imprimir_dados_album(DADOS *dados);
+
+void imprimir_dados_musica(DADOS *dados);
+
+void imprimir_dados_playlist(DADOS *dados);
+
+void imprimir_dados_musica_playlist(DADOS *dados);
+
+void liberar_dados(DADOS **dados);
+
+void liberar_dados_artista(DADOS **dados);
+
+void liberar_dados_album(DADOS **dados);
+
+void liberar_dados_musica(DADOS **dados);
+
+void liberar_dados_playlist(DADOS **dados);
+
+void liberar_dados_musica_playlist(DADOS **dados);
+
 
 #endif

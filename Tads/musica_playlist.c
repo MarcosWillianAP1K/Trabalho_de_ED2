@@ -1,4 +1,5 @@
 #include "../includes/musica_playlist.h"
+#include "../includes/musica.h"
 #include "../includes/funcao_sistema.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -15,20 +16,21 @@ MUSICA_PLAYLIST *alocar_musica_playlist()
     return musica;
 }
 
-void liberar_musica_playlist(MUSICA_PLAYLIST *musica_playlist)
+void liberar_musica_playlist(MUSICA_PLAYLIST **musica_playlist)
 {
-    if (musica_playlist != NULL)
+    if (*musica_playlist != NULL)
     {
-        free(musica_playlist->titulo_do_artista);
-        free(musica_playlist->titulo_do_album);
-        liberar_musica(musica_playlist->musica);
-        free(musica_playlist);
+        free((*musica_playlist)->titulo_do_artista);
+        free((*musica_playlist)->titulo_do_album);
+        liberar_musica((*musica_playlist)->musica);
+        free(*musica_playlist);
+        *musica_playlist = NULL;
     }
 }
 
 MUSICA_PLAYLIST *criar_musica_playlist(char *titulo_artista, char *titulo_album, MUSICA *musica)
 {
-    MUSICA_PLAYLIST *musica_playlist = alocar_musica();
+    MUSICA_PLAYLIST *musica_playlist = alocar_musica_playlist();
 
     musica_playlist->titulo_do_artista = titulo_artista;
     musica_playlist->titulo_do_album = titulo_album;

@@ -18,14 +18,15 @@ ARTISTA *alocar_artista()
     return artista;
 }
 
-void liberar_artista(ARTISTA *artista)
+void liberar_artista(ARTISTA **artista)
 {
-    if (artista != NULL)
+    if (*artista != NULL)
     {
-        free(artista->nome);
-        free(artista->tipo);
-        free(artista->estilo_musical);
-        free(artista);
+        free((*artista)->nome);
+        free((*artista)->tipo);
+        free((*artista)->estilo_musical);
+        free(*artista);
+        *artista = NULL;
     }
 }
 

@@ -11,7 +11,7 @@ typedef struct MUSICA{
 
 MUSICA *alocar_musica();
 
-void liberar_musica(MUSICA *musica);
+void liberar_musica(MUSICA **musica);
 
 MUSICA *criar_musica(char *titulo, char *duracao);
 

@@ -22,7 +22,7 @@ ARV_BINARIA * criar_arv_binaria(DADOS *info);
 
 void inserir_arv_binaria(ARV_BINARIA **raiz, int valor);
 
-void imprimir(ARV_BINARIA *raiz);
+void imprimir_arv_binaria(ARV_BINARIA *raiz, void (*printar_dados)(DADOS *dados));
 
 
 #endif

@@ -1,6 +1,7 @@
 #include "../includes/arv_binaria.h"
 #include "../includes/funcao_sistema.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 void inicializar_arv_binaria(ARV_BINARIA **raiz)
 {
@@ -16,15 +17,18 @@ ARV_BINARIA *alocar_arv_binaria()
   return nova_arv;
 }
 
-// void liberar_arv_binaria(ARV_BINARIA *raiz)
-// {
-//   if (raiz != NULL)
-//   {
-//     liberar_arv_binaria(raiz->esq);
-//     liberar_arv_binaria(raiz->dir);
-//     free(raiz);
-//   }
-// }
+void liberar_arv_binaria(ARV_BINARIA **raiz, void (*liberar)(DADOS **))
+{
+  if (raiz != NULL && *raiz != NULL)
+  {
+    liberar_arv_binaria(&((*raiz)->esq), liberar);
+    liberar_arv_binaria(&((*raiz)->dir), liberar);
+    liberar(&(*raiz)->info);
+    free(*raiz);
+    *raiz = NULL;
+  }
+}
+
 
 ARV_BINARIA * criar_arv_binaria(DADOS *info)
 {
@@ -37,32 +41,32 @@ ARV_BINARIA * criar_arv_binaria(DADOS *info)
 
 
 
-void inserir_arv_binaria(ARV_BINARIA **raiz, int valor)
-{
-  if (*raiz == NULL)
-  {
-    *raiz = (ARV_BINARIA *)malloc(sizeof(ARV_BINARIA));
-    (*raiz)->info = valor;
-    (*raiz)->esq = NULL;
-    (*raiz)->dir = NULL;
-  }
-  else if (valor < (*raiz)->info)
-  {
-    inserir_arv_binaria(&(*raiz)->esq, valor);
-  }
-  else
-  {
-    inserir_arv_binaria(&(*raiz)->dir, valor);
-  }
-}
+// void inserir_arv_binaria(ARV_BINARIA **raiz, DADOS *info)
+// {
+//   if (*raiz == NULL)
+//   {
+//     *raiz = (ARV_BINARIA *)malloc(sizeof(ARV_BINARIA));
+//     (*raiz)->info = info;
+//     (*raiz)->esq = NULL;
+//     (*raiz)->dir = NULL;
+//   }
+//   else if (valor < (*raiz)->info)
+//   {
+//     inserir_arv_binaria(&(*raiz)->esq, valor);
+//   }
+//   else
+//   {
+//     inserir_arv_binaria(&(*raiz)->dir, valor);
+//   }
+// }
 
 
-void imprimir(ARV_BINARIA *raiz)
+void imprimir_arv_binaria(ARV_BINARIA *raiz, void (*printar_dados)(DADOS *))
 {
   if (raiz != NULL)
   {
     imprimir(raiz->esq);
-    printf("%d ", raiz->info);
+    printar_dados(raiz->info);
     imprimir(raiz->dir);
   }
 }

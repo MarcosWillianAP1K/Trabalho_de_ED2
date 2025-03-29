@@ -12,12 +12,13 @@ PLAYLIST *alocar_playlist()
     return playlist;
 }
 
-void liberar_playlist(PLAYLIST *playlist)
+void liberar_playlist(PLAYLIST **playlist)
 {
-    if (playlist != NULL)
+    if (*playlist != NULL)
     {
-        free(playlist->nome);
-        free(playlist);
+        free((*playlist)->nome);
+        free(*playlist);
+        *playlist = NULL;
     }
 }
 
