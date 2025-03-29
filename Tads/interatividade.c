@@ -6,7 +6,7 @@
 void menu_principal()
 {
 
-    char opcao = '0';
+    short int opcao = 0;
 
     do
     {
@@ -30,62 +30,62 @@ void menu_principal()
         printf("Escolha uma opcao: ");
 
 
-        opcao = digitar_um_caracter();
+        opcao = digitar_short_int();
 
         switch (opcao)
         {
 
-        case '0':
+        case 0:
             break; 
 
-        case '1':
+        case 1:
             break;
 
-        case '2':
+        case 2:
             break;
 
-        case '3':
+        case 3:
             break;
 
-        case '4':
+        case 4:
             break;
 
-        case '5':
+        case 5:
             break;
 
-        case '6':
+        case 6:
             break;
 
-        case '7':
+        case 7:
             break;
 
-        case '8':
+        case 8:
             break;
 
-        case '9':
+        case 9:
             break;
 
-        case '10':
+        case 10:
             break;
 
-        case '11':
+        case 11:
             break;
 
-        case '12':
+        case 12:
             break;
 
-        case '13':
+        case 13:
             break;
 
-        case '14':
+        case 14:
             break;
 
-        case '15':
+        case 15:
             break;
 
         default:
             break;
         }
 
-    } while (opcao != '0');
+    } while (opcao != 0);
 }

@@ -23,7 +23,12 @@ void liberar_arv_binaria(ARV_BINARIA **raiz, void (*liberar)(DADOS **))
   {
     liberar_arv_binaria(&((*raiz)->esq), liberar);
     liberar_arv_binaria(&((*raiz)->dir), liberar);
-    liberar(&(*raiz)->info);
+   
+    if ((*raiz)->info != NULL)
+    {
+      liberar(&(*raiz)->info);
+    }
+    
     free(*raiz);
     *raiz = NULL;
   }
@@ -65,8 +70,8 @@ void imprimir_arv_binaria(ARV_BINARIA *raiz, void (*printar_dados)(DADOS *))
 {
   if (raiz != NULL)
   {
-    imprimir(raiz->esq);
+    imprimir_arv_binaria(raiz->esq, printar_dados);
     printar_dados(raiz->info);
-    imprimir(raiz->dir);
+    imprimir_arv_binaria(raiz->dir, printar_dados);
   }
 }
