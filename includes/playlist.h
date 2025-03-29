@@ -15,6 +15,8 @@ typedef struct PLAYLIST
 
 PLAYLIST *alocar_playlist();
 
+void liberar_playlist(PLAYLIST *playlist);
+
 PLAYLIST *criar_playlist(char *nome, short int numero_de_musicas, void *raiz);
 
 PLAYLIST *cadastrar_playlist();

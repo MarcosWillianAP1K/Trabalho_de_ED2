@@ -13,6 +13,16 @@ MUSICA *alocar_musica()
     return musica;
 }
 
+void liberar_musica(MUSICA *musica)
+{
+    if (musica != NULL)
+    {
+        free(musica->titulo);
+        free(musica->duracao);
+        free(musica);
+    }
+}
+
 MUSICA *criar_musica(char *titulo, char *duracao)
 {
     MUSICA *musica = alocar_musica();

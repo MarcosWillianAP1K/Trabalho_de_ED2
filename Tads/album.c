@@ -15,6 +15,16 @@ ALBUM *alocar_album()
     return album;
 }
 
+void liberar_album(ALBUM *album)
+{
+    if (album != NULL)
+    {
+        free(album->titulo);
+        free(album->data_lancamento);
+        free(album);
+    }
+}
+
 ALBUM *criar_album(char *titulo, char *data_lancamento, short int numero_de_musicas, void *raiz)
 {
     ALBUM *album = alocar_album();
@@ -50,3 +60,4 @@ void imprimir_album(ALBUM *album)
         printf("\nNumero de musicas: %hd", album->numero_de_musicas);
     }
 }
+

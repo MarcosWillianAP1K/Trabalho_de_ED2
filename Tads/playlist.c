@@ -12,6 +12,15 @@ PLAYLIST *alocar_playlist()
     return playlist;
 }
 
+void liberar_playlist(PLAYLIST *playlist)
+{
+    if (playlist != NULL)
+    {
+        free(playlist->nome);
+        free(playlist);
+    }
+}
+
 PLAYLIST *criar_playlist(char *nome, short int numero_de_musicas, void *raiz)
 {
     PLAYLIST *playlist = alocar_playlist();

@@ -15,6 +15,17 @@ MUSICA_PLAYLIST *alocar_musica_playlist()
     return musica;
 }
 
+void liberar_musica_playlist(MUSICA_PLAYLIST *musica_playlist)
+{
+    if (musica_playlist != NULL)
+    {
+        free(musica_playlist->titulo_do_artista);
+        free(musica_playlist->titulo_do_album);
+        liberar_musica(musica_playlist->musica);
+        free(musica_playlist);
+    }
+}
+
 MUSICA_PLAYLIST *criar_musica_playlist(char *titulo_artista, char *titulo_album, MUSICA *musica)
 {
     MUSICA_PLAYLIST *musica_playlist = alocar_musica();

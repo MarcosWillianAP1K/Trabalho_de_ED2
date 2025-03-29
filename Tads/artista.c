@@ -18,6 +18,17 @@ ARTISTA *alocar_artista()
     return artista;
 }
 
+void liberar_artista(ARTISTA *artista)
+{
+    if (artista != NULL)
+    {
+        free(artista->nome);
+        free(artista->tipo);
+        free(artista->estilo_musical);
+        free(artista);
+    }
+}
+
 
 ARTISTA *criar_artista(char *nome, char *tipo, char *estilo_musical, short int numero_albuns, void *raiz){
     ARTISTA *artista = alocar_artista();
