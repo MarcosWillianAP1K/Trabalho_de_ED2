@@ -43,24 +43,24 @@ ARV_BINARIA *criar_arv_binaria(DADOS *info)
   return nova_arv;
 }
 
-// void inserir_arv_binaria(ARV_BINARIA **raiz, DADOS *info)
-// {
-//   if (*raiz == NULL)
-//   {
-//     *raiz = (ARV_BINARIA *)malloc(sizeof(ARV_BINARIA));
-//     (*raiz)->info = info;
-//     (*raiz)->esq = NULL;
-//     (*raiz)->dir = NULL;
-//   }
-//   else if (valor < (*raiz)->info)
-//   {
-//     inserir_arv_binaria(&(*raiz)->esq, valor);
-//   }
-//   else
-//   {
-//     inserir_arv_binaria(&(*raiz)->dir, valor);
-//   }
-// }
+void inserir_arv_binaria(ARV_BINARIA **raiz, DADOS *info, int (*comparar)(DADOS *, DADOS *))
+{
+  if (*raiz == NULL)
+  {
+    *raiz = alocar_arv_binaria();
+    (*raiz)->info = info;
+    (*raiz)->esq = NULL;
+    (*raiz)->dir = NULL;
+  }
+  else if (comparar( (*raiz)->info, info) > 0)
+  {
+    inserir_arv_binaria(&(*raiz)->esq, info, comparar);
+  }
+  else
+  {
+    inserir_arv_binaria(&(*raiz)->dir, info, comparar);
+  }
+}
 
 void imprimir_arv_binaria(ARV_BINARIA *raiz, void (*printar_dados)(DADOS *))
 {
@@ -99,7 +99,7 @@ int endereco_minino_esqueda(ARV_BINARIA *raiz)
 int remover_arv_binaria(ARV_BINARIA **raiz, DADOS *info)
 {
   int removeu = 1;
-  
+
   if (*raiz != NULL)
   {
     if ((*raiz)->info == info)

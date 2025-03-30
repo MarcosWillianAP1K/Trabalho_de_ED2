@@ -41,5 +41,12 @@ void liberar_dados_playlist(DADOS **dados);
 
 void liberar_dados_musica_playlist(DADOS **dados);
 
+int comparar_dados_nome_artista(DADOS *dados1, DADOS *dados2);
+
+int comparar_dados_titulo_album(DADOS *dados1, DADOS *dados2);
+
+int comparar_dados_titulo_musica(DADOS *dados1, DADOS *dados2);
+
+int comparar_dados_nome_playlist(DADOS *dados1, DADOS *dados2);
 
 #endif
