@@ -56,5 +56,5 @@ void imprimir_musica(MUSICA *musica)
 
 int comparar_titulo_musica(MUSICA *musica1, MUSICA *musica2)
 {
-    return comparar_string(musica1->titulo, musica2->titulo);
+    return strcmp(musica1->titulo, musica2->titulo);
 }
