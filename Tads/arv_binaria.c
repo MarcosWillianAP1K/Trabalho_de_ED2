@@ -11,31 +11,30 @@ void inicializar_arv_binaria(ARV_BINARIA **raiz)
 ARV_BINARIA *alocar_arv_binaria()
 {
   ARV_BINARIA *nova_arv = (ARV_BINARIA *)malloc(sizeof(ARV_BINARIA));
-  
+
   verificar_alocacao(nova_arv);
 
   return nova_arv;
 }
 
-void liberar_arv_binaria(ARV_BINARIA **raiz, void (*liberar) (DADOS **))
+void liberar_arv_binaria(ARV_BINARIA **raiz, void (*liberar)(DADOS **))
 {
   if (raiz != NULL && *raiz != NULL)
   {
     liberar_arv_binaria(&((*raiz)->esq), liberar);
     liberar_arv_binaria(&((*raiz)->dir), liberar);
-   
+
     if ((*raiz)->info != NULL)
     {
       liberar(&(*raiz)->info);
     }
-    
+
     free(*raiz);
     *raiz = NULL;
   }
 }
 
-
-ARV_BINARIA * criar_arv_binaria(DADOS *info)
+ARV_BINARIA *criar_arv_binaria(DADOS *info)
 {
   ARV_BINARIA *nova_arv = alocar_arv_binaria();
   nova_arv->info = info;
@@ -43,8 +42,6 @@ ARV_BINARIA * criar_arv_binaria(DADOS *info)
   nova_arv->dir = NULL;
   return nova_arv;
 }
-
-
 
 // void inserir_arv_binaria(ARV_BINARIA **raiz, DADOS *info)
 // {
@@ -65,7 +62,6 @@ ARV_BINARIA * criar_arv_binaria(DADOS *info)
 //   }
 // }
 
-
 void imprimir_arv_binaria(ARV_BINARIA *raiz, void (*printar_dados)(DADOS *))
 {
   if (raiz != NULL)
@@ -74,4 +70,77 @@ void imprimir_arv_binaria(ARV_BINARIA *raiz, void (*printar_dados)(DADOS *))
     printar_dados(raiz->info);
     imprimir_arv_binaria(raiz->dir, printar_dados);
   }
+}
+
+int eh_folha(ARV_BINARIA *raiz)
+{
+  return (raiz->esq == NULL && raiz->dir == NULL);
+}
+
+int eh_um_filho(ARV_BINARIA *raiz)
+{
+  return (raiz->esq == NULL || raiz->dir == NULL);
+}
+
+int endereco_minino_esqueda(ARV_BINARIA *raiz)
+{
+  if (raiz->esq != NULL)
+  {
+    return endereco_minino_esqueda(raiz->esq);
+  }
+  else
+  {
+    return raiz;
+  }
+}
+
+int remover_arv_binaria(ARV_BINARIA **raiz, DADOS *info)
+{
+  int removeu = 1;
+  if (*raiz != NULL)
+  {
+    if ((*raiz)->info == info)
+    {
+      ARV_BINARIA *aux;
+      ARV_BINARIA *filho;
+      if (eh_folha(*raiz))
+      {
+        aux = *raiz;
+        *raiz = NULL;
+        free(aux);
+      }
+      else
+      {
+        if ((filho = eh_um_filho(*raiz)) != NULL)
+        {
+          aux = *raiz;
+          *raiz = filho;
+          free(aux);
+        }
+        else
+        {
+          ARV_BINARIA *menor;
+          menor = endereco_minino_esqueda((*raiz)->dir);
+          (*raiz)->info = menor->info;
+          removeu = remover_arv_binaria(&(*raiz)->dir, menor->info);
+        }
+      }
+    }
+    else
+    {
+      if (info < (*raiz)->info)
+      {
+        removeu = remover_arv_binaria(&(*raiz)->esq, info);
+      }
+      else
+      {
+        removeu = remover_arv_binaria(&(*raiz)->dir, info);
+      }
+    }
+  }
+  else
+  {
+    removeu = 0;
+  }
+  return removeu;
 }
