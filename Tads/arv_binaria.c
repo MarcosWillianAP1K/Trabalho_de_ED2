@@ -84,14 +84,16 @@ int eh_um_filho(ARV_BINARIA *raiz)
 
 int endereco_minino_esqueda(ARV_BINARIA *raiz)
 {
+  int eh = 0;
   if (raiz->esq != NULL)
   {
-    return endereco_minino_esqueda(raiz->esq);
+    eh = endereco_minino_esqueda(raiz->esq);
   }
   else
   {
-    return raiz;
+    eh = raiz;
   }
+  return eh;
 }
 
 int remover_arv_binaria(ARV_BINARIA **raiz, DADOS *info)
