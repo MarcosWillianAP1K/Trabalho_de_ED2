@@ -4,8 +4,8 @@
 
 
 
-#ifdef FUNC_INTERATIVIDADE_H_INCLUDED
-#define FUNC_INTERATIVIDADE_H_INCLUDED
+#ifndef FUNC_INTERATIVIDADE_H
+#define FUNC_INTERATIVIDADE_H
 
 void mostrar_art_por_tipo(ARV_BINARIA *raiz, ARTISTA *artista);
 void mostrar_art_por_estilo(ARV_BINARIA *raiz, ARTISTA *artista);
@@ -18,4 +18,5 @@ void mostrar_dados_playlist(ARV_BINARIA *raiz, PLAYLIST *playlist);
 void remover_musica_playlist(ARV_BINARIA *raiz, PLAYLIST *playlist);
 void remover_playlist(ARV_BINARIA *raiz, PLAYLIST *playlist);
 void remover_musica_de_album_de_artista(ARV_BINARIA *raiz, ARTISTA *artista, ALBUM *album, MUSICA *musica);
+
 #endif
