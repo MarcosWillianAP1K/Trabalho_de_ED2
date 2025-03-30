@@ -6,6 +6,7 @@
 typedef struct MUSICA{
     char *titulo;
     char *duracao;
+    // void *playlist
 } MUSICA;
 
 

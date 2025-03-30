@@ -18,8 +18,16 @@ void liberar_musica_playlist(MUSICA_PLAYLIST **musica_playlist);
 
 MUSICA_PLAYLIST *criar_musica_playlist(char *titulo_artista, char *titulo_album, MUSICA *musica);
 
-MUSICA_PLAYLIST *cadastrar_musica_playlist();
+MUSICA_PLAYLIST *cadastrar_musica_playlist(MUSICA *musica);
 
 void imprimir_musica_playlist(MUSICA_PLAYLIST *musica_playlist);
+
+int comparar_titulo_artista_musica_playlist(MUSICA_PLAYLIST *musica_playlist1, MUSICA_PLAYLIST *musica_playlist2);
+
+int comparar_titulo_album_musica_playlist(MUSICA_PLAYLIST *musica_playlist1, MUSICA_PLAYLIST *musica_playlist2);
+
+int comparar_titulo_musica_musica_playlist(MUSICA_PLAYLIST *musica_playlist1, MUSICA_PLAYLIST *musica_playlist2);
+
+int comparar_musia_playlist(MUSICA_PLAYLIST *musica_playlist1, MUSICA_PLAYLIST *musica_playlist2);
 
 #endif

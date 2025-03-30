@@ -20,7 +20,7 @@ void liberar_arv_binaria(ARV_BINARIA **raiz, void (*liberar)(DADOS **));
 
 ARV_BINARIA * criar_arv_binaria(DADOS *info);
 
-// void inserir_arv_binaria(ARV_BINARIA **raiz, int valor);
+void inserir_arv_binaria(ARV_BINARIA **raiz, DADOS *info, int (*comparar)(DADOS *, DADOS *));
 
 void imprimir_arv_binaria(ARV_BINARIA *raiz, void (*printar_dados)(DADOS *));
 
