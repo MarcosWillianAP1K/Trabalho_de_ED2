@@ -49,4 +49,6 @@ int comparar_dados_titulo_musica(DADOS *dados1, DADOS *dados2);
 
 int comparar_dados_nome_playlist(DADOS *dados1, DADOS *dados2);
 
+int comparar_dados_titulo_musica_playlist(DADOS *dados1, DADOS *dados2);
+
 #endif

@@ -3,6 +3,7 @@
 #include "../includes/funcao_sistema.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 MUSICA_PLAYLIST *alocar_musica_playlist()
 {
@@ -63,4 +64,28 @@ void imprimir_musica_playlist(MUSICA_PLAYLIST *musica_playlist)
         printf("\nNome do Album: %s", musica_playlist->titulo_do_album);
         imprimir_musica(musica_playlist->musica);
     }
+}
+
+int comparar_titulo_artista_musica_playlist(MUSICA_PLAYLIST *musica_playlist1, MUSICA_PLAYLIST *musica_playlist2)
+{
+    return strcmp(musica_playlist1->titulo_do_artista, musica_playlist2->titulo_do_artista);
+}
+
+int comparar_titulo_album_musica_playlist(MUSICA_PLAYLIST *musica_playlist1, MUSICA_PLAYLIST *musica_playlist2)
+{
+    return strcmp(musica_playlist1->titulo_do_album, musica_playlist2->titulo_do_album);
+
+}
+
+int comparar_titulo_musica_musica_playlist(MUSICA_PLAYLIST *musica_playlist1, MUSICA_PLAYLIST *musica_playlist2)
+{
+    return comparar_titulo_musica(musica_playlist1->musica, musica_playlist2->musica);
+}
+
+int comparar_musia_playlist(MUSICA_PLAYLIST *musica_playlist1, MUSICA_PLAYLIST *musica_playlist2)
+{
+    
+    return comparar_titulo_artista_musica_playlist(musica_playlist1, musica_playlist2) ||
+           comparar_titulo_album_musica_playlist(musica_playlist1, musica_playlist2) ||
+           comparar_titulo_musica_musica_playlist(musica_playlist1, musica_playlist2);
 }

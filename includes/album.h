@@ -26,4 +26,6 @@ ALBUM *cadastrar_album();
 
 void imprimir_album(ALBUM *album);
 
+int comparar_titulo_album(ALBUM *album1, ALBUM *album2);
+
 #endif

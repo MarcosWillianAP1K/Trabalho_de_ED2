@@ -19,5 +19,7 @@ MUSICA *cadastrar_musica();
 
 void imprimir_musica(MUSICA *musica);
 
+int comparar_titulo_musica(MUSICA *musica1, MUSICA *musica2);
+
 
 #endif

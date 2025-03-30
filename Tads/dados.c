@@ -115,23 +115,22 @@ int comparar_dados_nome_artista(DADOS *dados1, DADOS *dados2)
 
 int comparar_dados_titulo_album(DADOS *dados1, DADOS *dados2)
 {
-    return comparar_album(dados1->album, dados2->album);
+    return comparar_titulo_album(dados1->album, dados2->album);
 }
 
 int comparar_dados_titulo_musica(DADOS *dados1, DADOS *dados2)
 {
-    return comparar_musica(dados1->musica, dados2->musica);
+    return comparar_titulo_musica(dados1->musica, dados2->musica);
 }
 
 int comparar_dados_nome_playlist(DADOS *dados1, DADOS *dados2)
 {
-    return comparar_playlist(dados1->playlist, dados2->playlist);
+    return comparar_nome_playlist(dados1->playlist, dados2->playlist);
 }
 
 
-//PRECISA COMPARAR MAIS DE UMA COISA
-// int comparar_dados_musica_playlist(DADOS *dados1, DADOS *dados2)
-// {
-//     return comparar_musica_playlist(dados1->musica_playlist, dados2->musica_playlist);
-// }
+int comparar_dados_musica_playlist(DADOS *dados1, DADOS *dados2)
+{
+    return comparar_musica_playlist(dados1->musica_playlist, dados2->musica_playlist);
+}
 

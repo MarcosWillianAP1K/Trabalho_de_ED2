@@ -23,4 +23,6 @@ PLAYLIST *cadastrar_playlist();
 
 void imprimir_playlist(PLAYLIST *playlist);
 
+int comparar_nome_playlist(PLAYLIST *playlist1, PLAYLIST *playlist2);
+
 #endif

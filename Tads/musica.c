@@ -52,3 +52,8 @@ void imprimir_musica(MUSICA *musica)
        printf("\nDuracao: %s", musica->duracao);
    }
 }
+
+int comparar_titulo_musica(MUSICA *musica1, MUSICA *musica2)
+{
+    return comparar_string(musica1->titulo, musica2->titulo);
+}

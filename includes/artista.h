@@ -26,5 +26,7 @@ ARTISTA *cadastrar_artista();
 
 void imprimir_artista(ARTISTA *artista);
 
+int comparar_nome_artista(ARTISTA *artista1, ARTISTA *artista2);
+
 
 #endif

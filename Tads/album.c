@@ -63,4 +63,8 @@ void imprimir_album(ALBUM *album)
 }
 
 
+int comparar_titulo_album(ALBUM *album1, ALBUM *album2)
+{
+    return comparar_strings(album1->titulo, album2->titulo);
+}
 

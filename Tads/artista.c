@@ -71,17 +71,8 @@ void imprimir_artista(ARTISTA *artista){
 }
 
 
-int comparar_artista_nomes(ARTISTA *artista1, ARTISTA *artista2)
+int comparar_nome_artista(ARTISTA *artista1, ARTISTA *artista2)
 {
     return strcmp(artista1->nome, artista2->nome);
 }
 
-int comparar_artista_estilo(ARTISTA *artista1, ARTISTA *artista2)
-{
-    return strcmp(artista1->estilo_musical, artista2->estilo_musical);
-}
-
-int comparar_artista_tipo(ARTISTA *artista1, ARTISTA *artista2)
-{
-    return strcmp(artista1->tipo, artista2->tipo);
-}
