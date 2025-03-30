@@ -55,5 +55,5 @@ void imprimir_playlist(PLAYLIST *playlist)
 
 int comparar_nome_playlist(PLAYLIST *playlist1, PLAYLIST *playlist2)
 {
-    return comparar_string(playlist1->nome, playlist2->nome);
+    return strcmp(playlist1->nome, playlist2->nome);
 }
