@@ -7,7 +7,7 @@
 
 
 typedef struct ARV_BINARIA{
-    union dados *info;
+    DADOS *info;
     struct ARV_BINARIA *esq;
     struct ARV_BINARIA *dir;
 } ARV_BINARIA;
