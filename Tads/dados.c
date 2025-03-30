@@ -66,7 +66,7 @@ void liberar_dados_artista(DADOS **dados)
 {
     if (dados != NULL && *dados != NULL && (*dados)->artista != NULL)
     {
-        liberar_artista((*dados)->artista);
+        liberar_artista(&(*dados)->artista);
     }
     liberar_dados(dados);
 }
@@ -75,7 +75,7 @@ void liberar_dados_album(DADOS **dados)
 {
     if (dados != NULL && *dados != NULL && (*dados)->album != NULL)
     {
-        liberar_album((*dados)->album);
+        liberar_album(&(*dados)->album);
     }
     liberar_dados(dados);
 }
@@ -84,7 +84,7 @@ void liberar_dados_musica(DADOS **dados)
 {
     if (dados != NULL && *dados != NULL && (*dados)->musica != NULL)
     {
-        liberar_musica((*dados)->musica);
+        liberar_musica(&(*dados)->musica);
     }
     liberar_dados(dados);
 }
@@ -93,7 +93,7 @@ void liberar_dados_playlist(DADOS **dados)
 {
     if (dados != NULL && *dados != NULL && (*dados)->playlist != NULL)
     {
-        liberar_playlist((*dados)->playlist);
+        liberar_playlist(&(*dados)->playlist);
     }
     liberar_dados(dados);
 }
@@ -102,7 +102,7 @@ void liberar_dados_musica_playlist(DADOS **dados)
 {
     if (dados != NULL && *dados != NULL && (*dados)->musica_playlist != NULL)
     {
-        liberar_musica_playlist((*dados)->musica_playlist);
+        liberar_musica_playlist(&(*dados)->musica_playlist);
     }
     liberar_dados(dados);
 }

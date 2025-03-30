@@ -22,7 +22,10 @@ void liberar_musica_playlist(MUSICA_PLAYLIST **musica_playlist)
     {
         free((*musica_playlist)->titulo_do_artista);
         free((*musica_playlist)->titulo_do_album);
-        liberar_musica((*musica_playlist)->musica);
+        if ((*musica_playlist)->musica != NULL)
+        {
+            liberar_musica(&(*musica_playlist)->musica);
+        }
         free(*musica_playlist);
         *musica_playlist = NULL;
     }
