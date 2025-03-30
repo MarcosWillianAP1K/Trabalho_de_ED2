@@ -27,7 +27,7 @@ void pausar_tela()
 
 void mensagem_erro(char *mensagem)
 {
-    printf("\n\n\033[1;31mERRO: %s\033[0m\n\n", mensagem);
+    printf("\n\033[1;31mERRO: %s\033[0m\n\n", mensagem);
 }
 
 void verificar_alocacao(void *ponteiro)
@@ -98,8 +98,9 @@ short int digitar_short_int()
     
     while (scanf("%hd", &numero) != 1 || numero < 0)
     {
-        mensagem_erro("Numero invalido: ");
+        mensagem_erro("Numero invalido ");
         limpar_buffer();
+        printf("Digite novamente: ");
     }
 
 }

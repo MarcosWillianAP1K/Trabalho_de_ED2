@@ -2,6 +2,7 @@
 #include "../includes/funcao_sistema.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 
 ALBUM *alocar_album()
@@ -65,6 +66,6 @@ void imprimir_album(ALBUM *album)
 
 int comparar_titulo_album(ALBUM *album1, ALBUM *album2)
 {
-    return comparar_strings(album1->titulo, album2->titulo);
+    return strcmp(album1->titulo, album2->titulo);
 }
 

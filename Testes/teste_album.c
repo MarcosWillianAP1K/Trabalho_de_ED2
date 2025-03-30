@@ -8,12 +8,18 @@ int main()
 {
 
 
-    ALBUM *teste = cadastrar_album();
+    ALBUM *teste1 = cadastrar_album();
+    ALBUM *teste2 = cadastrar_album();
     
 
-    imprimir_album(teste);
+    imprimir_album(teste1);
+    imprimir_album(teste2);
 
-    liberar_album(&teste);
+    printf("\ncomparando os albuns: %d\n", comparar_titulo_album(teste1, teste2));
+
+
+    liberar_album(&teste1);
+    liberar_album(&teste2);
 
     return 0;
 }
