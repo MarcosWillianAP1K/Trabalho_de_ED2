@@ -99,12 +99,14 @@ int endereco_minino_esqueda(ARV_BINARIA *raiz)
 int remover_arv_binaria(ARV_BINARIA **raiz, DADOS *info)
 {
   int removeu = 1;
+  
   if (*raiz != NULL)
   {
     if ((*raiz)->info == info)
     {
       ARV_BINARIA *aux;
       ARV_BINARIA *filho;
+
       if (eh_folha(*raiz))
       {
         aux = *raiz;
