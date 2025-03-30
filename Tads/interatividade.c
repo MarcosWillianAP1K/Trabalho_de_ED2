@@ -1,5 +1,6 @@
 #include "../includes/interatividade.h"
 #include "../includes/funcao_sistema.h"
+#include "../includes/func_interatividade.h"
 #include "../includes/arv_binaria.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -10,6 +11,7 @@ void menu_principal()
     ARTISTA *artista = NULL;
     ALBUM *album = NULL;
     MUSICA *musica = NULL;
+    PLAYLIST *playlist = NULL;
 
 
     short int opcao = 0;
@@ -63,97 +65,58 @@ void menu_principal()
 
         case 5:
             printf("Artistas cadastrados de um tipo:\n");
-            printf("Digite o tipo: ");
-            char tipo[50];
-            scanf("%s", tipo);
-            artista = buscar_artista_por_tipo(raiz, tipo);
-            if (artista != NULL)
-            {
-                imprimir_artista(artista);
-            }
-            else
-            {
-                printf("Nenhum artista encontrado com o tipo %s\n", tipo);
-            }
+            mostrar_art_por_tipo(raiz, artista);
             break;
 
         case 6:
             printf("Artistas cadastrados de um estilo musical:\n");
-            printf("Digite o estilo musical: ");
-            char estilo_musical[50];
-            scanf("%s", estilo_musical);
-            artista = buscar_artista_por_estilo_musical(raiz, estilo_musical);
-            if (artista != NULL)
-            {
-                imprimir_artista(artista);
-            }
-            else
-            {
-                printf("Nenhum artista encontrado com o estilo musical %s\n", estilo_musical);
-            }
+            mostrar_art_por_estilo(raiz, artista);
             break;
 
         case 7:
             printf("Artistas cadastrados de um estilo musical e tipo:\n");
-            printf("Digite o estilo musical: ");
-            char estilo_musical_tipo[50];
-            scanf("%s", estilo_musical_tipo);
-            printf("Digite o tipo: ");
-            char tipo_tipo[50];
-            scanf("%s", tipo_tipo);
-            artista = buscar_artista_por_estilo_musical_e_tipo(raiz, estilo_musical_tipo, tipo_tipo);
-            if (artista != NULL)
-            {
-                imprimir_artista(artista);
-            }
-            else
-            {
-                printf("Nenhum artista encontrado com o estilo musical %s e tipo %s\n", estilo_musical_tipo, tipo_tipo);
-            }
+            mostrar_art_por_tipo_e_estilo(raiz, artista);
             break;
 
         case 8:
             printf("Albuns cadastrados de um artista:\n");
-            printf("Digite o nome do artista: ");
-            char nome_artista[50];
-            scanf("%s", nome_artista);
-            artista = buscar_artista_por_nome(raiz, nome_artista);
-            if (artista != NULL)
-            {
-                printf("Albuns do artista %s:\n", artista->nome);
-                imprimir_arv_binaria(artista->albuns_raiz_arvore, imprimir_album);
-            }
-            else
-            {
-                printf("Nenhum artista encontrado com o nome %s\n", nome_artista);
-            }
+            albuns_um_artista(raiz, artista);
             break;
 
         case 9:
             printf("Albuns cadastrados de um artista de um ano:\n");
-            printf("Digite o nome do artista: ");
-            char nome_artista_ano[50];
-            scanf("%s", nome_artista_ano);
-            artista = buscar_artista_por_nome(raiz, nome_artista_ano);
-            
+            albuns_um_artista_um_ano(raiz, artista);
+
             break;
 
         case 10:
+            printf("Musicas cadastradas de um album de um artista:\n");
+            mostrar_musicas_album(raiz, album);
             break;
 
         case 11:
+            printf("Dados de uma musica:\n");
+            mostrar_dados_musica(raiz, musica);
             break;
 
         case 12:
+            printf("Dados de uma playlist:\n");
+            mostrar_dados_playlist(raiz, playlist);
             break;
 
         case 13:
+            printf("Remover musica de uma playlist:\n");
+            remover_musica_playlist(raiz, playlist);
             break;
 
         case 14:
+            printf("Remover uma playlist:\n");
+            remover_playlist(raiz, playlist);
             break;
 
         case 15:
+            printf("Remover uma musica de um album de um artista:\n");
+            remover_musica_de_album_de_artista(raiz, artista, album, musica);
             break;
 
         default:
