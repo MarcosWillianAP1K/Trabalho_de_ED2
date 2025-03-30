@@ -8,15 +8,16 @@ int main()
 {
 
 
-    ARTISTA *teste = cadastrar_artista();
-    
+    ARTISTA *teste1 = cadastrar_artista();
+    ARTISTA *teste2 = cadastrar_artista();
 
-    imprimir_artista(teste);
+    imprimir_artista(teste1);
+    imprimir_artista(teste2);
 
-    free(teste->nome);
-    free(teste->tipo);
-    free(teste->estilo_musical);
-    free(teste);
+    printf("\n\nComparando artistas: %d\n", comparar_nome_artista(teste1, teste2));
+
+    liberar_artista(&teste1);
+    liberar_artista(&teste2);
 
     return 0;
 }

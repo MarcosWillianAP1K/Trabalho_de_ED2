@@ -13,9 +13,7 @@ int main()
 
     imprimir_album(teste);
 
-    free(teste->titulo);
-    free(teste->data_lancamento);
-    free(teste);
+    liberar_album(&teste);
 
     return 0;
 }
