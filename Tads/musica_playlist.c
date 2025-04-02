@@ -80,7 +80,7 @@ int comparar_titulo_musica_musica_playlist(MUSICA_PLAYLIST *musica_playlist1, MU
     return comparar_titulo_musica(musica_playlist1->musica, musica_playlist2->musica);
 }
 
-int comparar_musia_playlist(MUSICA_PLAYLIST *musica_playlist1, MUSICA_PLAYLIST *musica_playlist2)
+int comparar_musica_playlist(MUSICA_PLAYLIST *musica_playlist1, MUSICA_PLAYLIST *musica_playlist2)
 {
     
     return comparar_titulo_artista_musica_playlist(musica_playlist1, musica_playlist2) ||

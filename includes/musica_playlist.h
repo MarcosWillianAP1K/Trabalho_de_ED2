@@ -28,6 +28,6 @@ int comparar_titulo_album_musica_playlist(MUSICA_PLAYLIST *musica_playlist1, MUS
 
 int comparar_titulo_musica_musica_playlist(MUSICA_PLAYLIST *musica_playlist1, MUSICA_PLAYLIST *musica_playlist2);
 
-int comparar_musia_playlist(MUSICA_PLAYLIST *musica_playlist1, MUSICA_PLAYLIST *musica_playlist2);
+int comparar_musica_playlist(MUSICA_PLAYLIST *musica_playlist1, MUSICA_PLAYLIST *musica_playlist2);
 
 #endif

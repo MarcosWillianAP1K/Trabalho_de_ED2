@@ -48,6 +48,8 @@ void verificar_realocacao(void *ponteiro)
     }
 }
 
+
+
 char *digitar_string()
 {
     limpar_buffer();

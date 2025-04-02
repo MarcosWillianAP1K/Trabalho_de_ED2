@@ -68,7 +68,6 @@ void liberar_dados_artista(DADOS **dados)
     {
         liberar_artista(&(*dados)->artista);
     }
-    liberar_dados(dados);
 }
 
 void liberar_dados_album(DADOS **dados)
@@ -77,7 +76,6 @@ void liberar_dados_album(DADOS **dados)
     {
         liberar_album(&(*dados)->album);
     }
-    liberar_dados(dados);
 }
 
 void liberar_dados_musica(DADOS **dados)
@@ -86,7 +84,6 @@ void liberar_dados_musica(DADOS **dados)
     {
         liberar_musica(&(*dados)->musica);
     }
-    liberar_dados(dados);
 }
 
 void liberar_dados_playlist(DADOS **dados)
@@ -95,7 +92,6 @@ void liberar_dados_playlist(DADOS **dados)
     {
         liberar_playlist(&(*dados)->playlist);
     }
-    liberar_dados(dados);
 }
 
 void liberar_dados_musica_playlist(DADOS **dados)
@@ -104,7 +100,6 @@ void liberar_dados_musica_playlist(DADOS **dados)
     {
         liberar_musica_playlist(&(*dados)->musica_playlist);
     }
-    liberar_dados(dados);
 }
 
 
