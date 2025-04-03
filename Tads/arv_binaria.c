@@ -159,3 +159,26 @@ int remover_arv_binaria_com_valor(ARV_BINARIA **raiz, DADOS *info, void (*libera
   }
   return removeu;
 }
+
+void buscar_arv_binaria(ARV_BINARIA *raiz, DADOS *info, int (*comparar)(DADOS *, DADOS *), void (*printar_dados)(DADOS *))
+{
+  if (raiz != NULL)
+  {
+    if (comparar(raiz->info, info) == 0)
+    {
+      printar_dados(raiz->info);
+    }
+    else
+    {
+      if (comparar(raiz->info, info) < 0)
+      {
+        buscar_arv_binaria(raiz->dir, info, comparar, printar_dados);
+      }
+      else
+      {
+        buscar_arv_binaria(raiz->esq, info, comparar, printar_dados);
+      }
+      
+    }
+  }
+}
