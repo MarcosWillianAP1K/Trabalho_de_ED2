@@ -52,7 +52,7 @@ void inserir_arv_binaria(ARV_BINARIA **raiz, DADOS *info, int (*comparar)(DADOS 
     (*raiz)->esq = NULL;
     (*raiz)->dir = NULL;
   }
-  else if (comparar( (*raiz)->info, info) > 0)
+  else if (comparar((*raiz)->info, info) < 0)
   {
     inserir_arv_binaria(&(*raiz)->esq, info, comparar);
   }
@@ -96,60 +96,51 @@ int endereco_minino_esqueda(ARV_BINARIA *raiz)
   return eh;
 }
 
-int remover_arv_binaria_com_valor(ARV_BINARIA **raiz, DADOS *info, void (*liberar)(DADOS **), int remover_no)
+int remover_arv_binaria_com_valor(ARV_BINARIA **raiz, DADOS *info, void (*liberar)(DADOS **), int (*comparar)(DADOS *, DADOS *))
 {
   int removeu = 1;
 
   if (*raiz != NULL)
   {
-    if ((*raiz)->info == info)
+    if (comparar((*raiz)->info, info) == 0)
     {
-      if (remover_no)
-      {
-        ARV_BINARIA *aux;
-        ARV_BINARIA *filho;
 
-        if (eh_folha(*raiz))
+      ARV_BINARIA *aux;
+      ARV_BINARIA *filho;
+
+      if (eh_folha(*raiz))
+      {
+        aux = *raiz;
+        *raiz = NULL;
+        free(aux);
+      }
+      else
+      {
+        if ((filho = eh_um_filho(*raiz)) != NULL)
         {
           aux = *raiz;
-          *raiz = NULL;
+          *raiz = filho;
           free(aux);
         }
         else
         {
-          if ((filho = eh_um_filho(*raiz)) != NULL)
-          {
-            aux = *raiz;
-            *raiz = filho;
-            free(aux);
-          }
-          else
-          {
-            ARV_BINARIA *menor;
-            menor = endereco_minino_esqueda((*raiz)->dir);
-            (*raiz)->info = menor->info;
-            removeu = remover_arv_binaria_com_valor(&(*raiz)->dir, menor->info, liberar, 1);
-          }
+          ARV_BINARIA *menor;
+          menor = endereco_minino_esqueda((*raiz)->dir);
+          (*raiz)->info = menor->info;
+          removeu = remover_arv_binaria_com_valor(&(*raiz)->dir, menor->info, liberar, comparar);
         }
       }
-      else
-      {
-        if ((*raiz)->info != NULL)
-        {
-          liberar(&(*raiz)->info);
-          (*raiz)->info = NULL;
-        }
-      }
+
     }
     else
     {
-      if (info < (*raiz)->info)
+      if (comparar((*raiz)->info, info) < 0)
       {
-        removeu = remover_arv_binaria_com_valor(&(*raiz)->esq, info, liberar, remover_no);
+        removeu = remover_arv_binaria_com_valor(&(*raiz)->esq, info, liberar, comparar);
       }
       else
       {
-        removeu = remover_arv_binaria_com_valor(&(*raiz)->dir, info, liberar, remover_no);
+        removeu = remover_arv_binaria_com_valor(&(*raiz)->dir, info, liberar, comparar);
       }
     }
   }
@@ -157,6 +148,7 @@ int remover_arv_binaria_com_valor(ARV_BINARIA **raiz, DADOS *info, void (*libera
   {
     removeu = 0;
   }
+
   return removeu;
 }
 

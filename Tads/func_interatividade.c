@@ -147,6 +147,7 @@ void remover_musica_playlist(ARV_BINARIA *raiz, PLAYLIST *playlist)
     char nome_playlist[50];
     scanf("%s", nome_playlist);
     playlist = buscar_playlist_por_nome(raiz, nome_playlist);
+    
     if (playlist != NULL)
     {
         printf("Digite o nome da musica: ");
@@ -159,6 +160,7 @@ void remover_musica_playlist(ARV_BINARIA *raiz, PLAYLIST *playlist)
         printf("Nenhuma playlist encontrada com o nome %s\n", nome_playlist);
     }
 }
+
 void remover_playlist(ARV_BINARIA *raiz, PLAYLIST *playlist)
 {
     printf("Digite o nome da playlist: ");
