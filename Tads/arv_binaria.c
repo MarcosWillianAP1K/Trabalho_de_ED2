@@ -96,7 +96,7 @@ int endereco_minino_esqueda(ARV_BINARIA *raiz)
   return eh;
 }
 
-int remover_arv_binaria(ARV_BINARIA **raiz, DADOS *info)
+int remover_arv_binaria_com_valor(ARV_BINARIA **raiz, DADOS *info, void (*liberar)(DADOS **), int remover_no)
 {
   int removeu = 1;
 
@@ -104,29 +104,40 @@ int remover_arv_binaria(ARV_BINARIA **raiz, DADOS *info)
   {
     if ((*raiz)->info == info)
     {
-      ARV_BINARIA *aux;
-      ARV_BINARIA *filho;
+      if (remover_no)
+      {
+        ARV_BINARIA *aux;
+        ARV_BINARIA *filho;
 
-      if (eh_folha(*raiz))
-      {
-        aux = *raiz;
-        *raiz = NULL;
-        free(aux);
-      }
-      else
-      {
-        if ((filho = eh_um_filho(*raiz)) != NULL)
+        if (eh_folha(*raiz))
         {
           aux = *raiz;
-          *raiz = filho;
+          *raiz = NULL;
           free(aux);
         }
         else
         {
-          ARV_BINARIA *menor;
-          menor = endereco_minino_esqueda((*raiz)->dir);
-          (*raiz)->info = menor->info;
-          removeu = remover_arv_binaria(&(*raiz)->dir, menor->info);
+          if ((filho = eh_um_filho(*raiz)) != NULL)
+          {
+            aux = *raiz;
+            *raiz = filho;
+            free(aux);
+          }
+          else
+          {
+            ARV_BINARIA *menor;
+            menor = endereco_minino_esqueda((*raiz)->dir);
+            (*raiz)->info = menor->info;
+            removeu = remover_arv_binaria_com_valor(&(*raiz)->dir, menor->info, liberar, 1);
+          }
+        }
+      }
+      else
+      {
+        if ((*raiz)->info != NULL)
+        {
+          liberar(&(*raiz)->info);
+          (*raiz)->info = NULL;
         }
       }
     }
@@ -134,11 +145,11 @@ int remover_arv_binaria(ARV_BINARIA **raiz, DADOS *info)
     {
       if (info < (*raiz)->info)
       {
-        removeu = remover_arv_binaria(&(*raiz)->esq, info);
+        removeu = remover_arv_binaria_com_valor(&(*raiz)->esq, info, liberar, remover_no);
       }
       else
       {
-        removeu = remover_arv_binaria(&(*raiz)->dir, info);
+        removeu = remover_arv_binaria_com_valor(&(*raiz)->dir, info, liberar, remover_no);
       }
     }
   }
