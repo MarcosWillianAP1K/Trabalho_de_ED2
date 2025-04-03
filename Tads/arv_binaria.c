@@ -52,7 +52,7 @@ void inserir_arv_binaria(ARV_BINARIA **raiz, DADOS *info, int (*comparar)(DADOS 
     (*raiz)->esq = NULL;
     (*raiz)->dir = NULL;
   }
-  else if (comparar((*raiz)->info, info) > 0)
+  else if (comparar((*raiz)->info, info) < 0)
   {
     inserir_arv_binaria(&(*raiz)->esq, info, comparar);
   }
@@ -134,7 +134,7 @@ int remover_arv_binaria_com_valor(ARV_BINARIA **raiz, DADOS *info, void (*libera
     }
     else
     {
-      if (info < (*raiz)->info)
+      if (comparar((*raiz)->info, info) < 0)
       {
         removeu = remover_arv_binaria_com_valor(&(*raiz)->esq, info, liberar, comparar);
       }
