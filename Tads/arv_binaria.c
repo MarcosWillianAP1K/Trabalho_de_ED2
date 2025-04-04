@@ -3,10 +3,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void inicializar_arv_binaria(ARV_BINARIA **raiz)
-{
-  *raiz = NULL;
-}
 
 ARV_BINARIA *alocar_arv_binaria()
 {
@@ -65,7 +61,7 @@ void inserir_arv_binaria(ARV_BINARIA **raiz, DADOS *info, int (*comparar)(DADOS 
     (*raiz)->esq = NULL;
     (*raiz)->dir = NULL;
   }
-  else if (comparar((*raiz)->info, info) < 0)
+  else if (comparar((*raiz)->info, info) > 0)
   {
     inserir_arv_binaria(&(*raiz)->esq, info, comparar);
   }
@@ -150,7 +146,7 @@ int remover_arv_binaria_com_valor(ARV_BINARIA **raiz, DADOS *info, void (*libera
         else
         {
           ARV_BINARIA **menor;
-          menor = endereco_maximo_direita((*raiz)->esq);
+          menor = endereco_maximo_direita(&(*raiz)->esq);
           
           ARV_BINARIA *aux = *menor;
           *menor = aux->esq;

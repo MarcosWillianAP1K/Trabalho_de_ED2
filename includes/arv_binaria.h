@@ -12,7 +12,6 @@ typedef struct ARV_BINARIA{
     struct ARV_BINARIA *dir;
 } ARV_BINARIA;
 
-void inicializar_arv_binaria(ARV_BINARIA **raiz);
 
 ARV_BINARIA *alocar_arv_binaria();
 
