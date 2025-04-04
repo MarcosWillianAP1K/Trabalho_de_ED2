@@ -17,6 +17,20 @@ ARV_BINARIA *alocar_arv_binaria()
   return nova_arv;
 }
 
+void liberar_no_arv_binaria(ARV_BINARIA **raiz, void (*liberar)(DADOS **))
+{
+  if (raiz != NULL && *raiz != NULL)
+  {
+    if ((*raiz)->info != NULL)
+    {
+      liberar(&(*raiz)->info);
+    }
+
+    free(*raiz);
+    *raiz = NULL;
+  }
+}
+
 void liberar_arv_binaria(ARV_BINARIA **raiz, void (*liberar)(DADOS **))
 {
   if (raiz != NULL && *raiz != NULL)
@@ -29,8 +43,7 @@ void liberar_arv_binaria(ARV_BINARIA **raiz, void (*liberar)(DADOS **))
       liberar(&(*raiz)->info);
     }
 
-    free(*raiz);
-    *raiz = NULL;
+    liberar_no_arv_binaria(raiz, liberar);
   }
 }
 
@@ -77,25 +90,39 @@ int eh_folha(ARV_BINARIA *raiz)
   return (raiz->esq == NULL && raiz->dir == NULL);
 }
 
-int eh_um_filho(ARV_BINARIA *raiz)
+ARV_BINARIA *eh_um_filho(ARV_BINARIA *raiz)
 {
-  return (raiz->esq == NULL || raiz->dir == NULL);
+  ARV_BINARIA *filho = NULL;
+  
+  if (raiz->esq != NULL && raiz->dir == NULL)
+  {
+    filho = raiz->esq;
+  }
+  else if (raiz->esq == NULL && raiz->dir != NULL)
+  {
+    filho = raiz->dir;
+  }
+
+  return filho;
 }
 
-int endereco_minino_esqueda(ARV_BINARIA *raiz)
+ARV_BINARIA *endereco_maximo_direita(ARV_BINARIA *raiz)
 {
-  int eh = 0;
-  if (raiz->esq != NULL)
+  int no = 0;
+
+  if (raiz->dir != NULL)
   {
-    eh = endereco_minino_esqueda(raiz->esq);
+    no = endereco_maximo_direita(raiz->dir);
   }
   else
   {
-    eh = raiz;
+    no = raiz;
   }
-  return eh;
+  return no;
 }
 
+
+//PRECISA FAZER UMA REMOÇÃO DIFERENTE, NÃO BASTA COPIAR O CONTEUDO, DEVE TROCAR O NO POR INTEIRO.
 int remover_arv_binaria_com_valor(ARV_BINARIA **raiz, DADOS *info, void (*liberar)(DADOS **), int (*comparar)(DADOS *, DADOS *))
 {
   int removeu = 1;
@@ -104,28 +131,26 @@ int remover_arv_binaria_com_valor(ARV_BINARIA **raiz, DADOS *info, void (*libera
   {
     if (comparar((*raiz)->info, info) == 0)
     {
-
-      ARV_BINARIA *aux;
-      ARV_BINARIA *filho;
+      
 
       if (eh_folha(*raiz))
       {
-        aux = *raiz;
-        *raiz = NULL;
-        free(aux);
+        liberar_no_arv_binaria(raiz, liberar);
       }
       else
       {
+        ARV_BINARIA *filho;
+
         if ((filho = eh_um_filho(*raiz)) != NULL)
         {
-          aux = *raiz;
+          liberar_no_arv_binaria(raiz, liberar);
           *raiz = filho;
-          free(aux);
         }
         else
         {
           ARV_BINARIA *menor;
-          menor = endereco_minino_esqueda((*raiz)->dir);
+          menor = endereco_maximo_direita((*raiz)->esq);
+          
           (*raiz)->info = menor->info;
           removeu = remover_arv_binaria_com_valor(&(*raiz)->dir, menor->info, liberar, comparar);
         }
