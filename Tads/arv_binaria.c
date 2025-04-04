@@ -106,18 +106,19 @@ ARV_BINARIA *eh_um_filho(ARV_BINARIA *raiz)
   return filho;
 }
 
-ARV_BINARIA *endereco_maximo_direita(ARV_BINARIA *raiz)
+ARV_BINARIA **endereco_maximo_direita(ARV_BINARIA **raiz)
 {
-  int no = 0;
+  ARV_BINARIA **no = NULL;
 
-  if (raiz->dir != NULL)
+  if ((*raiz)->dir != NULL)
   {
-    no = endereco_maximo_direita(raiz->dir);
+    no = endereco_maximo_direita(&(*raiz)->dir);
   }
   else
   {
     no = raiz;
   }
+  
   return no;
 }
 
@@ -148,7 +149,7 @@ int remover_arv_binaria_com_valor(ARV_BINARIA **raiz, DADOS *info, void (*libera
         }
         else
         {
-          ARV_BINARIA *menor;
+          ARV_BINARIA **menor;
           menor = endereco_maximo_direita((*raiz)->esq);
           
           (*raiz)->info = menor->info;
