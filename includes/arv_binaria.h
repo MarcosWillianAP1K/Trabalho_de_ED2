@@ -26,11 +26,11 @@ void imprimir_arv_binaria(ARV_BINARIA *raiz, void (*printar_dados)(DADOS *));
 
 int eh_folha(ARV_BINARIA *raiz);
 
-int eh_um_filho(ARV_BINARIA *raiz);
+ARV_BINARIA *eh_um_filho(ARV_BINARIA *raiz);
 
-int endereco_minino_esqueda(ARV_BINARIA *raiz);
+ARV_BINARIA **endereco_maximo_direita(ARV_BINARIA **raiz);
 
-int remover_arv_binaria(ARV_BINARIA **raiz, DADOS *info);
+int remover_arv_binaria_com_valor(ARV_BINARIA **raiz, DADOS *info, void (*liberar)(DADOS **), int (*comparar)(DADOS *, DADOS *));
 
 
 #endif

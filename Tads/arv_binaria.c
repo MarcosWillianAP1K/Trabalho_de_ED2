@@ -152,15 +152,20 @@ int remover_arv_binaria_com_valor(ARV_BINARIA **raiz, DADOS *info, void (*libera
           ARV_BINARIA **menor;
           menor = endereco_maximo_direita((*raiz)->esq);
           
-          (*raiz)->info = menor->info;
-          removeu = remover_arv_binaria_com_valor(&(*raiz)->dir, menor->info, liberar, comparar);
+          ARV_BINARIA *aux = *menor;
+          *menor = aux->esq;
+          aux->esq = (*raiz)->esq;
+          aux->dir = (*raiz)->dir;
+
+          liberar_no_arv_binaria(raiz, liberar);
+          *raiz = aux;
         }
       }
 
     }
     else
     {
-      if (comparar((*raiz)->info, info) < 0)
+      if (comparar((*raiz)->info, info) > 0)
       {
         removeu = remover_arv_binaria_com_valor(&(*raiz)->esq, info, liberar, comparar);
       }
