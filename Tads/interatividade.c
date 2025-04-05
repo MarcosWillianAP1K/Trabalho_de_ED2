@@ -1,7 +1,5 @@
 #include "../includes/interatividade.h"
 #include "../includes/funcao_sistema.h"
-#include "../includes/func_interatividade.h"
-#include "../includes/arv_binaria.h"
 #include <stdio.h>
 #include <stdlib.h>
 

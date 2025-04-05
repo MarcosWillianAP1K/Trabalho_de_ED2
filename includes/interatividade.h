@@ -1,4 +1,5 @@
 #include "arv_binaria.h"
+#include "func_interatividade.h"
 
 #ifndef INTERATIVIDADE_H
 #define INTERATIVIDADE_H
