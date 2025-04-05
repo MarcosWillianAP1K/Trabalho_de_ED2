@@ -25,6 +25,7 @@ int main()
     inserir_arv_binaria(&raiz, dado_artista1, comparar_dados_nome_artista);
     inserir_arv_binaria(&raiz, dado_artista3, comparar_dados_nome_artista);
     inserir_arv_binaria(&raiz, dado_artista4, comparar_dados_nome_artista);
+    inserir_arv_binaria(&raiz, dado_artista5, comparar_dados_nome_artista);
 
     imprimir_arv_binaria(raiz, imprimir_dados_artista);
 
@@ -37,7 +38,7 @@ int main()
     // imprimir_arv_binaria(buscar_arv_binaria(raiz, dado_artista1, comparar_dados_nome_artista), imprimir_dados_artista);
 
     printf("\n\n");
-    // imprimir_arv_binaria_filtro(raiz, imprimir_dados_artista, , dado_artista5);
+    imprimir_arv_binaria_filtro(raiz, dado_artista5,imprimir_dados_artista, comparar_dados_tipo_artista);
 
     liberar_arv_binaria(&raiz, liberar_dados_artista);
 

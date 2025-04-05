@@ -200,15 +200,15 @@ ARV_BINARIA *buscar_arv_binaria(ARV_BINARIA *raiz, DADOS *info, int (*comparar)(
   return no;
 }
 
-void imprimir_arv_binaria_filtro(ARV_BINARIA *raiz, void (*printar_dados)(DADOS *), int (*comparar)(DADOS *, DADOS *), DADOS *info)
+void imprimir_arv_binaria_filtro(ARV_BINARIA *raiz, DADOS *info, void (*printar_dados)(DADOS *), int (*comparar)(DADOS *, DADOS *))
 {
   if (raiz != NULL)
   {
-    imprimir_arv_binaria_filtro(raiz->esq, printar_dados, comparar, info);
+    imprimir_arv_binaria_filtro(raiz->esq, info, printar_dados, comparar);
     if (comparar(raiz->info, info) == 0)
     {
       printar_dados(raiz->info);
     }
-    imprimir_arv_binaria_filtro(raiz->dir, printar_dados, comparar, info);
+    imprimir_arv_binaria_filtro(raiz->dir, info, printar_dados, comparar);
   }
 }
