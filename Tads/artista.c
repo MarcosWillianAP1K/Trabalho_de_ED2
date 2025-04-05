@@ -98,3 +98,22 @@ int comparar_tipo_artista(ARTISTA *artista1, ARTISTA *artista2)
 
     return 0;
 }
+
+int comparar_dados_tipo_e_estilo_artista(ARTISTA *artista1, ARTISTA *artista2)
+{
+    if (artista1 != NULL && artista2 != NULL)
+    {
+        int num = 0;
+
+        if (num = comparar_estilo_artista(artista1, artista2) == 0)
+        {
+            num = comparar_tipo_artista(artista1, artista2);
+        }
+
+        return num;
+        
+    }
+
+    return 0;
+}
+

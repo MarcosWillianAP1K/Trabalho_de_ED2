@@ -1,6 +1,6 @@
 #include <stdio.h>
-#include <../includes/interatividade.h>
-#include <../includes/funcao_sistema.h>
+#include "../includes/interatividade.h"
+#include "../includes/funcao_sistema.h"
 
 
 

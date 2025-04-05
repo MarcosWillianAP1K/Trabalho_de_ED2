@@ -1,56 +1,74 @@
 #include "../includes/func_interatividade.h"
+
 #include <stdio.h>
 #include <stdlib.h>
 
 
-void mostrar_art_por_tipo(ARV_BINARIA *raiz, ARTISTA *artista)
+void mostrar_artista_por_tipo(ARV_BINARIA *raiz, ARTISTA *artista)
 {
     printf("Digite o tipo: ");
-    char tipo[50];
-    scanf("%s", tipo);
-    artista = buscar_artista_por_tipo(raiz, tipo);
-    if (artista != NULL)
+    
+    char *tipo = digitar_string();
+
+    DADOS *aux = alocar_dados();
+    aux->artista = criar_artista("auxiliar", *tipo, "auxiliar", 0, NULL);
+
+    if (*tipo != '\0')
     {
-        imprimir_artista(artista);
+        imprimir_arv_binaria_filtro(raiz, aux, imprimir_artista, comparar_dados_tipo_artista);
     }
     else
     {
         printf("Nenhum artista encontrado com o tipo %s\n", tipo);
     }
+
+    liberar_dados_artista(&aux);
 }
-void mostrar_art_por_estilo(ARV_BINARIA *raiz, ARTISTA *artista)
+
+void mostrar_artista_por_estilo(ARV_BINARIA *raiz, ARTISTA *artista)
 {
     printf("Digite o estilo: ");
-    char estilo[50];
-    scanf("%s", estilo);
-    artista = buscar_artista_por_estilo(raiz, estilo);
-    if (artista != NULL)
+    
+    char *estilo = digitar_string();
+
+    DADOS *aux = alocar_dados();
+    aux->artista = criar_artista("auxiliar", "auxiliar", *estilo, 0, NULL);
+
+    if (*estilo != '\0')
     {
-        imprimir_artista(artista);
+        imprimir_arv_binaria_filtro(raiz, aux, imprimir_artista, comparar_dados_estilo_artista);
     }
     else
     {
         printf("Nenhum artista encontrado com o estilo %s\n", estilo);
     }
+
+    liberar_dados_artista(&aux);
 }
 
-void mostrar_art_por_tipo_e_estilo(ARV_BINARIA *raiz, ARTISTA *artista)
+void mostrar_artista_por_tipo_e_estilo(ARV_BINARIA *raiz, ARTISTA *artista)
 {
     printf("Digite o tipo: ");
-    char tipo[50];
-    scanf("%s", tipo);
+    
+    char *tipo = digitar_string();
+
     printf("Digite o estilo: ");
-    char estilo[50];
-    scanf("%s", estilo);
-    artista = buscar_artista_por_tipo_e_estilo(raiz, tipo, estilo);
-    if (artista != NULL)
+    
+    char *estilo = digitar_string();
+
+    DADOS *aux = alocar_dados();
+    aux->artista = criar_artista("auxiliar", *tipo, *estilo, 0, NULL);
+
+    if (*tipo != '\0' && *estilo != '\0')
     {
-        imprimir_artista(artista);
+        imprimir_arv_binaria_filtro(raiz, aux, imprimir_artista, comparar_dados_tipo_e_estilo_artista);
     }
     else
     {
         printf("Nenhum artista encontrado com o tipo %s e estilo %s\n", tipo, estilo);
     }
+
+    liberar_dados_artista(&aux);
 }
 
 void albuns_um_artista(ARV_BINARIA *raiz, ARTISTA *artista)
