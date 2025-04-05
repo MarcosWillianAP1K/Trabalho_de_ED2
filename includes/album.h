@@ -28,4 +28,6 @@ void imprimir_album(ALBUM *album);
 
 int comparar_titulo_album(ALBUM *album1, ALBUM *album2);
 
+int comparar_data_album(ALBUM *album1, ALBUM *album2);
+
 #endif
