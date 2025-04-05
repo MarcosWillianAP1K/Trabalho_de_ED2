@@ -82,8 +82,21 @@ int comparar_titulo_musica_musica_playlist(MUSICA_PLAYLIST *musica_playlist1, MU
 
 int comparar_musica_playlist(MUSICA_PLAYLIST *musica_playlist1, MUSICA_PLAYLIST *musica_playlist2)
 {
+    int comparacao = 0;
+
+    if (musica_playlist1 != NULL && musica_playlist2 != NULL)
+    {
+        comparacao = comparar_titulo_artista_musica_playlist(musica_playlist1, musica_playlist2);
+        if (comparacao == 0)
+        {
+            comparacao = comparar_titulo_album_musica_playlist(musica_playlist1, musica_playlist2);
+            if (comparacao == 0 && musica_playlist1->musica != NULL && musica_playlist2->musica != NULL)
+            {
+                comparacao = comparar_titulo_musica_musica_playlist(musica_playlist1, musica_playlist2);
+            }
+        }
+    }
+
+    return comparacao;
     
-    return comparar_titulo_artista_musica_playlist(musica_playlist1, musica_playlist2) ||
-           comparar_titulo_album_musica_playlist(musica_playlist1, musica_playlist2) ||
-           comparar_titulo_musica_musica_playlist(musica_playlist1, musica_playlist2);
 }

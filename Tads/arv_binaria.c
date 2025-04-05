@@ -47,7 +47,7 @@ void liberar_arv_binaria(ARV_BINARIA **raiz, void (*liberar)(DADOS **))
 
 }
 
-ARV_BINARIA *criar_arv_binaria(DADOS *info)
+ARV_BINARIA *cria_no_arv_binaria(DADOS *info)
 {
   ARV_BINARIA *nova_arv = alocar_arv_binaria();
   nova_arv->info = info;
@@ -60,10 +60,8 @@ void inserir_arv_binaria(ARV_BINARIA **raiz, DADOS *info, int (*comparar)(DADOS 
 {
   if (*raiz == NULL)
   {
-    *raiz = alocar_arv_binaria();
-    (*raiz)->info = info;
-    (*raiz)->esq = NULL;
-    (*raiz)->dir = NULL;
+    *raiz = cria_no_arv_binaria(info);
+    
   }
   else if (comparar((*raiz)->info, info) > 0)
   {
@@ -183,25 +181,29 @@ int remover_arv_binaria(ARV_BINARIA **raiz, DADOS *info, void (*liberar)(DADOS *
   return removeu;
 }
 
-void buscar_arv_binaria(ARV_BINARIA *raiz, DADOS *info, int (*comparar)(DADOS *, DADOS *), void (*printar_dados)(DADOS *))
+ARV_BINARIA *buscar_arv_binaria(ARV_BINARIA *raiz, DADOS *info, int (*comparar)(DADOS *, DADOS *))
 {
+  ARV_BINARIA *no = NULL;
+
   if (raiz != NULL)
   {
     if (comparar(raiz->info, info) == 0)
     {
-      printar_dados(raiz->info);
+      no = raiz;
     }
     else
     {
       if (comparar(raiz->info, info) < 0)
       {
-        buscar_arv_binaria(raiz->dir, info, comparar, printar_dados);
+        no = buscar_arv_binaria(raiz->dir, info, comparar);
       }
       else
       {
-        buscar_arv_binaria(raiz->esq, info, comparar, printar_dados);
+        no = buscar_arv_binaria(raiz->esq, info, comparar);
       }
       
     }
   }
+
+  return no;
 }

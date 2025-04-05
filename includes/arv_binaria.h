@@ -17,7 +17,7 @@ ARV_BINARIA *alocar_arv_binaria();
 
 void liberar_arv_binaria(ARV_BINARIA **raiz, void (*liberar)(DADOS **));
 
-ARV_BINARIA * criar_arv_binaria(DADOS *info);
+ARV_BINARIA *cria_no_arv_binaria(DADOS *info);
 
 void inserir_arv_binaria(ARV_BINARIA **raiz, DADOS *info, int (*comparar)(DADOS *, DADOS *));
 
@@ -30,6 +30,8 @@ ARV_BINARIA *eh_um_filho(ARV_BINARIA *raiz);
 ARV_BINARIA **endereco_maximo_direita(ARV_BINARIA **raiz);
 
 int remover_arv_binaria(ARV_BINARIA **raiz, DADOS *info, void (*liberar)(DADOS **), int (*comparar)(DADOS *, DADOS *));
+
+ARV_BINARIA *buscar_arv_binaria(ARV_BINARIA *raiz, DADOS *info, int (*comparar)(DADOS *, DADOS *));
 
 
 #endif
