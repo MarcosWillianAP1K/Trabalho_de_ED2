@@ -217,8 +217,73 @@ void remover_musica_de_album_de_artista(ARV_BINARIA *raiz, ARTISTA *artista, ALB
     }
 }
 
-void delete_all(ARV_BINARIA *raiz, void (*liberar)(DADOS **))
+
+void delete_musica(ARV_BINARIA **raiz_musica)
 {
-    liberar_arv_binaria(&raiz, liberar);
-    printf("Todos os dados foram removidos com sucesso.\n");
+    if ((*raiz_musica) != NULL)
+    {
+        liberar_no_arv_binaria(raiz_musica, liberar_dados_musica);
+        raiz_musica = NULL;
+    }
+}
+
+void delete_album(ARV_BINARIA **raiz_album)
+{
+    if (raiz_album != NULL)
+    {
+        delete_album((*raiz_album)->esq);
+        delete_album((*raiz_album)->dir);
+
+        delete_musica(&(ARV_BINARIA *)(*raiz_album)->info->album->musicas_raiz_arvore);
+
+        liberar_no_arv_binaria(&raiz_album, liberar_dados_album);
+        raiz_album = NULL;
+    }
+}
+
+void delete_artista(ARV_BINARIA **raiz_artista)
+{
+    if (raiz_artista != NULL)
+    {
+        delete_artista((*raiz_artista)->esq);
+        delete_artista((*raiz_artista)->dir);
+
+        delete_album(&(ARV_BINARIA *)(*raiz_artista)->info->artista->albuns_raiz_arvore);
+
+        liberar_no_arv_binaria(raiz_artista, liberar_dados_artista);
+        raiz_artista = NULL;
+    }
+    
+}
+
+void delete_musica_playlist(ARV_BINARIA **raiz_musica_playlist)
+{
+    if (raiz_musica_playlist != NULL)
+    {
+        liberar_no_arv_binaria(raiz_musica_playlist, liberar_dados_musica_playlist);
+        raiz_musica_playlist = NULL;
+    }
+}
+
+void delete_playlist(ARV_BINARIA **raiz_playlist)
+{
+    if (raiz_playlist != NULL)
+    {
+        delete_playlist((*raiz_playlist)->esq);
+        delete_playlist((*raiz_playlist)->dir);
+
+        delete_musica_playlist(&(ARV_BINARIA *)(*raiz_playlist)->info->playlist->musicas_raiz_arvore);
+
+        liberar_no_arv_binaria(raiz_playlist, liberar_dados_playlist);
+        raiz_playlist = NULL;
+    }
+}
+
+void delete_all(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
+{
+    delete_playlist(raiz_playlist);
+    delete_artista(raiz_artista);
+
+    *raiz_artista = NULL;
+    *raiz_playlist = NULL;
 }

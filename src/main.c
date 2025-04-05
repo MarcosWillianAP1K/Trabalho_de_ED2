@@ -13,7 +13,7 @@ int main()
 
     menu_principal(raiz_artista, raiz_playlist);
 
-    liberar_arv_binaria(raiz_playlist, liberar_playlist );
+    
 
     return 0;
 }

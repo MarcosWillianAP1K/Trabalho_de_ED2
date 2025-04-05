@@ -15,6 +15,8 @@ typedef struct ARV_BINARIA{
 
 ARV_BINARIA *alocar_arv_binaria();
 
+void liberar_no_arv_binaria(ARV_BINARIA **raiz, void (*liberar)(DADOS **));
+
 void liberar_arv_binaria(ARV_BINARIA **raiz, void (*liberar)(DADOS **));
 
 ARV_BINARIA *cria_no_arv_binaria(DADOS *info);
