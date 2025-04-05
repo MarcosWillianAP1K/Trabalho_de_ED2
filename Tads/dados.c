@@ -118,6 +118,16 @@ int comparar_dados_nome_artista(DADOS *dados1, DADOS *dados2)
     return comparar_nome_artista(dados1->artista, dados2->artista);
 }
 
+int comparar_dados_estilo_artista(DADOS *dados1, DADOS *dados2)
+{
+    return comparar_estilo_artista(dados1->artista, dados2->artista);
+}
+
+int comparar_dados_tipo_artista(DADOS *dados1, DADOS *dados2)
+{
+    return comparar_tipo_artista(dados1->artista, dados2->artista);
+}
+
 int comparar_dados_titulo_album(DADOS *dados1, DADOS *dados2)
 {
     return comparar_titulo_album(dados1->album, dados2->album);
