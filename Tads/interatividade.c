@@ -5,13 +5,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void menu_principal()
+void menu_principal(ARV_BINARIA *raiz_artista, ARV_BINARIA *raiz_playlist)
 {
-    ARV_BINARIA *raiz = NULL;
-    ARTISTA *artista = NULL;
-    ALBUM *album = NULL;
-    MUSICA *musica = NULL;
-    PLAYLIST *playlist = NULL;
+
 
 
     short int opcao = 0;
@@ -47,76 +43,76 @@ void menu_principal()
             break; 
 
         case 1:
-            artista = cadastrar_artista(artista);
+            cadastrar_artista();
             break;
 
         case 2:
-            album = cadastrar_album(album);
+            cadastrar_album();
             break;
 
         case 3:
-            musica = cadastrar_musica(musica);
+           cadastrar_musica();
             break;
 
         case 4:
-            printf("Artistas cadastrados:\n");
-            imprimir_arv_binaria(raiz, imprimir_artista);
+            // printf("Artistas cadastrados:\n");
+            // imprimir_arv_binaria(raiz, imprimir_artista);
             break;
 
         case 5:
-            printf("Artistas cadastrados de um tipo:\n");
-            mostrar_art_por_tipo(raiz, artista);
+            // printf("Artistas cadastrados de um tipo:\n");
+            // mostrar_art_por_tipo(raiz, artista);
             break;
 
         case 6:
-            printf("Artistas cadastrados de um estilo musical:\n");
-            mostrar_art_por_estilo(raiz, artista);
+            // printf("Artistas cadastrados de um estilo musical:\n");
+            // mostrar_art_por_estilo(raiz, artista);
             break;
 
         case 7:
-            printf("Artistas cadastrados de um estilo musical e tipo:\n");
-            mostrar_art_por_tipo_e_estilo(raiz, artista);
+            // printf("Artistas cadastrados de um estilo musical e tipo:\n");
+            // mostrar_art_por_tipo_e_estilo(raiz, artista);
             break;
 
         case 8:
-            printf("Albuns cadastrados de um artista:\n");
-            albuns_um_artista(raiz, artista);
+            // printf("Albuns cadastrados de um artista:\n");
+            // albuns_um_artista(raiz, artista);
             break;
 
         case 9:
-            printf("Albuns cadastrados de um artista de um ano:\n");
-            albuns_um_artista_um_ano(raiz, artista);
+            // printf("Albuns cadastrados de um artista de um ano:\n");
+            // albuns_um_artista_um_ano(raiz, artista);
 
             break;
 
         case 10:
-            printf("Musicas cadastradas de um album de um artista:\n");
-            mostrar_musicas_album(raiz, album);
+            // printf("Musicas cadastradas de um album de um artista:\n");
+            // mostrar_musicas_album(raiz, album);
             break;
 
         case 11:
-            printf("Dados de uma musica:\n");
-            mostrar_dados_musica(raiz, musica);
+            // printf("Dados de uma musica:\n");
+            // mostrar_dados_musica(raiz, musica);
             break;
 
         case 12:
-            printf("Dados de uma playlist:\n");
-            mostrar_dados_playlist(raiz, playlist);
+            // printf("Dados de uma playlist:\n");
+            // mostrar_dados_playlist(raiz, playlist);
             break;
 
         case 13:
-            printf("Remover musica de uma playlist:\n");
-            remover_musica_playlist(raiz, playlist);
+            // printf("Remover musica de uma playlist:\n");
+            // remover_musica_playlist(raiz, playlist);
             break;
 
         case 14:
-            printf("Remover uma playlist:\n");
-            remover_playlist(raiz, playlist);
+            // printf("Remover uma playlist:\n");
+            // remover_playlist(raiz, playlist);
             break;
 
         case 15:
-            printf("Remover uma musica de um album de um artista:\n");
-            remover_musica_de_album_de_artista(raiz, artista, album, musica);
+            // printf("Remover uma musica de um album de um artista:\n");
+            // remover_musica_de_album_de_artista(raiz, artista, album, musica);
             break;
 
         default:

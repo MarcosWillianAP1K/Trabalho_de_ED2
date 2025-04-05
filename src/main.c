@@ -8,12 +8,12 @@
 
 int main()
 {
-    ARV_BINARIA *raiz = NULL;
-    ARTISTA *artista = NULL;
-    ALBUM *album = NULL;
-    MUSICA *musica = NULL;
-    PLAYLIST *playlist = NULL;
-    DADOS *dados = NULL;
+    ARV_BINARIA *raiz_artista = NULL;
+    ARV_BINARIA *raiz_playlist = NULL;
+
+    menu_principal(raiz_artista, raiz_playlist);
+
+    liberar_arv_binaria(raiz_playlist, liberar_playlist );
 
     return 0;
 }
