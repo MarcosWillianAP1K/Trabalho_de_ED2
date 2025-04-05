@@ -104,7 +104,8 @@ short int digitar_short_int()
         limpar_buffer();
         printf("Digite novamente: ");
     }
-
+    
+    return numero;
 }
 
 char digitar_um_caracter()
