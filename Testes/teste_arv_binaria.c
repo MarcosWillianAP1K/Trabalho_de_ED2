@@ -18,8 +18,20 @@ int main()
 
     dado2->artista = criar_artista("Artista 2", "Tipo 2", "Estilo 2", 0, NULL);
 
-    inserir_arv_binaria(&raiz, dado1, comparar_dados_nome_artista);
+    DADOS *dado3 = alocar_dados();
+
+    dado3->artista = criar_artista("Artista 3", "Tipo 3", "Estilo 3", 0, NULL);
+
+
     inserir_arv_binaria(&raiz, dado2, comparar_dados_nome_artista);
+    inserir_arv_binaria(&raiz, dado1, comparar_dados_nome_artista);
+    inserir_arv_binaria(&raiz, dado3, comparar_dados_nome_artista);
+
+
+    imprimir_arv_binaria(raiz, imprimir_dados_artista);
+
+    remover_arv_binaria(&raiz, dado2, liberar_dados_artista, comparar_dados_nome_artista);
+    printf("\n\nDepois de remover o dado 2:\n");
 
     imprimir_arv_binaria(raiz, imprimir_dados_artista);
 

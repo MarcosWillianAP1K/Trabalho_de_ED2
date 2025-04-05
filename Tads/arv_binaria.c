@@ -40,7 +40,11 @@ void liberar_arv_binaria(ARV_BINARIA **raiz, void (*liberar)(DADOS **))
     }
 
     liberar_no_arv_binaria(raiz, liberar);
+
+    *raiz = NULL;
   }
+
+
 }
 
 ARV_BINARIA *criar_arv_binaria(DADOS *info)
@@ -120,7 +124,7 @@ ARV_BINARIA **endereco_maximo_direita(ARV_BINARIA **raiz)
 
 
 //PRECISA FAZER UMA REMOÇÃO DIFERENTE, NÃO BASTA COPIAR O CONTEUDO, DEVE TROCAR O NO POR INTEIRO.
-int remover_arv_binaria_com_valor(ARV_BINARIA **raiz, DADOS *info, void (*liberar)(DADOS **), int (*comparar)(DADOS *, DADOS *))
+int remover_arv_binaria(ARV_BINARIA **raiz, DADOS *info, void (*liberar)(DADOS **), int (*comparar)(DADOS *, DADOS *))
 {
   int removeu = 1;
 
@@ -163,11 +167,11 @@ int remover_arv_binaria_com_valor(ARV_BINARIA **raiz, DADOS *info, void (*libera
     {
       if (comparar((*raiz)->info, info) > 0)
       {
-        removeu = remover_arv_binaria_com_valor(&(*raiz)->esq, info, liberar, comparar);
+        removeu = remover_arv_binaria(&(*raiz)->esq, info, liberar, comparar);
       }
       else
       {
-        removeu = remover_arv_binaria_com_valor(&(*raiz)->dir, info, liberar, comparar);
+        removeu = remover_arv_binaria(&(*raiz)->dir, info, liberar, comparar);
       }
     }
   }
