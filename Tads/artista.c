@@ -74,6 +74,23 @@ void imprimir_artista(ARTISTA *artista){
 
 int comparar_nome_artista(ARTISTA *artista1, ARTISTA *artista2)
 {
+   if (artista1 != NULL && artista2 != NULL)
+   {
     return strcmp(artista1->nome, artista2->nome);
+   }
+   
 }
 
+int comparar_estilo_artista(ARTISTA *artista1, ARTISTA *artista2){
+    if (artista1 != NULL && artista2 != NULL)
+    {
+    return strcmp(artista1->estilo_musical, artista2->estilo_musical);
+    }
+}
+
+int comparar_tipo_artista(ARTISTA *artista1, ARTISTA *artista2){
+    if (artista1 != NULL && artista2 != NULL)
+    {
+    return strcmp(artista1->tipo, artista2->tipo);
+    }
+}
