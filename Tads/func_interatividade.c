@@ -216,3 +216,9 @@ void remover_musica_de_album_de_artista(ARV_BINARIA *raiz, ARTISTA *artista, ALB
         printf("Nenhum artista encontrado com o nome %s\n", nome_artista);
     }
 }
+
+void delete_all(ARV_BINARIA *raiz, void (*liberar)(DADOS **))
+{
+    liberar_arv_binaria(&raiz, liberar);
+    printf("Todos os dados foram removidos com sucesso.\n");
+}
