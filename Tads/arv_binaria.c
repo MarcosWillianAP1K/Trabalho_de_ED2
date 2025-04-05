@@ -3,7 +3,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
 ARV_BINARIA *alocar_arv_binaria()
 {
   ARV_BINARIA *nova_arv = (ARV_BINARIA *)malloc(sizeof(ARV_BINARIA));
@@ -43,8 +42,6 @@ void liberar_arv_binaria(ARV_BINARIA **raiz, void (*liberar)(DADOS **))
 
     *raiz = NULL;
   }
-
-
 }
 
 ARV_BINARIA *cria_no_arv_binaria(DADOS *info)
@@ -61,7 +58,6 @@ void inserir_arv_binaria(ARV_BINARIA **raiz, DADOS *info, int (*comparar)(DADOS 
   if (*raiz == NULL)
   {
     *raiz = cria_no_arv_binaria(info);
-    
   }
   else if (comparar((*raiz)->info, info) > 0)
   {
@@ -91,7 +87,7 @@ int eh_folha(ARV_BINARIA *raiz)
 ARV_BINARIA *eh_um_filho(ARV_BINARIA *raiz)
 {
   ARV_BINARIA *filho = NULL;
-  
+
   if (raiz->esq != NULL && raiz->dir == NULL)
   {
     filho = raiz->esq;
@@ -116,12 +112,11 @@ ARV_BINARIA **endereco_maximo_direita(ARV_BINARIA **raiz)
   {
     no = raiz;
   }
-  
+
   return no;
 }
 
-
-//PRECISA FAZER UMA REMOÇÃO DIFERENTE, NÃO BASTA COPIAR O CONTEUDO, DEVE TROCAR O NO POR INTEIRO.
+// PRECISA FAZER UMA REMOÇÃO DIFERENTE, NÃO BASTA COPIAR O CONTEUDO, DEVE TROCAR O NO POR INTEIRO.
 int remover_arv_binaria(ARV_BINARIA **raiz, DADOS *info, void (*liberar)(DADOS **), int (*comparar)(DADOS *, DADOS *))
 {
   int removeu = 1;
@@ -130,7 +125,6 @@ int remover_arv_binaria(ARV_BINARIA **raiz, DADOS *info, void (*liberar)(DADOS *
   {
     if (comparar((*raiz)->info, info) == 0)
     {
-      
 
       if (eh_folha(*raiz))
       {
@@ -149,7 +143,7 @@ int remover_arv_binaria(ARV_BINARIA **raiz, DADOS *info, void (*liberar)(DADOS *
         {
           ARV_BINARIA **menor;
           menor = endereco_maximo_direita(&(*raiz)->esq);
-          
+
           ARV_BINARIA *aux = *menor;
           *menor = aux->esq;
           aux->esq = (*raiz)->esq;
@@ -159,7 +153,6 @@ int remover_arv_binaria(ARV_BINARIA **raiz, DADOS *info, void (*liberar)(DADOS *
           *raiz = aux;
         }
       }
-
     }
     else
     {
@@ -201,9 +194,21 @@ ARV_BINARIA *buscar_arv_binaria(ARV_BINARIA *raiz, DADOS *info, int (*comparar)(
       {
         no = buscar_arv_binaria(raiz->esq, info, comparar);
       }
-      
     }
   }
 
   return no;
+}
+
+void imprimir_arv_binaria_filtro(ARV_BINARIA *raiz, void (*printar_dados)(DADOS *), int (*comparar)(DADOS *, DADOS *), DADOS *info)
+{
+  if (raiz != NULL)
+  {
+    imprimir_arv_binaria_filtro(raiz->esq, printar_dados, comparar, info);
+    if (comparar(raiz->info, info) == 0)
+    {
+      printar_dados(raiz->info);
+    }
+    imprimir_arv_binaria_filtro(raiz->dir, printar_dados, comparar, info);
+  }
 }

@@ -66,6 +66,21 @@ void imprimir_album(ALBUM *album)
 
 int comparar_titulo_album(ALBUM *album1, ALBUM *album2)
 {
-    return strcmp(album1->titulo, album2->titulo);
+    if (album1 != NULL && album2 != NULL)
+    {
+        return strcmp(album1->titulo, album2->titulo);
+    }
+    
+    return 0;
+}
+
+int comparar_data_album(ALBUM *album1, ALBUM *album2)
+{
+    if (album1 != NULL && album2 != NULL)
+    {
+        return strcmp(album1->data_lancamento, album2->data_lancamento);
+    }
+    
+    return 0;
 }
 

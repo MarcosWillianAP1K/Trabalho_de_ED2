@@ -4,7 +4,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-
 ARTISTA *alocar_artista()
 {
     ARTISTA *artista = (ARTISTA *)malloc(sizeof(ARTISTA));
@@ -31,8 +30,8 @@ void liberar_artista(ARTISTA **artista)
     }
 }
 
-
-ARTISTA *criar_artista(char *nome, char *tipo, char *estilo_musical, short int numero_albuns, void *raiz){
+ARTISTA *criar_artista(char *nome, char *tipo, char *estilo_musical, short int numero_albuns, void *raiz)
+{
     ARTISTA *artista = alocar_artista();
     artista->nome = nome;
     artista->tipo = tipo;
@@ -42,11 +41,9 @@ ARTISTA *criar_artista(char *nome, char *tipo, char *estilo_musical, short int n
     return artista;
 }
 
-
-
 ARTISTA *cadastrar_artista()
 {
-    
+
     printf("\nDigite o nome do artista: ");
     char *nome = digitar_string();
 
@@ -58,12 +55,13 @@ ARTISTA *cadastrar_artista()
 
     short int numero_albuns = 0;
 
-    
     return criar_artista(nome, tipo, estilo_musical, numero_albuns, NULL);
 }
 
-void imprimir_artista(ARTISTA *artista){
-    if(artista != NULL){
+void imprimir_artista(ARTISTA *artista)
+{
+    if (artista != NULL)
+    {
         printf("\nNome: %s", artista->nome);
         printf("\nTipo: %s", artista->tipo);
         printf("\nEstilo Musical: %s", artista->estilo_musical);
@@ -71,26 +69,32 @@ void imprimir_artista(ARTISTA *artista){
     }
 }
 
-
 int comparar_nome_artista(ARTISTA *artista1, ARTISTA *artista2)
 {
-   if (artista1 != NULL && artista2 != NULL)
-   {
-    return strcmp(artista1->nome, artista2->nome);
-   }
-   
-}
-
-int comparar_estilo_artista(ARTISTA *artista1, ARTISTA *artista2){
     if (artista1 != NULL && artista2 != NULL)
     {
-    return strcmp(artista1->estilo_musical, artista2->estilo_musical);
+        return strcmp(artista1->nome, artista2->nome);
     }
+
+    return 0;
 }
 
-int comparar_tipo_artista(ARTISTA *artista1, ARTISTA *artista2){
+int comparar_estilo_artista(ARTISTA *artista1, ARTISTA *artista2)
+{
     if (artista1 != NULL && artista2 != NULL)
     {
-    return strcmp(artista1->tipo, artista2->tipo);
+        return strcmp(artista1->estilo_musical, artista2->estilo_musical);
     }
+
+    return 0;
+}
+
+int comparar_tipo_artista(ARTISTA *artista1, ARTISTA *artista2)
+{
+    if (artista1 != NULL && artista2 != NULL)
+    {
+        return strcmp(artista1->tipo, artista2->tipo);
+    }
+
+    return 0;
 }

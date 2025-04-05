@@ -27,7 +27,7 @@ void menu_principal()
         printf("6 - Mostrar artistas de um estilo musical\n");
         printf("7 - Mostrar artistas de um estilo musical e tipo\n");
         printf("8 - Mostrar albuns de um artista\n");
-        printf("9 - Mostrar albuns de um ano do artista\n");
+        printf("9 - Mostrar albuns de um ano de um artista\n");
         printf("10 - Mostrar musicas de um album de um artista\n");
         printf("11 - Mostrar dados de uma musica\n");
         printf("12 - Mostrar dados de uma playlist\n");
