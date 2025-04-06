@@ -17,6 +17,8 @@ void mostrar_albuns_de_um_artista_de_um_ano(ARV_BINARIA *raiz);
 
 void mostrar_musicas_de_um_album_de_um_artista(ARV_BINARIA *raiz);
 
+void mostrar_dados_de_uma_musica(ARV_BINARIA *raiz);
+
 void mostrar_albuns_de_todos_artistas_de_um_ano(ARV_BINARIA *raiz_artista);
 
 void mostrar_dados_de_uma_playlist(ARV_BINARIA *raiz);

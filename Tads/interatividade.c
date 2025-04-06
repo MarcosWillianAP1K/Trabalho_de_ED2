@@ -105,8 +105,8 @@ void menu_principal(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
             break;
 
         case 12:
-            printf("Dados de uma playlist:\n");
-            mostrar_dados_de_uma_playlist(*raiz_playlist);
+            printf("Dados de uma musica:\n");
+            mostrar_dados_de_uma_musica(*raiz_playlist);
             pausar_tela();
             break;
 
@@ -121,24 +121,25 @@ void menu_principal(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
             break;
         
         case 15:
+            printf("Mostrar dados de uma playlist:\n");
+            // mostrar_dados_de_uma_playlist(raiz_playlist);
+            break;
+        
+        case 16:
             printf("Remover musica de uma playlist:\n");
             // remover_musica_de_playlist(raiz_playlist);
             break;
         
-        case 16:
+        case 17:
             printf("Remover uma playlist:\n");
             // remover_playlist(raiz_playlist);
             break;
 
-        case 17:
+        case 18:
             printf("Remover uma musica de um album de um artista:\n");
             // remover_musica_de_album(raiz_artista, raiz_playlist);
             break;
 
-        case 18:
-            printf("Remover um artista:\n");
-            // remover_artista(raiz_artista, raiz_playlist);
-            break;
 
 
         default:
