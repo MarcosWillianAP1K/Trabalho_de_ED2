@@ -72,8 +72,9 @@ void menu_principal(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
             break;
 
         case 7:
-            // printf("Artistas cadastrados de um estilo musical e tipo:\n");
-            // mostrar_art_por_tipo_e_estilo(raiz, artista);
+            printf("Artistas cadastrados de um estilo musical e tipo:\n");
+            mostrar_artista_por_tipo_e_estilo(*raiz_artista);
+            pausar_tela();
             break;
 
         case 8:
