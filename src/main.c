@@ -13,6 +13,7 @@ int main()
 
     menu_principal(&raiz_artista, &raiz_playlist);
 
+    //Não ta funcionando direito, verificar
     delete_all(&raiz_artista, &raiz_playlist);
 
     printf("Programa encerrado.\n");
