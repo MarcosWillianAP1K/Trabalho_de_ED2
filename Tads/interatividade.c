@@ -112,7 +112,7 @@ void menu_principal(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
 
         case 13:
             printf("Cadastrar playlist:\n");
-            // cadastrar_playlist(raiz_playlist);
+            cadastrar_playlist(raiz_playlist);
             break;
 
         case 14:
