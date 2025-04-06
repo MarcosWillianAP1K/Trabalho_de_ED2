@@ -49,8 +49,6 @@ void verificar_realocacao(void *ponteiro)
     }
 }
 
-
-
 char *digitar_string()
 {
     limpar_buffer();
@@ -75,6 +73,7 @@ char *digitar_string()
 
             if (fgets(nome + tam, ((TAM_PADRAO * cont) * sizeof(char)) - tam, stdin) == NULL)
             {
+                //xiu
                 break;
             }
 
@@ -93,7 +92,6 @@ char *digitar_string()
 
     return nome;
 }
-
 
 short int digitar_short_int()
 {

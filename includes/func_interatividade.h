@@ -21,7 +21,7 @@ void mostrar_dados_de_uma_musica(ARV_BINARIA *raiz);
 
 void mostrar_dados_de_uma_playlist(ARV_BINARIA *raiz);
 
-void remover_musica_playlist(ARV_BINARIA *raiz);
+void remover_musica_de_uma_playlist(ARV_BINARIA *raiz);
 
 void remover_playlist(ARV_BINARIA *raiz);
 

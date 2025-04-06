@@ -23,11 +23,14 @@ void menu_principal(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
         printf("8 - Mostrar albuns de um artista\n");
         printf("9 - Mostrar albuns de um ano de um artista\n");
         printf("10 - Mostrar musicas de um album de um artista\n");
-        printf("11 - Mostrar dados de uma musica\n");
-        printf("12 - Mostrar dados de uma playlist\n");
-        printf("13 - Remover musica de uma playlist\n");
-        printf("14 - Remover uma playlist\n");
-        printf("15 - Remover uma musica de um album de um artista (So sera removido se nao estiver em playlists)\n");
+        printf("11 - Mostrar albuns de todos artista de um ano");
+        printf("12 - Mostrar dados de uma musica\n");
+        printf("13 - Cadastrar playlist");
+        printf("14 - Cadastrar musica em uma playlist\n");
+        printf("15 - Mostrar dados de uma playlist\n");
+        printf("16 - Remover musica de uma playlist\n");
+        printf("17 - Remover uma playlist\n");
+        printf("18 - Remover uma musica de um album de um artista (So sera removido se nao estiver em playlists)");
         printf("0 - Sair\n");
         printf("Escolha uma opcao: ");
 
@@ -96,29 +99,47 @@ void menu_principal(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
             break;
 
         case 11:
-            // printf("Dados de uma musica:\n");
-            // mostrar_dados_musica(raiz, musica);
+            printf("Dados de uma musica:\n");
+            mostrar_dados_de_uma_musica(*raiz_artista);
+            pausar_tela();
             break;
 
         case 12:
-            // printf("Dados de uma playlist:\n");
-            // mostrar_dados_playlist(raiz, playlist);
+            printf("Dados de uma playlist:\n");
+            mostrar_dados_de_uma_playlist(*raiz_playlist);
+            pausar_tela();
             break;
 
         case 13:
-            // printf("Remover musica de uma playlist:\n");
-            // remover_musica_playlist(raiz, playlist);
+            printf("Cadastrar playlist:\n");
+            // cadastrar_playlist(raiz_playlist);
             break;
 
         case 14:
-            // printf("Remover uma playlist:\n");
-            // remover_playlist(raiz, playlist);
+            printf("Cadastrar musica em uma playlist:\n");
+            // cadastrar_musica_em_playlist(raiz_playlist, raiz_artista);
+            break;
+        
+        case 15:
+            printf("Remover musica de uma playlist:\n");
+            // remover_musica_de_playlist(raiz_playlist);
+            break;
+        
+        case 16:
+            printf("Remover uma playlist:\n");
+            // remover_playlist(raiz_playlist);
             break;
 
-        case 15:
-            // printf("Remover uma musica de um album de um artista:\n");
-            // remover_musica_de_album_de_artista(raiz, artista, album, musica);
+        case 17:
+            printf("Remover uma musica de um album de um artista:\n");
+            // remover_musica_de_album(raiz_artista, raiz_playlist);
             break;
+
+        case 18:
+            printf("Remover um artista:\n");
+            // remover_artista(raiz_artista, raiz_playlist);
+            break;
+
 
         default:
             break;

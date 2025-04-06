@@ -73,6 +73,7 @@ int comparar_data_album(ALBUM *album1, ALBUM *album2)
 int comparar_titulo_ano_album(ALBUM *album1, ALBUM *album2)
 {
     int retorno = comparar_titulo_album(album1, album2);
+    
     if (retorno == 0)
     {
         retorno = comparar_data_album(album1, album2);

@@ -28,14 +28,14 @@ DADOS *digitar_tipo_artista()
     return aux;
 }
 
-DADOS *digitar_estilo_musical_artista()
+DADOS *digitar_estilo_artista()
 {
     DADOS *aux = alocar_dados();
 
     printf("Digite o estilo musical do artista\n");
-    char *estilo_musical = digitar_string();
+    char *estilo = digitar_string();
 
-    aux->artista = criar_artista("auxiliar", "auxiliar", estilo_musical, 0, NULL);
+    aux->artista = criar_artista("auxiliar", "auxiliar", estilo, 0, NULL);
 
     return aux;
 }
@@ -48,9 +48,9 @@ DADOS *digitar_tipo_e_estilo_artista()
     char *tipo = digitar_string();
 
     printf("Digite o estilo musical do artista\n");
-    char *estilo_musical = digitar_string();
+    char *estilo = digitar_string();
 
-    aux->artista = criar_artista("auxiliar", tipo, estilo_musical, 0, NULL);
+    aux->artista = criar_artista("auxiliar", tipo, estilo, 0, NULL);
 
     return aux;
 }
@@ -79,7 +79,8 @@ DADOS *digitar_data_album()
     return aux;
 }
 
-DADOS *digitar_titulo_ano_album(){
+DADOS *digitar_titulo_ano_album()
+{
     DADOS *aux = alocar_dados();
 
     printf("Digite o titulo do album\n");
@@ -120,57 +121,35 @@ DADOS *digitar_nome_playlist()
 void mostrar_artista_por_tipo(ARV_BINARIA *raiz_artista)
 {
     DADOS *aux = digitar_tipo_artista();
-    ARV_BINARIA *artista = buscar_arv_binaria(raiz_artista, aux, comparar_dados_tipo_artista);
-    liberar_dados_artista(&aux);
+    
+    imprimir_arv_binaria_filtro(raiz_artista, aux, imprimir_dados_artista, comparar_dados_tipo_artista);
 
-    if(artista != NULL){
-        printf("Artistas cadastrados do tipo %s:\n", artista->info->artista->tipo);
-        imprimir_arv_binaria(artista, imprimir_dados_artista);
-    }
-    else
-    {
-        printf("Nenhum artista encontrado com o tipo %s\n", aux->artista->tipo);
-    }
+    liberar_dados_artista(&aux);
 }
 
 void mostrar_artista_por_estilo(ARV_BINARIA *raiz_artista)
 {
-    DADOS *aux = digitar_estilo_musical_artista();
-    ARV_BINARIA *artista = buscar_arv_binaria(raiz_artista, aux, comparar_dados_estilo_artista);
-    liberar_dados_artista(&aux);
+    DADOS *aux = digitar_estilo_artista();
+    
+    imprimir_arv_binaria_filtro(raiz_artista, aux, imprimir_dados_artista, comparar_dados_estilo_artista);
 
-    if(artista != NULL){
-        printf("Artistas cadastrados do tipo %s:\n", artista->info->artista->estilo_musical);
-        imprimir_arv_binaria(artista, imprimir_dados_artista);
-    }
-    else
-    {
-        printf("Nenhum artista encontrado com o tipo %s\n", aux->artista->estilo_musical);
-    }
+    liberar_dados_artista(&aux);
 }
 
 void mostrar_artista_por_tipo_e_estilo(ARV_BINARIA *raiz_artista)
 {
-   DADOS *aux = digitar_tipo_e_estilo_artista();
-   ARV_BINARIA *artista = buscar_arv_binaria(raiz_artista, aux, comparar_dados_tipo_e_estilo_artista);
+    DADOS *aux = digitar_tipo_e_estilo_artista();
+    ARV_BINARIA *artista = buscar_arv_binaria(raiz_artista, aux, comparar_dados_tipo_e_estilo_artista);
+
+    imprimir_arv_binaria_filtro(raiz_artista, aux, imprimir_dados_artista, comparar_dados_tipo_e_estilo_artista);
 
     liberar_dados_artista(&aux);
-
-    if(artista != NULL){
-        printf("Artistas cadastrados do tipo %s e estilo %s:\n", artista->info->artista->tipo, artista->info->artista->estilo_musical);
-        imprimir_arv_binaria(artista, imprimir_dados_artista);
-    }
-    else
-    {
-        printf("Nenhum artista encontrado com o tipo %s e estilo %s\n", aux->artista->tipo, aux->artista->estilo_musical);
-    }
 }
 
 void mostrar_albuns_de_um_artista(ARV_BINARIA *raiz)
 {
     DADOS *aux = digitar_nome_artista();
     ARV_BINARIA *artista = buscar_arv_binaria(raiz, aux, comparar_dados_nome_artista);
-    liberar_dados_artista(&aux);
 
     if (artista != NULL)
     {
@@ -181,36 +160,42 @@ void mostrar_albuns_de_um_artista(ARV_BINARIA *raiz)
     {
         printf("Nenhum artista encontrado com o nome %s\n", artista);
     }
+
+    liberar_dados_artista(&aux);
 }
 
 void mostrar_albuns_de_um_artista_de_um_ano(ARV_BINARIA *raiz_artista)
 {
-    DADOS *aux = digitar_titulo_ano_album();
-    ARV_BINARIA *artista = buscar_arv_binaria(raiz_artista, aux, comparar_dados_titulo_ano_album);
-     liberar_dados_album(&aux);
-     printf("*\n");
-    if(artista != NULL){
-        printf("*\n");
+    DADOS *aux = digitar_nome_artista();
+    ARV_BINARIA *artista = buscar_arv_binaria(raiz_artista, aux, comparar_dados_nome_artista);
+
+    if (artista != NULL)
+    {
+        DADOS *aux2 = digitar_data_album();
+
         printf("Albuns do artista %s:\n", artista->info->artista->nome);
-        imprimir_arv_binaria(artista->info->artista->albuns_raiz_arvore, imprimir_dados_album);
+        imprimir_arv_binaria_filtro(artista->info->artista->albuns_raiz_arvore, aux2, imprimir_dados_album, comparar_dados_data_album);
+        liberar_dados_album(&aux2);
     }
     else
     {
-        printf("Nenhum artista encontrado com o nome %s\n", aux->album->titulo);
+        printf("Nenhum artista encontrado com o nome %s\n", aux->artista->nome);
     }
 
+    liberar_dados_artista(&aux);
 }
 
 void mostrar_musicas_de_um_album_de_um_artista(ARV_BINARIA *raiz)
 {
     DADOS *aux = digitar_nome_artista();
     ARV_BINARIA *artista = buscar_arv_binaria(raiz, aux, comparar_dados_nome_artista);
-    liberar_dados_artista(&aux);
+    
+
     if (artista != NULL)
     {
         DADOS *aux2 = digitar_titulo_album();
         ARV_BINARIA *album = buscar_arv_binaria(artista->info->artista->albuns_raiz_arvore, aux2, comparar_dados_titulo_album);
-        liberar_dados_album(&aux2);
+
         if (album != NULL)
         {
             printf("Musicas do album %s:\n", album->info->album->titulo);
@@ -220,54 +205,79 @@ void mostrar_musicas_de_um_album_de_um_artista(ARV_BINARIA *raiz)
         {
             printf("Nenhum album encontrado com o nome %s\n", aux2->album->titulo);
         }
+
+        liberar_dados_album(&aux2);
     }
     else
     {
         printf("Nenhum artista encontrado com o nome %s\n", aux->artista->nome);
     }
+
+    liberar_dados_artista(&aux);
 }
 
 void mostrar_dados_de_uma_musica(ARV_BINARIA *raiz)
 {
-    printf("Digite o nome da musica: ");
-    char *nome_musica = digitar_string();
-    DADOS *aux = alocar_dados();
-    aux->musica = criar_musica(nome_musica, "9.99");
+    DADOS *aux = digitar_nome_artista();
+    ARV_BINARIA *artista = buscar_arv_binaria(raiz, aux, comparar_dados_nome_artista);
 
-    if (nome_musica != '\0')
+    if (artista != NULL)
     {
-        printf("Dados da musica %s:\n", nome_musica);
-        imprimir_arv_binaria_filtro(raiz, aux, imprimir_dados_musica, comparar_dados_titulo_musica);
+        DADOS *aux2 = digitar_titulo_album();
+        ARV_BINARIA *album = buscar_arv_binaria(artista->info->artista->albuns_raiz_arvore, aux2, comparar_dados_titulo_album);
+
+        if (album != NULL)
+        {
+            DADOS *aux3 = digitar_titulo_musica();
+            ARV_BINARIA *musica = buscar_arv_binaria(album->info->album->musicas_raiz_arvore, aux3, comparar_dados_titulo_musica);
+
+            if (musica != NULL)
+            {
+                printf("Dados da musica %s:\n", musica->info->musica->titulo);
+                imprimir_dados_musica(musica->info);
+            }
+            else
+            {
+                printf("Nenhuma musica encontrada com o nome %s\n", aux3->musica->titulo);
+            }
+
+            liberar_dados_musica(&aux3);
+        }
+        else
+        {
+            printf("Nenhum album encontrado com o nome %s\n", aux2->album->titulo);
+        }
+
+        liberar_dados_album(&aux2);
     }
     else
     {
-        printf("Nenhuma musica encontrada com o nome %s\n", nome_musica);
+        printf("Nenhum artista encontrado com o nome %s\n", aux->artista->nome);
     }
 
-    liberar_dados_musica(&aux);
+    liberar_dados_artista(&aux);
 }
 
 void mostrar_dados_de_uma_playlist(ARV_BINARIA *raiz)
 {
-    printf("Digite o nome da playlist: ");
-    char *nome_playlist = digitar_string();
-    DADOS *aux = alocar_dados();
-    aux->playlist = criar_playlist(nome_playlist, 0, NULL);
-
-    if (nome_playlist != '\0')
+    DADOS *aux = digitar_nome_playlist();
+    ARV_BINARIA *playlist = buscar_arv_binaria(raiz, aux, comparar_dados_nome_playlist);
+    
+    if (playlist != NULL)
     {
-        printf("Dados da playlist %s:\n", nome_playlist);
-        imprimir_arv_binaria_filtro(raiz, aux, imprimir_dados_playlist, comparar_dados_nome_playlist);
+        printf("Dados da playlist %s:\n", playlist->info->playlist->nome);
+        imprimir_dados_playlist(playlist->info);
     }
     else
     {
-        printf("Nenhuma playlist encontrada com o nome %s\n", nome_playlist);
+        printf("Nenhuma playlist encontrada com o nome %s\n", aux->playlist->nome);
     }
 
     liberar_dados_playlist(&aux);
+
 }
 
-void Remover_musica_de_uma_playlist(ARV_BINARIA *raiz)
+void remover_musica_de_uma_playlist(ARV_BINARIA *raiz)
 {
     printf("Digite o nome da playlist: ");
     char *nome_playlist = digitar_string();
@@ -396,9 +406,9 @@ void cadastrar_artista(ARV_BINARIA **raiz_artista)
     char *tipo = digitar_string();
 
     printf("Digite o estilo musical do artista: ");
-    char *estilo_musical = digitar_string();
+    char *estilo = digitar_string();
 
-    aux->artista = criar_artista(nome, tipo, estilo_musical, 0, NULL);
+    aux->artista = criar_artista(nome, tipo, estilo, 0, NULL);
 
     if (aux->artista != NULL)
     {
