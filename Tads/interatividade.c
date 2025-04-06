@@ -77,6 +77,7 @@ void menu_principal(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
         case 8:
             printf("Albuns cadastrados de um artista:\n");
             mostrar_albuns_de_um_artista(*raiz_artista);
+            pausar_tela();
             break;
 
         case 9:
@@ -86,8 +87,9 @@ void menu_principal(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
             break;
 
         case 10:
-            // printf("Musicas cadastradas de um album de um artista:\n");
-            // mostrar_musicas_album(raiz, album);
+            printf("Musicas cadastradas de um album de um artista:\n");
+            mostrar_musicas_de_um_album_de_um_artista(*raiz_artista);
+            pausar_tela();
             break;
 
         case 11:

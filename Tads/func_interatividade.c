@@ -448,13 +448,16 @@ void cadastrar_albuns(ARV_BINARIA **raiz_artista)
         char *data_lancamento = digitar_string();
 
         aux2->album = criar_album(titulo, data_lancamento, 0, NULL);
+
         if (aux2->album != NULL)
         {
+            ARV_BINARIA *inserir = artista->info->artista->albuns_raiz_arvore;
 
-            inserir_arv_binaria(artista->info->artista->albuns_raiz_arvore, aux2, comparar_dados_titulo_album);
-            printf("Album cadastrado com sucesso!\n");
+            inserir_arv_binaria(&inserir, aux2, comparar_dados_titulo_album);
+            artista->info->artista->albuns_raiz_arvore = inserir;
 
             artista->info->artista->numero_de_albuns++;
+            printf("Album cadastrado com sucesso!\n");
         }
         else
         {
@@ -492,7 +495,11 @@ void cadastrar_musica(ARV_BINARIA **raiz_artista)
 
             if (aux3->musica != NULL)
             {
-                inserir_arv_binaria(album->info->album->musicas_raiz_arvore, aux3, comparar_dados_titulo_musica);
+                ARV_BINARIA *inserir = album->info->album->musicas_raiz_arvore;
+                inserir_arv_binaria(&inserir, aux3, comparar_dados_titulo_musica);
+                album->info->album->musicas_raiz_arvore = inserir;
+
+                album->info->album->numero_de_musicas++;
                 printf("Musica cadastrada com sucesso!\n");
             }
             else
