@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void menu_principal(ARV_BINARIA *raiz_artista, ARV_BINARIA *raiz_playlist)
+void menu_principal(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
 {
 
 
@@ -33,7 +33,7 @@ void menu_principal(ARV_BINARIA *raiz_artista, ARV_BINARIA *raiz_playlist)
 
 
         opcao = digitar_short_int();
-
+        DADOS *aux = alocar_dados();
         switch (opcao)
         {
 
@@ -41,7 +41,10 @@ void menu_principal(ARV_BINARIA *raiz_artista, ARV_BINARIA *raiz_playlist)
             break; 
 
         case 1:
-            cadastrar_artista();
+            
+            aux->artista = cadastrar_artista();
+
+            inserir_arv_binaria(raiz_artista, aux, comparar_dados_nome_artista);
             break;
 
         case 2:

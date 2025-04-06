@@ -11,7 +11,7 @@ int main()
     ARV_BINARIA *raiz_artista = NULL;
     ARV_BINARIA *raiz_playlist = NULL;
 
-    menu_principal(raiz_artista, raiz_playlist);
+    menu_principal(&raiz_artista, &raiz_playlist);
 
     delete_all(&raiz_artista, &raiz_playlist);
 
