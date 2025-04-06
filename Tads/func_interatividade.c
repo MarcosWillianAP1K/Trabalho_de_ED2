@@ -242,6 +242,48 @@ void mostrar_albuns_de_todos_artistas_de_um_ano(ARV_BINARIA *raiz_artista)
     liberar_dados_album(&aux);
 }
 
+void mostrar_dados_de_uma_musica(ARV_BINARIA *raiz)
+{
+    DADOS *aux = digitar_nome_artista();
+    ARV_BINARIA *artista = buscar_arv_binaria(raiz, aux, comparar_dados_nome_artista);
+
+    if (artista != NULL)
+    {
+        DADOS *aux2 = digitar_titulo_album();
+        ARV_BINARIA *album = buscar_arv_binaria(artista->info->artista->albuns_raiz_arvore, aux2, comparar_dados_titulo_album);
+
+        if (album != NULL)
+        {
+            DADOS *aux3 = digitar_titulo_musica();
+            ARV_BINARIA *musica = buscar_arv_binaria(album->info->album->musicas_raiz_arvore, aux3, comparar_dados_titulo_musica);
+
+            if (musica != NULL)
+            {
+                printf("Dados da musica %s:\n", musica->info->musica->titulo);
+                imprimir_dados_musica(musica->info);
+            }
+            else
+            {
+                printf("Nenhuma musica encontrada com o nome %s\n", aux3->musica->titulo);
+            }
+
+            liberar_dados_musica(&aux3);
+        }
+        else
+        {
+            printf("Nenhum album encontrado com o nome %s\n", aux2->album->titulo);
+        }
+
+        liberar_dados_album(&aux2);
+    }
+    else
+    {
+        printf("Nenhum artista encontrado com o nome %s\n", aux->artista->nome);
+    }
+
+    liberar_dados_artista(&aux);
+}
+
 void mostrar_dados_de_uma_playlist(ARV_BINARIA *raiz)
 {
     DADOS *aux = digitar_nome_playlist();
