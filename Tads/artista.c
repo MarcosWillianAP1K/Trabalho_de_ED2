@@ -48,7 +48,7 @@ void imprimir_artista(ARTISTA *artista)
         printf("\nNome: %s", artista->nome);
         printf("\nTipo: %s", artista->tipo);
         printf("\nEstilo Musical: %s", artista->estilo_musical);
-        printf("\nNumero de Albuns: %d", artista->numero_de_albuns);
+        printf("\nNumero de Albuns: %d\n", artista->numero_de_albuns);
     }
 }
 

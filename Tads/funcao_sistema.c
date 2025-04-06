@@ -14,7 +14,8 @@ void limpar_buffer()
 
 void limpar_tela()
 {
-    system("clear");
+    system("cls||clear"); // Para Windows
+    // system("clear"); // Para Linux e MacOS
 }
 
 void pausar_tela()

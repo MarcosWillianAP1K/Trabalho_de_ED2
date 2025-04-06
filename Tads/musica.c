@@ -40,7 +40,7 @@ void imprimir_musica(MUSICA *musica)
    if(musica != NULL)
    {
        printf("\nNome: %s", musica->titulo);
-       printf("\nDuracao: %s", musica->duracao);
+       printf("\nDuracao: %s\n", musica->duracao);
    }
 }
 

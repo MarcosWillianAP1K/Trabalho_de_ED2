@@ -45,7 +45,7 @@ void imprimir_album(ALBUM *album)
     {
         printf("\nTitulo: %s", album->titulo);
         printf("\nData de lancamento: %s", album->data_lancamento);
-        printf("\nNumero de musicas: %hd", album->numero_de_musicas);
+        printf("\nNumero de musicas: %hd\n", album->numero_de_musicas);
     }
 }
 

@@ -39,7 +39,7 @@ void imprimir_playlist(PLAYLIST *playlist)
     if (playlist != NULL)
     {
         printf("\nNome: %s", playlist->nome);
-        printf("\nNumero de Musicas: %d", playlist->numero_de_musicas);
+        printf("\nNumero de Musicas: %d\n", playlist->numero_de_musicas);
     }
 }
 
