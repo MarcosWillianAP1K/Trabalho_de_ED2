@@ -118,7 +118,7 @@ void menu_principal(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
 
         case 14:
             printf("Cadastrar musica em uma playlist:\n");
-            // cadastrar_musica_em_playlist(raiz_playlist, raiz_artista);
+            cadastrar_musica_em_uma_playlist(raiz_playlist, raiz_artista);
             break;
 
         case 15:

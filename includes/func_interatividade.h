@@ -49,4 +49,6 @@ void cadastrar_musica(ARV_BINARIA **raiz_artista);
 
 void cadastrar_playlist(ARV_BINARIA **raiz);
 
+void cadastrar_musica_em_uma_playlist(ARV_BINARIA **raiz_playlist, ARV_BINARIA **raiz_artista)
+
 #endif

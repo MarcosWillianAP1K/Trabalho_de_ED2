@@ -558,3 +558,60 @@ void cadastrar_playlist(ARV_BINARIA **raiz)
 
 
 }
+
+void cadastrar_musica_em_uma_playlist(ARV_BINARIA **raiz_playlist, ARV_BINARIA **raiz_artista)
+{
+    DADOS *aux = digitar_nome_playlist();
+    ARV_BINARIA *playlist = buscar_arv_binaria(*raiz_playlist, aux, comparar_dados_nome_playlist);
+
+
+    if (playlist != NULL)
+    {
+        DADOS *aux2 = digitar_nome_artista();
+        ARV_BINARIA *artista = buscar_arv_binaria(*raiz_artista, aux2, comparar_dados_nome_artista);
+
+        liberar_dados_artista(&aux2);
+
+        if (artista != NULL)
+        {
+            DADOS *aux3 = digitar_titulo_album();
+            ARV_BINARIA *album = buscar_arv_binaria(artista->info->artista->albuns_raiz_arvore, aux3, comparar_dados_titulo_album);
+
+            liberar_dados_album(&aux3);
+
+            if (album != NULL)
+            {
+                DADOS *aux4 = digitar_titulo_musica();
+                ARV_BINARIA *musica = buscar_arv_binaria(album->info->album->musicas_raiz_arvore, aux4, comparar_dados_titulo_musica);
+
+                liberar_dados_musica(&aux4);
+
+                if (musica != NULL)
+                {
+                    ARV_BINARIA *inserir = playlist->info->playlist->musicas_raiz_arvore;
+                    inserir_arv_binaria(&inserir, musica, comparar_dados_titulo_musica_musica_playlist);
+                    playlist->info->playlist->musicas_raiz_arvore = inserir;
+
+                    playlist->info->playlist->numero_de_musicas++;
+                    printf("Musica cadastrada na playlist com sucesso!\n");
+                }
+                else
+                {
+                    printf("Musica nao encontrada!\n");
+                    liberar_dados_musica(&aux4);
+                }
+            }
+            else
+            {
+                printf("Album nao encontrado!\n");
+                liberar_dados_album(&aux3);
+            }
+        }
+        else
+        {
+            printf("Artista nao encontrado!\n");
+            liberar_dados_artista(&aux2);
+        }
+    }
+    liberar_dados_playlist(&aux);
+}
