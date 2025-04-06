@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-DADOS *digite_nome_artista()
+DADOS *digitar_nome_artista()
 {
     DADOS *aux = alocar_dados();
 
@@ -16,8 +16,8 @@ DADOS *digite_nome_artista()
     return aux;
 }
 
-
-DADOS *digitar_tipo_artista(){
+DADOS *digitar_tipo_artista()
+{
     DADOS *aux = alocar_dados();
 
     printf("Digite o tipo do artista\n");
@@ -28,7 +28,8 @@ DADOS *digitar_tipo_artista(){
     return aux;
 }
 
-DADOS *digitar_estilo_musical_artista(){
+DADOS *digitar_estilo_musical_artista()
+{
     DADOS *aux = alocar_dados();
 
     printf("Digite o estilo musical do artista\n");
@@ -39,7 +40,8 @@ DADOS *digitar_estilo_musical_artista(){
     return aux;
 }
 
-DADOS *digitar_tipo_e_estilo_artista(){
+DADOS *digitar_tipo_e_estilo_artista()
+{
     DADOS *aux = alocar_dados();
 
     printf("Digite o tipo do artista\n");
@@ -53,7 +55,8 @@ DADOS *digitar_tipo_e_estilo_artista(){
     return aux;
 }
 
-DADOS *digitar_titulo_album(){
+DADOS *digitar_titulo_album()
+{
     DADOS *aux = alocar_dados();
 
     printf("Digite o titulo do album\n");
@@ -64,7 +67,8 @@ DADOS *digitar_titulo_album(){
     return aux;
 }
 
-DADOS *digitar_data_album(){
+DADOS *digitar_data_album()
+{
     DADOS *aux = alocar_dados();
 
     printf("Digite a data de lancamento do album\n");
@@ -75,7 +79,8 @@ DADOS *digitar_data_album(){
     return aux;
 }
 
-DADOS *digitar_titulo_musica(){
+DADOS *digitar_titulo_musica()
+{
     DADOS *aux = alocar_dados();
 
     printf("Digite o titulo da musica\n");
@@ -86,7 +91,8 @@ DADOS *digitar_titulo_musica(){
     return aux;
 }
 
-DADOS *digitar_nome_playlist(){
+DADOS *digitar_nome_playlist()
+{
     DADOS *aux = alocar_dados();
 
     printf("Digite o nome da playlist\n");
@@ -96,8 +102,6 @@ DADOS *digitar_nome_playlist(){
 
     return aux;
 }
-
-
 
 void mostrar_artista_por_tipo(ARV_BINARIA *raiz)
 {
@@ -423,7 +427,8 @@ void delete_all(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
 
 // albums
 
-void cadastrar_artista(ARV_BINARIA **raiz_artista){
+void cadastrar_artista(ARV_BINARIA **raiz_artista)
+{
     DADOS *aux = alocar_dados();
 
     printf("Digite o nome do artista: ");
@@ -437,25 +442,30 @@ void cadastrar_artista(ARV_BINARIA **raiz_artista){
 
     aux->artista = criar_artista(nome, tipo, estilo_musical, 0, NULL);
 
-    if(aux->artista != NULL){
+    if (aux->artista != NULL)
+    {
         inserir_arv_binaria(raiz_artista, aux, comparar_dados_nome_artista);
         printf("Artista cadastrado com sucesso!\n");
     }
-    else{
+    else
+    {
         printf("Artista nao cadastrado!\n");
         liberar_dados_artista(&aux);
     }
 }
 
-//Não é necessario ponteiro por referencia, mas so pra padronizar mantem ele assim
-void cadastar_albuns(ARV_BINARIA **raiz_artista){
-    DADOS *aux = digite_nome_artista();
+// Não é necessario ponteiro por referencia, mas so pra padronizar mantem ele assim
+void cadastrar_albuns(ARV_BINARIA **raiz_artista)
+{
+    DADOS *aux = digitar_nome_artista();
     ARV_BINARIA *artista = buscar_arv_binaria(*raiz_artista, aux, comparar_dados_nome_artista);
+
     liberar_dados_artista(&aux);
 
-    if(artista != NULL){
+    if (artista != NULL)
+    {
         DADOS *aux2 = alocar_dados();
-        
+
         printf("Digite o titulo do album: ");
         char *titulo = digitar_string();
 
@@ -464,48 +474,62 @@ void cadastar_albuns(ARV_BINARIA **raiz_artista){
 
         aux2->album = criar_album(titulo, data_lancamento, 0, NULL);
 
-        if(aux2->album != NULL){
+        if (aux2->album != NULL)
+        {
             inserir_arv_binaria(aux->artista->albuns_raiz_arvore, aux2, comparar_dados_titulo_album);
             printf("Album cadastrado com sucesso!\n");
 
             artista->info->artista->numero_de_albuns++;
         }
-        else{
+        else
+        {
             printf("Album nao cadastrado!\n");
             liberar_dados_album(&aux2);
         }
-
     }
-
 }
 
-MUSICA cadastar_musica_interatividade(ARV_BINARIA *raiz_artista, ARV_BINARIA *raiz_album){
+void cadastrar_musica(ARV_BINARIA **raiz_artista)
+{
     DADOS *aux = digitar_nome_artista();
-    ARV_BINARIA *artista = buscar_arv_binaria(raiz_artista, aux, comparar_dados_nome_artista);
+    ARV_BINARIA *artista = buscar_arv_binaria(*raiz_artista, aux, comparar_dados_nome_artista);
 
+    liberar_dados_artista(&aux);
 
-    if(artista != NULL){
-        DADOS *aux2 = alocar_dados();
-        aux2->album = buscar_arv_binaria(raiz_album, aux2, comparar_dados_titulo_album);
+    if (artista != NULL)
+    {
+        DADOS *aux2 = digitar_titulo_album();
+        ARV_BINARIA *album = buscar_arv_binaria(artista->info->artista->albuns_raiz_arvore, aux2, comparar_dados_titulo_album);
 
-        if(aux2->album != NULL){
+        liberar_dados_album(&aux2);
+
+        if (album != NULL)
+        {
             DADOS *aux3 = alocar_dados();
-            aux3->musica = cadastrar_musica();
 
-            if(aux3->musica != NULL){
-                inserir_arv_binaria(raiz_album, aux3, comparar_dados_titulo_musica);
+            printf("Digite o titulo da musica: ");
+            char *titulo = digitar_string();
+
+            printf("Digite o duracao da musica: ");
+            char *duracao = digitar_string();
+
+            aux3->musica = criar_musica(titulo, duracao);
+
+            if (aux3->musica != NULL)
+            {
+                inserir_arv_binaria(album->info->album->musicas_raiz_arvore, aux3, comparar_dados_titulo_musica);
                 printf("Musica cadastrada com sucesso!\n");
             }
-            else{
+            else
+            {
                 printf("Musica nao cadastrada!\n");
                 liberar_dados_musica(&aux3);
             }
         }
-        else{
+        else
+        {
             printf("Album nao encontrado!\n");
             liberar_dados_album(&aux2);
         }
     }
-
-    liberar_dados_artista(&aux);
 }

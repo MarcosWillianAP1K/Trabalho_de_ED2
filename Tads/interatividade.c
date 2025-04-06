@@ -30,6 +30,7 @@ void menu_principal(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
         printf("Escolha uma opcao: ");
 
         opcao = digitar_short_int();
+
         switch (opcao)
         {
 
@@ -37,20 +38,20 @@ void menu_principal(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
             break;
 
         case 1:
-            cadastrar_artista_interatividade(*raiz_artista);
+            cadastrar_artista(raiz_artista);
             break;
 
         case 2:
-            cadastar_albuns_interatividade(*raiz_artista);
+            cadastrar_albuns(raiz_artista);
             break;
 
         case 3:
-            cadastar_musica_interatividade(*raiz_artista, *raiz_artista);
+            cadastrar_musica(raiz_artista);
             break;
 
         case 4:
-            // printf("Artistas cadastrados:\n");
-            // imprimir_arv_binaria(raiz, imprimir_artista);
+            printf("Artistas cadastrados:\n");
+            imprimir_arv_binaria(*raiz_artista, imprimir_artista);
             break;
 
         case 5:
