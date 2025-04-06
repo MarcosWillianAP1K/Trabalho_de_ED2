@@ -34,16 +34,6 @@ MUSICA *criar_musica(char *titulo, char *duracao)
     return musica;
 }
 
-MUSICA *cadastrar_musica()
-{
-    printf("\nDigite o nome da musica: ");
-    char *nome = digitar_string();
-
-    printf("\nDigite a duracao da musica: ");
-    char *duracao = digitar_string();
-
-    return criar_musica(nome, duracao);
-}
 
 void imprimir_musica(MUSICA *musica)
 {

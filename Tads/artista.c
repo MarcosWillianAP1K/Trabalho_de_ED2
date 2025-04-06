@@ -41,23 +41,6 @@ ARTISTA *criar_artista(char *nome, char *tipo, char *estilo_musical, short int n
     return artista;
 }
 
-ARTISTA *cadastrar_artista()
-{
-
-    printf("\nDigite o nome do artista: ");
-    char *nome = digitar_string();
-
-    printf("\nDigite o tipo do artista: ");
-    char *tipo = digitar_string();
-
-    printf("\nDigite o estilo musical do artista: ");
-    char *estilo_musical = digitar_string();
-
-    short int numero_albuns = 0;
-
-    return criar_artista(nome, tipo, estilo_musical, numero_albuns, NULL);
-}
-
 void imprimir_artista(ARTISTA *artista)
 {
     if (artista != NULL)

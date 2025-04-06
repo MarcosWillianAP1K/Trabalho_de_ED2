@@ -43,16 +43,6 @@ MUSICA_PLAYLIST *criar_musica_playlist(char *titulo_artista, char *titulo_album,
     return musica_playlist;
 }
 
-MUSICA_PLAYLIST *cadastrar_musica_playlist(MUSICA *musica)
-{
-    printf("\nDigite o nome do artista: ");
-    char *titulo_artista = digitar_string();
-
-    printf("\nDigite o nome do album: ");
-    char *titulo_album = digitar_string();
-
-    return criar_musica_playlist(titulo_artista, titulo_album, musica);
-}
 
 void imprimir_musica_playlist(MUSICA_PLAYLIST *musica_playlist)
 {

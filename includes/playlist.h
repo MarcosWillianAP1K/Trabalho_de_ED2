@@ -19,8 +19,6 @@ void liberar_playlist(PLAYLIST **playlist);
 
 PLAYLIST *criar_playlist(char *nome, short int numero_de_musicas, void *raiz);
 
-PLAYLIST *cadastrar_playlist();
-
 void imprimir_playlist(PLAYLIST *playlist);
 
 int comparar_nome_playlist(PLAYLIST *playlist1, PLAYLIST *playlist2);

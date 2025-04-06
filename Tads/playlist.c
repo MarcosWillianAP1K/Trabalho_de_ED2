@@ -33,16 +33,6 @@ PLAYLIST *criar_playlist(char *nome, short int numero_de_musicas, void *raiz)
     return playlist;
 }
 
-PLAYLIST *cadastrar_playlist()
-{
-    printf("\nDigite o nome da playlist: ");
-    char *nome = digitar_string();
-
-    printf("\nDigite o numero de musicas da playlist: ");
-    short int numero_de_musicas = digitar_short_int();
-
-    return criar_playlist(nome, numero_de_musicas, NULL);
-}
 
 void imprimir_playlist(PLAYLIST *playlist)
 {

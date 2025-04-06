@@ -328,9 +328,20 @@ void delete_all(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
 
 // albums
 
-ARTISTA cadastrar_artista_interatividade(ARV_BINARIA *raiz_artista){
+void cadastrar_artista(ARV_BINARIA **raiz_artista){
     DADOS *aux = alocar_dados();
-    aux->artista = cadastrar_artista();
+    aux->artista = NULL;
+
+    printf("Digite o nome do artista: ");
+    char *nome = digitar_string();
+
+    printf("Digite o tipo do artista: ");
+    char *tipo = digitar_string();
+
+    printf("Digite o estilo musical do artista: ");
+    char *estilo_musical = digitar_string();
+
+    aux->artista = criar_artista(nome, tipo, estilo_musical, 0, NULL);
 
     if(aux->artista != NULL){
         inserir_arv_binaria(raiz_artista, aux, comparar_dados_nome_artista);
@@ -340,7 +351,6 @@ ARTISTA cadastrar_artista_interatividade(ARV_BINARIA *raiz_artista){
         printf("Artista nao cadastrado!\n");
         liberar_dados_artista(&aux);
     }
-
 }
 
 ALBUM cadastar_albuns_interatividade(ARV_BINARIA *raiz_artista){

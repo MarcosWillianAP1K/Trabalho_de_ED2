@@ -22,8 +22,6 @@ void liberar_album(ALBUM **album);
 
 ALBUM *criar_album(char *titulo, char *data_lancamento, short int numero_de_musicas, void *raiz);
 
-ALBUM *cadastrar_album();
-
 void imprimir_album(ALBUM *album);
 
 int comparar_titulo_album(ALBUM *album1, ALBUM *album2);

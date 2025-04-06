@@ -38,20 +38,6 @@ ALBUM *criar_album(char *titulo, char *data_lancamento, short int numero_de_musi
     return album;
 }
 
-ALBUM *cadastrar_album()
-{
-    printf("\nDigite o titulo do album: ");
-    char *titulo = digitar_string();
-
-    printf("\nDigite data de lancamento do album: ");
-    char *data_lancamento = digitar_string();
-
-    printf("\nDigite o numero de musical do artista: ");
-    short int numero_de_musicas = digitar_short_int();
-    
-
-    return criar_album(titulo, data_lancamento, numero_de_musicas, NULL);
-}
 
 void imprimir_album(ALBUM *album)
 {
