@@ -39,4 +39,8 @@ void delete_playlist(ARV_BINARIA **raiz_playlist);
 
 void delete_all(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist);
 
+ALBUM cadastar_albuns_interatividade(ARV_BINARIA *raiz_artista);
+
+MUSICA cadastar_musica_interatividade(ARV_BINARIA *raiz_artista, ARV_BINARIA *raiz_album);
+
 #endif

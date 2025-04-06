@@ -325,3 +325,57 @@ void delete_all(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
         *raiz_artista = NULL;
     }
 }
+
+// albums
+
+ALBUM cadastar_albuns_interatividade(ARV_BINARIA *raiz_artista){
+    DADOS *aux = alocar_dados();
+    aux->artista = buscar_arv_binaria(raiz_artista, aux, comparar_dados_nome_artista);
+
+    if(aux->artista != NULL){
+        DADOS *aux2 = alocar_dados();
+        aux2->album = cadastrar_album();
+
+        if(aux2->album != NULL){
+            inserir_arv_binaria(raiz_artista, aux2, comparar_dados_titulo_album);
+            printf("Album cadastrado com sucesso!\n");
+        }
+        else{
+            printf("Album nao cadastrado!\n");
+            liberar_dados_album(&aux2);
+        }
+
+    }
+
+    liberar_dados_artista(&aux);
+}
+
+MUSICA cadastar_musica_interatividade(ARV_BINARIA *raiz_artista, ARV_BINARIA *raiz_album){
+    DADOS *aux = alocar_dados();
+    aux->artista = buscar_arv_binaria(raiz_artista, aux, comparar_dados_nome_artista);
+
+    if(aux->artista != NULL){
+        DADOS *aux2 = alocar_dados();
+        aux2->album = buscar_arv_binaria(raiz_album, aux2, comparar_dados_titulo_album);
+
+        if(aux2->album != NULL){
+            DADOS *aux3 = alocar_dados();
+            aux3->musica = cadastrar_musica();
+
+            if(aux3->musica != NULL){
+                inserir_arv_binaria(raiz_album, aux3, comparar_dados_titulo_musica);
+                printf("Musica cadastrada com sucesso!\n");
+            }
+            else{
+                printf("Musica nao cadastrada!\n");
+                liberar_dados_musica(&aux3);
+            }
+        }
+        else{
+            printf("Album nao encontrado!\n");
+            liberar_dados_album(&aux2);
+        }
+    }
+
+    liberar_dados_artista(&aux);
+}
