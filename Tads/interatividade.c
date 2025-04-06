@@ -106,7 +106,7 @@ void menu_principal(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
 
         case 12:
             printf("Dados de uma musica:\n");
-            mostrar_dados_de_uma_musica(*raiz_playlist);
+            mostrar_dados_de_uma_musica(*raiz_artista);
             pausar_tela();
             break;
 
