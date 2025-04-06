@@ -17,6 +17,88 @@ DADOS *digite_nome_artista()
 }
 
 
+DADOS *digitar_tipo_artista(){
+    DADOS *aux = alocar_dados();
+
+    printf("Digite o tipo do artista\n");
+    char *tipo = digitar_string();
+
+    aux->artista = criar_artista("auxiliar", tipo, "auxiliar", 0, NULL);
+
+    return aux;
+}
+
+DADOS *digitar_estilo_musical_artista(){
+    DADOS *aux = alocar_dados();
+
+    printf("Digite o estilo musical do artista\n");
+    char *estilo_musical = digitar_string();
+
+    aux->artista = criar_artista("auxiliar", "auxiliar", estilo_musical, 0, NULL);
+
+    return aux;
+}
+
+DADOS *digitar_tipo_e_estilo_artista(){
+    DADOS *aux = alocar_dados();
+
+    printf("Digite o tipo do artista\n");
+    char *tipo = digitar_string();
+
+    printf("Digite o estilo musical do artista\n");
+    char *estilo_musical = digitar_string();
+
+    aux->artista = criar_artista("auxiliar", tipo, estilo_musical, 0, NULL);
+
+    return aux;
+}
+
+DADOS *digitar_titulo_album(){
+    DADOS *aux = alocar_dados();
+
+    printf("Digite o titulo do album\n");
+    char *titulo = digitar_string();
+
+    aux->album = criar_album(titulo, "auxiliar", 0, NULL);
+
+    return aux;
+}
+
+DADOS *digitar_data_album(){
+    DADOS *aux = alocar_dados();
+
+    printf("Digite a data de lancamento do album\n");
+    char *data_lancamento = digitar_string();
+
+    aux->album = criar_album("auxiliar", data_lancamento, 0, NULL);
+
+    return aux;
+}
+
+DADOS *digitar_titulo_musica(){
+    DADOS *aux = alocar_dados();
+
+    printf("Digite o titulo da musica\n");
+    char *titulo = digitar_string();
+
+    aux->musica = criar_musica(titulo, "9.99");
+
+    return aux;
+}
+
+DADOS *digitar_nome_playlist(){
+    DADOS *aux = alocar_dados();
+
+    printf("Digite o nome da playlist\n");
+    char *nome_playlist = digitar_string();
+
+    aux->playlist = criar_playlist(nome_playlist, 0, NULL);
+
+    return aux;
+}
+
+
+
 void mostrar_artista_por_tipo(ARV_BINARIA *raiz)
 {
     printf("Digite o tipo: ");
