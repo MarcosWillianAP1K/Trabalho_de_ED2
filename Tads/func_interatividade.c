@@ -79,6 +79,20 @@ DADOS *digitar_data_album()
     return aux;
 }
 
+DADOS *digitar_titulo_ano_album(){
+    DADOS *aux = alocar_dados();
+
+    printf("Digite o titulo do album\n");
+    char *titulo = digitar_string();
+
+    printf("Digite a data de lancamento do album\n");
+    char *data_lancamento = digitar_string();
+
+    aux->album = criar_album(titulo, data_lancamento, 0, NULL);
+
+    return aux;
+}
+
 DADOS *digitar_titulo_musica()
 {
     DADOS *aux = alocar_dados();
@@ -169,35 +183,22 @@ void mostrar_albuns_de_um_artista(ARV_BINARIA *raiz)
     }
 }
 
-void mostrar_albuns_de_um_artista_de_um_ano(ARV_BINARIA *raiz)
+void mostrar_albuns_de_um_artista_de_um_ano(ARV_BINARIA *raiz_artista)
 {
-    printf("Digite o nome do artista: ");
-    char *nome_artista;
-    nome_artista = digitar_string();
-    DADOS *aux = alocar_dados();
-    aux->artista = criar_artista(nome_artista, "auxiliar", "auxiliar", 0, NULL);
-
-    printf("Digite o ano do album: ");
-    char *ano_album = digitar_string();
-    DADOS *aux2 = alocar_dados();
-    aux2->album = criar_album("auxiliar", ano_album, 0, NULL);
-
-    if (nome_artista != '\0' && ano_album != '\0')
-    {
-        ARV_BINARIA *artista = buscar_arv_binaria(raiz, aux, comparar_dados_nome_artista);
-
-        if (artista != NULL)
-        {
-            imprimir_arv_binaria_filtro(raiz, aux2, imprimir_dados_album, comparar_dados_data_album);
-        }
+    DADOS *aux = digitar_titulo_ano_album();
+    ARV_BINARIA *artista = buscar_arv_binaria(raiz_artista, aux, comparar_dados_titulo_ano_album);
+     liberar_dados_album(&aux);
+     printf("*\n");
+    if(artista != NULL){
+        printf("*\n");
+        printf("Albuns do artista %s:\n", artista->info->artista->nome);
+        imprimir_arv_binaria(artista->info->artista->albuns_raiz_arvore, imprimir_dados_album);
     }
     else
     {
-        printf("Nenhum artista encontrado com o nome %s e ano %d\n", nome_artista, ano_album);
+        printf("Nenhum artista encontrado com o nome %s\n", aux->album->titulo);
     }
 
-    liberar_dados_artista(&aux);
-    liberar_dados_album(&aux2);
 }
 
 void mostrar_musicas_de_um_album_de_um_artista(ARV_BINARIA *raiz)

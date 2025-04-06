@@ -84,9 +84,9 @@ void menu_principal(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
             break;
 
         case 9:
-            // printf("Albuns cadastrados de um artista de um ano:\n");
-            // albuns_um_artista_um_ano(raiz, artista);
-
+            printf("Albuns cadastrados de um artista de um ano:\n");
+            mostrar_albuns_de_um_artista_de_um_ano(*raiz_artista);
+            pausar_tela();
             break;
 
         case 10:

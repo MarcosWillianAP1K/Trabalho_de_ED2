@@ -151,6 +151,11 @@ int comparar_dados_data_album(DADOS *dados1, DADOS *dados2)
     return comparar_data_album(dados1->album, dados2->album);
 }
 
+int comparar_dados_titulo_ano_album(DADOS *dados1, DADOS *dados2)
+{
+    return comparar_titulo_ano_album(dados1->album, dados2->album);
+}
+
 int comparar_dados_titulo_musica(DADOS *dados1, DADOS *dados2)
 {
     return comparar_titulo_musica(dados1->musica, dados2->musica);

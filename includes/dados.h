@@ -53,6 +53,8 @@ int comparar_dados_titulo_album(DADOS *dados1, DADOS *dados2);
 
 int comparar_dados_data_album(DADOS *dados1, DADOS *dados2);
 
+int comparar_dados_titulo_ano_album(DADOS *dados1, DADOS *dados2);
+
 int comparar_dados_titulo_musica(DADOS *dados1, DADOS *dados2);
 
 int comparar_dados_nome_playlist(DADOS *dados1, DADOS *dados2);
