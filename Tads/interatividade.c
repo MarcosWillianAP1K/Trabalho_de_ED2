@@ -27,10 +27,11 @@ void menu_principal(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
         printf("12 - Mostrar dados de uma musica\n");
         printf("13 - Cadastrar playlist\n");
         printf("14 - Cadastrar musica em uma playlist\n");
-        printf("15 - Mostrar dados de uma playlist\n");
-        printf("16 - Remover musica de uma playlist\n");
-        printf("17 - Remover uma playlist\n");
-        printf("18 - Remover uma musica de um album de um artista (So sera removido se nao estiver em playlists)");
+        printf("15 - Mostrar playlists\n");
+        printf("16 - Mostrar dados de uma playlist\n");
+        printf("17 - Remover musica de uma playlist\n");
+        printf("18 - Remover uma playlist\n");
+        printf("19 - Remover uma musica de um album de um artista (So sera removido se nao estiver em playlists)");
         printf("0 - Sair\n");
         printf("Escolha uma opcao: ");
 
@@ -119,23 +120,29 @@ void menu_principal(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
             printf("Cadastrar musica em uma playlist:\n");
             // cadastrar_musica_em_playlist(raiz_playlist, raiz_artista);
             break;
-        
+
         case 15:
+            printf("Mostrar playlists:\n");
+            imprimir_arv_binaria(*raiz_playlist, imprimir_dados_playlist);
+            pausar_tela();
+            break;
+        
+        case 16:
             printf("Mostrar dados de uma playlist:\n");
             // mostrar_dados_de_uma_playlist(raiz_playlist);
             break;
         
-        case 16:
+        case 17:
             printf("Remover musica de uma playlist:\n");
             // remover_musica_de_playlist(raiz_playlist);
             break;
         
-        case 17:
+        case 18:
             printf("Remover uma playlist:\n");
             // remover_playlist(raiz_playlist);
             break;
 
-        case 18:
+        case 19:
             printf("Remover uma musica de um album de um artista:\n");
             // remover_musica_de_album(raiz_artista, raiz_playlist);
             break;
