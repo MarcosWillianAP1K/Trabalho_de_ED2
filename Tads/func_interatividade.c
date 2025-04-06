@@ -103,46 +103,36 @@ DADOS *digitar_nome_playlist()
     return aux;
 }
 
-void mostrar_artista_por_tipo(ARV_BINARIA *raiz)
+void mostrar_artista_por_tipo(ARV_BINARIA *raiz_artista)
 {
-    printf("Digite o tipo: ");
+    DADOS *aux = digitar_tipo_artista();
+    ARV_BINARIA *artista = buscar_arv_binaria(raiz_artista, aux, comparar_dados_tipo_artista);
+    liberar_dados_artista(&aux);
 
-    char *tipo = digitar_string();
-
-    DADOS *aux = alocar_dados();
-    aux->artista = criar_artista("auxiliar", tipo, "auxiliar", 0, NULL);
-
-    if (*tipo != '\0')
-    {
-        imprimir_arv_binaria_filtro(raiz, aux, imprimir_dados_artista, comparar_dados_tipo_artista);
+    if(artista != NULL){
+        printf("Artistas cadastrados do tipo %s:\n", artista->info->artista->tipo);
+        imprimir_arv_binaria(artista, imprimir_dados_artista);
     }
     else
     {
-        printf("Nenhum artista encontrado com o tipo %s\n", tipo);
+        printf("Nenhum artista encontrado com o tipo %s\n", aux->artista->tipo);
     }
-
-    liberar_dados_artista(&aux);
 }
 
-void mostrar_artista_por_estilo(ARV_BINARIA *raiz)
+void mostrar_artista_por_estilo(ARV_BINARIA *raiz_artista)
 {
-    printf("Digite o estilo: ");
+    DADOS *aux = digitar_estilo_musical_artista();
+    ARV_BINARIA *artista = buscar_arv_binaria(raiz_artista, aux, comparar_dados_estilo_artista);
+    liberar_dados_artista(&aux);
 
-    char *estilo = digitar_string();
-
-    DADOS *aux = alocar_dados();
-    aux->artista = criar_artista("auxiliar", "auxiliar", estilo, 0, NULL);
-
-    if (*estilo != '\0')
-    {
-        imprimir_arv_binaria_filtro(raiz, aux, imprimir_dados_artista, comparar_dados_estilo_artista);
+    if(artista != NULL){
+        printf("Artistas cadastrados do tipo %s:\n", artista->info->artista->estilo_musical);
+        imprimir_arv_binaria(artista, imprimir_dados_artista);
     }
     else
     {
-        printf("Nenhum artista encontrado com o estilo %s\n", estilo);
+        printf("Nenhum artista encontrado com o tipo %s\n", aux->artista->estilo_musical);
     }
-
-    liberar_dados_artista(&aux);
 }
 
 void mostrar_artista_por_tipo_e_estilo(ARV_BINARIA *raiz)
