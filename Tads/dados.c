@@ -8,6 +8,14 @@ DADOS *alocar_dados()
 {
     DADOS *novo_dados = (DADOS *)malloc(sizeof(DADOS));
     verificar_alocacao(novo_dados);
+    //Tecnicamente so precisa atribuir NULL uma vez, mas eh mais seguro
+    //fazer isso em todas as variaveis
+    novo_dados->artista = NULL;
+    novo_dados->album = NULL;
+    novo_dados->musica = NULL;
+    novo_dados->playlist = NULL;
+    novo_dados->musica_playlist = NULL;
+
     return novo_dados;
 }
 

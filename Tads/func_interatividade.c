@@ -4,6 +4,19 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+DADOS *digite_nome_artista()
+{
+    DADOS *aux = alocar_dados();
+
+    printf("Digite nome do artista\n");
+    char *nome = digitar_string();
+
+    aux->artista = criar_artista(nome, "auxiliar", "auxiliar", 0, NULL);
+
+    return aux;
+}
+
+
 void mostrar_artista_por_tipo(ARV_BINARIA *raiz)
 {
     printf("Digite o tipo: ");
@@ -330,7 +343,6 @@ void delete_all(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
 
 void cadastrar_artista(ARV_BINARIA **raiz_artista){
     DADOS *aux = alocar_dados();
-    aux->artista = NULL;
 
     printf("Digite o nome do artista: ");
     char *nome = digitar_string();
@@ -353,16 +365,24 @@ void cadastrar_artista(ARV_BINARIA **raiz_artista){
     }
 }
 
-ALBUM cadastar_albuns_interatividade(ARV_BINARIA *raiz_artista){
+//Não é necessario ponteiro por referencia, mas so pra padronizar mantem ele assim
+void cadastar_albuns(ARV_BINARIA **raiz_artista){
     DADOS *aux = alocar_dados();
     aux->artista = buscar_arv_binaria(raiz_artista, aux, comparar_dados_nome_artista);
 
     if(aux->artista != NULL){
         DADOS *aux2 = alocar_dados();
-        aux2->album = cadastrar_album();
+        
+        printf("Digite o titulo do album: ");
+        char *titulo = digitar_string();
+
+        printf("Digite a data de lancamento do album: ");
+        char *data_lancamento = digitar_string();
+
+        aux2->album = criar_album(titulo, data_lancamento, 0, NULL);
 
         if(aux2->album != NULL){
-            inserir_arv_binaria(raiz_artista, aux2, comparar_dados_titulo_album);
+            inserir_arv_binaria(aux->artista->albuns_raiz_arvore, aux2, comparar_dados_titulo_album);
             printf("Album cadastrado com sucesso!\n");
         }
         else{
@@ -372,14 +392,15 @@ ALBUM cadastar_albuns_interatividade(ARV_BINARIA *raiz_artista){
 
     }
 
-    liberar_dados_artista(&aux);
+    liberar_dados(&aux);
 }
 
 MUSICA cadastar_musica_interatividade(ARV_BINARIA *raiz_artista, ARV_BINARIA *raiz_album){
-    DADOS *aux = alocar_dados();
-    aux->artista = buscar_arv_binaria(raiz_artista, aux, comparar_dados_nome_artista);
+    DADOS *aux = digitar_nome_artista();
+    ARV_BINARIA *artista = buscar_arv_binaria(raiz_artista, aux, comparar_dados_nome_artista);
 
-    if(aux->artista != NULL){
+
+    if(artista != NULL){
         DADOS *aux2 = alocar_dados();
         aux2->album = buscar_arv_binaria(raiz_album, aux2, comparar_dados_titulo_album);
 
