@@ -48,11 +48,13 @@ void menu_principal(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
             break;
 
         case 2:
-            cadastrar_album();
+            aux->album = cadastrar_album();
+            inserir_arv_binaria(raiz_artista, aux, comparar_dados_titulo_album);
             break;
 
         case 3:
-           cadastrar_musica();
+           aux->musica = cadastrar_musica();
+            inserir_arv_binaria(raiz_artista, aux, comparar_dados_titulo_musica);
             break;
 
         case 4:
