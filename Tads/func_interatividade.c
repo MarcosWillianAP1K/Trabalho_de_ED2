@@ -232,7 +232,6 @@ void pecorrer_artistas(ARV_BINARIA *raiz_artista, DADOS *aux)
     }
 }
 
-
 void mostrar_albuns_de_todos_artistas_de_um_ano(ARV_BINARIA *raiz_artista)
 {    
     DADOS *aux = digitar_data_album();
@@ -300,8 +299,11 @@ void mostrar_dados_de_uma_playlist(ARV_BINARIA *raiz)
     }
 
     liberar_dados_playlist(&aux);
-
 }
+
+
+
+
 
 void remover_musica_de_uma_playlist(ARV_BINARIA *raiz)
 {
@@ -419,7 +421,9 @@ void delete_all(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
     }
 }
 
-// albums
+
+
+
 
 void cadastrar_artista(ARV_BINARIA **raiz_artista)
 {
@@ -564,6 +568,7 @@ void cadastrar_musica_em_uma_playlist(ARV_BINARIA **raiz_playlist, ARV_BINARIA *
     DADOS *aux = digitar_nome_playlist();
     ARV_BINARIA *playlist = buscar_arv_binaria(*raiz_playlist, aux, comparar_dados_nome_playlist);
 
+    liberar_dados_playlist(&aux);
 
     if (playlist != NULL)
     {
@@ -589,7 +594,7 @@ void cadastrar_musica_em_uma_playlist(ARV_BINARIA **raiz_playlist, ARV_BINARIA *
                 if (musica != NULL)
                 {
                     ARV_BINARIA *inserir = playlist->info->playlist->musicas_raiz_arvore;
-                    inserir_arv_binaria(&inserir, musica, comparar_dados_titulo_musica_musica_playlist);
+                    inserir_arv_binaria(&inserir, musica->info, comparar_dados_titulo_musica_musica_playlist);
                     playlist->info->playlist->musicas_raiz_arvore = inserir;
 
                     playlist->info->playlist->numero_de_musicas++;
@@ -613,5 +618,11 @@ void cadastrar_musica_em_uma_playlist(ARV_BINARIA **raiz_playlist, ARV_BINARIA *
             liberar_dados_artista(&aux2);
         }
     }
-    liberar_dados_playlist(&aux);
+    else
+    {
+
+        printf("Playlist não encontrada\n");
+
+    }
+    
 }

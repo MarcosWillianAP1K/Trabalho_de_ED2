@@ -31,6 +31,19 @@ void inserir_testes(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
     inserir_arv_binaria(&inserir, teste_musica, comparar_dados_titulo_musica);
     teste_album->album->musicas_raiz_arvore = inserir;
     teste_album->album->numero_de_musicas++;
+
+
+
+    DADOS *teste_playlist = alocar_dados();
+    teste_playlist->playlist = criar_playlist("teste_playlist", 0, NULL);
+
+    // Adiciona a playlist a arvore
+    inserir_arv_binaria(raiz_playlist, teste_playlist, comparar_dados_nome_playlist);
+
+    inserir = teste_playlist->playlist->musicas_raiz_arvore;
+    inserir_arv_binaria(&inserir, teste_musica, comparar_dados_titulo_musica_musica_playlist);
+    teste_playlist->playlist->musicas_raiz_arvore = inserir;
+    teste_playlist->playlist->numero_de_musicas++;
 }
 
 int main()
