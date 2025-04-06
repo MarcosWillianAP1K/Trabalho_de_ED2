@@ -158,7 +158,6 @@ int comparar_dados_titulo_musica_musica_playlist(DADOS *dados1, DADOS *dados2)
     return comparar_titulo_musica_musica_playlist(dados1->musica_playlist, dados2->musica_playlist);
 }
 
-
 int comparar_dados_musica_playlist(DADOS *dados1, DADOS *dados2)
 {
     return comparar_musica_playlist(dados1->musica_playlist, dados2->musica_playlist);
