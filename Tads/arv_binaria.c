@@ -44,7 +44,7 @@ void liberar_arv_binaria(ARV_BINARIA **raiz, void (*liberar)(DADOS **))
   }
 }
 
-ARV_BINARIA *cria_no_arv_binaria(DADOS *info)
+ARV_BINARIA *criar_no_arv_binaria(DADOS *info)
 {
   ARV_BINARIA *nova_arv = alocar_arv_binaria();
   nova_arv->info = info;
@@ -57,7 +57,7 @@ void inserir_arv_binaria(ARV_BINARIA **raiz, DADOS *info, int (*comparar)(DADOS 
 {
   if (*raiz == NULL)
   {
-    *raiz = cria_no_arv_binaria(info);
+    *raiz = criar_no_arv_binaria(info);
   }
   else if (comparar((*raiz)->info, info) > 0)
   {
@@ -76,6 +76,19 @@ void imprimir_arv_binaria(ARV_BINARIA *raiz, void (*printar_dados)(DADOS *))
     imprimir_arv_binaria(raiz->esq, printar_dados);
     printar_dados(raiz->info);
     imprimir_arv_binaria(raiz->dir, printar_dados);
+  }
+}
+
+void imprimir_arv_binaria_filtro(ARV_BINARIA *raiz, DADOS *info, void (*printar_dados)(DADOS *), int (*comparar)(DADOS *, DADOS *))
+{
+  if (raiz != NULL)
+  {
+    imprimir_arv_binaria_filtro(raiz->esq, info, printar_dados, comparar);
+    if (comparar(raiz->info, info) == 0)
+    {
+      printar_dados(raiz->info);
+    }
+    imprimir_arv_binaria_filtro(raiz->dir, info, printar_dados, comparar);
   }
 }
 
@@ -116,7 +129,7 @@ ARV_BINARIA **endereco_maximo_direita(ARV_BINARIA **raiz)
   return no;
 }
 
-// PRECISA FAZER UMA REMOÇÃO DIFERENTE, NÃO BASTA COPIAR O CONTEUDO, DEVE TROCAR O NO POR INTEIRO.
+
 int remover_arv_binaria(ARV_BINARIA **raiz, DADOS *info, void (*liberar)(DADOS **), int (*comparar)(DADOS *, DADOS *))
 {
   int removeu = 1;
@@ -200,15 +213,4 @@ ARV_BINARIA *buscar_arv_binaria(ARV_BINARIA *raiz, DADOS *info, int (*comparar)(
   return no;
 }
 
-void imprimir_arv_binaria_filtro(ARV_BINARIA *raiz, DADOS *info, void (*printar_dados)(DADOS *), int (*comparar)(DADOS *, DADOS *))
-{
-  if (raiz != NULL)
-  {
-    imprimir_arv_binaria_filtro(raiz->esq, info, printar_dados, comparar);
-    if (comparar(raiz->info, info) == 0)
-    {
-      printar_dados(raiz->info);
-    }
-    imprimir_arv_binaria_filtro(raiz->dir, info, printar_dados, comparar);
-  }
-}
+

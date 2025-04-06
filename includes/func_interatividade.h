@@ -5,27 +5,27 @@
 #ifndef FUNC_INTERATIVIDADE_H
 #define FUNC_INTERATIVIDADE_H
 
-void mostrar_art_por_tipo(ARV_BINARIA *raiz, ARTISTA *artista);
+void mostrar_artista_por_tipo(ARV_BINARIA *raiz);
 
-void mostrar_art_por_estilo(ARV_BINARIA *raiz, ARTISTA *artista);
+void mostrar_artista_por_estilo(ARV_BINARIA *raiz);
 
-void mostrar_art_por_tipo_e_estilo(ARV_BINARIA *raiz, ARTISTA *artista);
+void mostrar_artista_por_tipo_e_estilo(ARV_BINARIA *raiz);
 
-void albuns_um_artista(ARV_BINARIA *raiz, ARTISTA *artista);
+void mostrar_albuns_de_um_artista(ARV_BINARIA *raiz);
 
-void albuns_um_artista_um_ano(ARV_BINARIA *raiz, ARTISTA *artista);
+void mostrar_albuns_de_um_artista_de_um_ano(ARV_BINARIA *raiz);
 
-void mostrar_musicas_album(ARV_BINARIA *raiz, ALBUM *album);
+void mostrar_musicas_de_um_album_de_um_artista(ARV_BINARIA *raiz);
 
-void mostrar_dados_musica(ARV_BINARIA *raiz, MUSICA *musica);
+void mostrar_dados_de_uma_musica(ARV_BINARIA *raiz);
 
-void mostrar_dados_playlist(ARV_BINARIA *raiz, PLAYLIST *playlist);
+void mostrar_dados_de_uma_playlist(ARV_BINARIA *raiz);
 
-void remover_musica_playlist(ARV_BINARIA *raiz, PLAYLIST *playlist);
+void remover_musica_playlist(ARV_BINARIA *raiz);
 
-void remover_playlist(ARV_BINARIA *raiz, PLAYLIST *playlist);
+void remover_playlist(ARV_BINARIA *raiz);
 
-void remover_musica_de_album_de_artista(ARV_BINARIA *raiz, ARTISTA *artista, ALBUM *album, MUSICA *musica);
+void remover_musica_de_album_de_artista(ARV_BINARIA *raiz);
 
 void delete_musica(ARV_BINARIA **raiz_musica);
 

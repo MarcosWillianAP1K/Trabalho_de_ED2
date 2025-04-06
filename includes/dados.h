@@ -47,6 +47,8 @@ int comparar_dados_estilo_artista(DADOS *dados1, DADOS *dados2);
 
 int comparar_dados_tipo_artista(DADOS *dados1, DADOS *dados2);
 
+int comparar_dados_tipo_e_estilo_artista(DADOS *dados1, DADOS *dados2);
+
 int comparar_dados_titulo_album(DADOS *dados1, DADOS *dados2);
 
 int comparar_dados_data_album(DADOS *dados1, DADOS *dados2);
@@ -54,6 +56,8 @@ int comparar_dados_data_album(DADOS *dados1, DADOS *dados2);
 int comparar_dados_titulo_musica(DADOS *dados1, DADOS *dados2);
 
 int comparar_dados_nome_playlist(DADOS *dados1, DADOS *dados2);
+
+int comparar_dados_titulo_musica_musica_playlist(DADOS *dados1, DADOS *dados2);
 
 int comparar_dados_musica_playlist(DADOS *dados1, DADOS *dados2);
 

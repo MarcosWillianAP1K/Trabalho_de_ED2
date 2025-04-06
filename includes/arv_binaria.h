@@ -19,7 +19,7 @@ void liberar_no_arv_binaria(ARV_BINARIA **raiz, void (*liberar)(DADOS **));
 
 void liberar_arv_binaria(ARV_BINARIA **raiz, void (*liberar)(DADOS **));
 
-ARV_BINARIA *cria_no_arv_binaria(DADOS *info);
+ARV_BINARIA *criar_no_arv_binaria(DADOS *info);
 
 void inserir_arv_binaria(ARV_BINARIA **raiz, DADOS *info, int (*comparar)(DADOS *, DADOS *));
 
