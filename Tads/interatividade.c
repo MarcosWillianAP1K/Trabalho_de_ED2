@@ -51,7 +51,7 @@ void menu_principal(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
 
         case 4:
             printf("Artistas cadastrados:\n");
-            imprimir_arv_binaria(*raiz_artista, imprimir_artista);
+            imprimir_arv_binaria(*raiz_artista, imprimir_dados_artista);
             break;
 
         case 5:
