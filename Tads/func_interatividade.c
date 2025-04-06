@@ -367,10 +367,11 @@ void cadastrar_artista(ARV_BINARIA **raiz_artista){
 
 //Não é necessario ponteiro por referencia, mas so pra padronizar mantem ele assim
 void cadastar_albuns(ARV_BINARIA **raiz_artista){
-    DADOS *aux = alocar_dados();
-    aux->artista = buscar_arv_binaria(raiz_artista, aux, comparar_dados_nome_artista);
+    DADOS *aux = digite_nome_artista();
+    ARV_BINARIA *artista = buscar_arv_binaria(*raiz_artista, aux, comparar_dados_nome_artista);
+    liberar_dados_artista(&aux);
 
-    if(aux->artista != NULL){
+    if(artista != NULL){
         DADOS *aux2 = alocar_dados();
         
         printf("Digite o titulo do album: ");
@@ -384,6 +385,8 @@ void cadastar_albuns(ARV_BINARIA **raiz_artista){
         if(aux2->album != NULL){
             inserir_arv_binaria(aux->artista->albuns_raiz_arvore, aux2, comparar_dados_titulo_album);
             printf("Album cadastrado com sucesso!\n");
+
+            artista->info->artista->numero_de_albuns++;
         }
         else{
             printf("Album nao cadastrado!\n");
@@ -392,7 +395,6 @@ void cadastar_albuns(ARV_BINARIA **raiz_artista){
 
     }
 
-    liberar_dados(&aux);
 }
 
 MUSICA cadastar_musica_interatividade(ARV_BINARIA *raiz_artista, ARV_BINARIA *raiz_album){
