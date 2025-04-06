@@ -53,20 +53,28 @@ ARV_BINARIA *criar_no_arv_binaria(DADOS *info)
   return nova_arv;
 }
 
-void inserir_arv_binaria(ARV_BINARIA **raiz, DADOS *info, int (*comparar)(DADOS *, DADOS *))
+int inserir_arv_binaria(ARV_BINARIA **raiz, DADOS *info, int (*comparar)(DADOS *, DADOS *))
 {
+  int inseriu = 1;
+
   if (*raiz == NULL)
   {
     *raiz = criar_no_arv_binaria(info);
   }
   else if (comparar((*raiz)->info, info) > 0)
   {
-    inserir_arv_binaria(&(*raiz)->esq, info, comparar);
+    inseriu = inserir_arv_binaria(&(*raiz)->esq, info, comparar);
   }
-  else
+  else if (comparar((*raiz)->info, info) < 0)
   {
-    inserir_arv_binaria(&(*raiz)->dir, info, comparar);
+    inseriu = inserir_arv_binaria(&(*raiz)->dir, info, comparar);
+    /* code */
   }
+  else{
+    inseriu = 0;
+  }
+
+  return inseriu;
 }
 
 void imprimir_arv_binaria(ARV_BINARIA *raiz, void (*printar_dados)(DADOS *))
