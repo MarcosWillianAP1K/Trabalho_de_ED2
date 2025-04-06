@@ -328,6 +328,21 @@ void delete_all(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
 
 // albums
 
+ARTISTA cadastrar_artista_interatividade(ARV_BINARIA *raiz_artista){
+    DADOS *aux = alocar_dados();
+    aux->artista = cadastrar_artista();
+
+    if(aux->artista != NULL){
+        inserir_arv_binaria(raiz_artista, aux, comparar_dados_nome_artista);
+        printf("Artista cadastrado com sucesso!\n");
+    }
+    else{
+        printf("Artista nao cadastrado!\n");
+        liberar_dados_artista(&aux);
+    }
+
+}
+
 ALBUM cadastar_albuns_interatividade(ARV_BINARIA *raiz_artista){
     DADOS *aux = alocar_dados();
     aux->artista = buscar_arv_binaria(raiz_artista, aux, comparar_dados_nome_artista);
