@@ -259,7 +259,7 @@ void mostrar_dados_de_uma_musica(ARV_BINARIA *raiz)
 
             if (musica != NULL)
             {
-                printf("Dados da musica %s:\n", musica->info->musica->titulo);
+                printf("\n");
                 imprimir_dados_musica(musica->info);
             }
             else
