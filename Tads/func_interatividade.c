@@ -172,28 +172,19 @@ void mostrar_artista_por_tipo_e_estilo(ARV_BINARIA *raiz)
 
 void mostrar_albuns_de_um_artista(ARV_BINARIA *raiz)
 {
-    printf("Digite o nome do artista: ");
-    char *nome_artista = digitar_string();
-    DADOS *aux = alocar_dados();
-    aux->artista = criar_artista(nome_artista, "auxiliar", "auxiliar", 0, NULL);
+    DADOS *aux = digitar_nome_artista();
+    ARV_BINARIA *artista = buscar_arv_binaria(raiz, aux, comparar_dados_nome_artista);
+    liberar_dados_artista(&aux);
 
-    if (nome_artista != '\0')
+    if (artista != NULL)
     {
-        printf("Albuns do artista %s:\n", nome_artista);
-
-        ARV_BINARIA *artista = buscar_arv_binaria(raiz, aux, comparar_dados_nome_artista);
-
-        if (artista != NULL)
-        {
-            imprimir_arv_binaria((ARV_BINARIA *)artista->info->album->musicas_raiz_arvore, imprimir_dados_album);
-        }
+        printf("Albuns do artista %s:\n", artista->info->artista->nome);
+        imprimir_arv_binaria(artista->info->artista->albuns_raiz_arvore, imprimir_dados_album);
     }
     else
     {
-        printf("Nenhum artista encontrado com o nome %s\n", nome_artista);
+        printf("Nenhum artista encontrado com o nome %s\n", artista);
     }
-
-    liberar_dados_artista(&aux);
 }
 
 void mostrar_albuns_de_um_artista_de_um_ano(ARV_BINARIA *raiz)
@@ -229,44 +220,28 @@ void mostrar_albuns_de_um_artista_de_um_ano(ARV_BINARIA *raiz)
 
 void mostrar_musicas_de_um_album_de_um_artista(ARV_BINARIA *raiz)
 {
-    printf("Digite o nome do artista: ");
-    char *nome_artista = digitar_string();
-    DADOS *aux1 = alocar_dados();
-    aux1->artista = criar_artista(nome_artista, "auxiliar", "auxiliar", 0, NULL);
-
-    printf("Digite o titulo do album: ");
-    char *nome_album = digitar_string();
-    DADOS *aux2 = alocar_dados();
-    aux2->album = criar_album(nome_album, "auxiliar", 0, NULL);
-
-    if (nome_artista != '\0' && nome_album != '\0')
+    DADOS *aux = digitar_nome_artista();
+    ARV_BINARIA *artista = buscar_arv_binaria(raiz, aux, comparar_dados_nome_artista);
+    liberar_dados_artista(&aux);
+    if (artista != NULL)
     {
-        ARV_BINARIA *artista = buscar_arv_binaria(raiz, aux1, comparar_dados_nome_artista);
-        if (artista != NULL)
+        DADOS *aux2 = digitar_titulo_album();
+        ARV_BINARIA *album = buscar_arv_binaria(artista->info->artista->albuns_raiz_arvore, aux2, comparar_dados_titulo_album);
+        liberar_dados_album(&aux2);
+        if (album != NULL)
         {
-            ARV_BINARIA *album = buscar_arv_binaria((ARV_BINARIA *)artista->info->artista->albuns_raiz_arvore, aux2, comparar_dados_titulo_album);
-
-            if (album != NULL)
-            {
-                imprimir_arv_binaria_filtro(raiz, aux2, imprimir_dados_musica, comparar_dados_titulo_musica);
-            }
-            else
-            {
-                printf("Nenhum album encontrado com o nome %s\n", nome_album);
-            }
+            printf("Musicas do album %s:\n", album->info->album->titulo);
+            imprimir_arv_binaria(album->info->album->musicas_raiz_arvore, imprimir_dados_musica);
         }
         else
         {
-            printf("Nenhum artista encontrado com o nome %s\n", nome_artista);
+            printf("Nenhum album encontrado com o nome %s\n", aux2->album->titulo);
         }
     }
     else
     {
-        printf("Nenhum artista encontrado com o nome %s e album %s\n", nome_artista, nome_album);
+        printf("Nenhum artista encontrado com o nome %s\n", aux->artista->nome);
     }
-
-    liberar_dados_artista(&aux1);
-    liberar_dados_album(&aux2);
 }
 
 void mostrar_dados_de_uma_musica(ARV_BINARIA *raiz)
@@ -473,10 +448,10 @@ void cadastrar_albuns(ARV_BINARIA **raiz_artista)
         char *data_lancamento = digitar_string();
 
         aux2->album = criar_album(titulo, data_lancamento, 0, NULL);
-
         if (aux2->album != NULL)
         {
-            inserir_arv_binaria(aux->artista->albuns_raiz_arvore, aux2, comparar_dados_titulo_album);
+
+            inserir_arv_binaria(artista->info->artista->albuns_raiz_arvore, aux2, comparar_dados_titulo_album);
             printf("Album cadastrado com sucesso!\n");
 
             artista->info->artista->numero_de_albuns++;

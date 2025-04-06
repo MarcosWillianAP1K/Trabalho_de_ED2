@@ -60,8 +60,8 @@ void menu_principal(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
             break;
 
         case 5:
-            // printf("Artistas cadastrados de um tipo:\n");
-            // mostrar_art_por_tipo(raiz, artista);
+            printf("Artistas cadastrados de um tipo:\n");
+            mostrar_artista_por_tipo(*raiz_artista);
             break;
 
         case 6:
@@ -75,8 +75,8 @@ void menu_principal(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
             break;
 
         case 8:
-            // printf("Albuns cadastrados de um artista:\n");
-            // albuns_um_artista(raiz, artista);
+            printf("Albuns cadastrados de um artista:\n");
+            mostrar_albuns_de_um_artista(*raiz_artista);
             break;
 
         case 9:
