@@ -189,7 +189,7 @@ void mostrar_musicas_de_um_album_de_um_artista(ARV_BINARIA *raiz)
 {
     DADOS *aux = digitar_nome_artista();
     ARV_BINARIA *artista = buscar_arv_binaria(raiz, aux, comparar_dados_nome_artista);
-    
+ 
 
     if (artista != NULL)
     {
@@ -423,17 +423,17 @@ void delete_all(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
 
 void cadastrar_artista(ARV_BINARIA **raiz_artista)
 {
-    DADOS *aux = alocar_dados();
-
+    
     printf("Digite o nome do artista: ");
     char *nome = digitar_string();
-
+    
     printf("Digite o tipo do artista: ");
     char *tipo = digitar_string();
-
+    
     printf("Digite o estilo musical do artista: ");
     char *estilo = digitar_string();
-
+    
+    DADOS *aux = alocar_dados();
     aux->artista = criar_artista(nome, tipo, estilo, 0, NULL);
 
     if (aux->artista != NULL)
@@ -533,4 +533,28 @@ void cadastrar_musica(ARV_BINARIA **raiz_artista)
             liberar_dados_album(&aux2);
         }
     }
+}
+
+
+void cadastrar_playlist(ARV_BINARIA **raiz)
+{
+    printf("Digite o nome da playlist: ");
+    char *nome_playlist = digitar_string();
+
+    DADOS *aux = alocar_dados();
+    aux->playlist = criar_playlist(nome_playlist, 0, NULL);
+
+    if (aux->playlist != NULL)
+    {
+        inserir_arv_binaria(raiz, aux, comparar_dados_nome_playlist);
+        printf("Playlist cadastrada com sucesso!\n");
+    }
+    else
+    {
+        printf("Playlist nao cadastrada!\n");
+        liberar_dados_playlist(&aux);
+    }
+
+
+
 }
