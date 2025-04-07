@@ -92,7 +92,7 @@ void liberar_dados_album(DADOS **dados)
 
 void liberar_dados_musica(DADOS **dados)
 {
-    if (dados != NULL && *dados != NULL && (*dados)->musica != NULL)
+    if (dados != NULL && *dados != NULL)
     {
         liberar_musica(&(*dados)->musica);
     }

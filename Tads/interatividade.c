@@ -135,17 +135,17 @@ void menu_principal(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
         
         case 17:
             printf("Remover musica de uma playlist:\n");
-            // remover_musica_de_playlist(raiz_playlist);
+            remover_musica_de_uma_playlist(raiz_playlist); 
             break;
         
         case 18:
             printf("Remover uma playlist:\n");
-            // remover_playlist(raiz_playlist);
+            remover_playlist(raiz_playlist);
             break;
 
         case 19:
             printf("Remover uma musica de um album de um artista:\n");
-            // remover_musica_de_album(raiz_artista, raiz_playlist);
+            remover_musica_de_album_de_artista(raiz_artista);
             break;
 
 
