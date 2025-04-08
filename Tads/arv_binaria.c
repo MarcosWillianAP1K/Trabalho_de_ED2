@@ -14,6 +14,7 @@ ARV_BINARIA *alocar_arv_binaria()
 
 void liberar_no_arv_binaria(ARV_BINARIA **raiz, void (*liberar)(DADOS **))
 {
+ 
   if (raiz != NULL && *raiz != NULL)
   {
     if ((*raiz)->info != NULL)
@@ -22,9 +23,10 @@ void liberar_no_arv_binaria(ARV_BINARIA **raiz, void (*liberar)(DADOS **))
     }
 
     free(*raiz);
-    *raiz = NULL;
+    *raiz = NULL; 
   }
 }
+  
 
 void liberar_arv_binaria(ARV_BINARIA **raiz, void (*liberar)(DADOS **))
 {
@@ -32,11 +34,6 @@ void liberar_arv_binaria(ARV_BINARIA **raiz, void (*liberar)(DADOS **))
   {
     liberar_arv_binaria(&((*raiz)->esq), liberar);
     liberar_arv_binaria(&((*raiz)->dir), liberar);
-
-    if ((*raiz)->info != NULL)
-    {
-      liberar(&(*raiz)->info);
-    }
 
     liberar_no_arv_binaria(raiz, liberar);
 

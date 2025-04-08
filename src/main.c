@@ -16,9 +16,9 @@ void inserir_testes(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
     teste_album->album = criar_album("teste_album", "teste_data", 0, NULL);
 
     // Adiciona o album ao artista
-    ARV_BINARIA *inserir = (*raiz_artista)->info->artista->albuns_raiz_arvore;
+    ARV_BINARIA *inserir = teste_artista->artista->albuns_raiz_arvore;
     inserir_arv_binaria(&inserir, teste_album, comparar_dados_titulo_album);
-    (*raiz_artista)->info->artista->albuns_raiz_arvore = inserir;
+    teste_artista->artista->albuns_raiz_arvore = inserir;
 
     teste_artista->artista->numero_de_albuns++;
 
@@ -40,8 +40,11 @@ void inserir_testes(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
     // Adiciona a playlist a arvore
     inserir_arv_binaria(raiz_playlist, teste_playlist, comparar_dados_nome_playlist);
 
+    DADOS *teste_musica_playlist = alocar_dados();
+    teste_musica_playlist->musica_playlist = criar_musica_playlist(teste_artista->artista->nome, teste_album->album->titulo, teste_musica->musica);
+
     inserir = teste_playlist->playlist->musicas_raiz_arvore;
-    inserir_arv_binaria(&inserir, teste_musica, comparar_dados_titulo_musica_musica_playlist);
+    inserir_arv_binaria(&inserir, teste_musica_playlist, comparar_dados_titulo_musica_musica_playlist);
     teste_playlist->playlist->musicas_raiz_arvore = inserir;
     teste_playlist->playlist->numero_de_musicas++;
 }

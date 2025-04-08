@@ -16,11 +16,13 @@ MUSICA *alocar_musica()
 
 void liberar_musica(MUSICA **musica)
 {
-    if (*musica != NULL)
+    
+    if (musica != NULL && *musica != NULL)
     {
         free((*musica)->titulo);
         free((*musica)->duracao);
         free(*musica);
+
         *musica = NULL;
     }
 }
@@ -34,14 +36,13 @@ MUSICA *criar_musica(char *titulo, char *duracao)
     return musica;
 }
 
-
 void imprimir_musica(MUSICA *musica)
 {
-   if(musica != NULL)
-   {
-       printf("\nNome: %s", musica->titulo);
-       printf("\nDuracao: %s\n", musica->duracao);
-   }
+    if (musica != NULL)
+    {
+        printf("\nNome: %s", musica->titulo);
+        printf("\nDuracao: %s\n", musica->duracao);
+    }
 }
 
 int comparar_titulo_musica(MUSICA *musica1, MUSICA *musica2)

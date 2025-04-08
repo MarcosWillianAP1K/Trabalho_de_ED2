@@ -321,9 +321,8 @@ void remover_musica_de_album_de_artista(ARV_BINARIA **raiz)
 void delete_musica(ARV_BINARIA **raiz_musica)
 {
     if (*raiz_musica != NULL)
-    {
-        liberar_no_arv_binaria(raiz_musica, liberar_dados_musica);
-        printf("Entrou no deletar musica\n");
+    {        
+        liberar_arv_binaria(raiz_musica, liberar_dados_musica);
     }
 }
 
@@ -338,7 +337,6 @@ void delete_album(ARV_BINARIA **raiz_album)
         delete_musica(&aux);
         (*raiz_album)->info->album->musicas_raiz_arvore = aux;
         
-        printf("Entrou no delete album\n");
         liberar_no_arv_binaria(raiz_album, liberar_dados_album);
     }
 }
@@ -354,7 +352,6 @@ void delete_artista(ARV_BINARIA **raiz_artista)
         delete_album(&aux);
         (*raiz_artista)->info->artista->albuns_raiz_arvore = aux;
         
-        printf("Entrou no delete artista\n");
         liberar_no_arv_binaria(raiz_artista, liberar_dados_artista);
     }
 }
@@ -363,7 +360,7 @@ void delete_musica_playlist(ARV_BINARIA **raiz_musica_playlist)
 {
     if (*raiz_musica_playlist != NULL)
     { 
-        liberar_no_arv_binaria(raiz_musica_playlist, liberar_dados_musica_playlist);
+        liberar_arv_binaria(raiz_musica_playlist, liberar_dados_musica_playlist);
     }
 }
 
@@ -385,7 +382,6 @@ void delete_playlist(ARV_BINARIA **raiz_playlist)
 
 void delete_all(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
 {
-    printf("Entrou no delete all\n");
     if (*raiz_playlist != NULL)
     {
         delete_playlist(raiz_playlist);
@@ -394,7 +390,7 @@ void delete_all(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
 
     if (*raiz_artista != NULL)
     {
-        printf("Entrou no artista");
+        printf("Entrou no artista\n");
         delete_artista(raiz_artista);
         *raiz_artista = NULL;
     }
