@@ -31,6 +31,11 @@ void mensagem_erro(char *mensagem)
     printf("\n\033[1;31mERRO: %s\033[0m\n\n", mensagem);
 }
 
+void mensagem_sucesso(char *mensagem)
+{
+    printf("\n\033[1;32mSUCESSO: %s\033[0m\n\n", mensagem);
+}
+
 void verificar_alocacao(void *ponteiro)
 {
     if (ponteiro == NULL)

@@ -12,6 +12,8 @@ void pausar_tela();
 
 void mensagem_erro(char *mensagem);
 
+void mensagem_sucesso(char *mensagem);
+
 void verificar_alocacao(void *ponteiro);
 
 void verificar_realocacao(void *ponteiro);

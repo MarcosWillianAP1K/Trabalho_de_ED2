@@ -41,14 +41,14 @@ void delete_playlist(ARV_BINARIA **raiz_playlist);
 
 void delete_all(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist);
 
-void cadastrar_artista(ARV_BINARIA **raiz_artista);
+short int cadastrar_artista(ARV_BINARIA **raiz_artista);
 
-void cadastrar_albuns(ARV_BINARIA **raiz_artista);
+short int cadastrar_albuns(ARV_BINARIA **raiz_artista);
 
-void cadastrar_musica(ARV_BINARIA **raiz_artista);
+short int cadastrar_musica(ARV_BINARIA **raiz_artista);
 
-void cadastrar_playlist(ARV_BINARIA **raiz);
+short int cadastrar_playlist(ARV_BINARIA **raiz);
 
-void cadastrar_musica_em_uma_playlist(ARV_BINARIA **raiz_playlist, ARV_BINARIA **raiz_artista);
+short int cadastrar_musica_em_uma_playlist(ARV_BINARIA **raiz_playlist, ARV_BINARIA **raiz_artista);
 
 #endif

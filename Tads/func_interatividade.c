@@ -400,8 +400,9 @@ void delete_all(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
 
 
 
-void cadastrar_artista(ARV_BINARIA **raiz_artista)
+short int cadastrar_artista(ARV_BINARIA **raiz_artista)
 {
+    short int retorno = 0;
     
     printf("Digite o nome do artista: ");
     char *nome = digitar_string();
@@ -417,19 +418,20 @@ void cadastrar_artista(ARV_BINARIA **raiz_artista)
 
     if (aux->artista != NULL)
     {
-        inserir_arv_binaria(raiz_artista, aux, comparar_dados_nome_artista);
-        printf("Artista cadastrado com sucesso!\n");
+        retorno = inserir_arv_binaria(raiz_artista, aux, comparar_dados_nome_artista);
     }
     else
     {
-        printf("Artista nao cadastrado!\n");
         liberar_dados_artista(&aux);
     }
+
+    return retorno;
 }
 
-// Não é necessario ponteiro por referencia, mas so pra padronizar mantem ele assim
-void cadastrar_albuns(ARV_BINARIA **raiz_artista)
+short int cadastrar_albuns(ARV_BINARIA **raiz_artista)
 {
+    short int retorno = 0;
+
     DADOS *aux = digitar_nome_artista();
     ARV_BINARIA *artista = buscar_arv_binaria(*raiz_artista, aux, comparar_dados_nome_artista);
 
@@ -451,22 +453,27 @@ void cadastrar_albuns(ARV_BINARIA **raiz_artista)
         {
             ARV_BINARIA *inserir = artista->info->artista->albuns_raiz_arvore;
 
-            inserir_arv_binaria(&inserir, aux2, comparar_dados_titulo_album);
+            retorno = inserir_arv_binaria(&inserir, aux2, comparar_dados_titulo_album);
             artista->info->artista->albuns_raiz_arvore = inserir;
-
             artista->info->artista->numero_de_albuns++;
-            printf("Album cadastrado com sucesso!\n");
         }
         else
         {
-            printf("Album nao cadastrado!\n");
             liberar_dados_album(&aux2);
         }
     }
+    else
+    {
+        retorno = -1;
+    }
+
+    return retorno;
 }
 
-void cadastrar_musica(ARV_BINARIA **raiz_artista)
+short int cadastrar_musica(ARV_BINARIA **raiz_artista)
 {
+    short int retorno = 0;
+
     DADOS *aux = digitar_nome_artista();
     ARV_BINARIA *artista = buscar_arv_binaria(*raiz_artista, aux, comparar_dados_nome_artista);
 
@@ -494,29 +501,32 @@ void cadastrar_musica(ARV_BINARIA **raiz_artista)
             if (aux3->musica != NULL)
             {
                 ARV_BINARIA *inserir = album->info->album->musicas_raiz_arvore;
-                inserir_arv_binaria(&inserir, aux3, comparar_dados_titulo_musica);
+                retorno = inserir_arv_binaria(&inserir, aux3, comparar_dados_titulo_musica);
                 album->info->album->musicas_raiz_arvore = inserir;
-
                 album->info->album->numero_de_musicas++;
-                printf("Musica cadastrada com sucesso!\n");
             }
             else
             {
-                printf("Musica nao cadastrada!\n");
                 liberar_dados_musica(&aux3);
             }
         }
         else
         {
-            printf("Album nao encontrado!\n");
-            liberar_dados_album(&aux2);
+            retorno = -2;
         }
     }
+    else
+    {
+        retorno = -1;
+    }
+
+    return retorno;
 }
 
-
-void cadastrar_playlist(ARV_BINARIA **raiz)
+short int cadastrar_playlist(ARV_BINARIA **raiz)
 {
+    short int retorno = 0;
+
     printf("Digite o nome da playlist: ");
     char *nome_playlist = digitar_string();
 
@@ -525,21 +535,20 @@ void cadastrar_playlist(ARV_BINARIA **raiz)
 
     if (aux->playlist != NULL)
     {
-        inserir_arv_binaria(raiz, aux, comparar_dados_nome_playlist);
-        printf("Playlist cadastrada com sucesso!\n");
+        retorno = inserir_arv_binaria(raiz, aux, comparar_dados_nome_playlist);
     }
     else
     {
-        printf("Playlist nao cadastrada!\n");
         liberar_dados_playlist(&aux);
     }
 
-
-
+    return retorno;
 }
 
-void cadastrar_musica_em_uma_playlist(ARV_BINARIA **raiz_playlist, ARV_BINARIA **raiz_artista)
+short int cadastrar_musica_em_uma_playlist(ARV_BINARIA **raiz_playlist, ARV_BINARIA **raiz_artista)
 {
+    short int retorno = 0;
+
     DADOS *aux = digitar_nome_playlist();
     ARV_BINARIA *playlist = buscar_arv_binaria(*raiz_playlist, aux, comparar_dados_nome_playlist);
 
@@ -569,35 +578,29 @@ void cadastrar_musica_em_uma_playlist(ARV_BINARIA **raiz_playlist, ARV_BINARIA *
                 if (musica != NULL)
                 {
                     ARV_BINARIA *inserir = playlist->info->playlist->musicas_raiz_arvore;
-                    inserir_arv_binaria(&inserir, musica->info, comparar_dados_titulo_musica_musica_playlist);
+                    retorno = inserir_arv_binaria(&inserir, musica->info, comparar_dados_titulo_musica_musica_playlist);
                     playlist->info->playlist->musicas_raiz_arvore = inserir;
-
                     playlist->info->playlist->numero_de_musicas++;
-                    printf("Musica cadastrada na playlist com sucesso!\n");
                 }
                 else
                 {
-                    printf("Musica nao encontrada!\n");
-                    liberar_dados_musica(&aux4);
+                    retorno = -4;
                 }
             }
             else
             {
-                printf("Album nao encontrado!\n");
-                liberar_dados_album(&aux3);
+                retorno = -3;
             }
         }
         else
         {
-            printf("Artista nao encontrado!\n");
-            liberar_dados_artista(&aux2);
+            retorno = -2;
         }
     }
     else
     {
-
-        printf("Playlist não encontrada\n");
-
+        retorno = -1;
     }
     
+    return retorno;
 }

@@ -3,10 +3,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+
+
 void menu_principal(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
 {
 
     short int opcao = 0;
+    short int retorno = 0;
 
     do
     {
@@ -46,15 +49,58 @@ void menu_principal(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
             break;
 
         case 1:
-            cadastrar_artista(raiz_artista);
+            printf("Cadastrar artista:\n");
+            if(cadastrar_artista(raiz_artista) == 1)
+            {
+                mensagem_sucesso("Artista cadastrado com sucesso!");
+            }
+            else
+            {
+                mensagem_erro("Artista nao cadastrado, nome ja existente!");
+            }
+            pausar_tela();
             break;
 
         case 2:
-            cadastrar_albuns(raiz_artista);
+            printf("Cadastrar albuns:\n");
+            retorno = cadastrar_albuns(raiz_artista);
+
+            if(retorno == 1)
+            {
+                mensagem_sucesso("Album cadastrados com sucesso!");
+            }
+            else if(retorno == -1)
+            {
+                mensagem_erro("Artista nao encontrado!");
+            }
+            else
+            {
+                mensagem_erro("Album nao cadastrado, titulo ja existente!");
+            }
+            pausar_tela();
             break;
 
         case 3:
-            cadastrar_musica(raiz_artista);
+            printf("Cadastrar musicas:\n");
+            retorno = cadastrar_musica(raiz_artista);
+
+            if (retorno == 1)
+            {
+                mensagem_sucesso("Musica cadastrada com sucesso!");
+            }
+            else if (retorno == -1)
+            {
+                mensagem_erro("Artista nao encontrado!");
+            }
+            else if (retorno == -2)
+            {
+                mensagem_erro("Album nao encontrado!");
+            }
+            else
+            {
+                mensagem_erro("Musica nao cadastrada, titulo ja existente!");
+            }
+            pausar_tela();
             break;
 
         case 4:
@@ -113,12 +159,46 @@ void menu_principal(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
 
         case 13:
             printf("Cadastrar playlist:\n");
-            cadastrar_playlist(raiz_playlist);
+            if(cadastrar_playlist(raiz_playlist) == 1)
+            {
+                mensagem_sucesso("Playlist cadastrada com sucesso!");
+            }
+            else
+            {
+                mensagem_erro("Playlist nao cadastrada, nome ja existente!");
+            }
+            pausar_tela();
             break;
 
         case 14:
             printf("Cadastrar musica em uma playlist:\n");
-            cadastrar_musica_em_uma_playlist(raiz_playlist, raiz_artista);
+            retorno = cadastrar_musica_em_uma_playlist(raiz_playlist, raiz_artista);
+
+            if(retorno == 1)
+            {
+                mensagem_sucesso("Musica cadastrada na playlist com sucesso!");
+            }
+            else if(retorno == -1)
+            {
+                mensagem_erro("Playlist nao encontrada!");
+            }
+            else if(retorno == -2)
+            {
+                mensagem_erro("Artista nao encontrado!");
+            }
+            else if(retorno == -3)
+            {
+                mensagem_erro("Album nao encontrado!");
+            }
+            else if(retorno == -4)
+            {
+                mensagem_erro("Musica nao encontrada!");
+            }
+            else
+            {
+                mensagem_erro("Musica ja existe na playlist!");
+            }
+            pausar_tela();
             break;
 
         case 15:
