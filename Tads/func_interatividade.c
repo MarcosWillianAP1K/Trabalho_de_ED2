@@ -121,7 +121,7 @@ DADOS *digitar_nome_playlist()
 void mostrar_artista_por_tipo(ARV_BINARIA *raiz_artista)
 {
     DADOS *aux = digitar_tipo_artista();
-    
+
     imprimir_arv_binaria_filtro(raiz_artista, aux, imprimir_dados_artista, comparar_dados_tipo_artista);
 
     liberar_dados_artista(&aux);
@@ -130,7 +130,7 @@ void mostrar_artista_por_tipo(ARV_BINARIA *raiz_artista)
 void mostrar_artista_por_estilo(ARV_BINARIA *raiz_artista)
 {
     DADOS *aux = digitar_estilo_artista();
-    
+
     imprimir_arv_binaria_filtro(raiz_artista, aux, imprimir_dados_artista, comparar_dados_estilo_artista);
 
     liberar_dados_artista(&aux);
@@ -189,7 +189,6 @@ void mostrar_musicas_de_um_album_de_um_artista(ARV_BINARIA *raiz)
 {
     DADOS *aux = digitar_nome_artista();
     ARV_BINARIA *artista = buscar_arv_binaria(raiz, aux, comparar_dados_nome_artista);
- 
 
     if (artista != NULL)
     {
@@ -233,7 +232,7 @@ void pecorrer_artistas(ARV_BINARIA *raiz_artista, DADOS *aux)
 }
 
 void mostrar_albuns_de_todos_artistas_de_um_ano(ARV_BINARIA *raiz_artista)
-{    
+{
     DADOS *aux = digitar_data_album();
 
     pecorrer_artistas(raiz_artista, aux);
@@ -287,7 +286,7 @@ void mostrar_dados_de_uma_playlist(ARV_BINARIA *raiz)
 {
     DADOS *aux = digitar_nome_playlist();
     ARV_BINARIA *playlist = buscar_arv_binaria(raiz, aux, comparar_dados_nome_playlist);
-    
+
     if (playlist != NULL)
     {
         printf("Dados da playlist %s:\n", playlist->info->playlist->nome);
@@ -304,13 +303,8 @@ void mostrar_dados_de_uma_playlist(ARV_BINARIA *raiz)
     liberar_dados_playlist(&aux);
 }
 
-
-
-
-
 void remover_musica_de_uma_playlist(ARV_BINARIA **raiz)
 {
-    
 }
 
 void remover_playlist(ARV_BINARIA **raiz)
@@ -324,7 +318,7 @@ void remover_musica_de_album_de_artista(ARV_BINARIA **raiz)
 void delete_musica(ARV_BINARIA **raiz_musica)
 {
     if (*raiz_musica != NULL)
-    {        
+    {
         liberar_arv_binaria(raiz_musica, liberar_dados_musica);
     }
 }
@@ -335,11 +329,11 @@ void delete_album(ARV_BINARIA **raiz_album)
     {
         delete_album(&(*raiz_album)->esq);
         delete_album(&(*raiz_album)->dir);
-        
+
         ARV_BINARIA *aux = (*raiz_album)->info->album->musicas_raiz_arvore;
         delete_musica(&aux);
         (*raiz_album)->info->album->musicas_raiz_arvore = aux;
-        
+
         liberar_no_arv_binaria(raiz_album, liberar_dados_album);
     }
 }
@@ -354,7 +348,7 @@ void delete_artista(ARV_BINARIA **raiz_artista)
         ARV_BINARIA *aux = (*raiz_artista)->info->artista->albuns_raiz_arvore;
         delete_album(&aux);
         (*raiz_artista)->info->artista->albuns_raiz_arvore = aux;
-        
+
         liberar_no_arv_binaria(raiz_artista, liberar_dados_artista);
     }
 }
@@ -362,7 +356,7 @@ void delete_artista(ARV_BINARIA **raiz_artista)
 void delete_musica_playlist(ARV_BINARIA **raiz_musica_playlist)
 {
     if (*raiz_musica_playlist != NULL)
-    { 
+    {
         liberar_arv_binaria(raiz_musica_playlist, liberar_dados_musica_playlist);
     }
 }
@@ -373,7 +367,6 @@ void delete_playlist(ARV_BINARIA **raiz_playlist)
     {
         delete_playlist(&(*raiz_playlist)->esq);
         delete_playlist(&(*raiz_playlist)->dir);
-
 
         ARV_BINARIA *aux = (*raiz_playlist)->info->playlist->musicas_raiz_arvore;
         delete_musica_playlist(&aux);
@@ -400,23 +393,19 @@ void delete_all(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
     }
 }
 
-
-
-
-
 short int cadastrar_artista(ARV_BINARIA **raiz_artista)
 {
     short int retorno = 0;
-    
+
     printf("Digite o nome do artista: ");
     char *nome = digitar_string();
-    
+
     printf("Digite o tipo do artista: ");
     char *tipo = digitar_string();
-    
+
     printf("Digite o estilo musical do artista: ");
     char *estilo = digitar_string();
-    
+
     DADOS *aux = alocar_dados();
     aux->artista = criar_artista(nome, tipo, estilo, 0, NULL);
 
@@ -576,14 +565,26 @@ short int cadastrar_musica_em_uma_playlist(ARV_BINARIA **raiz_playlist, ARV_BINA
             {
                 DADOS *aux4 = digitar_titulo_musica();
                 ARV_BINARIA *musica = buscar_arv_binaria(album->info->album->musicas_raiz_arvore, aux4, comparar_dados_titulo_musica);
+
                 liberar_dados_musica(&aux4);
-                
+
                 if (musica != NULL)
                 {
-                    ARV_BINARIA *inserir = playlist->info->playlist->musicas_raiz_arvore;
-                    retorno = inserir_arv_binaria(&inserir, musica->info, comparar_dados_musica_playlist);
-                    playlist->info->playlist->musicas_raiz_arvore = inserir;
-                    playlist->info->playlist->numero_de_musicas++;
+                    DADOS *aux5 = alocar_dados();
+                    aux5->musica_playlist = criar_musica_playlist(artista->info->artista->nome, album->info->album->titulo, musica->info->musica);
+
+                    if (buscar_arv_binaria(*raiz_playlist, aux5, comparar_dados_musica_playlist) == NULL)
+                    {
+
+                        ARV_BINARIA *inserir = playlist->info->playlist->musicas_raiz_arvore;
+                        retorno = inserir_arv_binaria(&inserir, aux5, comparar_dados_musica_playlist);
+                        playlist->info->playlist->musicas_raiz_arvore = inserir;
+                        playlist->info->playlist->numero_de_musicas++;
+                    }
+                    else
+                    {
+                        liberar_dados_musica_playlist(&aux5);
+                    }
                 }
                 else
                 {
@@ -604,6 +605,6 @@ short int cadastrar_musica_em_uma_playlist(ARV_BINARIA **raiz_playlist, ARV_BINA
     {
         retorno = -1;
     }
-    
+
     return retorno;
 }
