@@ -3,6 +3,94 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+void verificacao_cadastro_artista(short int n)
+{
+    if (n == 1)
+    {
+        mensagem_sucesso("Artista cadastrado com sucesso!");
+    }
+    else
+    {
+        mensagem_erro("Artista nao cadastrado, nome ja existente!");
+    }
+}
+
+void verificacao_cadastro_album(short int n)
+{
+    if (n == 1)
+    {
+        mensagem_sucesso("Album cadastrados com sucesso!");
+    }
+    else if (n == -1)
+    {
+        mensagem_erro("Artista nao encontrado!");
+    }
+    else
+    {
+        mensagem_erro("Album nao cadastrado, titulo ja existente!");
+    }
+}
+
+void verificacao_cadastro_musica(short int n)
+{
+    if (n == 1)
+    {
+        mensagem_sucesso("Musica cadastrada com sucesso!");
+    }
+    else if (n == -1)
+    {
+        mensagem_erro("Artista nao encontrado!");
+    }
+    else if (n == -2)
+    {
+        mensagem_erro("Album nao encontrado!");
+    }
+    else
+    {
+        mensagem_erro("Musica nao cadastrada, titulo ja existente!");
+    }
+}
+
+void verificacao_cadastro_playlist(short int n)
+{
+    if (n == 1)
+    {
+        mensagem_sucesso("Playlist cadastrada com sucesso!");
+    }
+    else
+    {
+        mensagem_erro("Playlist nao cadastrada, nome ja existente!");
+    }
+}
+
+void verificacao_cadastro_musica_playlist(short int n)
+{
+    if (n == 1)
+    {
+        mensagem_sucesso("Musica cadastrada na playlist com sucesso!");
+    }
+    else if (n == -1)
+    {
+        mensagem_erro("Playlist nao encontrada!");
+    }
+    else if (n == -2)
+    {
+        mensagem_erro("Artista nao encontrado!");
+    }
+    else if (n == -3)
+    {
+        mensagem_erro("Album nao encontrado!");
+    }
+    else if (n == -4)
+    {
+        mensagem_erro("Musica nao encontrada!");
+    }
+    else
+    {
+        mensagem_erro("Musica ja existe na playlist!");
+    }
+}
+
 
 
 void menu_principal(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
@@ -50,56 +138,19 @@ void menu_principal(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
 
         case 1:
             printf("Cadastrar artista:\n");
-            if(cadastrar_artista(raiz_artista) == 1)
-            {
-                mensagem_sucesso("Artista cadastrado com sucesso!");
-            }
-            else
-            {
-                mensagem_erro("Artista nao cadastrado, nome ja existente!");
-            }
+            verificacao_cadastro_artista(cadastrar_artista(raiz_artista));
             pausar_tela();
             break;
 
         case 2:
             printf("Cadastrar albuns:\n");
-            retorno = cadastrar_albuns(raiz_artista);
-
-            if(retorno == 1)
-            {
-                mensagem_sucesso("Album cadastrados com sucesso!");
-            }
-            else if(retorno == -1)
-            {
-                mensagem_erro("Artista nao encontrado!");
-            }
-            else
-            {
-                mensagem_erro("Album nao cadastrado, titulo ja existente!");
-            }
+            verificacao_cadastro_album(cadastrar_albuns(raiz_artista));
             pausar_tela();
             break;
 
         case 3:
             printf("Cadastrar musicas:\n");
-            retorno = cadastrar_musica(raiz_artista);
-
-            if (retorno == 1)
-            {
-                mensagem_sucesso("Musica cadastrada com sucesso!");
-            }
-            else if (retorno == -1)
-            {
-                mensagem_erro("Artista nao encontrado!");
-            }
-            else if (retorno == -2)
-            {
-                mensagem_erro("Album nao encontrado!");
-            }
-            else
-            {
-                mensagem_erro("Musica nao cadastrada, titulo ja existente!");
-            }
+            verificacao_cadastro_musica(cadastrar_musica(raiz_artista));
             pausar_tela();
             break;
 
@@ -159,45 +210,13 @@ void menu_principal(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
 
         case 13:
             printf("Cadastrar playlist:\n");
-            if(cadastrar_playlist(raiz_playlist) == 1)
-            {
-                mensagem_sucesso("Playlist cadastrada com sucesso!");
-            }
-            else
-            {
-                mensagem_erro("Playlist nao cadastrada, nome ja existente!");
-            }
+            verificacao_cadastro_playlist(cadastrar_playlist(raiz_playlist));
             pausar_tela();
             break;
 
         case 14:
             printf("Cadastrar musica em uma playlist:\n");
-            retorno = cadastrar_musica_em_uma_playlist(raiz_playlist, raiz_artista);
-
-            if(retorno == 1)
-            {
-                mensagem_sucesso("Musica cadastrada na playlist com sucesso!");
-            }
-            else if(retorno == -1)
-            {
-                mensagem_erro("Playlist nao encontrada!");
-            }
-            else if(retorno == -2)
-            {
-                mensagem_erro("Artista nao encontrado!");
-            }
-            else if(retorno == -3)
-            {
-                mensagem_erro("Album nao encontrado!");
-            }
-            else if(retorno == -4)
-            {
-                mensagem_erro("Musica nao encontrada!");
-            }
-            else
-            {
-                mensagem_erro("Musica ja existe na playlist!");
-            }
+            verificacao_cadastro_musica_playlist(cadastrar_musica_em_uma_playlist(raiz_playlist, raiz_artista));
             pausar_tela();
             break;
 
@@ -206,18 +225,18 @@ void menu_principal(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
             imprimir_arv_binaria(*raiz_playlist, imprimir_dados_playlist);
             pausar_tela();
             break;
-        
+
         case 16:
             printf("Mostrar dados de uma playlist:\n");
             mostrar_dados_de_uma_playlist(*raiz_playlist);
             pausar_tela();
             break;
-        
+
         case 17:
             printf("Remover musica de uma playlist:\n");
-            remover_musica_de_uma_playlist(raiz_playlist); 
+            remover_musica_de_uma_playlist(raiz_playlist);
             break;
-        
+
         case 18:
             printf("Remover uma playlist:\n");
             remover_playlist(raiz_playlist);
@@ -227,8 +246,6 @@ void menu_principal(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
             printf("Remover uma musica de um album de um artista:\n");
             remover_musica_de_album_de_artista(raiz_artista);
             break;
-
-
 
         default:
             break;
