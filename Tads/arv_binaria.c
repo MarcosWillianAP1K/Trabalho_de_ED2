@@ -204,13 +204,13 @@ ARV_BINARIA *buscar_arv_binaria(ARV_BINARIA *raiz, DADOS *info, int (*comparar)(
     }
     else
     {
-      if (comparar(raiz->info, info) < 0)
+      if (comparar(raiz->info, info) > 0)
       {
-        no = buscar_arv_binaria(raiz->dir, info, comparar);
+        no = buscar_arv_binaria(raiz->esq, info, comparar);
       }
       else
       {
-        no = buscar_arv_binaria(raiz->esq, info, comparar);
+        no = buscar_arv_binaria(raiz->dir, info, comparar);
       }
     }
   }
