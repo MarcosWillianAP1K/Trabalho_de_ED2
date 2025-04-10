@@ -23,7 +23,7 @@ void mostrar_albuns_de_todos_artistas_de_um_ano(ARV_BINARIA *raiz_artista);
 
 void mostrar_dados_de_uma_playlist(ARV_BINARIA *raiz);
 
-void remover_musica_de_uma_playlist(ARV_BINARIA **raiz);
+short int remover_musica_de_uma_playlist(ARV_BINARIA **raiz);
 
 void remover_playlist(ARV_BINARIA **raiz);
 
