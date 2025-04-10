@@ -303,8 +303,37 @@ void mostrar_dados_de_uma_playlist(ARV_BINARIA *raiz)
     liberar_dados_playlist(&aux);
 }
 
-void remover_musica_de_uma_playlist(ARV_BINARIA **raiz)
+short int remover_musica_de_uma_playlist(ARV_BINARIA **raiz)
 {
+    // short int retorno = 0;
+
+    // DADOS *aux = digitar_nome_playlist();
+    // ARV_BINARIA *playlist = buscar_arv_binaria(*raiz, aux, comparar_dados_nome_playlist);
+
+    // liberar_dados_playlist(&aux);
+
+    // if (playlist != NULL)
+    // {
+    //     DADOS *aux2 = digitar_titulo_musica();
+    //     ARV_BINARIA *musica = buscar_arv_binaria(playlist->info->playlist->musicas_raiz_arvore, aux2, comparar_dados_musica_playlist);
+    //     liberar_dados_musica_playlist(&aux2);
+
+    //     if (musica != NULL)
+    //     {
+    //         DADOS *aux3 = alocar_dados();
+    //         aux3->musica_playlist = criar_musica_playlist(playlist->info->playlist->nome, musica->info->musica_playlist->album, musica->info->musica_playlist->musica);
+
+    //         retorno = remover_arv_binaria(&playlist->info->playlist->musicas_raiz_arvore, , liberar_dados_musica_playlist, comparar_dados_musica_playlist);
+    //         playlist->info->playlist->numero_de_musicas--;
+    //     }
+    
+    // }
+    // else
+    // {
+    //    retorno = -1; 
+    // }
+
+    
 }
 
 void remover_playlist(ARV_BINARIA **raiz)
