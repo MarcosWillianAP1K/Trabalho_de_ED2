@@ -135,9 +135,9 @@ ARV_BINARIA **endereco_maximo_direita(ARV_BINARIA **raiz)
 }
 
 
-int remover_arv_binaria(ARV_BINARIA **raiz, DADOS *info, void (*liberar)(DADOS **), int (*comparar)(DADOS *, DADOS *))
+ARV_BINARIA *remover_arv_binaria(ARV_BINARIA **raiz, DADOS *info, int (*comparar)(DADOS *, DADOS *))
 {
-  int removeu = 1;
+  ARV_BINARIA *removeu = NULL;
 
   if (*raiz != NULL)
   {
@@ -146,7 +146,8 @@ int remover_arv_binaria(ARV_BINARIA **raiz, DADOS *info, void (*liberar)(DADOS *
 
       if (eh_folha(*raiz))
       {
-        liberar_no_arv_binaria(raiz, liberar);
+        removeu = *raiz;
+        *raiz = NULL;
       }
       else
       {
@@ -154,7 +155,7 @@ int remover_arv_binaria(ARV_BINARIA **raiz, DADOS *info, void (*liberar)(DADOS *
 
         if ((filho = eh_um_filho(*raiz)) != NULL)
         {
-          liberar_no_arv_binaria(raiz, liberar);
+          removeu = *raiz;
           *raiz = filho;
         }
         else
@@ -167,7 +168,7 @@ int remover_arv_binaria(ARV_BINARIA **raiz, DADOS *info, void (*liberar)(DADOS *
           aux->esq = (*raiz)->esq;
           aux->dir = (*raiz)->dir;
 
-          liberar_no_arv_binaria(raiz, liberar);
+          removeu = *raiz;
           *raiz = aux;
         }
       }
@@ -176,18 +177,15 @@ int remover_arv_binaria(ARV_BINARIA **raiz, DADOS *info, void (*liberar)(DADOS *
     {
       if (comparar((*raiz)->info, info) > 0)
       {
-        removeu = remover_arv_binaria(&(*raiz)->esq, info, liberar, comparar);
+        removeu = remover_arv_binaria(&(*raiz)->esq, info, comparar);
       }
       else
       {
-        removeu = remover_arv_binaria(&(*raiz)->dir, info, liberar, comparar);
+        removeu = remover_arv_binaria(&(*raiz)->dir, info, comparar);
       }
     }
   }
-  else
-  {
-    removeu = 0;
-  }
+
 
   return removeu;
 }
