@@ -5,11 +5,13 @@
 
 void limpar_buffer()
 {
-    // char c;
-    // while ((c = getchar()) != '\n' && c != EOF)
-    //     ;
-
-    fflush(stdin);
+    #ifdef _WIN32
+        fflush(stdin); // Para Windows
+    #else
+        char c;
+        while ((c = getchar()) != '\n' && c != EOF)
+            ; // Para Linux e MacOS
+    #endif
 }
 
 void limpar_tela()
