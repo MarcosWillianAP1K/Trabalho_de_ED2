@@ -27,7 +27,9 @@ short int remover_musica_de_uma_playlist(ARV_BINARIA **raiz);
 
 short int remover_playlist(ARV_BINARIA **raiz);
 
-short int remover_musica_de_album_de_artista(ARV_BINARIA **raiz);
+ARV_BINARIA *verificar_nas_playlists(ARV_BINARIA **raiz_playlist, DADOS *aux);
+
+short int remover_musica_de_album_de_artista(ARV_BINARIA **raiz, ARV_BINARIA **raiz_playlist);
 
 void delete_musica(ARV_BINARIA **raiz_musica);
 

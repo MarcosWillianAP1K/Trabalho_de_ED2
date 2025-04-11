@@ -346,11 +346,9 @@ short int remover_musica_de_uma_playlist(ARV_BINARIA **raiz)
             {
                 retorno = 1;
                 liberar_no_arv_binaria(&musica_removida, liberar_dados_musica_playlist);
+                playlist->info->playlist->musicas_raiz_arvore = remover;
+                playlist->info->playlist->numero_de_musicas--;
             }
-            
-
-            playlist->info->playlist->musicas_raiz_arvore = remover;
-            playlist->info->playlist->numero_de_musicas--;
         }
 
         liberar_musica(&aux2->musica_playlist->musica);
@@ -391,9 +389,88 @@ short int remover_playlist(ARV_BINARIA **raiz)
 
 }
 
-short int remover_musica_de_album_de_artista(ARV_BINARIA **raiz)
+ARV_BINARIA *verificar_nas_playlists(ARV_BINARIA **raiz_playlist, DADOS *aux)
 {
+    ARV_BINARIA *musica = NULL;
+
+    if (*raiz_playlist != NULL)
+    {
+        musica = buscar_arv_binaria(*raiz_playlist, aux, comparar_dados_musica_playlist);
+
+        if (musica == NULL)
+        {
+            musica = verificar_nas_playlists(&(*raiz_playlist)->esq, aux);
+        }
+
+        if (musica == NULL)
+        {
+            musica = verificar_nas_playlists(&(*raiz_playlist)->dir, aux);
+        }
+        
+    }
     
+
+    return musica;
+}
+
+short int remover_musica_de_album_de_artista(ARV_BINARIA **raiz, ARV_BINARIA **raiz_playlist)
+{
+    short int retorno = 0;
+
+    DADOS *aux = digitar_nome_artista();
+    ARV_BINARIA *artista = buscar_arv_binaria(*raiz, aux, comparar_dados_nome_artista);
+
+    liberar_dados_artista(&aux);
+
+    if (artista != NULL)
+    {
+        DADOS *aux2 = digitar_titulo_album();
+        ARV_BINARIA *album = buscar_arv_binaria(artista->info->artista->albuns_raiz_arvore, aux2, comparar_dados_titulo_album);
+
+        liberar_dados_album(&aux2);
+
+        if (album != NULL)
+        {
+            DADOS *aux3 = digitar_titulo_musica();
+            DADOS *aux4 = alocar_dados();
+            aux4->musica_playlist = criar_musica_playlist(artista->info->artista->nome, album->info->album->titulo, aux3->musica);
+
+            if (verificar_nas_playlists(raiz_playlist, aux4) != NULL)
+            {
+                ARV_BINARIA *remover = album->info->album->musicas_raiz_arvore;
+
+                ARV_BINARIA *musica_removida = remover_arv_binaria(&remover, aux3, comparar_dados_titulo_musica);
+
+                if (musica_removida != NULL)
+                {
+                    retorno = 1;
+                    liberar_no_arv_binaria(&musica_removida, liberar_dados_musica);
+                    album->info->album->musicas_raiz_arvore = remover;
+                    album->info->album->numero_de_musicas--;
+                }
+            }
+            else
+            {
+                retorno = -3;
+            }
+
+            liberar_musica(&aux4->musica_playlist->musica);
+            liberar_dados_musica_playlist(&aux4);
+            liberar_dados(&aux3);
+           
+        }
+        else
+        {
+            retorno = -2;
+        }
+    }
+    else
+    {
+        retorno = -1;
+    }
+
+    return retorno;
+
 
 }
 
