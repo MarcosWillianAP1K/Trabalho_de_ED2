@@ -91,6 +91,58 @@ void verificacao_cadastro_musica_playlist(short int n)
     }
 }
 
+void verificacao_remover_playlist(short int n)
+{
+    if (n == 1)
+    {
+        mensagem_sucesso("Playlist removida com sucesso!");
+    }
+    else
+    {
+        mensagem_erro("Playlist nao encontrada!");
+    }
+
+}
+
+void verificacao_remover_musica_playlist(short int n)
+{
+    if (n == 1)
+    {
+        mensagem_sucesso("Musica removida da playlist com sucesso!");
+    }
+    else if (n == -1)
+    {
+        mensagem_erro("Playlist nao encontrada!");
+    }
+    else 
+    {
+        mensagem_erro("Musica nao encontrada!");
+    }
+}
+
+void verificacao_remover_musica_album_artista(short int n)
+{
+    if (n == 1)
+    {
+        mensagem_sucesso("Musica removida do album com sucesso!");
+    }
+    else if (n == -1)
+    {
+        mensagem_erro("Artista nao encontrado!");
+    }
+    else if (n == -2)
+    {
+        mensagem_erro("Album nao encontrado!");
+    }
+    else if (n == -3)
+    {
+        mensagem_erro("A musica esta em uma playlist!");
+    }
+    else
+    {
+        mensagem_erro("Musica nao encontrada!");
+    }
+}
 
 
 void menu_principal(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
@@ -234,17 +286,19 @@ void menu_principal(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
 
         case 17:
             printf("Remover musica de uma playlist:\n");
-            remover_musica_de_uma_playlist(raiz_playlist);
+            verificacao_remover_musica_playlist(remover_musica_de_uma_playlist(raiz_playlist));
+            pausar_tela();
             break;
 
         case 18:
             printf("Remover uma playlist:\n");
-            remover_playlist(raiz_playlist);
+            verificacao_remover_playlist(remover_playlist(raiz_playlist));
+            pausar_tela();
             break;
 
         case 19:
             printf("Remover uma musica de um album de um artista:\n");
-            remover_musica_de_album_de_artista(raiz_artista, raiz_playlist);
+            verificacao_remover_musica_album_artista(remover_musica_de_album_de_artista(raiz_artista, raiz_playlist));
             break;
 
         default:

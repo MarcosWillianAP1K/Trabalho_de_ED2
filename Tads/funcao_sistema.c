@@ -14,16 +14,22 @@ void limpar_buffer()
 
 void limpar_tela()
 {
-    system("cls||clear"); // Para Windows
-    // system("clear"); // Para Linux e MacOS
+    #ifdef _WIN32
+        system("cls"); // Para Windows
+    #else
+        system("clear"); // Para Linux e MacOS
+    #endif
 }
 
 void pausar_tela()
 {
-    // printf("\nPressione qualquer tecla para continuar...");
-    // getchar();
-
-    system("pause");
+    #ifdef _WIN32
+    printf("\n");
+        system("pause"); // Para Windows
+    #else
+        printf("\nPressione qualquer tecla para continuar...");
+        getchar(); // Para Linux e MacOS
+    #endif
 }
 
 void mensagem_erro(char *mensagem)
