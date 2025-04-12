@@ -299,6 +299,7 @@ void menu_principal(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
         case 19:
             printf("Remover uma musica de um album de um artista:\n");
             verificacao_remover_musica_album_artista(remover_musica_de_album_de_artista(raiz_artista, raiz_playlist));
+            pausar_tela();
             break;
 
         default:

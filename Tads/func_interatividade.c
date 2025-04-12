@@ -159,7 +159,7 @@ void mostrar_artista_por_estilo(ARV_BINARIA *raiz_artista)
 void mostrar_artista_por_tipo_e_estilo(ARV_BINARIA *raiz_artista)
 {
     DADOS *aux = digitar_tipo_e_estilo_artista();
-    ARV_BINARIA *artista = buscar_arv_binaria(raiz_artista, aux, comparar_dados_tipo_e_estilo_artista);
+    // ARV_BINARIA *artista = buscar_arv_binaria(raiz_artista, aux, comparar_dados_tipo_e_estilo_artista);
 
     imprimir_arv_binaria_filtro(raiz_artista, aux, imprimir_dados_artista, comparar_dados_tipo_e_estilo_artista);
 

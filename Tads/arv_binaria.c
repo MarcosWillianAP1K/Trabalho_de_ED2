@@ -27,7 +27,6 @@ void liberar_no_arv_binaria(ARV_BINARIA **raiz, void (*liberar)(DADOS **))
   }
 }
   
-
 void liberar_arv_binaria(ARV_BINARIA **raiz, void (*liberar)(DADOS **))
 {
   if (raiz != NULL && *raiz != NULL)
