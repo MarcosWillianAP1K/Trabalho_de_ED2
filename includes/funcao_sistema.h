@@ -10,6 +10,12 @@ void limpar_tela();
 
 void pausar_tela();
 
+void print_amarelo(char *mensagem);
+
+void print_vermelho(char *mensagem);
+
+void print_verde(char *mensagem);
+
 void mensagem_erro(char *mensagem);
 
 void mensagem_sucesso(char *mensagem);

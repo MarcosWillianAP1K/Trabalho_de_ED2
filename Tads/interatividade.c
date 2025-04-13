@@ -9,7 +9,7 @@ void verificacao_cadastro_artista(short int n)
     {
         mensagem_sucesso("Artista cadastrado com sucesso!");
     }
-    else
+    else if (n == 0)
     {
         mensagem_erro("Artista nao cadastrado, nome ja existente!");
     }
@@ -25,7 +25,7 @@ void verificacao_cadastro_album(short int n)
     {
         mensagem_erro("Artista nao encontrado!");
     }
-    else
+    else if (n == 0)
     {
         mensagem_erro("Album nao cadastrado, titulo ja existente!");
     }
@@ -45,7 +45,7 @@ void verificacao_cadastro_musica(short int n)
     {
         mensagem_erro("Album nao encontrado!");
     }
-    else
+    else if (n == 0)
     {
         mensagem_erro("Musica nao cadastrada, titulo ja existente!");
     }
@@ -57,7 +57,7 @@ void verificacao_cadastro_playlist(short int n)
     {
         mensagem_sucesso("Playlist cadastrada com sucesso!");
     }
-    else
+    else if (n == 0)
     {
         mensagem_erro("Playlist nao cadastrada, nome ja existente!");
     }
@@ -85,7 +85,7 @@ void verificacao_cadastro_musica_playlist(short int n)
     {
         mensagem_erro("Musica nao encontrada!");
     }
-    else
+    else if (n == 0)
     {
         mensagem_erro("Musica ja existe na playlist!");
     }
@@ -97,7 +97,7 @@ void verificacao_remover_playlist(short int n)
     {
         mensagem_sucesso("Playlist removida com sucesso!");
     }
-    else
+    else if (n == 0)
     {
         mensagem_erro("Playlist nao encontrada!");
     }
@@ -113,7 +113,7 @@ void verificacao_remover_musica_playlist(short int n)
     {
         mensagem_erro("Playlist nao encontrada!");
     }
-    else
+    else if (n == 0)
     {
         mensagem_erro("Musica nao encontrada!");
     }
@@ -137,7 +137,7 @@ void verificacao_remover_musica_album_artista(short int n)
     {
         mensagem_erro("A musica esta em uma playlist!");
     }
-    else
+    else if (n == 0)
     {
         mensagem_erro("Musica nao encontrada!");
     }
@@ -187,122 +187,116 @@ void menu_principal(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
             break;
 
         case 1:
-            if(menu_que_volta() == 1)
-            {
-                limpar_tela();
-                printf("Cadastrar artista:\n");
-                verificacao_cadastro_artista(cadastrar_artista(raiz_artista));
-                pausar_tela();
-            }else{
-                limpar_buffer();
-                printf("Voce saiu do cadastro de artista!\n");
-            }
+            limpar_tela();
+            print_amarelo("Cadastrar artista:\n");
+            verificacao_cadastro_artista(cadastrar_artista(raiz_artista));
+            pausar_tela();
             break;
 
         case 2:
-            printf("Cadastrar albuns:\n");
+            print_amarelo("Cadastrar albuns:\n");
             verificacao_cadastro_album(cadastrar_albuns(raiz_artista));
             pausar_tela();
             break;
 
         case 3:
-            printf("Cadastrar musicas:\n");
+            print_amarelo("Cadastrar musicas:\n");
             verificacao_cadastro_musica(cadastrar_musica(raiz_artista));
             pausar_tela();
             break;
 
         case 4:
-            printf("Artistas cadastrados:\n");
+            print_amarelo("Artistas cadastrados:\n");
             imprimir_arv_binaria(*raiz_artista, imprimir_dados_artista);
             pausar_tela();
             break;
 
         case 5:
-            printf("Artistas cadastrados de um tipo:\n");
+            print_amarelo("Artistas cadastrados de um tipo:\n");
             mostrar_artista_por_tipo(*raiz_artista);
             pausar_tela();
             break;
 
         case 6:
-            printf("Artistas cadastrados de um estilo musical:\n");
+            print_amarelo("Artistas cadastrados de um estilo musical:\n");
             mostrar_artista_por_estilo(*raiz_artista);
             pausar_tela();
             break;
 
         case 7:
-            printf("Artistas cadastrados de um estilo musical e tipo:\n");
+            print_amarelo("Artistas cadastrados de um estilo musical e tipo:\n");
             mostrar_artista_por_tipo_e_estilo(*raiz_artista);
             pausar_tela();
             break;
 
         case 8:
-            printf("Albuns cadastrados de um artista:\n");
+            print_amarelo("Albuns cadastrados de um artista:\n");
             mostrar_albuns_de_um_artista(*raiz_artista);
             pausar_tela();
             break;
 
         case 9:
-            printf("Albuns cadastrados de um artista de um ano:\n");
+            print_amarelo("Albuns cadastrados de um artista de um ano:\n");
             mostrar_albuns_de_um_artista_de_um_ano(*raiz_artista);
             pausar_tela();
             break;
 
         case 10:
-            printf("Musicas cadastradas de um album de um artista:\n");
+            print_amarelo("Musicas cadastradas de um album de um artista:\n");
             mostrar_musicas_de_um_album_de_um_artista(*raiz_artista);
             pausar_tela();
             break;
 
         case 11:
-            printf("Albuns cadastrados de todos artista de um ano:\n");
+            print_amarelo("Albuns cadastrados de todos artista de um ano:\n");
             mostrar_albuns_de_todos_artistas_de_um_ano(*raiz_artista);
             pausar_tela();
             break;
 
         case 12:
-            printf("Dados de uma musica:\n");
+            print_amarelo("Dados de uma musica:\n");
             mostrar_dados_de_uma_musica(*raiz_artista);
             pausar_tela();
             break;
 
         case 13:
-            printf("Cadastrar playlist:\n");
+            print_amarelo("Cadastrar playlist:\n");
             verificacao_cadastro_playlist(cadastrar_playlist(raiz_playlist));
             pausar_tela();
             break;
 
         case 14:
-            printf("Cadastrar musica em uma playlist:\n");
+            print_amarelo("Cadastrar musica em uma playlist:\n");
             verificacao_cadastro_musica_playlist(cadastrar_musica_em_uma_playlist(raiz_playlist, raiz_artista));
             pausar_tela();
             break;
 
         case 15:
-            printf("Mostrar playlists:\n");
+            print_amarelo("Mostrar playlists:\n");
             imprimir_arv_binaria(*raiz_playlist, imprimir_dados_playlist);
             pausar_tela();
             break;
 
         case 16:
-            printf("Mostrar dados de uma playlist:\n");
+            print_amarelo("Mostrar dados de uma playlist:\n");
             mostrar_dados_de_uma_playlist(*raiz_playlist);
             pausar_tela();
             break;
 
         case 17:
-            printf("Remover musica de uma playlist:\n");
+            print_amarelo("Remover musica de uma playlist:\n");
             verificacao_remover_musica_playlist(remover_musica_de_uma_playlist(raiz_playlist));
             pausar_tela();
             break;
 
         case 18:
-            printf("Remover uma playlist:\n");
+            print_amarelo("Remover uma playlist:\n");
             verificacao_remover_playlist(remover_playlist(raiz_playlist));
             pausar_tela();
             break;
 
         case 19:
-            printf("Remover uma musica de um album de um artista:\n");
+            print_amarelo("Remover uma musica de um album de um artista:\n");
             verificacao_remover_musica_album_artista(remover_musica_de_album_de_artista(raiz_artista, raiz_playlist));
             pausar_tela();
             break;

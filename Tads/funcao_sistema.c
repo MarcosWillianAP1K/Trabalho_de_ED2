@@ -34,14 +34,33 @@ void pausar_tela()
     #endif
 }
 
+void print_amarelo(char *mensagem)
+{
+    printf("\033[1;33m%s\033[0m", mensagem);
+}
+
+void print_vermelho(char *mensagem)
+{
+    printf("\033[1;31m%s\033[0m", mensagem);
+}
+
+void print_verde(char *mensagem)
+{
+    printf("\033[1;32m%s\033[0m", mensagem);
+}
+
 void mensagem_erro(char *mensagem)
 {
-    printf("\n\033[1;31mERRO: %s\033[0m\n\n", mensagem);
+    printf("\n");
+    print_vermelho(mensagem);
+    printf("\n\n");
 }
 
 void mensagem_sucesso(char *mensagem)
 {
-    printf("\n\033[1;32mSUCESSO: %s\033[0m\n\n", mensagem);
+    printf("\n");
+    print_verde(mensagem);
+    printf("\n\n");
 }
 
 void verificar_alocacao(void *ponteiro)
