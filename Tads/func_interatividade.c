@@ -62,19 +62,18 @@ DADOS *digitar_titulo_album()
     printf("Digite o titulo do album\n");
     char *titulo = digitar_string();
 
-    aux->album = criar_album(titulo, "auxiliar", 0, NULL);
+    aux->album = criar_album(titulo, 0, 0, NULL);
 
     return aux;
 }
 
-DADOS *digitar_data_album()
+DADOS *digitar_ano_album()
 {
     DADOS *aux = alocar_dados();
 
-    printf("Digite a data de lancamento do album\n");
-    char *data_lancamento = digitar_string();
+    printf("Digite o ano de lancamento do album\n");
 
-    aux->album = criar_album("auxiliar", data_lancamento, 0, NULL);
+    aux->album = criar_album("auxiliar", digitar_short_int(), 0, NULL);
 
     return aux;
 }
@@ -87,9 +86,8 @@ DADOS *digitar_titulo_ano_album()
     char *titulo = digitar_string();
 
     printf("Digite a data de lancamento do album\n");
-    char *data_lancamento = digitar_string();
 
-    aux->album = criar_album(titulo, data_lancamento, 0, NULL);
+    aux->album = criar_album(titulo, digitar_short_int(), 0, NULL);
 
     return aux;
 }
@@ -191,7 +189,7 @@ void mostrar_albuns_de_um_artista_de_um_ano(ARV_BINARIA *raiz_artista)
 
     if (artista != NULL)
     {
-        DADOS *aux2 = digitar_data_album();
+        DADOS *aux2 = digitar_ano_album();
 
         printf("Albuns do artista %s:\n", artista->info->artista->nome);
         imprimir_arv_binaria_filtro(artista->info->artista->albuns_raiz_arvore, aux2, imprimir_dados_album, comparar_dados_data_album);
@@ -253,7 +251,7 @@ void pecorrer_artistas_imprimir_ano(ARV_BINARIA *raiz_artista, DADOS *aux)
 
 void mostrar_albuns_de_todos_artistas_de_um_ano(ARV_BINARIA *raiz_artista)
 {
-    DADOS *aux = digitar_data_album();
+    DADOS *aux = digitar_ano_album();
 
     pecorrer_artistas_imprimir_ano(raiz_artista, aux);
 
@@ -615,9 +613,8 @@ short int cadastrar_albuns(ARV_BINARIA **raiz_artista)
         char *titulo = digitar_string();
 
         printf("Digite a data de lancamento do album: ");
-        char *data_lancamento = digitar_string();
 
-        aux2->album = criar_album(titulo, data_lancamento, 0, NULL);
+        aux2->album = criar_album(titulo, digitar_short_int(), 0, NULL);
 
         if (aux2->album != NULL)
         {

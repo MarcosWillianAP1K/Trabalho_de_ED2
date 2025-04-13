@@ -14,7 +14,7 @@ void inserir_teste1(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
     inserir_arv_binaria(raiz_artista, teste_artista, comparar_dados_nome_artista);
 
     DADOS *teste_album = alocar_dados();
-    teste_album->album = criar_album("album_rock", "2023-01-01", 0, NULL);
+    teste_album->album = criar_album("album_rock", 2023, 0, NULL);
 
     // Adiciona o album ao artista
     ARV_BINARIA *inserir = teste_artista->artista->albuns_raiz_arvore;
@@ -57,7 +57,7 @@ void inserir_teste2(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
     inserir_arv_binaria(raiz_artista, teste_artista, comparar_dados_nome_artista);
 
     DADOS *teste_album = alocar_dados();
-    teste_album->album = criar_album("album_pop", "2024-06-15", 0, NULL);
+    teste_album->album = criar_album("album_pop", 2024, 0, NULL);
 
     // Adiciona o album ao artista
     ARV_BINARIA *inserir = teste_artista->artista->albuns_raiz_arvore;
@@ -100,7 +100,7 @@ void inserir_teste3(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
     inserir_arv_binaria(raiz_artista, teste_artista, comparar_dados_nome_artista);
 
     DADOS *teste_album = alocar_dados();
-    teste_album->album = criar_album("album_jazz", "2022-11-11", 0, NULL);
+    teste_album->album = criar_album("album_jazz", 2022, 0, NULL);
 
     // Adiciona o album ao artista
     ARV_BINARIA *inserir = teste_artista->artista->albuns_raiz_arvore;
@@ -143,7 +143,7 @@ void inserir_teste4(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
     inserir_arv_binaria(raiz_artista, teste_artista, comparar_dados_nome_artista);
 
     DADOS *teste_album = alocar_dados();
-    teste_album->album = criar_album("album_mpb", "2021-12-01", 0, NULL);
+    teste_album->album = criar_album("album_mpb", 2021, 0, NULL);
 
     // Adiciona o album ao artista
     ARV_BINARIA *inserir = teste_artista->artista->albuns_raiz_arvore;
@@ -186,7 +186,7 @@ void inserir_teste5(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
     inserir_arv_binaria(raiz_artista, teste_artista, comparar_dados_nome_artista);
 
     DADOS *teste_album = alocar_dados();
-    teste_album->album = criar_album("album_rap", "2023-09-05", 0, NULL);
+    teste_album->album = criar_album("album_rap", 2023, 0, NULL);
 
     // Adiciona o album ao artista
     ARV_BINARIA *inserir = teste_artista->artista->albuns_raiz_arvore;
@@ -229,7 +229,7 @@ void inserir_teste6(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
     inserir_arv_binaria(raiz_artista, teste_artista, comparar_dados_nome_artista);
 
     DADOS *teste_album = alocar_dados();
-    teste_album->album = criar_album("album_classico", "2020-03-10", 0, NULL);
+    teste_album->album = criar_album("album_classico", 2020, 0, NULL);
 
     // Adiciona o album ao artista
     ARV_BINARIA *inserir = teste_artista->artista->albuns_raiz_arvore;
@@ -272,7 +272,7 @@ void inserir_teste7(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
     inserir_arv_binaria(raiz_artista, teste_artista, comparar_dados_nome_artista);
 
     DADOS *teste_album = alocar_dados();
-    teste_album->album = criar_album("album_electronica", "2024-02-28", 0, NULL);
+    teste_album->album = criar_album("album_electronica", 2024, 0, NULL);
 
     // Adiciona o album ao artista
     ARV_BINARIA *inserir = teste_artista->artista->albuns_raiz_arvore;
@@ -315,7 +315,7 @@ void inserir_teste8(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
     inserir_arv_binaria(raiz_artista, teste_artista, comparar_dados_nome_artista);
 
     DADOS *teste_album = alocar_dados();
-    teste_album->album = criar_album("album_metal", "2022-05-20", 0, NULL);
+    teste_album->album = criar_album("album_metal", 2022, 0, NULL);
 
     // Adiciona o album ao artista
     ARV_BINARIA *inserir = teste_artista->artista->albuns_raiz_arvore;
@@ -358,7 +358,7 @@ void inserir_teste9(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
     inserir_arv_binaria(raiz_artista, teste_artista, comparar_dados_nome_artista);
 
     DADOS *teste_album = alocar_dados();
-    teste_album->album = criar_album("album_metal", "2023-03-15", 0, NULL);
+    teste_album->album = criar_album("album_metal", 2023, 0, NULL);
 
     // Adiciona o album ao artista
     ARV_BINARIA *inserir = teste_artista->artista->albuns_raiz_arvore;
@@ -401,7 +401,7 @@ void inserir_teste10(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
     inserir_arv_binaria(raiz_artista, teste_artista, comparar_dados_nome_artista);
 
     DADOS *teste_album = alocar_dados();
-    teste_album->album = criar_album("album_blues", "2021-08-30", 0, NULL);
+    teste_album->album = criar_album("album_blues", 2021, 0, NULL);
 
     // Adiciona o album ao artista
     ARV_BINARIA *inserir = teste_artista->artista->albuns_raiz_arvore;
