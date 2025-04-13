@@ -469,13 +469,8 @@ ARV_BINARIA *verificar_nas_playlists(ARV_BINARIA **raiz_playlist, DADOS *aux)
 
     if (*raiz_playlist != NULL)
     {
-        musica = buscar_arv_binaria(*raiz_playlist, aux, comparar_dados_musica_playlist);
+        musica = buscar_arv_binaria((*raiz_playlist)->info->playlist->musicas_raiz_arvore, aux, comparar_dados_musica_playlist);
 
-        // if (musica != NULL)
-        // {
-        //     imprimir_dados_musica_playlist(musica->info);
-        // }
-        
         if (musica == NULL)
         {
             musica = verificar_nas_playlists(&(*raiz_playlist)->esq, aux);
@@ -484,9 +479,8 @@ ARV_BINARIA *verificar_nas_playlists(ARV_BINARIA **raiz_playlist, DADOS *aux)
         if (musica == NULL)
         {
             musica = verificar_nas_playlists(&(*raiz_playlist)->dir, aux);
-        }
+        } 
     }
-
     return musica;
 }
 
@@ -517,7 +511,6 @@ short int remover_musica_de_album_de_artista(ARV_BINARIA **raiz, ARV_BINARIA **r
             DADOS *aux4 = alocar_dados();
             aux4->musica_playlist = criar_musica_playlist(artista->info->artista->nome, album->info->album->titulo, aux3->musica);
 
-
             if (comparar_se_esta_vazio(aux3->musica->titulo) == 0)
             {
                 retorno = 2;
@@ -527,8 +520,8 @@ short int remover_musica_de_album_de_artista(ARV_BINARIA **raiz, ARV_BINARIA **r
                 if (menu_que_volta() == 1)
                 {
                     ARV_BINARIA *remover = album->info->album->musicas_raiz_arvore;
-                    ARV_BINARIA *musica_removida = remover_arv_binaria(&remover, aux4, comparar_dados_musica_playlist);
-
+                    ARV_BINARIA *musica_removida = remover_arv_binaria(&remover, aux3, comparar_dados_musica_playlist);
+                
                     if (musica_removida != NULL)
                     {
                         retorno = 1;
@@ -702,7 +695,7 @@ short int cadastrar_albuns(ARV_BINARIA **raiz_artista)
         printf("Digite o titulo do album: ");
         char *titulo = digitar_string();
 
-        printf("Digite a data de lancamento do album: ");
+        printf("Digite o ano de lancamento do album: ");
 
         aux2->album = criar_album(titulo, digitar_short_int(), 0, NULL);
 
@@ -758,7 +751,7 @@ short int cadastrar_musica(ARV_BINARIA **raiz_artista)
             printf("Digite o titulo da musica: ");
             char *titulo = digitar_string();
 
-            printf("Digite o duracao da musica\n ");
+            printf("Digite o duracao da musica\n");
             printf("Digite os minutos: ");
             short int minutos = digitar_short_int();
 

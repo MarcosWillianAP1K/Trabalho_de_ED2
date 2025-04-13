@@ -198,33 +198,24 @@ ARV_BINARIA *buscar_arv_binaria(ARV_BINARIA *raiz, DADOS *info, int (*comparar)(
 {
   ARV_BINARIA *no = NULL;
 
-  printf("Entrou no buscar\n");
   if (raiz != NULL)
   {
-    printf("b1\n");
     if (comparar(raiz->info, info) == 0)
     {
-      printf("b2\n");
       no = raiz;
-      printf("b2.1\n");
     }
     else
     {
-      printf("b3\n");
       if (comparar(raiz->info, info) > 0)
       {
-        printf("b4\n");
         no = buscar_arv_binaria(raiz->esq, info, comparar);
       }
       else
       {
-        printf("b5\n");
         no = buscar_arv_binaria(raiz->dir, info, comparar);
       }
-      printf("b6\n");
     }
   }
-  printf("b7\n");
 
   return no;
 }
