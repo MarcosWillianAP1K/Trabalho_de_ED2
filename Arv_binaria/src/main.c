@@ -439,16 +439,16 @@ int main()
     ARV_BINARIA *raiz_artista = NULL;
     ARV_BINARIA *raiz_playlist = NULL;
 
-    inserir_teste1(&raiz_artista, &raiz_playlist);
-    inserir_teste2(&raiz_artista, &raiz_playlist);
-    inserir_teste3(&raiz_artista, &raiz_playlist);
-    inserir_teste4(&raiz_artista, &raiz_playlist);
-    inserir_teste5(&raiz_artista, &raiz_playlist);
-    inserir_teste6(&raiz_artista, &raiz_playlist);
-    inserir_teste7(&raiz_artista, &raiz_playlist);
-    inserir_teste8(&raiz_artista, &raiz_playlist);
-    inserir_teste9(&raiz_artista, &raiz_playlist);
-    inserir_teste10(&raiz_artista, &raiz_playlist);
+    // inserir_teste1(&raiz_artista, &raiz_playlist);
+    // inserir_teste2(&raiz_artista, &raiz_playlist);
+    // inserir_teste3(&raiz_artista, &raiz_playlist);
+    // inserir_teste4(&raiz_artista, &raiz_playlist);
+    // inserir_teste5(&raiz_artista, &raiz_playlist);
+    // inserir_teste6(&raiz_artista, &raiz_playlist);
+    // inserir_teste7(&raiz_artista, &raiz_playlist);
+    // inserir_teste8(&raiz_artista, &raiz_playlist);
+    // inserir_teste9(&raiz_artista, &raiz_playlist);
+    // inserir_teste10(&raiz_artista, &raiz_playlist);
 
     menu_principal(&raiz_artista, &raiz_playlist);
 

@@ -59,7 +59,7 @@ int comparar_nome_artista(ARTISTA *artista1, ARTISTA *artista2)
         return strcmp(artista1->nome, artista2->nome);
     }
 
-    // return 0;
+    return -2;
 }
 
 int comparar_estilo_artista(ARTISTA *artista1, ARTISTA *artista2)
@@ -69,7 +69,7 @@ int comparar_estilo_artista(ARTISTA *artista1, ARTISTA *artista2)
         return strcmp(artista1->estilo_musical, artista2->estilo_musical);
     }
 
-    // return 0;
+    return -2;
 }
 
 int comparar_tipo_artista(ARTISTA *artista1, ARTISTA *artista2)
@@ -79,7 +79,7 @@ int comparar_tipo_artista(ARTISTA *artista1, ARTISTA *artista2)
         return strcmp(artista1->tipo, artista2->tipo);
     }
 
-    // return 0;
+    return -2;
 }
 
 int comparar_tipo_e_estilo_artista(ARTISTA *artista1, ARTISTA *artista2)
@@ -94,9 +94,8 @@ int comparar_tipo_e_estilo_artista(ARTISTA *artista1, ARTISTA *artista2)
         }
 
         return num;
-        
     }
 
-    return 0;
+    return -2;
 }
 
