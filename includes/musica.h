@@ -5,8 +5,8 @@
 
 typedef struct MUSICA{
     char *titulo;
-    char *duracao;
-    // void *playlist
+    short int minutos;
+    short int segundos;
 } MUSICA;
 
 
@@ -14,7 +14,7 @@ MUSICA *alocar_musica();
 
 void liberar_musica(MUSICA **musica);
 
-MUSICA *criar_musica(char *titulo, char *duracao);
+MUSICA *criar_musica(char *titulo, short int minutos, short int segundos);
 
 void imprimir_musica(MUSICA *musica);
 

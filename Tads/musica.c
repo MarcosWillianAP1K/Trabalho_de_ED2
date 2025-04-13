@@ -10,7 +10,8 @@ MUSICA *alocar_musica()
 
     verificar_alocacao(musica);
     musica->titulo = NULL;
-    musica->duracao = NULL;
+    musica->minutos = 0;
+    musica->segundos = 0;
     return musica;
 }
 
@@ -20,18 +21,18 @@ void liberar_musica(MUSICA **musica)
     if (musica != NULL && *musica != NULL)
     {
         free((*musica)->titulo);
-        free((*musica)->duracao);
         free(*musica);
 
         *musica = NULL;
     }
 }
 
-MUSICA *criar_musica(char *titulo, char *duracao)
+MUSICA *criar_musica(char *titulo, short int minutos, short int segundos)
 {
     MUSICA *musica = alocar_musica();
     musica->titulo = titulo;
-    musica->duracao = duracao;
+    musica->minutos = minutos;
+    musica->segundos = segundos;
 
     return musica;
 }
@@ -41,7 +42,7 @@ void imprimir_musica(MUSICA *musica)
     if (musica != NULL)
     {
         printf("\nNome: %s", musica->titulo);
-        printf("\nDuracao: %s\n", musica->duracao);
+        printf("\nDuracao: %02hd:%02hd\n", musica->minutos, musica->segundos);
     }
 }
 
