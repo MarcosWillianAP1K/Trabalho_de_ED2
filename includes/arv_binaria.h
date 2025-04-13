@@ -35,7 +35,7 @@ ARV_BINARIA *remover_arv_binaria(ARV_BINARIA **raiz, DADOS *info, int (*comparar
 
 ARV_BINARIA *buscar_arv_binaria(ARV_BINARIA *raiz, DADOS *info, int (*comparar)(DADOS *, DADOS *));
 
-void imprimir_arv_binaria_filtro(ARV_BINARIA *raiz, DADOS *info,void (*printar_dados)(DADOS *), int (*comparar)(DADOS *, DADOS *));
+short int imprimir_arv_binaria_filtro(ARV_BINARIA *raiz, DADOS *info,void (*printar_dados)(DADOS *), int (*comparar)(DADOS *, DADOS *));
 
 
 #endif

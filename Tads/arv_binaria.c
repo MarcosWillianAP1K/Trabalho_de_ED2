@@ -83,17 +83,22 @@ void imprimir_arv_binaria(ARV_BINARIA *raiz, void (*printar_dados)(DADOS *))
   }
 }
 
-void imprimir_arv_binaria_filtro(ARV_BINARIA *raiz, DADOS *info, void (*printar_dados)(DADOS *), int (*comparar)(DADOS *, DADOS *))
+short int imprimir_arv_binaria_filtro(ARV_BINARIA *raiz, DADOS *info, void (*printar_dados)(DADOS *), int (*comparar)(DADOS *, DADOS *))
 {
+  short int retorno = 0;
+
   if (raiz != NULL)
   {
-    imprimir_arv_binaria_filtro(raiz->esq, info, printar_dados, comparar);
+    retorno |= imprimir_arv_binaria_filtro(raiz->esq, info, printar_dados, comparar);
     if (comparar(raiz->info, info) == 0)
     {
       printar_dados(raiz->info);
+      retorno = 1;
     }
-    imprimir_arv_binaria_filtro(raiz->dir, info, printar_dados, comparar);
+    retorno |= imprimir_arv_binaria_filtro(raiz->dir, info, printar_dados, comparar);
   }
+
+  return retorno;
 }
 
 int eh_folha(ARV_BINARIA *raiz)

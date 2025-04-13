@@ -235,11 +235,11 @@ void mostrar_musicas_de_um_album_de_um_artista(ARV_BINARIA *raiz)
     liberar_dados_artista(&aux);
 }
 
-void pecorrer_artistas(ARV_BINARIA *raiz_artista, DADOS *aux)
+void pecorrer_artistas_imprimir_ano(ARV_BINARIA *raiz_artista, DADOS *aux)
 {
     if (raiz_artista != NULL)
     {
-        pecorrer_artistas(raiz_artista->esq, aux);
+        pecorrer_artistas_imprimir_ano(raiz_artista->esq, aux);
 
         if (raiz_artista->info->artista->albuns_raiz_arvore != NULL)
         {
@@ -247,7 +247,7 @@ void pecorrer_artistas(ARV_BINARIA *raiz_artista, DADOS *aux)
             imprimir_arv_binaria_filtro(raiz_artista->info->artista->albuns_raiz_arvore, aux, imprimir_dados_album, comparar_dados_data_album);
         }
 
-        pecorrer_artistas(raiz_artista->dir, aux);
+        pecorrer_artistas_imprimir_ano(raiz_artista->dir, aux);
     }
 }
 
@@ -255,51 +255,65 @@ void mostrar_albuns_de_todos_artistas_de_um_ano(ARV_BINARIA *raiz_artista)
 {
     DADOS *aux = digitar_data_album();
 
-    pecorrer_artistas(raiz_artista, aux);
+    pecorrer_artistas_imprimir_ano(raiz_artista, aux);
 
     liberar_dados_album(&aux);
 }
 
+short int pecorrer_album_impimir_musica(ARV_BINARIA *raiz_album, DADOS *aux)
+{
+    short int retorno = 0;
+
+    if (raiz_album != NULL)
+    {
+        retorno |= pecorrer_album_impimir_musica(raiz_album->esq, aux);
+
+        if (raiz_album->info->album->musicas_raiz_arvore != NULL)
+        {
+            short int aux = 0;
+            aux = imprimir_arv_binaria_filtro(raiz_album->info->album->musicas_raiz_arvore, aux, imprimir_dados_musica, comparar_dados_titulo_musica);
+            retorno |= aux;
+
+            if (aux == 1)
+            {
+                printf("\nAlbum: %s\n", raiz_album->info->album->titulo); 
+            }
+        }
+
+        retorno |= pecorrer_album_impimir_musica(raiz_album->dir, aux);
+    }
+
+    return retorno;
+}
+
+short int pecorrer_artista_imprimir_musica(ARV_BINARIA *raiz_artista, DADOS *aux)
+{
+    short int retorno = 0;
+
+    if (raiz_artista != NULL)
+    {
+        short int aux = 0;
+        aux = pecorrer_artista_imprimir_musica(raiz_artista->esq, aux);
+        retorno |= aux;
+
+        if (raiz_artista->info->artista->albuns_raiz_arvore != NULL)
+        {
+            pecorrer_album_impimir_musica(raiz_artista->info->artista->albuns_raiz_arvore, aux);
+        }
+
+        pecorrer_artista_imprimir_musica(raiz_artista->dir, aux);
+    }
+
+    return retorno;
+}
+
 void mostrar_dados_de_uma_musica(ARV_BINARIA *raiz)
 {
-    DADOS *aux = digitar_nome_artista();
-    ARV_BINARIA *artista = buscar_arv_binaria(raiz, aux, comparar_dados_nome_artista);
+    DADOS *aux = digitar_titulo_musica();
 
-    if (artista != NULL)
-    {
-        DADOS *aux2 = digitar_titulo_album();
-        ARV_BINARIA *album = buscar_arv_binaria(artista->info->artista->albuns_raiz_arvore, aux2, comparar_dados_titulo_album);
+    pecorrer_artista_imprimir_musica(raiz, aux);
 
-        if (album != NULL)
-        {
-            DADOS *aux3 = digitar_titulo_musica();
-            ARV_BINARIA *musica = buscar_arv_binaria(album->info->album->musicas_raiz_arvore, aux3, comparar_dados_titulo_musica);
-
-            if (musica != NULL)
-            {
-                printf("\n");
-                imprimir_dados_musica(musica->info);
-            }
-            else
-            {
-                printf("Nenhuma musica encontrada com o nome %s\n", aux3->musica->titulo);
-            }
-
-            liberar_dados_musica(&aux3);
-        }
-        else
-        {
-            printf("Nenhum album encontrado com o nome %s\n", aux2->album->titulo);
-        }
-
-        liberar_dados_album(&aux2);
-    }
-    else
-    {
-        printf("Nenhum artista encontrado com o nome %s\n", aux->artista->nome);
-    }
-
-    liberar_dados_artista(&aux);
+    liberar_dados_musica(&aux);
 }
 
 void mostrar_dados_de_uma_playlist(ARV_BINARIA *raiz)
@@ -564,6 +578,7 @@ short int cadastrar_artista(ARV_BINARIA **raiz_artista)
 
     printf("Digite o estilo musical do artista: ");
     char *estilo = digitar_string();
+
 
     DADOS *aux = alocar_dados();
     aux->artista = criar_artista(nome, tipo, estilo, 0, NULL);
