@@ -51,14 +51,14 @@ void print_verde(char *mensagem)
 
 void mensagem_erro(char *mensagem)
 {
-    printf("\n");
+    print_vermelho("\nERROR: ");
     print_vermelho(mensagem);
     printf("\n\n");
 }
 
 void mensagem_sucesso(char *mensagem)
 {
-    printf("\n");
+    print_verde("\nSUCESSO: ");
     print_verde(mensagem);
     printf("\n\n");
 }
