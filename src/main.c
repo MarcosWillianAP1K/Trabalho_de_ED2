@@ -24,7 +24,7 @@ void inserir_teste1(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
     teste_artista->artista->numero_de_albuns++;
 
     DADOS *teste_musica = alocar_dados();
-    teste_musica->musica = criar_musica("musica_rock", "4.50");
+    teste_musica->musica = criar_musica("musica_rock", 4,30);
 
     // Adiciona a musica ao album
     inserir = teste_album->album->musicas_raiz_arvore;
@@ -67,7 +67,7 @@ void inserir_teste2(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
     teste_artista->artista->numero_de_albuns++;
 
     DADOS *teste_musica = alocar_dados();
-    teste_musica->musica = criar_musica("musica_pop", "3.45");
+    teste_musica->musica = criar_musica("musica_pop", 3,45);
 
     // Adiciona a musica ao album
     inserir = teste_album->album->musicas_raiz_arvore;
@@ -110,7 +110,7 @@ void inserir_teste3(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
     teste_artista->artista->numero_de_albuns++;
 
     DADOS *teste_musica = alocar_dados();
-    teste_musica->musica = criar_musica("musica_jazz", "5.20");
+    teste_musica->musica = criar_musica("musica_jazz", 5,20);
 
     // Adiciona a musica ao album
     inserir = teste_album->album->musicas_raiz_arvore;
@@ -153,7 +153,7 @@ void inserir_teste4(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
     teste_artista->artista->numero_de_albuns++;
 
     DADOS *teste_musica = alocar_dados();
-    teste_musica->musica = criar_musica("musica_mpb", "4.00");
+    teste_musica->musica = criar_musica("musica_mpb", 4,0);
 
     // Adiciona a musica ao album
     inserir = teste_album->album->musicas_raiz_arvore;
@@ -196,7 +196,7 @@ void inserir_teste5(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
     teste_artista->artista->numero_de_albuns++;
 
     DADOS *teste_musica = alocar_dados();
-    teste_musica->musica = criar_musica("musica_rap", "3.30");
+    teste_musica->musica = criar_musica("musica_rap", 3,30);
 
     // Adiciona a musica ao album
     inserir = teste_album->album->musicas_raiz_arvore;
@@ -239,7 +239,7 @@ void inserir_teste6(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
     teste_artista->artista->numero_de_albuns++;
 
     DADOS *teste_musica = alocar_dados();
-    teste_musica->musica = criar_musica("musica_classica", "6.15");
+    teste_musica->musica = criar_musica("musica_classica", 6,15);
 
     // Adiciona a musica ao album
     inserir = teste_album->album->musicas_raiz_arvore;
@@ -282,7 +282,7 @@ void inserir_teste7(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
     teste_artista->artista->numero_de_albuns++;
 
     DADOS *teste_musica = alocar_dados();
-    teste_musica->musica = criar_musica("musica_techno", "7.00");
+    teste_musica->musica = criar_musica("musica_techno", 7,0);
 
     // Adiciona a musica ao album
     inserir = teste_album->album->musicas_raiz_arvore;
@@ -325,7 +325,7 @@ void inserir_teste8(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
     teste_artista->artista->numero_de_albuns++;
 
     DADOS *teste_musica = alocar_dados();
-    teste_musica->musica = criar_musica("musica_metal", "4.20");
+    teste_musica->musica = criar_musica("musica_metal", 4,20);
 
     // Adiciona a musica ao album
     inserir = teste_album->album->musicas_raiz_arvore;
@@ -368,7 +368,7 @@ void inserir_teste9(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
     teste_artista->artista->numero_de_albuns++;
 
     DADOS *teste_musica = alocar_dados();
-    teste_musica->musica = criar_musica("musica_metal", "5.00");
+    teste_musica->musica = criar_musica("musica_metal", 5,0);
 
     // Adiciona a musica ao album
     inserir = teste_album->album->musicas_raiz_arvore;
@@ -411,7 +411,7 @@ void inserir_teste10(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
     teste_artista->artista->numero_de_albuns++;
 
     DADOS *teste_musica = alocar_dados();
-    teste_musica->musica = criar_musica("musica_blues", "4.45");
+    teste_musica->musica = criar_musica("musica_blues", 4,45);
 
     // Adiciona a musica ao album
     inserir = teste_album->album->musicas_raiz_arvore;

@@ -124,7 +124,7 @@ DADOS *digitar_titulo_musica()
     printf("Digite o titulo da musica\n");
     char *titulo = digitar_string();
 
-    aux->musica = criar_musica(titulo, "9.99");
+    aux->musica = criar_musica(titulo, 0,0);
 
     return aux;
 }
@@ -154,7 +154,7 @@ DADOS *digitar_musica_playlist()
     printf("Digite o titulo da musica\n");
     char *titulo_musica = digitar_string();
 
-    MUSICA *musica = criar_musica(titulo_musica, "9.99");
+    MUSICA *musica = criar_musica(titulo_musica, 0,0);
 
     aux->musica_playlist = criar_musica_playlist(nome_artista, titulo_album, musica);
 
@@ -266,8 +266,11 @@ void pecorrer_artistas_imprimir_ano(ARV_BINARIA *raiz_artista, DADOS *aux)
 
         if (raiz_artista->info->artista->albuns_raiz_arvore != NULL)
         {
-            printf("\nAlbuns do artista %s:\n\n", raiz_artista->info->artista->nome);
-            imprimir_arv_binaria_filtro(raiz_artista->info->artista->albuns_raiz_arvore, aux, imprimir_dados_album, comparar_dados_data_album);
+            
+            if (imprimir_arv_binaria_filtro(raiz_artista->info->artista->albuns_raiz_arvore, aux, imprimir_dados_album, comparar_dados_data_album) == 1)
+            {
+                printf("\nArtista: %s\n", raiz_artista->info->artista->nome);
+            }
         }
 
         pecorrer_artistas_imprimir_ano(raiz_artista->dir, aux);
@@ -685,10 +688,21 @@ short int cadastrar_musica(ARV_BINARIA **raiz_artista)
             printf("Digite o titulo da musica: ");
             char *titulo = digitar_string();
 
-            printf("Digite o duracao da musica: ");
-            char *duracao = digitar_string();
+            printf("Digite o duracao da musica\n ");
+            printf("Digite os minutos: ");
+            short int minutos = digitar_short_int();
 
-            aux3->musica = criar_musica(titulo, duracao);
+            printf("Digite os segundos: ");
+            short int segundos;
+
+            while ((segundos = digitar_short_int()) > 59)
+            {
+                mensagem_erro("Segundos invalidos, digite novamente\n");
+                printf("Digite os segundos: ");
+            }
+
+
+            aux3->musica = criar_musica(titulo, minutos, segundos);
 
             if (aux3->musica != NULL)
             {
