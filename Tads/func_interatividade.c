@@ -270,11 +270,11 @@ short int pecorrer_album_impimir_musica(ARV_BINARIA *raiz_album, DADOS *aux)
 
         if (raiz_album->info->album->musicas_raiz_arvore != NULL)
         {
-            short int aux = 0;
-            aux = imprimir_arv_binaria_filtro(raiz_album->info->album->musicas_raiz_arvore, aux, imprimir_dados_musica, comparar_dados_titulo_musica);
-            retorno |= aux;
+            short int retorno_aux= 0;
+            retorno_aux= imprimir_arv_binaria_filtro(raiz_album->info->album->musicas_raiz_arvore, aux, imprimir_dados_musica, comparar_dados_titulo_musica);
+            retorno |= retorno_aux;
 
-            if (aux == 1)
+            if (retorno_aux== 1)
             {
                 printf("\nAlbum: %s\n", raiz_album->info->album->titulo); 
             }
@@ -286,25 +286,28 @@ short int pecorrer_album_impimir_musica(ARV_BINARIA *raiz_album, DADOS *aux)
     return retorno;
 }
 
-short int pecorrer_artista_imprimir_musica(ARV_BINARIA *raiz_artista, DADOS *aux)
+void pecorrer_artista_imprimir_musica(ARV_BINARIA *raiz_artista, DADOS *aux)
 {
-    short int retorno = 0;
+    
 
     if (raiz_artista != NULL)
     {
-        short int aux = 0;
-        aux = pecorrer_artista_imprimir_musica(raiz_artista->esq, aux);
-        retorno |= aux;
+      
+        pecorrer_artista_imprimir_musica(raiz_artista->esq, aux);
+        
 
         if (raiz_artista->info->artista->albuns_raiz_arvore != NULL)
         {
-            pecorrer_album_impimir_musica(raiz_artista->info->artista->albuns_raiz_arvore, aux);
+            if(pecorrer_album_impimir_musica(raiz_artista->info->artista->albuns_raiz_arvore, aux) == 1)
+            {
+                printf("\nArtista: %s\n", raiz_artista->info->artista->nome);
+            }
         }
 
-        pecorrer_artista_imprimir_musica(raiz_artista->dir, aux);
+         pecorrer_artista_imprimir_musica(raiz_artista->dir, aux);
     }
 
-    return retorno;
+
 }
 
 void mostrar_dados_de_uma_musica(ARV_BINARIA *raiz)
