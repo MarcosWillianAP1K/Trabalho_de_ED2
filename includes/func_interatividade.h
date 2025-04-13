@@ -5,6 +5,8 @@
 #ifndef FUNC_INTERATIVIDADE_H
 #define FUNC_INTERATIVIDADE_H
 
+short int menu_que_volta();
+
 void mostrar_artista_por_tipo(ARV_BINARIA *raiz);
 
 void mostrar_artista_por_estilo(ARV_BINARIA *raiz);

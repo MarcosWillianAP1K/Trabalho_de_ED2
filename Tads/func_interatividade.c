@@ -4,6 +4,31 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+
+short int menu_que_volta() {
+    short int retorna = 0;
+    printf("Deseja continuar com a acao?\n\n");
+    printf("1 - Sim\n");
+    printf("2 - Nao\n");
+    printf("Digite a opcao: ");
+    short int opcao = digitar_short_int();
+    
+    switch (opcao) {
+        case 1:
+            printf("Continuando...\n"); 
+            retorna = 1;
+            break;
+        case 2:
+            printf("Voltando ao menu principal...\n");
+            limpar_buffer();
+            break;
+        default:
+            printf("Opcao invalida. Voltando ao menu principal...\n");
+            break;
+    }
+    return retorna; 
+}
+
 DADOS *digitar_nome_artista()
 {
     DADOS *aux = alocar_dados();

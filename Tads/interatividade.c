@@ -101,7 +101,6 @@ void verificacao_remover_playlist(short int n)
     {
         mensagem_erro("Playlist nao encontrada!");
     }
-
 }
 
 void verificacao_remover_musica_playlist(short int n)
@@ -114,7 +113,7 @@ void verificacao_remover_musica_playlist(short int n)
     {
         mensagem_erro("Playlist nao encontrada!");
     }
-    else 
+    else
     {
         mensagem_erro("Musica nao encontrada!");
     }
@@ -143,7 +142,6 @@ void verificacao_remover_musica_album_artista(short int n)
         mensagem_erro("Musica nao encontrada!");
     }
 }
-
 
 void menu_principal(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
 {
@@ -189,9 +187,16 @@ void menu_principal(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
             break;
 
         case 1:
-            printf("Cadastrar artista:\n");
-            verificacao_cadastro_artista(cadastrar_artista(raiz_artista));
-            pausar_tela();
+            if(menu_que_volta() == 1)
+            {
+                limpar_tela();
+                printf("Cadastrar artista:\n");
+                verificacao_cadastro_artista(cadastrar_artista(raiz_artista));
+                pausar_tela();
+            }else{
+                limpar_buffer();
+                printf("Voce saiu do cadastro de artista!\n");
+            }
             break;
 
         case 2:
