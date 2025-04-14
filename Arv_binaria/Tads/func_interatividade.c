@@ -5,6 +5,20 @@
 #include <stdlib.h>
 #include <string.h>
 
+ARV_BINARIA *encontrar_dado_na_arv_digitando(ARV_BINARIA *raiz, DADOS *(*digite)(), int (*comparar)(DADOS *, DADOS *), void (*liberar)(DADOS **))
+{
+    ARV_BINARIA *no = NULL;
+
+    if (raiz != NULL && digite != NULL && comparar != NULL && liberar != NULL)
+    {
+        DADOS *aux = digite();
+        no = buscar_arv_binaria(raiz, aux, comparar);
+        liberar(aux, liberar);
+    }
+
+    return no;
+}
+
 short int menu_que_volta()
 {
     limpar_tela();
@@ -35,126 +49,6 @@ short int menu_que_volta()
 short int comparar_se_esta_vazio(char *n1)
 {
     return strcmp(n1, "");
-}
-
-DADOS *digitar_tipo_artista()
-{
-    DADOS *aux = alocar_dados();
-
-    printf("Digite o tipo do artista\n");
-    char *tipo = digitar_string();
-
-    aux->artista = criar_artista("auxiliar", tipo, "auxiliar", 0, NULL);
-
-    return aux;
-}
-
-DADOS *digitar_estilo_artista()
-{
-    DADOS *aux = alocar_dados();
-
-    printf("Digite o estilo musical do artista\n");
-    char *estilo = digitar_string();
-
-    aux->artista = criar_artista("auxiliar", "auxiliar", estilo, 0, NULL);
-
-    return aux;
-}
-
-DADOS *digitar_tipo_e_estilo_artista()
-{
-    DADOS *aux = alocar_dados();
-
-    printf("Digite o tipo do artista\n");
-    char *tipo = digitar_string();
-
-    printf("Digite o estilo musical do artista\n");
-    char *estilo = digitar_string();
-
-    aux->artista = criar_artista("auxiliar", tipo, estilo, 0, NULL);
-
-    return aux;
-}
-
-DADOS *digitar_titulo_album()
-{
-    DADOS *aux = alocar_dados();
-
-    printf("Digite o titulo do album\n");
-    char *titulo = digitar_string();
-
-    aux->album = criar_album(titulo, 0, 0, NULL);
-
-    return aux;
-}
-
-DADOS *digitar_ano_album()
-{
-    DADOS *aux = alocar_dados();
-
-    printf("Digite o ano de lancamento do album\n");
-
-    aux->album = criar_album("auxiliar", digitar_short_int(), 0, NULL);
-
-    return aux;
-}
-
-DADOS *digitar_titulo_ano_album()
-{
-    DADOS *aux = alocar_dados();
-
-    printf("Digite o titulo do album\n");
-    char *titulo = digitar_string();
-
-    printf("Digite a data de lancamento do album\n");
-
-    aux->album = criar_album(titulo, digitar_short_int(), 0, NULL);
-
-    return aux;
-}
-
-DADOS *digitar_titulo_musica()
-{
-    DADOS *aux = alocar_dados();
-
-    printf("Digite o titulo da musica\n");
-    char *titulo = digitar_string();
-
-    aux->musica = criar_musica(titulo, 1, 1);
-
-    return aux;
-}
-
-DADOS *digitar_nome_playlist()
-{
-    DADOS *aux = alocar_dados();
-
-    printf("Digite o nome da playlist\n");
-    char *nome_playlist = digitar_string();
-
-    aux->playlist = criar_playlist(nome_playlist, 0, NULL);
-
-    return aux;
-}
-
-DADOS *digitar_musica_playlist()
-{
-    DADOS *aux = alocar_dados();
-
-    printf("Digite o nome do artista\n");
-    char *nome_artista = digitar_string();
-
-    printf("Digite o titulo do album\n");
-    char *titulo_album = digitar_string();
-
-    printf("Digite o titulo da musica\n");
-    char *titulo_musica = digitar_string();
-
-    MUSICA *musica = criar_musica(titulo_musica, 0, 0);
-
-    aux->musica_playlist = criar_musica_playlist(nome_artista, titulo_album, musica);
-
-    return aux;
 }
 
 void mostrar_artista_por_tipo(ARV_BINARIA *raiz_artista)

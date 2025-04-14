@@ -5,6 +5,10 @@
 #ifndef FUNC_INTERATIVIDADE_H
 #define FUNC_INTERATIVIDADE_H
 
+
+
+ARV_BINARIA *encontrar_dado_na_arv_digitando(ARV_BINARIA *raiz, DADOS *(*digite)(), int (*comparar)(DADOS *, DADOS *), void (*liberar)(DADOS **));
+
 short int menu_que_volta();
 
 short int comparar_se_esta_vazio(char *n1);
@@ -51,7 +55,7 @@ short int cadastrar_artista(ARV_BINARIA **raiz_artista, DADOS *info);
 
 short int cadastrar_albuns(DADOS *artista, DADOS *info);
 
-short int cadastrar_musica(ARV_BINARIA **raiz_artista);
+short int cadastrar_musica(DADOS *album, DADOS *info);
 
 short int cadastrar_playlist(ARV_BINARIA **raiz);
 

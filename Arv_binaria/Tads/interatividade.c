@@ -143,6 +143,8 @@ void verificacao_remover_musica_album_artista(short int n)
     }
 }
 
+
+
 DADOS *digitar_nome_artista()
 {
     DADOS *aux = alocar_dados();
@@ -154,6 +156,128 @@ DADOS *digitar_nome_artista()
 
     return aux;
 }
+
+DADOS *digitar_tipo_artista()
+{
+    DADOS *aux = alocar_dados();
+
+    printf("Digite o tipo do artista\n");
+    char *tipo = digitar_string();
+
+    aux->artista = criar_artista("auxiliar", tipo, "auxiliar", 0, NULL);
+
+    return aux;
+}
+
+DADOS *digitar_estilo_artista()
+{
+    DADOS *aux = alocar_dados();
+
+    printf("Digite o estilo musical do artista\n");
+    char *estilo = digitar_string();
+
+    aux->artista = criar_artista("auxiliar", "auxiliar", estilo, 0, NULL);
+
+    return aux;
+}
+
+DADOS *digitar_tipo_e_estilo_artista()
+{
+    DADOS *aux = alocar_dados();
+
+    printf("Digite o tipo do artista\n");
+    char *tipo = digitar_string();
+
+    printf("Digite o estilo musical do artista\n");
+    char *estilo = digitar_string();
+
+    aux->artista = criar_artista("auxiliar", tipo, estilo, 0, NULL);
+
+    return aux;
+}
+
+DADOS *digitar_titulo_album()
+{
+    DADOS *aux = alocar_dados();
+
+    printf("Digite o titulo do album\n");
+    char *titulo = digitar_string();
+
+    aux->album = criar_album(titulo, 0, 0, NULL);
+
+    return aux;
+}
+
+DADOS *digitar_ano_album()
+{
+    DADOS *aux = alocar_dados();
+
+    printf("Digite o ano de lancamento do album\n");
+
+    aux->album = criar_album("auxiliar", digitar_short_int(), 0, NULL);
+
+    return aux;
+}
+
+DADOS *digitar_titulo_ano_album()
+{
+    DADOS *aux = alocar_dados();
+
+    printf("Digite o titulo do album\n");
+    char *titulo = digitar_string();
+
+    printf("Digite a data de lancamento do album\n");
+
+    aux->album = criar_album(titulo, digitar_short_int(), 0, NULL);
+
+    return aux;
+}
+
+DADOS *digitar_titulo_musica()
+{
+    DADOS *aux = alocar_dados();
+
+    printf("Digite o titulo da musica\n");
+    char *titulo = digitar_string();
+
+    aux->musica = criar_musica(titulo, 1, 1);
+
+    return aux;
+}
+
+DADOS *digitar_nome_playlist()
+{
+    DADOS *aux = alocar_dados();
+
+    printf("Digite o nome da playlist\n");
+    char *nome_playlist = digitar_string();
+
+    aux->playlist = criar_playlist(nome_playlist, 0, NULL);
+
+    return aux;
+}
+
+DADOS *digitar_musica_playlist()
+{
+    DADOS *aux = alocar_dados();
+
+    printf("Digite o nome do artista\n");
+    char *nome_artista = digitar_string();
+
+    printf("Digite o titulo do album\n");
+    char *titulo_album = digitar_string();
+
+    printf("Digite o titulo da musica\n");
+    char *titulo_musica = digitar_string();
+
+    MUSICA *musica = criar_musica(titulo_musica, 0, 0);
+
+    aux->musica_playlist = criar_musica_playlist(nome_artista, titulo_album, musica);
+
+    return aux;
+}
+
+
 
 DADOS *digitar_cadastro_artista(ARV_BINARIA *raiz_artista)
 {
@@ -242,10 +366,18 @@ DADOS *digitar_cadastro_musica(DADOS *album)
         {
             liberar_dados_musica(&aux);
         }
+        else if (buscar_arv_binaria(album->album->musicas_raiz_arvore, aux, comparar_dados_titulo_musica) != NULL)
+        {
+            liberar_dados_musica(&aux);
+        }
     }
 
     return aux;
 }
+
+
+
+
 
 void menu_principal(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
 {
@@ -300,9 +432,7 @@ void menu_principal(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
         {
             print_amarelo("Cadastrar albuns:\n");
 
-            DADOS *artista = digitar_nome_artista();
-            ARV_BINARIA *artista_encontrado = buscar_arv_binaria(*raiz_artista, artista, comparar_dados_nome_artista);
-            liberar_dados_artista(&artista);
+            ARV_BINARIA *artista_encontrado = encontrar_dado_na_arv_digitando(*raiz_artista, digitar_nome_artista, comparar_dados_nome_artista, liberar_dados_artista);
 
             if (artista_encontrado != NULL)
             {
@@ -320,7 +450,28 @@ void menu_principal(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
         case 3:
         {
             print_amarelo("Cadastrar musicas:\n");
-            verificacao_cadastro_musica(cadastrar_musica(raiz_artista));
+
+            
+            ARV_BINARIA *artista_encontrado = encontrar_dado_na_arv_digitando(*raiz_artista, digitar_nome_artista, comparar_dados_nome_artista, liberar_dados_artista);
+            
+
+            if (artista_encontrado != NULL)
+            {
+                ARV_BINARIA *album_encontrado = encontrar_dado_na_arv_digitando(artista_encontrado->info->artista->albuns_raiz_arvore, digitar_titulo_album, comparar_dados_titulo_album, liberar_dados_album);
+
+                if (album_encontrado != NULL)
+                {
+                    verificacao_cadastro_musica(cadastrar_musica(album_encontrado->info, digitar_cadastro_musica(album_encontrado->info)));
+                }
+                else
+                {
+                    mensagem_erro("Album nao encontrado!");
+                }
+            }
+            else
+            {
+                mensagem_erro("Artista nao encontrado!");
+            }
             pausar_tela();
         }
             break;

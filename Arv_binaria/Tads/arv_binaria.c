@@ -14,7 +14,7 @@ ARV_BINARIA *alocar_arv_binaria()
 
 void liberar_no_arv_binaria(ARV_BINARIA **raiz, void (*liberar)(DADOS **))
 {
- 
+
   if (raiz != NULL && *raiz != NULL)
   {
     if ((*raiz)->info != NULL)
@@ -23,10 +23,10 @@ void liberar_no_arv_binaria(ARV_BINARIA **raiz, void (*liberar)(DADOS **))
     }
 
     free(*raiz);
-    *raiz = NULL; 
+    *raiz = NULL;
   }
 }
-  
+
 void liberar_arv_binaria(ARV_BINARIA **raiz, void (*liberar)(DADOS **))
 {
   if (raiz != NULL && *raiz != NULL)
@@ -53,21 +53,24 @@ int inserir_arv_binaria(ARV_BINARIA **raiz, DADOS *info, int (*comparar)(DADOS *
 {
   int inseriu = 1;
 
-  if (*raiz == NULL)
+  if (raiz != NULL && info != NULL)
   {
-    *raiz = criar_no_arv_binaria(info);
-  }
-  else if (comparar((*raiz)->info, info) > 0)
-  {
-    inseriu = inserir_arv_binaria(&(*raiz)->esq, info, comparar);
-  }
-  else if (comparar((*raiz)->info, info) < 0)
-  {
-    inseriu = inserir_arv_binaria(&(*raiz)->dir, info, comparar);
-    /* code */
-  }
-  else{
-    inseriu = 0;
+    if (*raiz == NULL)
+    {
+      *raiz = criar_no_arv_binaria(info);
+    }
+    else if (comparar((*raiz)->info, info) > 0)
+    {
+      inseriu = inserir_arv_binaria(&(*raiz)->esq, info, comparar);
+    }
+    else if (comparar((*raiz)->info, info) < 0)
+    {
+      inseriu = inserir_arv_binaria(&(*raiz)->dir, info, comparar);
+    }
+    else
+    {
+      inseriu = 0;
+    }
   }
 
   return inseriu;
@@ -87,7 +90,7 @@ short int imprimir_arv_binaria_filtro(ARV_BINARIA *raiz, DADOS *info, void (*pri
 {
   short int retorno = 0;
 
-  if (raiz != NULL)
+  if (raiz != NULL && info != NULL)
   {
     retorno |= imprimir_arv_binaria_filtro(raiz->esq, info, printar_dados, comparar);
     if (comparar(raiz->info, info) == 0)
@@ -138,12 +141,11 @@ ARV_BINARIA **endereco_maximo_direita(ARV_BINARIA **raiz)
   return no;
 }
 
-
 ARV_BINARIA *remover_arv_binaria(ARV_BINARIA **raiz, DADOS *info, int (*comparar)(DADOS *, DADOS *))
 {
   ARV_BINARIA *removeu = NULL;
 
-  if (*raiz != NULL)
+  if (raiz != NULL && *raiz != NULL && info != NULL)
   {
     if (comparar((*raiz)->info, info) == 0)
     {
@@ -190,7 +192,6 @@ ARV_BINARIA *remover_arv_binaria(ARV_BINARIA **raiz, DADOS *info, int (*comparar
     }
   }
 
-
   return removeu;
 }
 
@@ -198,7 +199,7 @@ ARV_BINARIA *buscar_arv_binaria(ARV_BINARIA *raiz, DADOS *info, int (*comparar)(
 {
   ARV_BINARIA *no = NULL;
 
-  if (raiz != NULL)
+  if (raiz != NULL && info != NULL)
   {
     if (comparar(raiz->info, info) == 0)
     {
@@ -219,5 +220,3 @@ ARV_BINARIA *buscar_arv_binaria(ARV_BINARIA *raiz, DADOS *info, int (*comparar)(
 
   return no;
 }
-
-

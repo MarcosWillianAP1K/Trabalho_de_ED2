@@ -1,0 +1,9 @@
+{
+    "files.associations": {
+        "*.sqlbook": "sql",
+        "*.ndjson": "jsonl",
+        "*.dbclient-js": "javascript",
+        "arv_binaria.h": "c",
+        "func_interatividade.h": "c"
+    }
+}
