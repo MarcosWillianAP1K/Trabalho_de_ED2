@@ -72,7 +72,7 @@ int comparar_titulo_musica_musica_playlist(MUSICA_PLAYLIST *musica_playlist1, MU
 
 int comparar_musica_playlist(MUSICA_PLAYLIST *musica_playlist1, MUSICA_PLAYLIST *musica_playlist2)
 {
-    int comparacao = 0;
+    int comparacao = -2;
 
     if (musica_playlist1 != NULL && musica_playlist2 != NULL)
     {

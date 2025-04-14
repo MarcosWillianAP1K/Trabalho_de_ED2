@@ -56,7 +56,7 @@ int comparar_titulo_album(ALBUM *album1, ALBUM *album2)
         return strcmp(album1->titulo, album2->titulo);
     }
     
-    return 0;
+    return -2;
 }
 
 int comparar_data_album(ALBUM *album1, ALBUM *album2)

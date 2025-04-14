@@ -147,7 +147,6 @@ void menu_principal(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
 {
 
     short int opcao = 0;
-    short int retorno = 0;
 
     do
     {

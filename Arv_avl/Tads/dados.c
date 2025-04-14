@@ -21,7 +21,7 @@ DADOS *alocar_dados()
 
 void imprimir_dados_artista(DADOS *dados)
 {
-    if (dados->artista != NULL)
+    if (dados != NULL)
     {
         imprimir_artista(dados->artista);
     }
@@ -29,7 +29,7 @@ void imprimir_dados_artista(DADOS *dados)
 
 void imprimir_dados_album(DADOS *dados)
 {
-    if (dados->album != NULL)
+    if (dados != NULL)
     {
         imprimir_album(dados->album);
     }
@@ -37,7 +37,7 @@ void imprimir_dados_album(DADOS *dados)
 
 void imprimir_dados_musica(DADOS *dados)
 {
-    if (dados->musica != NULL)
+    if (dados != NULL)
     {
         imprimir_musica(dados->musica);
     }
@@ -45,7 +45,7 @@ void imprimir_dados_musica(DADOS *dados)
 
 void imprimir_dados_playlist(DADOS *dados)
 {
-    if (dados->playlist != NULL)
+    if (dados != NULL)
     {
         imprimir_playlist(dados->playlist);
     }
@@ -53,7 +53,7 @@ void imprimir_dados_playlist(DADOS *dados)
 
 void imprimir_dados_musica_playlist(DADOS *dados)
 {
-    if (dados->musica_playlist != NULL)
+    if (dados != NULL)
     {
         imprimir_musica_playlist(dados->musica_playlist);
     }
