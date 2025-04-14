@@ -520,7 +520,7 @@ short int remover_musica_de_album_de_artista(ARV_BINARIA **raiz, ARV_BINARIA **r
                 if (menu_que_volta() == 1)
                 {
                     ARV_BINARIA *remover = album->info->album->musicas_raiz_arvore;
-                    ARV_BINARIA *musica_removida = remover_arv_binaria(&remover, aux3, comparar_dados_musica_playlist);
+                    ARV_BINARIA *musica_removida = remover_arv_binaria(&remover, aux3, comparar_dados_titulo_musica);
                 
                     if (musica_removida != NULL)
                     {
