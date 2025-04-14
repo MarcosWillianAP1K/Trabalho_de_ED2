@@ -57,7 +57,7 @@ short int cadastrar_albuns(DADOS *artista, DADOS *info);
 
 short int cadastrar_musica(DADOS *album, DADOS *info);
 
-short int cadastrar_playlist(ARV_BINARIA **raiz);
+short int cadastrar_playlist(ARV_BINARIA **raiz, DADOS *info);
 
 short int cadastrar_musica_em_uma_playlist(ARV_BINARIA **raiz_playlist, ARV_BINARIA **raiz_artista);
 
