@@ -509,7 +509,7 @@ short int remover_musica_de_album_de_artista(ARV_BINARIA **raiz, ARV_BINARIA **r
         {
             DADOS *aux3 = digitar_titulo_musica();
             DADOS *aux4 = alocar_dados();
-            aux4->musica_playlist = criar_musica_playlist(artista->info->artista->nome, album->info->album->titulo, aux3->musica);
+            aux4->musica_playlist = criar_musica_playlist(aux->artista->nome, aux2->album->titulo, aux3->musica);
 
             if (comparar_se_esta_vazio(aux3->musica->titulo) == 0)
             {
