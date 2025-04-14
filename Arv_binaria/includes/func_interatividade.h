@@ -7,6 +7,8 @@
 
 short int menu_que_volta();
 
+short int comparar_se_esta_vazio(char *n1);
+
 void mostrar_artista_por_tipo(ARV_BINARIA *raiz);
 
 void mostrar_artista_por_estilo(ARV_BINARIA *raiz);
@@ -45,9 +47,9 @@ void delete_playlist(ARV_BINARIA **raiz_playlist);
 
 void delete_all(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist);
 
-short int cadastrar_artista(ARV_BINARIA **raiz_artista);
+short int cadastrar_artista(ARV_BINARIA **raiz_artista, DADOS *info);
 
-short int cadastrar_albuns(ARV_BINARIA **raiz_artista);
+short int cadastrar_albuns(DADOS *artista, DADOS *info);
 
 short int cadastrar_musica(ARV_BINARIA **raiz_artista);
 

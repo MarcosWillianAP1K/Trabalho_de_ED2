@@ -143,6 +143,110 @@ void verificacao_remover_musica_album_artista(short int n)
     }
 }
 
+DADOS *digitar_nome_artista()
+{
+    DADOS *aux = alocar_dados();
+
+    printf("Digite nome do artista\n");
+    char *nome = digitar_string();
+
+    aux->artista = criar_artista(nome, "auxiliar", "auxiliar", 0, NULL);
+
+    return aux;
+}
+
+DADOS *digitar_cadastro_artista(ARV_BINARIA *raiz_artista)
+{
+    print_amarelo("Deixe os campos vazios para sair (Menos os que envolve numeros)\n\n");
+    DADOS *aux = alocar_dados();
+
+    printf("Digite o nome do artista\n");
+    char *nome = digitar_string();
+
+    printf("Digite o tipo do artista\n");
+    char *tipo = digitar_string();
+
+    printf("Digite o estilo musical do artista\n");
+    char *estilo = digitar_string();
+
+    aux->artista = criar_artista(nome, tipo, estilo, 0, NULL);
+
+    if (comparar_se_esta_vazio(aux->artista->nome) == 0 || comparar_se_esta_vazio(aux->artista->tipo) == 0 || comparar_se_esta_vazio(aux->artista->estilo_musical) == 0)
+    {
+        liberar_dados_artista(&aux);
+    }
+    else if (buscar_arv_binaria(raiz_artista, aux, comparar_dados_nome_artista) != NULL)
+    {
+        liberar_dados_artista(&aux);
+    }
+
+    return aux;
+}
+
+DADOS *digitar_cadastro_album(DADOS *artista)
+{
+    DADOS *aux = NULL;
+
+    if (artista != NULL && artista->artista != NULL)
+    {
+
+        print_amarelo("Deixe os campos vazios para sair (Menos os que envolve numeros)\n\n");
+
+        aux = alocar_dados();
+
+        printf("Digite o titulo do album: ");
+        char *titulo = digitar_string();
+
+        printf("Digite o ano de lancamento do album: ");
+
+        aux->album = criar_album(titulo, digitar_short_int(), 0, NULL);
+
+        if (comparar_se_esta_vazio(aux->album->titulo) == 0)
+        {
+            liberar_dados_album(&aux);
+        }
+        else if (buscar_arv_binaria(artista->artista->albuns_raiz_arvore, aux, comparar_dados_titulo_album) != NULL)
+        {
+            liberar_dados_album(&aux);
+        }
+    }
+
+    return aux;
+}
+
+DADOS *digitar_cadastro_musica(DADOS *album)
+{
+    DADOS *aux = NULL;
+
+    if (album != NULL)
+    {
+        printf("Digite o titulo da musica: ");
+        char *titulo = digitar_string();
+
+        printf("Digite o duracao da musica\n");
+        printf("Digite os minutos: ");
+        short int minutos = digitar_short_int();
+
+        printf("Digite os segundos: ");
+        short int segundos;
+
+        while ((segundos = digitar_short_int()) > 59)
+        {
+            mensagem_erro("Segundos invalidos, digite novamente\n");
+            printf("Digite os segundos: ");
+        }
+
+        aux->musica = criar_musica(titulo, minutos, segundos);
+
+        if (comparar_se_esta_vazio(aux->musica->titulo) == 0)
+        {
+            liberar_dados_musica(&aux);
+        }
+    }
+
+    return aux;
+}
+
 void menu_principal(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
 {
 
@@ -188,20 +292,37 @@ void menu_principal(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
         case 1:
             limpar_tela();
             print_amarelo("Cadastrar artista:\n");
-            verificacao_cadastro_artista(cadastrar_artista(raiz_artista));
+            verificacao_cadastro_artista(cadastrar_artista(raiz_artista, digitar_cadastro_artista(*raiz_artista)));
             pausar_tela();
             break;
 
         case 2:
+        {
             print_amarelo("Cadastrar albuns:\n");
-            verificacao_cadastro_album(cadastrar_albuns(raiz_artista));
+
+            DADOS *artista = digitar_nome_artista();
+            ARV_BINARIA *artista_encontrado = buscar_arv_binaria(*raiz_artista, artista, comparar_dados_nome_artista);
+            liberar_dados_artista(&artista);
+
+            if (artista_encontrado != NULL)
+            {
+                verificacao_cadastro_album(cadastrar_albuns(artista_encontrado->info, digitar_cadastro_album(artista_encontrado->info)));
+            }
+            else
+            {
+                mensagem_erro("Artista nao encontrado!");
+            }
+
             pausar_tela();
-            break;
+        }
+        break;
 
         case 3:
+        {
             print_amarelo("Cadastrar musicas:\n");
             verificacao_cadastro_musica(cadastrar_musica(raiz_artista));
             pausar_tela();
+        }
             break;
 
         case 4:

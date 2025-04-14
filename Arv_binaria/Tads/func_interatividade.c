@@ -37,18 +37,6 @@ short int comparar_se_esta_vazio(char *n1)
     return strcmp(n1, "");
 }
 
-DADOS *digitar_nome_artista()
-{
-    DADOS *aux = alocar_dados();
-
-    printf("Digite nome do artista\n");
-    char *nome = digitar_string();
-
-    aux->artista = criar_artista(nome, "auxiliar", "auxiliar", 0, NULL);
-
-    return aux;
-}
-
 DADOS *digitar_tipo_artista()
 {
     DADOS *aux = alocar_dados();
@@ -479,7 +467,7 @@ ARV_BINARIA *verificar_nas_playlists(ARV_BINARIA **raiz_playlist, DADOS *aux)
         if (musica == NULL)
         {
             musica = verificar_nas_playlists(&(*raiz_playlist)->dir, aux);
-        } 
+        }
     }
     return musica;
 }
@@ -521,7 +509,7 @@ short int remover_musica_de_album_de_artista(ARV_BINARIA **raiz, ARV_BINARIA **r
                 {
                     ARV_BINARIA *remover = album->info->album->musicas_raiz_arvore;
                     ARV_BINARIA *musica_removida = remover_arv_binaria(&remover, aux3, comparar_dados_titulo_musica);
-                
+
                     if (musica_removida != NULL)
                     {
                         retorno = 1;
@@ -639,159 +627,45 @@ void delete_all(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
     }
 }
 
-short int cadastrar_artista(ARV_BINARIA **raiz_artista)
+short int cadastrar_artista(ARV_BINARIA **raiz_artista, DADOS *info)
 {
     short int retorno = 0;
 
-    print_amarelo("Deixe os campos vazios para sair\n\n");
-
-    printf("Digite o nome do artista: ");
-    char *nome = digitar_string();
-
-    printf("Digite o tipo do artista: ");
-    char *tipo = digitar_string();
-
-    printf("Digite o estilo musical do artista: ");
-    char *estilo = digitar_string();
-
-    if (comparar_se_esta_vazio(nome) != 0 && comparar_se_esta_vazio(tipo) != 0 && comparar_se_esta_vazio(estilo) != 0)
+    if (info != NULL && info->artista != NULL)
     {
-        DADOS *aux = alocar_dados();
-        aux->artista = criar_artista(nome, tipo, estilo, 0, NULL);
-
-        if (aux->artista != NULL)
-        {
-            retorno = inserir_arv_binaria(raiz_artista, aux, comparar_dados_nome_artista);
-        }
-        else
-        {
-            liberar_dados_artista(&aux);
-        }
-    }
-    else
-    {
-        retorno = 2;
+        retorno = inserir_arv_binaria(raiz_artista, info, comparar_dados_nome_artista);
     }
 
     return retorno;
 }
 
-short int cadastrar_albuns(ARV_BINARIA **raiz_artista)
+short int cadastrar_albuns(DADOS *artista, DADOS *info)
 {
-    print_amarelo("Deixe os campos vazios para sair (Menos os que envolve numeros)\n\n");
     short int retorno = 0;
 
-    DADOS *aux = digitar_nome_artista();
-    ARV_BINARIA *artista = buscar_arv_binaria(*raiz_artista, aux, comparar_dados_nome_artista);
-
-    if (comparar_se_esta_vazio(aux->artista->nome) == 0)
+    if (artista != NULL && info != NULL)
     {
-        retorno = 2;
+        ARV_BINARIA *inserir = artista->artista->albuns_raiz_arvore;
+        retorno = inserir_arv_binaria(&inserir, info, comparar_dados_titulo_album);
+        artista->artista->albuns_raiz_arvore = inserir;
+        artista->artista->numero_de_albuns++;
     }
-    else if (artista != NULL)
-    {
-        DADOS *aux2 = alocar_dados();
-
-        printf("Digite o titulo do album: ");
-        char *titulo = digitar_string();
-
-        printf("Digite o ano de lancamento do album: ");
-
-        aux2->album = criar_album(titulo, digitar_short_int(), 0, NULL);
-
-        if (comparar_se_esta_vazio(aux2->album->titulo) == 0)
-        {
-            retorno = 2;
-            liberar_dados_album(&aux2);
-        }
-        else
-        {
-            ARV_BINARIA *inserir = artista->info->artista->albuns_raiz_arvore;
-
-            retorno = inserir_arv_binaria(&inserir, aux2, comparar_dados_titulo_album);
-            artista->info->artista->albuns_raiz_arvore = inserir;
-            artista->info->artista->numero_de_albuns++;
-        }
-    }
-    else
-    {
-        retorno = -1;
-    }
-
-    liberar_dados_artista(&aux);
 
     return retorno;
 }
 
-short int cadastrar_musica(ARV_BINARIA **raiz_artista)
+short int cadastrar_musica(DADOS *album, DADOS *info)
 {
     short int retorno = 0;
 
-    DADOS *aux = digitar_nome_artista();
-    ARV_BINARIA *artista = buscar_arv_binaria(*raiz_artista, aux, comparar_dados_nome_artista);
-
-    if (comparar_se_esta_vazio(aux->artista->nome) == 0)
+    if (album != NULL && info != NULL)
     {
-        retorno = 2;
+
+        ARV_BINARIA *inserir = album->album->musicas_raiz_arvore;
+        retorno = inserir_arv_binaria(&inserir, info, comparar_dados_titulo_musica);
+        album->album->musicas_raiz_arvore = inserir;
+        album->album->numero_de_musicas++;
     }
-    else if (artista != NULL)
-    {
-        DADOS *aux2 = digitar_titulo_album();
-        ARV_BINARIA *album = buscar_arv_binaria(artista->info->artista->albuns_raiz_arvore, aux2, comparar_dados_titulo_album);
-
-        if (comparar_se_esta_vazio(aux2->album->titulo) == 0)
-        {
-            retorno = 2;
-            liberar_dados_album(&aux2);
-        }
-        else if (album != NULL)
-        {
-            DADOS *aux3 = alocar_dados();
-
-            printf("Digite o titulo da musica: ");
-            char *titulo = digitar_string();
-
-            printf("Digite o duracao da musica\n");
-            printf("Digite os minutos: ");
-            short int minutos = digitar_short_int();
-
-            printf("Digite os segundos: ");
-            short int segundos;
-
-            while ((segundos = digitar_short_int()) > 59)
-            {
-                mensagem_erro("Segundos invalidos, digite novamente\n");
-                printf("Digite os segundos: ");
-            }
-
-            aux3->musica = criar_musica(titulo, minutos, segundos);
-
-            if (comparar_se_esta_vazio(aux3->musica->titulo) == 0)
-            {
-                retorno = 2;
-                liberar_dados_musica(&aux3);
-            }
-            else
-            {
-                ARV_BINARIA *inserir = album->info->album->musicas_raiz_arvore;
-                retorno = inserir_arv_binaria(&inserir, aux3, comparar_dados_titulo_musica);
-                album->info->album->musicas_raiz_arvore = inserir;
-                album->info->album->numero_de_musicas++;
-            }
-        }
-        else
-        {
-            retorno = -2;
-        }
-
-        liberar_dados_album(&aux2);
-    }
-    else
-    {
-        retorno = -1;
-    }
-
-    liberar_dados_artista(&aux);
 
     return retorno;
 }
