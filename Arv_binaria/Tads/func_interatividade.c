@@ -400,8 +400,12 @@ short int cadastrar_album(DADOS *artista, DADOS *info)
     {
         ARV_BINARIA *inserir = artista->artista->albuns_raiz_arvore;
         retorno = inserir_arv_binaria(&inserir, info, comparar_dados_titulo_album);
-        artista->artista->albuns_raiz_arvore = inserir;
-        artista->artista->numero_de_albuns++;
+        
+        if (retorno == 1)
+        {
+            artista->artista->albuns_raiz_arvore = inserir;
+            artista->artista->numero_de_albuns++;
+        }
     }
 
     return retorno;
@@ -415,8 +419,12 @@ short int cadastrar_musica(DADOS *album, DADOS *info)
     {
         ARV_BINARIA *inserir = album->album->musicas_raiz_arvore;
         retorno = inserir_arv_binaria(&inserir, info, comparar_dados_titulo_musica);
-        album->album->musicas_raiz_arvore = inserir;
-        album->album->numero_de_musicas++;
+       
+        if (retorno == 1)
+        {
+            album->album->musicas_raiz_arvore = inserir;
+            album->album->numero_de_musicas++;
+        }
     }
 
     return retorno;
@@ -442,8 +450,12 @@ short int cadastrar_musica_em_uma_playlist(DADOS *playlist, DADOS *info)
     {
         ARV_BINARIA *inserir = playlist->playlist->musicas_raiz_arvore;
         retorno = inserir_arv_binaria(&inserir, info, comparar_dados_musica_playlist);
-        playlist->playlist->musicas_raiz_arvore = inserir;
-        playlist->playlist->numero_de_musicas++;
+        
+        if (retorno == 1)
+        {
+            playlist->playlist->musicas_raiz_arvore = inserir;
+            playlist->playlist->numero_de_musicas++;
+        }
     }
 
     return retorno;
