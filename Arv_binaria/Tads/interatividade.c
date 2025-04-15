@@ -376,56 +376,120 @@ void menu_principal(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
 
         case 4:
             print_amarelo("Artistas cadastrados:\n");
-            imprimir_arv_binaria(*raiz_artista, imprimir_dados_artista);
+            mostrar_artista(*raiz_artista);
             pausar_tela();
             break;
 
         case 5:
+        {
             print_amarelo("Artistas cadastrados de um tipo:\n");
-            mostrar_artista_por_tipo(*raiz_artista);
+            DADOS *aux = digitar_tipo_artista();
+            mostrar_artista_por_tipo(*raiz_artista, aux);
+            liberar_dados_artista(&aux);
             pausar_tela();
+        }
             break;
 
         case 6:
+        {
             print_amarelo("Artistas cadastrados de um estilo musical:\n");
-            mostrar_artista_por_estilo(*raiz_artista);
+            DADOS *aux = digitar_estilo_artista();
+            mostrar_artista_por_estilo(*raiz_artista, aux);
+            liberar_dados_artista(&aux);
             pausar_tela();
+        }
             break;
 
         case 7:
+        {
             print_amarelo("Artistas cadastrados de um estilo musical e tipo:\n");
-            mostrar_artista_por_tipo_e_estilo(*raiz_artista);
+            DADOS *aux = digitar_tipo_e_estilo_artista();
+            mostrar_artista_por_tipo_e_estilo(*raiz_artista, aux);
+            liberar_dados_artista(&aux);
             pausar_tela();
+        }
             break;
 
         case 8:
+        {
             print_amarelo("Albuns cadastrados de um artista:\n");
-            mostrar_albuns_de_um_artista(*raiz_artista);
+            ARV_BINARIA *artista_encontrado = encontrar_dado_na_arv_digitando(*raiz_artista, digitar_nome_artista, comparar_dados_nome_artista, liberar_dados_artista);
+
+            if (artista_encontrado != NULL)
+            {
+                mostrar_albuns_de_um_artista(artista_encontrado->info);
+            }
+            else
+            {
+                mensagem_erro("Artista nao encontrado!");
+            }
             pausar_tela();
+        }
             break;
 
         case 9:
+        {
             print_amarelo("Albuns cadastrados de um artista de um ano:\n");
-            mostrar_albuns_de_um_artista_de_um_ano(*raiz_artista);
+            ARV_BINARIA *artista_encontrado = encontrar_dado_na_arv_digitando(*raiz_artista, digitar_nome_artista, comparar_dados_nome_artista, liberar_dados_artista);
+
+            if (artista_encontrado != NULL)
+            {
+                DADOS *ano_album = digitar_ano_album();
+                mostrar_albuns_de_um_artista_de_um_ano(artista_encontrado->info, ano_album);
+                liberar_dados_album(&ano_album);
+            }
+            else
+            {
+                mensagem_erro("Artista nao encontrado!");
+            }
             pausar_tela();
+        }
             break;
 
         case 10:
+        {
             print_amarelo("Musicas cadastradas de um album de um artista:\n");
-            mostrar_musicas_de_um_album_de_um_artista(*raiz_artista);
+            ARV_BINARIA *artista_encontrado = encontrar_dado_na_arv_digitando(*raiz_artista, digitar_nome_artista, comparar_dados_nome_artista, liberar_dados_artista);
+
+            if (artista_encontrado != NULL)
+            {
+                ARV_BINARIA *album_encontrado = encontrar_dado_na_arv_digitando(artista_encontrado->info->artista->albuns_raiz_arvore, digitar_titulo_album, comparar_dados_titulo_album, liberar_dados_album);
+
+                if (album_encontrado != NULL)
+                {
+                    mostrar_musicas_de_um_album_de_um_artista(album_encontrado->info, artista_encontrado->info);
+                }
+                else
+                {
+                    mensagem_erro("Album nao encontrado!");
+                }
+            }
+            else
+            {
+                mensagem_erro("Artista nao encontrado!");
+            }
             pausar_tela();
+        }
             break;
 
         case 11:
+        {
             print_amarelo("Albuns cadastrados de todos artista de um ano:\n");
-            mostrar_albuns_de_todos_artistas_de_um_ano(*raiz_artista);
+            DADOS *ano_album = digitar_ano_album();
+            mostrar_albuns_de_todos_artistas_de_um_ano(*raiz_artista, ano_album);
+            liberar_dados_album(&ano_album);
             pausar_tela();
+        }
             break;
 
         case 12:
+        {
             print_amarelo("Dados de uma musica:\n");
-            mostrar_dados_de_uma_musica(*raiz_artista);
+            DADOS *aux = digitar_titulo_musica();
+            mostrar_dados_de_uma_musica(*raiz_artista, aux);
+            liberar_dados_musica(&aux);
             pausar_tela();
+        }
             break;
 
         case 13:
@@ -486,33 +550,48 @@ void menu_principal(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
         break;
 
         case 15:
+        {
             print_amarelo("Mostrar playlists:\n");
-            imprimir_arv_binaria(*raiz_playlist, imprimir_dados_playlist);
+            mostrar_playlist(*raiz_playlist);
             pausar_tela();
+        }
             break;
 
         case 16:
+        {
             print_amarelo("Mostrar dados de uma playlist:\n");
-            mostrar_dados_de_uma_playlist(*raiz_playlist);
+            ARV_BINARIA *playlist_encontrada = encontrar_dado_na_arv_digitando(raiz_playlist, digitar_nome_playlist, comparar_dados_nome_playlist, liberar_dados_playlist);
+
+            if(playlist_encontrada != NULL)
+            {
+                mostrar_dados_de_uma_playlist(playlist_encontrada->info);
+            }
             pausar_tela();
+        }
             break;
 
         case 17:
+        {
             print_amarelo("Remover musica de uma playlist:\n");
-            verificacao_remover_musica_playlist(remover_musica_de_uma_playlist(raiz_playlist));
+            remover_musica_de_uma_playlist(raiz_playlist);
             pausar_tela();
+        }
             break;
 
         case 18:
+        {
             print_amarelo("Remover uma playlist:\n");
-            verificacao_remover_playlist(remover_playlist(raiz_playlist));
+            remover_playlist(raiz_playlist);
             pausar_tela();
+        }
             break;
 
         case 19:
+        {
             print_amarelo("Remover uma musica de um album de um artista:\n");
-            verificacao_remover_musica_album_artista(remover_musica_de_album_de_artista(raiz_artista, raiz_playlist));
+            remover_musica_de_album_de_artista(raiz_artista, raiz_playlist);
             pausar_tela();
+        }
             break;
 
         default:

@@ -13,23 +13,27 @@ short int menu_que_volta();
 
 short int comparar_se_esta_vazio(char *n1);
 
-void mostrar_artista_por_tipo(ARV_BINARIA *raiz);
+void mostrar_artista(ARV_BINARIA *raiz_artista);
 
-void mostrar_artista_por_estilo(ARV_BINARIA *raiz);
+void mostrar_playlist(ARV_BINARIA *raiz_playlist);
 
-void mostrar_artista_por_tipo_e_estilo(ARV_BINARIA *raiz);
+void mostrar_artista_por_tipo(ARV_BINARIA *raiz_artista, DADOS *tipo);
 
-void mostrar_albuns_de_um_artista(ARV_BINARIA *raiz);
+void mostrar_artista_por_estilo(ARV_BINARIA *raiz_artista, DADOS *estilo);
 
-void mostrar_albuns_de_um_artista_de_um_ano(ARV_BINARIA *raiz);
+void mostrar_artista_por_tipo_e_estilo(ARV_BINARIA *raiz_artista, DADOS *tipo_estilo);
 
-void mostrar_musicas_de_um_album_de_um_artista(ARV_BINARIA *raiz);
+void mostrar_albuns_de_um_artista(DADOS *artista);
 
-void mostrar_dados_de_uma_musica(ARV_BINARIA *raiz);
+void mostrar_albuns_de_um_artista_de_um_ano(DADOS *artista, DADOS *ano_album);
 
-void mostrar_albuns_de_todos_artistas_de_um_ano(ARV_BINARIA *raiz_artista);
+void mostrar_musicas_de_um_album_de_um_artista(DADOS *album, DADOS *artista);
 
-void mostrar_dados_de_uma_playlist(ARV_BINARIA *raiz);
+void mostrar_dados_de_uma_musica(ARV_BINARIA *raiz, DADOS *filtro);
+
+void mostrar_albuns_de_todos_artistas_de_um_ano(ARV_BINARIA *raiz_artista, DADOS *ano);
+
+void mostrar_dados_de_uma_playlist(DADOS *playlist);
 
 short int remover_musica_de_uma_playlist(ARV_BINARIA **raiz);
 
