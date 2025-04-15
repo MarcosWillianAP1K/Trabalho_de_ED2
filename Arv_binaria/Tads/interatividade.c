@@ -268,11 +268,23 @@ void menu_principal(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
             break;
 
         case 1:
+        {
             limpar_tela();
             print_amarelo("Cadastrar artista:\n");
             print_amarelo("Deixe os campos vazios para sair\n\n");
-            cadastrar_artista(raiz_artista, digitar_cadastro_artista(*raiz_artista));
+
+            DADOS *cadastro = digitar_cadastro_artista(*raiz_artista);
+            if (cadastrar_artista(raiz_artista, cadastro) == 1)
+            {
+                mensagem_sucesso("Artista cadastrado com sucesso!\n");
+            }
+            else
+            {
+                mensagem_erro("Artista ja cadastrado!\n");
+                liberar_dados_artista(&cadastro);
+            }
             pausar_tela();
+        }
             break;
 
         case 2:
@@ -283,7 +295,16 @@ void menu_principal(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
 
             if (artista_encontrado != NULL)
             {
-                cadastrar_albuns(artista_encontrado->info, digitar_cadastro_album(artista_encontrado->info));
+                DADOS *cadastro = digitar_cadastro_album(artista_encontrado->info);
+                if (cadastrar_album(artista_encontrado->info, cadastro) == 1)
+                {
+                    mensagem_sucesso("Album cadastrado com sucesso!\n");
+                }
+                else
+                {
+                    mensagem_erro("Album ja cadastrado!\n");
+                    liberar_dados_album(&cadastro);
+                }
             }
             else
             {
@@ -306,7 +327,16 @@ void menu_principal(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
 
                 if (album_encontrado != NULL)
                 {
-                    cadastrar_musica(album_encontrado->info, digitar_cadastro_musica(album_encontrado->info));
+                    DADOS *cadastro = digitar_cadastro_musica();
+                    if (cadastrar_musica(album_encontrado->info, cadastro) == 1)
+                    {
+                        mensagem_sucesso("Musica cadastrada com sucesso!\n");
+                    }
+                    else
+                    {
+                        mensagem_erro("Musica ja cadastrada!\n");
+                        liberar_dados_musica(&cadastro);
+                    }
                 }
                 else
                 {
@@ -443,7 +473,16 @@ void menu_principal(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
         {
             print_amarelo("Cadastrar playlist:\n");
             print_amarelo("Deixe os campos vazios para sair\n\n");
-            cadastrar_playlist(raiz_playlist, digitar_cadastro_playlist());
+            DADOS *cadastro = digitar_cadastro_playlist();
+            if (cadastrar_playlist(raiz_playlist, cadastro) == 1)
+            {
+                mensagem_sucesso("Playlist cadastrada com sucesso!\n");
+            }
+            else
+            {
+                mensagem_erro("Playlist ja cadastrada!\n");
+                liberar_dados_playlist(&cadastro);
+            }
             pausar_tela();
         }
         break;
@@ -471,7 +510,15 @@ void menu_principal(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
                             DADOS *musica_playlist = alocar_dados();
                             musica_playlist->musica_playlist = criar_musica_playlist(artista_encontrado->info->artista, album_encontrado->info->album, musica_encontrada->info->musica);
 
-                            cadastrar_musica_em_uma_playlist(playlist_encontrada->info, musica_playlist);
+                            if(cadastrar_musica_em_uma_playlist(playlist_encontrada->info, musica_playlist) == 1)
+                            {
+                                mensagem_sucesso("Musica cadastrada com sucesso!");
+                            }
+                            else
+                            {
+                                mensagem_erro("Musica ja cadastrada!");
+                                liberar_dados_musica_playlist(&musica_playlist);
+                            }
                         }
                         else
                         {

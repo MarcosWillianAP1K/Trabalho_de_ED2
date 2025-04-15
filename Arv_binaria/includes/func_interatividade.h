@@ -57,7 +57,7 @@ void delete_all(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist);
 
 short int cadastrar_artista(ARV_BINARIA **raiz_artista, DADOS *info);
 
-short int cadastrar_albuns(DADOS *artista, DADOS *info);
+short int cadastrar_album(DADOS *artista, DADOS *info);
 
 short int cadastrar_musica(DADOS *album, DADOS *info);
 

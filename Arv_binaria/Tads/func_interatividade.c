@@ -392,7 +392,7 @@ short int cadastrar_artista(ARV_BINARIA **raiz_artista, DADOS *info)
     return retorno;
 }
 
-short int cadastrar_albuns(DADOS *artista, DADOS *info)
+short int cadastrar_album(DADOS *artista, DADOS *info)
 {
     short int retorno = 0;
 
