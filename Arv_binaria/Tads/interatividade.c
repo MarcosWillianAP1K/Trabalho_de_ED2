@@ -129,103 +129,79 @@ DADOS *digitar_musica_playlist()
     char *titulo_musica = digitar_string();
 
     MUSICA *musica = criar_musica(titulo_musica, 0, 0);
+    ARTISTA *artista = criar_artista(nome_artista, "auxiliar", "auxiliar", 0, NULL);
+    ALBUM *album = criar_album(titulo_album, 0, 0, NULL);
 
-    aux->musica_playlist = criar_musica_playlist(nome_artista, titulo_album, musica);
+    aux->musica_playlist = criar_musica_playlist(artista, album, musica);
 
     return aux;
 }
 
-DADOS *digitar_cadastro_artista(ARV_BINARIA *raiz_artista)
+DADOS *digitar_cadastro_artista()
 {
-    print_amarelo("Deixe os campos vazios para sair (Menos os que envolve numeros)\n\n");
-    DADOS *aux = alocar_dados();
-
     printf("Digite o nome do artista\n");
     char *nome = digitar_string();
-
+    
     printf("Digite o tipo do artista\n");
     char *tipo = digitar_string();
-
+    
     printf("Digite o estilo musical do artista\n");
     char *estilo = digitar_string();
-
+    
+    DADOS *aux = alocar_dados();
     aux->artista = criar_artista(nome, tipo, estilo, 0, NULL);
 
     if (comparar_se_esta_vazio(aux->artista->nome) == 0 || comparar_se_esta_vazio(aux->artista->tipo) == 0 || comparar_se_esta_vazio(aux->artista->estilo_musical) == 0)
     {
         liberar_dados_artista(&aux);
     }
-    else if (buscar_arv_binaria(raiz_artista, aux, comparar_dados_nome_artista) != NULL)
+
+    return aux;
+}
+
+DADOS *digitar_cadastro_album()
+{
+    
+    printf("Digite o titulo do album: ");
+    char *titulo = digitar_string();
+    
+    printf("Digite o ano de lancamento do album: ");
+    
+    DADOS *aux = alocar_dados();
+    aux->album = criar_album(titulo, digitar_short_int(), 0, NULL);
+
+    if (comparar_se_esta_vazio(aux->album->titulo) == 0)
     {
-        liberar_dados_artista(&aux);
+        liberar_dados_album(&aux);
     }
 
     return aux;
 }
 
-DADOS *digitar_cadastro_album(DADOS *artista)
+DADOS *digitar_cadastro_musica()
 {
-    DADOS *aux = NULL;
-
-    if (artista != NULL && artista->artista != NULL)
+    printf("Digite o titulo da musica: ");
+    char *titulo = digitar_string();
+    
+    printf("Digite o duracao da musica\n");
+    printf("Digite os minutos: ");
+    short int minutos = digitar_short_int();
+    
+    printf("Digite os segundos: ");
+    short int segundos;
+    
+    while ((segundos = digitar_short_int()) > 59)
     {
-
-        print_amarelo("Deixe os campos vazios para sair (Menos os que envolve numeros)\n\n");
-
-        aux = alocar_dados();
-
-        printf("Digite o titulo do album: ");
-        char *titulo = digitar_string();
-
-        printf("Digite o ano de lancamento do album: ");
-
-        aux->album = criar_album(titulo, digitar_short_int(), 0, NULL);
-
-        if (comparar_se_esta_vazio(aux->album->titulo) == 0)
-        {
-            liberar_dados_album(&aux);
-        }
-        else if (buscar_arv_binaria(artista->artista->albuns_raiz_arvore, aux, comparar_dados_titulo_album) != NULL)
-        {
-            liberar_dados_album(&aux);
-        }
-    }
-
-    return aux;
-}
-
-DADOS *digitar_cadastro_musica(DADOS *album)
-{
-    DADOS *aux = NULL;
-
-    if (album != NULL)
-    {
-        printf("Digite o titulo da musica: ");
-        char *titulo = digitar_string();
-
-        printf("Digite o duracao da musica\n");
-        printf("Digite os minutos: ");
-        short int minutos = digitar_short_int();
-
+        mensagem_erro("Segundos invalidos, digite novamente\n");
         printf("Digite os segundos: ");
-        short int segundos;
+    }
+    
+    DADOS *aux = alocar_dados();
+    aux->musica = criar_musica(titulo, minutos, segundos);
 
-        while ((segundos = digitar_short_int()) > 59)
-        {
-            mensagem_erro("Segundos invalidos, digite novamente\n");
-            printf("Digite os segundos: ");
-        }
-
-        aux->musica = criar_musica(titulo, minutos, segundos);
-
-        if (comparar_se_esta_vazio(aux->musica->titulo) == 0)
-        {
-            liberar_dados_musica(&aux);
-        }
-        else if (buscar_arv_binaria(album->album->musicas_raiz_arvore, aux, comparar_dados_titulo_musica) != NULL)
-        {
-            liberar_dados_musica(&aux);
-        }
+    if (comparar_se_esta_vazio(aux->musica->titulo) == 0)
+    {
+        liberar_dados_musica(&aux);
     }
 
     return aux;
@@ -233,15 +209,10 @@ DADOS *digitar_cadastro_musica(DADOS *album)
 
 DADOS *digitar_cadastro_playlist()
 {
-    DADOS *aux = NULL;
-
-    print_amarelo("Deixe os campos vazios para sair\n\n");
-
-    aux = alocar_dados();
-
     printf("Digite o nome da playlist: ");
     char *nome_playlist = digitar_string();
-
+    
+    DADOS *aux = alocar_dados(); 
     aux->playlist = criar_playlist(nome_playlist, 0, NULL);
 
     if (comparar_se_esta_vazio(aux->playlist->nome) == 0)
@@ -252,32 +223,7 @@ DADOS *digitar_cadastro_playlist()
     return aux;
 }
 
-DADOS *digitar_cadastro_musica_playlist()
-{
-    DADOS *aux = NULL;
 
-    print_amarelo("Deixe os campos vazios para sair\n\n");
-
-    aux = alocar_dados();
-
-    printf("Digite o nome do artista: ");
-    char *nome_artista = digitar_string();
-
-    printf("Digite o titulo do album: ");
-    char *titulo_album = digitar_string();
-
-    printf("Digite o titulo da musica: ");
-    char *titulo_musica = digitar_string();
-
-    aux->musica_playlist = criar_musica_playlist(nome_artista, titulo_album, criar_musica(titulo_musica, 0, 0));
-
-    if (comparar_se_esta_vazio(aux->musica_playlist->musica->titulo) == 0)
-    {
-        liberar_dados_musica_playlist(&aux);
-    }
-
-    return aux;
-}
 
 void menu_principal(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
 {
@@ -324,6 +270,7 @@ void menu_principal(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
         case 1:
             limpar_tela();
             print_amarelo("Cadastrar artista:\n");
+            print_amarelo("Deixe os campos vazios para sair\n\n");
             cadastrar_artista(raiz_artista, digitar_cadastro_artista(*raiz_artista));
             pausar_tela();
             break;
@@ -331,7 +278,7 @@ void menu_principal(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
         case 2:
         {
             print_amarelo("Cadastrar albuns:\n");
-
+            print_amarelo("Deixe os campos vazios para sair\n\n");
             ARV_BINARIA *artista_encontrado = encontrar_dado_na_arv_digitando(*raiz_artista, digitar_nome_artista, comparar_dados_nome_artista, liberar_dados_artista);
 
             if (artista_encontrado != NULL)
@@ -350,7 +297,7 @@ void menu_principal(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
         case 3:
         {
             print_amarelo("Cadastrar musicas:\n");
-
+            print_amarelo("Deixe os campos vazios para sair\n\n");
             ARV_BINARIA *artista_encontrado = encontrar_dado_na_arv_digitando(*raiz_artista, digitar_nome_artista, comparar_dados_nome_artista, liberar_dados_artista);
 
             if (artista_encontrado != NULL)
@@ -495,6 +442,7 @@ void menu_principal(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
         case 13:
         {
             print_amarelo("Cadastrar playlist:\n");
+            print_amarelo("Deixe os campos vazios para sair\n\n");
             cadastrar_playlist(raiz_playlist, digitar_cadastro_playlist());
             pausar_tela();
         }
@@ -503,7 +451,7 @@ void menu_principal(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
         case 14:
         {
             print_amarelo("Cadastrar musica em uma playlist:\n");
-
+            print_amarelo("Deixe os campos vazios para sair\n\n");
             ARV_BINARIA *playlist_encontrada = encontrar_dado_na_arv_digitando(*raiz_playlist, digitar_nome_playlist, comparar_dados_nome_playlist, liberar_dados_playlist);
 
             if (playlist_encontrada != NULL)
@@ -521,7 +469,7 @@ void menu_principal(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
                         if (musica_encontrada != NULL)
                         {
                             DADOS *musica_playlist = alocar_dados();
-                            musica_playlist->musica_playlist = criar_musica_playlist(artista_encontrado->info->artista->nome, album_encontrado->info->album->titulo, musica_encontrada->info->musica);
+                            musica_playlist->musica_playlist = criar_musica_playlist(artista_encontrado->info->artista, album_encontrado->info->album, musica_encontrada->info->musica);
 
                             cadastrar_musica_em_uma_playlist(playlist_encontrada->info, musica_playlist);
                         }
@@ -559,8 +507,17 @@ void menu_principal(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
 
         case 16:
         {
+            if (*raiz_playlist == NULL)
+            {
+                print_vermelho("Nenhuma playlist cadastrada\n");
+            }
+            else
+            {
+                print_amarelo("Playlists cadastradas:\n");
+            }
+
             print_amarelo("Mostrar dados de uma playlist:\n");
-            ARV_BINARIA *playlist_encontrada = encontrar_dado_na_arv_digitando(raiz_playlist, digitar_nome_playlist, comparar_dados_nome_playlist, liberar_dados_playlist);
+            ARV_BINARIA *playlist_encontrada = encontrar_dado_na_arv_digitando(*raiz_playlist, digitar_nome_playlist, comparar_dados_nome_playlist, liberar_dados_playlist);
 
             if (playlist_encontrada != NULL)
             {
@@ -573,6 +530,7 @@ void menu_principal(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
         case 17:
         {
             print_amarelo("Remover musica de uma playlist:\n");
+            print_amarelo("Deixe os campos vazios para sair\n\n");
             ARV_BINARIA *playlist_encontrada = encontrar_dado_na_arv_digitando(*raiz_playlist, digitar_nome_playlist, comparar_dados_nome_playlist, liberar_dados_playlist);
 
             if (playlist_encontrada != NULL)
@@ -587,6 +545,10 @@ void menu_principal(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
                 {
                     mensagem_sucesso("Musica nao encontrada na playlist!\n");
                 }
+
+                liberar_musica(&musica_playlist->musica_playlist->musica);
+                liberar_artista(&musica_playlist->musica_playlist->artista);
+                liberar_album(&musica_playlist->musica_playlist->album);
                 liberar_dados_musica_playlist(&musica_playlist);
             }
             else
@@ -600,9 +562,10 @@ void menu_principal(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
         case 18:
         {
             print_amarelo("Remover uma playlist:\n");
+            print_amarelo("Deixe os campos vazios para sair\n\n");
             DADOS *playlist_a_remover = digitar_nome_playlist();
             remover_playlist(raiz_playlist, playlist_a_remover);
-            liberar_dados_playlist(playlist_a_remover);
+            liberar_dados_playlist(&playlist_a_remover);
             pausar_tela();
         }
         break;
@@ -610,6 +573,7 @@ void menu_principal(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
         case 19:
         {
             print_amarelo("Remover uma musica de um album de um artista:\n");
+            print_amarelo("Deixe os campos vazios para sair\n\n");
             ARV_BINARIA *artista_encontrado = encontrar_dado_na_arv_digitando(*raiz_artista, digitar_nome_artista, comparar_dados_nome_artista, liberar_dados_artista);
             if (artista_encontrado != NULL)
             {
@@ -618,8 +582,8 @@ void menu_principal(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
                 if (album_encontrado != NULL)
                 {
                     DADOS *musica_a_remover = digitar_titulo_musica();
-                    
-                    if (remover_musica_de_um_album_de_um_artista(album_encontrado->info, artista_encontrado->info, musica_a_remover) == 1)
+
+                    if (remover_musica_de_album_de_artista(album_encontrado->info, artista_encontrado->info, musica_a_remover, *raiz_playlist) == 1)
                     {
                         mensagem_sucesso("Musica removida com sucesso!\n");
                     }

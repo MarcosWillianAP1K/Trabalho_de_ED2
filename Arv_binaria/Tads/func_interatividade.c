@@ -13,7 +13,7 @@ ARV_BINARIA *encontrar_dado_na_arv_digitando(ARV_BINARIA *raiz, DADOS *(*digite)
     {
         DADOS *aux = digite();
         no = buscar_arv_binaria(raiz, aux, comparar);
-        liberar(aux, liberar);
+        liberar(&aux);
     }
 
     return no;
@@ -282,9 +282,9 @@ short int remover_musica_de_album_de_artista(DADOS *artista ,DADOS *album, DADOS
     if (artista != NULL && album != NULL && musica_a_remover != NULL && artista->artista != NULL && album->album != NULL && musica_a_remover->musica != NULL)
     {
         DADOS *musica_playlist = alocar_dados();
-        musica_playlist->musica_playlist = criar_musica_playlist(artista->artista->nome, album->album->titulo, musica_a_remover->musica);
+        musica_playlist->musica_playlist = criar_musica_playlist(artista->artista, album->album, musica_a_remover->musica);
 
-        if (verificar_nas_playlists(raiz_playlist, album) == NULL)
+        if (verificar_nas_playlists(raiz_playlist, musica_playlist) == NULL)
         {
             ARV_BINARIA *remover = album->album->musicas_raiz_arvore;
             ARV_BINARIA *musica_removida = remover_arv_binaria(&remover, musica_a_remover, comparar_dados_titulo_musica);
@@ -297,10 +297,6 @@ short int remover_musica_de_album_de_artista(DADOS *artista ,DADOS *album, DADOS
                 album->album->numero_de_musicas--;
             }
         }
-
-        musica_playlist->musica_playlist->musica = NULL;
-        musica_playlist->musica_playlist->titulo_do_album = NULL;
-        musica_playlist->musica_playlist->titulo_do_artista = NULL;
         liberar_dados_musica_playlist(&musica_playlist);
     }
     return retorno;
@@ -430,7 +426,7 @@ short int cadastrar_playlist(ARV_BINARIA **raiz_playlist, DADOS *info)
 {
     short int retorno = 0;
 
-    if (raiz_playlist != NULL && *raiz_playlist != NULL && info != NULL && info->playlist != NULL)
+    if (info != NULL && info->playlist != NULL)
     {
         retorno = inserir_arv_binaria(raiz_playlist, info, comparar_dados_nome_playlist);
     }
@@ -442,7 +438,7 @@ short int cadastrar_musica_em_uma_playlist(DADOS *playlist, DADOS *info)
 {
     short int retorno = 0;
 
-    if (playlist != NULL && info != NULL && info->musica_playlist != NULL)
+    if (info != NULL && info->musica_playlist != NULL)
     {
         ARV_BINARIA *inserir = playlist->playlist->musicas_raiz_arvore;
         retorno = inserir_arv_binaria(&inserir, info, comparar_dados_musica_playlist);

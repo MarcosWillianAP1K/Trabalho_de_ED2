@@ -11,8 +11,8 @@ MUSICA_PLAYLIST *alocar_musica_playlist()
     verificar_alocacao(musica);
 
     musica->musica = NULL;
-    musica->titulo_do_album = NULL;
-    musica->titulo_do_artista = NULL;
+    musica->album = NULL;
+    musica->artista = NULL;
 
     return musica;
 }
@@ -21,23 +21,17 @@ void liberar_musica_playlist(MUSICA_PLAYLIST **musica_playlist)
 {
     if (*musica_playlist != NULL)
     {
-        free((*musica_playlist)->titulo_do_artista);
-        free((*musica_playlist)->titulo_do_album);
-        // if ((*musica_playlist)->musica != NULL)
-        // {
-        //     liberar_musica(&(*musica_playlist)->musica);
-        // }
         free(*musica_playlist);
         *musica_playlist = NULL;
     }
 }
 
-MUSICA_PLAYLIST *criar_musica_playlist(char *titulo_artista, char *titulo_album, MUSICA *musica)
+MUSICA_PLAYLIST *criar_musica_playlist(ARTISTA *artista, ALBUM *album, MUSICA *musica)
 {
     MUSICA_PLAYLIST *musica_playlist = alocar_musica_playlist();
 
-    musica_playlist->titulo_do_artista = titulo_artista;
-    musica_playlist->titulo_do_album = titulo_album;
+    musica_playlist->artista = artista;
+    musica_playlist->album = album;
     musica_playlist->musica = musica;
 
     return musica_playlist;
@@ -48,20 +42,20 @@ void imprimir_musica_playlist(MUSICA_PLAYLIST *musica_playlist)
 {
     if (musica_playlist != NULL)
     {
-        printf("\nNome do Artista: %s", musica_playlist->titulo_do_artista);
-        printf("\nNome do Album: %s", musica_playlist->titulo_do_album);
+        printf("\nNome do Artista: %s", musica_playlist->artista->nome);
+        printf("\nTitulo do Album: %s", musica_playlist->album->titulo);
         imprimir_musica(musica_playlist->musica);
     }
 }
 
-int comparar_titulo_artista_musica_playlist(MUSICA_PLAYLIST *musica_playlist1, MUSICA_PLAYLIST *musica_playlist2)
+int comparar_nome_artista_musica_playlist(MUSICA_PLAYLIST *musica_playlist1, MUSICA_PLAYLIST *musica_playlist2)
 {
-    return strcmp(musica_playlist1->titulo_do_artista, musica_playlist2->titulo_do_artista);
+    return comparar_nome_artista(musica_playlist1->artista, musica_playlist2->artista);
 }
 
 int comparar_titulo_album_musica_playlist(MUSICA_PLAYLIST *musica_playlist1, MUSICA_PLAYLIST *musica_playlist2)
 {
-    return strcmp(musica_playlist1->titulo_do_album, musica_playlist2->titulo_do_album);
+    return comparar_titulo_album(musica_playlist1->album, musica_playlist2->album);
 
 }
 
@@ -76,7 +70,7 @@ int comparar_musica_playlist(MUSICA_PLAYLIST *musica_playlist1, MUSICA_PLAYLIST 
 
     if (musica_playlist1 != NULL && musica_playlist2 != NULL)
     {
-        comparacao = comparar_titulo_artista_musica_playlist(musica_playlist1, musica_playlist2);
+        comparacao = comparar_nome_artista_musica_playlist(musica_playlist1, musica_playlist2);
         if (comparacao == 0)
         {
             comparacao = comparar_titulo_album_musica_playlist(musica_playlist1, musica_playlist2);
