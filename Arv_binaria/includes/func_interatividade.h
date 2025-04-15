@@ -35,13 +35,13 @@ void mostrar_albuns_de_todos_artistas_de_um_ano(ARV_BINARIA *raiz_artista, DADOS
 
 void mostrar_dados_de_uma_playlist(DADOS *playlist);
 
-short int remover_musica_de_uma_playlist(ARV_BINARIA **raiz);
+short int remover_musica_de_uma_playlist(DADOS *playlist, DADOS *musica_a_remover);
 
-short int remover_playlist(ARV_BINARIA **raiz);
+short int remover_playlist(ARV_BINARIA **raiz_playlist, DADOS *playlist_a_remover);
 
-ARV_BINARIA *verificar_nas_playlists(ARV_BINARIA **raiz_playlist, DADOS *aux);
+ARV_BINARIA *verificar_nas_playlists(ARV_BINARIA *raiz_playlist, DADOS *musica_playlist);
 
-short int remover_musica_de_album_de_artista(ARV_BINARIA **raiz, ARV_BINARIA **raiz_playlist);
+short int remover_musica_de_album_de_artista(DADOS *artista ,DADOS *album, DADOS *musica_a_remover, ARV_BINARIA *raiz_playlist);
 
 void delete_musica(ARV_BINARIA **raiz_musica);
 
