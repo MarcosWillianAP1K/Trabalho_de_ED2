@@ -507,15 +507,6 @@ void menu_principal(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
 
         case 16:
         {
-            if (*raiz_playlist == NULL)
-            {
-                print_vermelho("Nenhuma playlist cadastrada\n");
-            }
-            else
-            {
-                print_amarelo("Playlists cadastradas:\n");
-            }
-
             print_amarelo("Mostrar dados de uma playlist:\n");
             ARV_BINARIA *playlist_encontrada = encontrar_dado_na_arv_digitando(*raiz_playlist, digitar_nome_playlist, comparar_dados_nome_playlist, liberar_dados_playlist);
 
@@ -574,7 +565,9 @@ void menu_principal(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
         {
             print_amarelo("Remover uma musica de um album de um artista:\n");
             print_amarelo("Deixe os campos vazios para sair\n\n");
+
             ARV_BINARIA *artista_encontrado = encontrar_dado_na_arv_digitando(*raiz_artista, digitar_nome_artista, comparar_dados_nome_artista, liberar_dados_artista);
+
             if (artista_encontrado != NULL)
             {
                 ARV_BINARIA *album_encontrado = encontrar_dado_na_arv_digitando(artista_encontrado->info->artista->albuns_raiz_arvore, digitar_titulo_album, comparar_dados_titulo_album, liberar_dados_album);
@@ -583,13 +576,13 @@ void menu_principal(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
                 {
                     DADOS *musica_a_remover = digitar_titulo_musica();
 
-                    if (remover_musica_de_album_de_artista(album_encontrado->info, artista_encontrado->info, musica_a_remover, *raiz_playlist) == 1)
+                    if (remover_musica_de_album_de_artista(artista_encontrado->info, album_encontrado->info,musica_a_remover, *raiz_playlist) == 1)
                     {
                         mensagem_sucesso("Musica removida com sucesso!\n");
                     }
                     else
                     {
-                        mensagem_sucesso("Musica nao encontrada no album!\n");
+                        mensagem_erro("Musica nao encontrada no album!\n");
                     }
                     liberar_dados_musica(&musica_a_remover);
                 }
