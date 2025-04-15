@@ -51,17 +51,17 @@ short int comparar_se_esta_vazio(char *n1)
     return strcmp(n1, "");
 }
 
-void mostrar_artista(ARV_BINARIA *raiz_artista)
+void mostrar_artistas(ARV_BINARIA *raiz_artista)
 {
     imprimir_arv_binaria(raiz_artista, imprimir_dados_artista);
 }
 
-void mostrar_playlist(ARV_BINARIA *raiz_playlist)
+void mostrar_playlists(ARV_BINARIA *raiz_playlist)
 {
     imprimir_arv_binaria(raiz_playlist, imprimir_dados_playlist);
 }
 
-void mostrar_artista_por_tipo(ARV_BINARIA *raiz_artista, DADOS *tipo)
+void mostrar_artistas_por_tipo(ARV_BINARIA *raiz_artista, DADOS *tipo)
 {
     if (raiz_artista != NULL && tipo != NULL)
     {
@@ -73,7 +73,7 @@ void mostrar_artista_por_tipo(ARV_BINARIA *raiz_artista, DADOS *tipo)
     }
 }
 
-void mostrar_artista_por_estilo(ARV_BINARIA *raiz_artista, DADOS *estilo)
+void mostrar_artistas_por_estilo(ARV_BINARIA *raiz_artista, DADOS *estilo)
 {
     if (raiz_artista != NULL && estilo != NULL && estilo->artista != NULL)
     {
@@ -85,7 +85,7 @@ void mostrar_artista_por_estilo(ARV_BINARIA *raiz_artista, DADOS *estilo)
     }
 }
 
-void mostrar_artista_por_tipo_e_estilo(ARV_BINARIA *raiz_artista, DADOS *tipo_estilo)
+void mostrar_artistas_por_tipo_e_estilo(ARV_BINARIA *raiz_artista, DADOS *tipo_estilo)
 {
     if (raiz_artista != NULL && tipo_estilo != NULL && tipo_estilo->artista != NULL)
     {
