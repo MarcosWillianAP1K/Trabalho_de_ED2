@@ -354,27 +354,245 @@ void mostrar_albuns_de_um_artista_interativo(ARV_BINARIA **raiz_artista)
     pausar_tela();
 }
 
-void mostrar_albuns_de_um_ano_de_um_artista_interativo() {}
+void mostrar_albuns_de_um_ano_de_um_artista_interativo(ARV_BINARIA **raiz_artista)
+{
+    print_amarelo("Albuns cadastrados de um artista de um ano:\n");
+    ARV_BINARIA *artista_encontrado = encontrar_dado_na_arv_digitando(*raiz_artista, digitar_nome_artista, comparar_dados_nome_artista, liberar_dados_artista);
 
-void mostrar_musicas_de_um_album_de_um_artista_interativo() {}
+    if (artista_encontrado != NULL)
+    {
+        DADOS *ano_album = digitar_ano_album();
+        mostrar_albuns_de_um_artista_de_um_ano(artista_encontrado->info, ano_album);
+        liberar_dados_album(&ano_album);
+    }
+    else
+    {
+        mensagem_erro("Artista nao encontrado!");
+    }
+    pausar_tela();
+}
 
-void mostrar_albuns_de_todos_artistas_de_um_ano_interativo() {}
+void mostrar_musicas_de_um_album_de_um_artista_interativo(ARV_BINARIA **raiz_artista)
+{
+    print_amarelo("Musicas cadastradas de um album de um artista:\n");
+    ARV_BINARIA *artista_encontrado = encontrar_dado_na_arv_digitando(*raiz_artista, digitar_nome_artista, comparar_dados_nome_artista, liberar_dados_artista);
 
-void mostrar_dados_de_uma_musica_interativo() {}
+    if (artista_encontrado != NULL)
+    {
+        ARV_BINARIA *album_encontrado = encontrar_dado_na_arv_digitando(artista_encontrado->info->artista->albuns_raiz_arvore, digitar_titulo_album, comparar_dados_titulo_album, liberar_dados_album);
 
-void cadastrar_playlist_interativo() {}
+        if (album_encontrado != NULL)
+        {
+            mostrar_musicas_de_um_album_de_um_artista(album_encontrado->info, artista_encontrado->info);
+        }
+        else
+        {
+            mensagem_erro("Album nao encontrado!");
+        }
+    }
+    else
+    {
+        mensagem_erro("Artista nao encontrado!");
+    }
+    pausar_tela();
+}
 
-void cadastrar_musica_em_uma_playlist_interativo() {}
+void mostrar_albuns_de_todos_artistas_de_um_ano_interativo(ARV_BINARIA **raiz_artista)
+{
+    print_amarelo("Albuns cadastrados de todos artista de um ano:\n");
+    DADOS *ano_album = digitar_ano_album();
+    mostrar_albuns_de_todos_artistas_de_um_ano(*raiz_artista, ano_album);
+    liberar_dados_album(&ano_album);
+    pausar_tela();
+}
 
-void mostrar_playlists_interativo() {}
+void mostrar_dados_de_uma_musica_interativo(ARV_BINARIA **raiz_artista)
+{
+    print_amarelo("Dados de uma musica:\n");
+    DADOS *aux = digitar_titulo_musica();
+    mostrar_dados_de_uma_musica(*raiz_artista, aux);
+    liberar_dados_musica(&aux);
+    pausar_tela();
+}
 
-void mostrar_dados_de_uma_playlist_interativo() {}
+void cadastrar_playlist_interativo(ARV_BINARIA **raiz_playlist)
+{
+    print_amarelo("Cadastrar playlist:\n");
+    print_amarelo("Deixe os campos vazios para sair\n\n");
+    DADOS *cadastro = digitar_cadastro_playlist();
+    if (cadastrar_playlist(raiz_playlist, cadastro) == 1)
+    {
+        mensagem_sucesso("Playlist cadastrada com sucesso!\n");
+    }
+    else
+    {
+        mensagem_erro("Playlist ja cadastrada!\n");
+        liberar_dados_playlist(&cadastro);
+    }
+    pausar_tela();
+}
 
-void remover_musica_de_uma_playlist_interativo(void) {}
+void cadastrar_musica_em_uma_playlist_interativo(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
+{
+    print_amarelo("Cadastrar musica em uma playlist:\n");
+    print_amarelo("Deixe os campos vazios para sair\n\n");
+    ARV_BINARIA *playlist_encontrada = encontrar_dado_na_arv_digitando(*raiz_playlist, digitar_nome_playlist, comparar_dados_nome_playlist, liberar_dados_playlist);
 
-void remover_uma_playlist_interativo(void) {}
+    if (playlist_encontrada != NULL)
+    {
+        ARV_BINARIA *artista_encontrado = encontrar_dado_na_arv_digitando(*raiz_artista, digitar_nome_artista, comparar_dados_nome_artista, liberar_dados_artista);
 
-void remover_musica_de_um_album_de_um_artista_interativo() {}
+        if (artista_encontrado != NULL)
+        {
+            ARV_BINARIA *album_encontrado = encontrar_dado_na_arv_digitando(artista_encontrado->info->artista->albuns_raiz_arvore, digitar_titulo_album, comparar_dados_titulo_album, liberar_dados_album);
+
+            if (album_encontrado != NULL)
+            {
+                ARV_BINARIA *musica_encontrada = encontrar_dado_na_arv_digitando(album_encontrado->info->album->musicas_raiz_arvore, digitar_titulo_musica, comparar_dados_titulo_musica, liberar_dados_musica);
+
+                if (musica_encontrada != NULL)
+                {
+                    DADOS *musica_playlist = alocar_dados();
+                    musica_playlist->musica_playlist = criar_musica_playlist(artista_encontrado->info->artista, album_encontrado->info->album, musica_encontrada->info->musica);
+
+                    if (cadastrar_musica_em_uma_playlist(playlist_encontrada->info, musica_playlist) == 1)
+                    {
+                        mensagem_sucesso("Musica cadastrada com sucesso!");
+                    }
+                    else
+                    {
+                        mensagem_erro("Musica ja cadastrada!");
+                        liberar_dados_musica_playlist(&musica_playlist);
+                    }
+                }
+                else
+                {
+                    mensagem_erro("Musica nao encontrada!");
+                }
+            }
+            else
+            {
+                mensagem_erro("Album nao encontrado!");
+            }
+        }
+        else
+        {
+            mensagem_erro("Artista nao encontrado!");
+        }
+    }
+    else
+    {
+        mensagem_erro("Playlist nao encontrada!");
+    }
+
+    pausar_tela();
+}
+
+void mostrar_playlists_interativo(ARV_BINARIA **raiz_playlist)
+{
+    print_amarelo("Mostrar playlists:\n");
+    mostrar_playlists(*raiz_playlist);
+    pausar_tela();
+}
+
+void mostrar_dados_de_uma_playlist_interativo(ARV_BINARIA **raiz_playlist)
+{
+    print_amarelo("Mostrar dados de uma playlist:\n");
+    ARV_BINARIA *playlist_encontrada = encontrar_dado_na_arv_digitando(*raiz_playlist, digitar_nome_playlist, comparar_dados_nome_playlist, liberar_dados_playlist);
+
+    if (playlist_encontrada != NULL)
+    {
+        mostrar_dados_de_uma_playlist(playlist_encontrada->info);
+    }
+    pausar_tela();
+}
+
+void remover_musica_de_uma_playlist_interativo(ARV_BINARIA **raiz_playlist)
+{
+    print_amarelo("Remover musica de uma playlist:\n");
+    print_amarelo("Deixe os campos vazios para sair\n\n");
+    ARV_BINARIA *playlist_encontrada = encontrar_dado_na_arv_digitando(*raiz_playlist, digitar_nome_playlist, comparar_dados_nome_playlist, liberar_dados_playlist);
+
+    if (playlist_encontrada != NULL)
+    {
+        DADOS *musica_playlist = digitar_musica_playlist();
+
+        if (remover_musica_de_uma_playlist(playlist_encontrada->info, musica_playlist) == 1)
+        {
+            mensagem_sucesso("Musica removida com sucesso!\n");
+        }
+        else
+        {
+            mensagem_sucesso("Musica nao encontrada na playlist!\n");
+        }
+
+        liberar_musica(&musica_playlist->musica_playlist->musica);
+        liberar_artista(&musica_playlist->musica_playlist->artista);
+        liberar_album(&musica_playlist->musica_playlist->album);
+        liberar_dados_musica_playlist(&musica_playlist);
+    }
+    else
+    {
+        mensagem_erro("Playlist nao encontrada!");
+    }
+    pausar_tela();
+}
+
+void remover_playlist_interativo(ARV_BINARIA **raiz_playlist)
+{
+    print_amarelo("Remover uma playlist:\n");
+    print_amarelo("Deixe os campos vazios para sair\n\n");
+
+    DADOS *playlist_a_remover = digitar_nome_playlist();
+
+    if (remover_playlist(raiz_playlist, playlist_a_remover) == 1)
+    {
+        mensagem_sucesso("Playlist removida com sucesso!\n");
+    }
+    else
+    {
+        mensagem_erro("Playlist nao encontrada!\n");
+    }
+    liberar_dados_playlist(&playlist_a_remover);
+    pausar_tela();
+}
+
+void remover_musica_de_um_album_de_um_artista_interativo(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
+{
+    print_amarelo("Remover uma musica de um album de um artista:\n");
+    print_amarelo("Deixe os campos vazios para sair\n\n");
+
+    ARV_BINARIA *artista_encontrado = encontrar_dado_na_arv_digitando(*raiz_artista, digitar_nome_artista, comparar_dados_nome_artista, liberar_dados_artista);
+
+    if (artista_encontrado != NULL)
+    {
+        ARV_BINARIA *album_encontrado = encontrar_dado_na_arv_digitando(artista_encontrado->info->artista->albuns_raiz_arvore, digitar_titulo_album, comparar_dados_titulo_album, liberar_dados_album);
+
+        if (album_encontrado != NULL)
+        {
+            DADOS *musica_a_remover = digitar_titulo_musica();
+
+            if (remover_musica_de_album_de_artista(artista_encontrado->info, album_encontrado->info, musica_a_remover, *raiz_playlist) == 1)
+            {
+                mensagem_sucesso("Musica removida com sucesso!\n");
+            }
+            else
+            {
+                mensagem_erro("Musica nao encontrada no album!\n");
+            }
+            liberar_dados_musica(&musica_a_remover);
+        }
+        else
+        {
+            mensagem_erro("Album nao encontrado!");
+        }
+    }
+    else
+    {
+        mensagem_erro("Artista nao encontrado!");
+    }
+    pausar_tela();
+}
 
 void menu_principal(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
 {
@@ -452,246 +670,48 @@ void menu_principal(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
             break;
 
         case 9:
-        {
-            print_amarelo("Albuns cadastrados de um artista de um ano:\n");
-            ARV_BINARIA *artista_encontrado = encontrar_dado_na_arv_digitando(*raiz_artista, digitar_nome_artista, comparar_dados_nome_artista, liberar_dados_artista);
-
-            if (artista_encontrado != NULL)
-            {
-                DADOS *ano_album = digitar_ano_album();
-                mostrar_albuns_de_um_artista_de_um_ano(artista_encontrado->info, ano_album);
-                liberar_dados_album(&ano_album);
-            }
-            else
-            {
-                mensagem_erro("Artista nao encontrado!");
-            }
-            pausar_tela();
-        }
-        break;
+            mostrar_albuns_de_um_ano_de_um_artista_interativo(raiz_artista);
+            break;
 
         case 10:
-        {
-            print_amarelo("Musicas cadastradas de um album de um artista:\n");
-            ARV_BINARIA *artista_encontrado = encontrar_dado_na_arv_digitando(*raiz_artista, digitar_nome_artista, comparar_dados_nome_artista, liberar_dados_artista);
-
-            if (artista_encontrado != NULL)
-            {
-                ARV_BINARIA *album_encontrado = encontrar_dado_na_arv_digitando(artista_encontrado->info->artista->albuns_raiz_arvore, digitar_titulo_album, comparar_dados_titulo_album, liberar_dados_album);
-
-                if (album_encontrado != NULL)
-                {
-                    mostrar_musicas_de_um_album_de_um_artista(album_encontrado->info, artista_encontrado->info);
-                }
-                else
-                {
-                    mensagem_erro("Album nao encontrado!");
-                }
-            }
-            else
-            {
-                mensagem_erro("Artista nao encontrado!");
-            }
-            pausar_tela();
-        }
-        break;
+            mostrar_musicas_de_um_album_de_um_artista_interativo(raiz_artista);
+            break;
 
         case 11:
-        {
-            print_amarelo("Albuns cadastrados de todos artista de um ano:\n");
-            DADOS *ano_album = digitar_ano_album();
-            mostrar_albuns_de_todos_artistas_de_um_ano(*raiz_artista, ano_album);
-            liberar_dados_album(&ano_album);
-            pausar_tela();
-        }
-        break;
+            mostrar_albuns_de_todos_artistas_de_um_ano_interativo(raiz_artista);
+            break;
 
         case 12:
-        {
-            print_amarelo("Dados de uma musica:\n");
-            DADOS *aux = digitar_titulo_musica();
-            mostrar_dados_de_uma_musica(*raiz_artista, aux);
-            liberar_dados_musica(&aux);
-            pausar_tela();
-        }
-        break;
+            mostrar_dados_de_uma_musica_interativo(raiz_artista);
+            break;
 
         case 13:
-        {
-            print_amarelo("Cadastrar playlist:\n");
-            print_amarelo("Deixe os campos vazios para sair\n\n");
-            DADOS *cadastro = digitar_cadastro_playlist();
-            if (cadastrar_playlist(raiz_playlist, cadastro) == 1)
-            {
-                mensagem_sucesso("Playlist cadastrada com sucesso!\n");
-            }
-            else
-            {
-                mensagem_erro("Playlist ja cadastrada!\n");
-                liberar_dados_playlist(&cadastro);
-            }
-            pausar_tela();
-        }
-        break;
+            cadastrar_playlist_interativo(raiz_playlist);
+            break;
 
         case 14:
-        {
-            print_amarelo("Cadastrar musica em uma playlist:\n");
-            print_amarelo("Deixe os campos vazios para sair\n\n");
-            ARV_BINARIA *playlist_encontrada = encontrar_dado_na_arv_digitando(*raiz_playlist, digitar_nome_playlist, comparar_dados_nome_playlist, liberar_dados_playlist);
-
-            if (playlist_encontrada != NULL)
-            {
-                ARV_BINARIA *artista_encontrado = encontrar_dado_na_arv_digitando(*raiz_artista, digitar_nome_artista, comparar_dados_nome_artista, liberar_dados_artista);
-
-                if (artista_encontrado != NULL)
-                {
-                    ARV_BINARIA *album_encontrado = encontrar_dado_na_arv_digitando(artista_encontrado->info->artista->albuns_raiz_arvore, digitar_titulo_album, comparar_dados_titulo_album, liberar_dados_album);
-
-                    if (album_encontrado != NULL)
-                    {
-                        ARV_BINARIA *musica_encontrada = encontrar_dado_na_arv_digitando(album_encontrado->info->album->musicas_raiz_arvore, digitar_titulo_musica, comparar_dados_titulo_musica, liberar_dados_musica);
-
-                        if (musica_encontrada != NULL)
-                        {
-                            DADOS *musica_playlist = alocar_dados();
-                            musica_playlist->musica_playlist = criar_musica_playlist(artista_encontrado->info->artista, album_encontrado->info->album, musica_encontrada->info->musica);
-
-                            if (cadastrar_musica_em_uma_playlist(playlist_encontrada->info, musica_playlist) == 1)
-                            {
-                                mensagem_sucesso("Musica cadastrada com sucesso!");
-                            }
-                            else
-                            {
-                                mensagem_erro("Musica ja cadastrada!");
-                                liberar_dados_musica_playlist(&musica_playlist);
-                            }
-                        }
-                        else
-                        {
-                            mensagem_erro("Musica nao encontrada!");
-                        }
-                    }
-                    else
-                    {
-                        mensagem_erro("Album nao encontrado!");
-                    }
-                }
-                else
-                {
-                    mensagem_erro("Artista nao encontrado!");
-                }
-            }
-            else
-            {
-                mensagem_erro("Playlist nao encontrada!");
-            }
-
-            pausar_tela();
-        }
-        break;
+            cadastrar_musica_em_uma_playlist_interativo(raiz_artista, raiz_playlist);
+            break;
 
         case 15:
-        {
-            print_amarelo("Mostrar playlists:\n");
-            mostrar_playlist(*raiz_playlist);
-            pausar_tela();
-        }
-        break;
+            mostrar_playlists_interativo(raiz_playlist);
+            break;
 
         case 16:
-        {
-            print_amarelo("Mostrar dados de uma playlist:\n");
-            ARV_BINARIA *playlist_encontrada = encontrar_dado_na_arv_digitando(*raiz_playlist, digitar_nome_playlist, comparar_dados_nome_playlist, liberar_dados_playlist);
-
-            if (playlist_encontrada != NULL)
-            {
-                mostrar_dados_de_uma_playlist(playlist_encontrada->info);
-            }
-            pausar_tela();
-        }
-        break;
+            mostrar_dados_de_uma_playlist_interativo(raiz_playlist);
+            break;
 
         case 17:
-        {
-            print_amarelo("Remover musica de uma playlist:\n");
-            print_amarelo("Deixe os campos vazios para sair\n\n");
-            ARV_BINARIA *playlist_encontrada = encontrar_dado_na_arv_digitando(*raiz_playlist, digitar_nome_playlist, comparar_dados_nome_playlist, liberar_dados_playlist);
-
-            if (playlist_encontrada != NULL)
-            {
-                DADOS *musica_playlist = digitar_musica_playlist();
-
-                if (remover_musica_de_uma_playlist(playlist_encontrada->info, musica_playlist) == 1)
-                {
-                    mensagem_sucesso("Musica removida com sucesso!\n");
-                }
-                else
-                {
-                    mensagem_sucesso("Musica nao encontrada na playlist!\n");
-                }
-
-                liberar_musica(&musica_playlist->musica_playlist->musica);
-                liberar_artista(&musica_playlist->musica_playlist->artista);
-                liberar_album(&musica_playlist->musica_playlist->album);
-                liberar_dados_musica_playlist(&musica_playlist);
-            }
-            else
-            {
-                mensagem_erro("Playlist nao encontrada!");
-            }
-            pausar_tela();
-        }
-        break;
+            remover_musica_de_uma_playlist_interativo(raiz_playlist);
+            break;
 
         case 18:
-        {
-            print_amarelo("Remover uma playlist:\n");
-            print_amarelo("Deixe os campos vazios para sair\n\n");
-            DADOS *playlist_a_remover = digitar_nome_playlist();
-            remover_playlist(raiz_playlist, playlist_a_remover);
-            liberar_dados_playlist(&playlist_a_remover);
-            pausar_tela();
-        }
-        break;
+            remover_playlist_interativo(raiz_playlist);
+            break;
 
         case 19:
-        {
-            print_amarelo("Remover uma musica de um album de um artista:\n");
-            print_amarelo("Deixe os campos vazios para sair\n\n");
-
-            ARV_BINARIA *artista_encontrado = encontrar_dado_na_arv_digitando(*raiz_artista, digitar_nome_artista, comparar_dados_nome_artista, liberar_dados_artista);
-
-            if (artista_encontrado != NULL)
-            {
-                ARV_BINARIA *album_encontrado = encontrar_dado_na_arv_digitando(artista_encontrado->info->artista->albuns_raiz_arvore, digitar_titulo_album, comparar_dados_titulo_album, liberar_dados_album);
-
-                if (album_encontrado != NULL)
-                {
-                    DADOS *musica_a_remover = digitar_titulo_musica();
-
-                    if (remover_musica_de_album_de_artista(artista_encontrado->info, album_encontrado->info, musica_a_remover, *raiz_playlist) == 1)
-                    {
-                        mensagem_sucesso("Musica removida com sucesso!\n");
-                    }
-                    else
-                    {
-                        mensagem_erro("Musica nao encontrada no album!\n");
-                    }
-                    liberar_dados_musica(&musica_a_remover);
-                }
-                else
-                {
-                    mensagem_erro("Album nao encontrado!");
-                }
-            }
-            else
-            {
-                mensagem_erro("Artista nao encontrado!");
-            }
-            pausar_tela();
-        }
-        break;
+            remover_musica_de_um_album_de_um_artista_interativo(raiz_artista, raiz_playlist);
+            break;
 
         default:
             break;
