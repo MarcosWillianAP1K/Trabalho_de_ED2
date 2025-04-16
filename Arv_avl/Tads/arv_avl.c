@@ -1,18 +1,18 @@
-#include "../includes/arv_binaria.h"
+#include "../includes/arv_avl.h"
 #include "../includes/funcao_sistema.h"
 #include <stdio.h>
 #include <stdlib.h>
 
-ARV_BINARIA *alocar_arv_binaria()
+ARV_AVL *alocar_arv_avl()
 {
-  ARV_BINARIA *nova_arv = (ARV_BINARIA *)malloc(sizeof(ARV_BINARIA));
+  ARV_AVL *nova_arv = (ARV_AVL *)malloc(sizeof(ARV_AVL));
 
   verificar_alocacao(nova_arv);
 
   return nova_arv;
 }
 
-void liberar_no_arv_binaria(ARV_BINARIA **raiz, void (*liberar)(DADOS **))
+void liberar_no_arv_avl(ARV_AVL **raiz, void (*liberar)(DADOS **))
 {
 
   if (raiz != NULL && *raiz != NULL)
@@ -27,29 +27,29 @@ void liberar_no_arv_binaria(ARV_BINARIA **raiz, void (*liberar)(DADOS **))
   }
 }
 
-void liberar_arv_binaria(ARV_BINARIA **raiz, void (*liberar)(DADOS **))
+void liberar_arv_avl(ARV_AVL **raiz, void (*liberar)(DADOS **))
 {
   if (raiz != NULL && *raiz != NULL)
   {
-    liberar_arv_binaria(&((*raiz)->esq), liberar);
-    liberar_arv_binaria(&((*raiz)->dir), liberar);
+    liberar_arv_avl(&((*raiz)->esq), liberar);
+    liberar_arv_avl(&((*raiz)->dir), liberar);
 
-    liberar_no_arv_binaria(raiz, liberar);
+    liberar_no_arv_avl(raiz, liberar);
 
     *raiz = NULL;
   }
 }
 
-ARV_BINARIA *criar_no_arv_binaria(DADOS *info)
+ARV_AVL *criar_no_arv_avl(DADOS *info)
 {
-  ARV_BINARIA *nova_arv = alocar_arv_binaria();
+  ARV_AVL *nova_arv = alocar_arv_avl();
   nova_arv->info = info;
   nova_arv->esq = NULL;
   nova_arv->dir = NULL;
   return nova_arv;
 }
 
-int inserir_arv_binaria(ARV_BINARIA **raiz, DADOS *info, int (*comparar)(DADOS *, DADOS *))
+int inserir_arv_avl(ARV_AVL **raiz, DADOS *info, int (*comparar)(DADOS *, DADOS *))
 {
   int inseriu = 1;
 
@@ -57,15 +57,15 @@ int inserir_arv_binaria(ARV_BINARIA **raiz, DADOS *info, int (*comparar)(DADOS *
   {
     if (*raiz == NULL)
     {
-      *raiz = criar_no_arv_binaria(info);
+      *raiz = criar_no_arv_avl(info);
     }
     else if (comparar((*raiz)->info, info) > 0)
     {
-      inseriu = inserir_arv_binaria(&(*raiz)->esq, info, comparar);
+      inseriu = inserir_arv_avl(&(*raiz)->esq, info, comparar);
     }
     else if (comparar((*raiz)->info, info) < 0)
     {
-      inseriu = inserir_arv_binaria(&(*raiz)->dir, info, comparar);
+      inseriu = inserir_arv_avl(&(*raiz)->dir, info, comparar);
     }
     else
     {
@@ -76,42 +76,42 @@ int inserir_arv_binaria(ARV_BINARIA **raiz, DADOS *info, int (*comparar)(DADOS *
   return inseriu;
 }
 
-void imprimir_arv_binaria(ARV_BINARIA *raiz, void (*printar_dados)(DADOS *))
+void imprimir_arv_avl(ARV_AVL *raiz, void (*printar_dados)(DADOS *))
 {
   if (raiz != NULL)
   {
-    imprimir_arv_binaria(raiz->esq, printar_dados);
+    imprimir_arv_avl(raiz->esq, printar_dados);
     printar_dados(raiz->info);
-    imprimir_arv_binaria(raiz->dir, printar_dados);
+    imprimir_arv_avl(raiz->dir, printar_dados);
   }
 }
 
-short int imprimir_arv_binaria_filtro(ARV_BINARIA *raiz, DADOS *info, void (*printar_dados)(DADOS *), int (*comparar)(DADOS *, DADOS *))
+short int imprimir_arv_avl_filtro(ARV_AVL *raiz, DADOS *info, void (*printar_dados)(DADOS *), int (*comparar)(DADOS *, DADOS *))
 {
   short int retorno = 0;
 
   if (raiz != NULL && info != NULL)
   {
-    retorno |= imprimir_arv_binaria_filtro(raiz->esq, info, printar_dados, comparar);
+    retorno |= imprimir_arv_avl_filtro(raiz->esq, info, printar_dados, comparar);
     if (comparar(raiz->info, info) == 0)
     {
       printar_dados(raiz->info);
       retorno = 1;
     }
-    retorno |= imprimir_arv_binaria_filtro(raiz->dir, info, printar_dados, comparar);
+    retorno |= imprimir_arv_avl_filtro(raiz->dir, info, printar_dados, comparar);
   }
 
   return retorno;
 }
 
-int eh_folha(ARV_BINARIA *raiz)
+int eh_folha(ARV_AVL *raiz)
 {
   return (raiz->esq == NULL && raiz->dir == NULL);
 }
 
-ARV_BINARIA *eh_um_filho(ARV_BINARIA *raiz)
+ARV_AVL *eh_um_filho(ARV_AVL *raiz)
 {
-  ARV_BINARIA *filho = NULL;
+  ARV_AVL *filho = NULL;
 
   if (raiz->esq != NULL && raiz->dir == NULL)
   {
@@ -125,9 +125,9 @@ ARV_BINARIA *eh_um_filho(ARV_BINARIA *raiz)
   return filho;
 }
 
-ARV_BINARIA **endereco_maximo_direita(ARV_BINARIA **raiz)
+ARV_AVL **endereco_maximo_direita(ARV_AVL **raiz)
 {
-  ARV_BINARIA **no = NULL;
+  ARV_AVL **no = NULL;
 
   if ((*raiz)->dir != NULL)
   {
@@ -141,9 +141,9 @@ ARV_BINARIA **endereco_maximo_direita(ARV_BINARIA **raiz)
   return no;
 }
 
-ARV_BINARIA *remover_arv_binaria(ARV_BINARIA **raiz, DADOS *info, int (*comparar)(DADOS *, DADOS *))
+ARV_AVL *remover_arv_avl(ARV_AVL **raiz, DADOS *info, int (*comparar)(DADOS *, DADOS *))
 {
-  ARV_BINARIA *removeu = NULL;
+  ARV_AVL *removeu = NULL;
 
   if (raiz != NULL && *raiz != NULL && info != NULL)
   {
@@ -157,7 +157,7 @@ ARV_BINARIA *remover_arv_binaria(ARV_BINARIA **raiz, DADOS *info, int (*comparar
       }
       else
       {
-        ARV_BINARIA *filho;
+        ARV_AVL *filho;
 
         if ((filho = eh_um_filho(*raiz)) != NULL)
         {
@@ -166,10 +166,10 @@ ARV_BINARIA *remover_arv_binaria(ARV_BINARIA **raiz, DADOS *info, int (*comparar
         }
         else
         {
-          ARV_BINARIA **menor;
+          ARV_AVL **menor;
           menor = endereco_maximo_direita(&(*raiz)->esq);
 
-          ARV_BINARIA *aux = *menor;
+          ARV_AVL *aux = *menor;
           *menor = aux->esq;
           aux->esq = (*raiz)->esq;
           aux->dir = (*raiz)->dir;
@@ -183,11 +183,11 @@ ARV_BINARIA *remover_arv_binaria(ARV_BINARIA **raiz, DADOS *info, int (*comparar
     {
       if (comparar((*raiz)->info, info) > 0)
       {
-        removeu = remover_arv_binaria(&(*raiz)->esq, info, comparar);
+        removeu = remover_arv_avl(&(*raiz)->esq, info, comparar);
       }
       else
       {
-        removeu = remover_arv_binaria(&(*raiz)->dir, info, comparar);
+        removeu = remover_arv_avl(&(*raiz)->dir, info, comparar);
       }
     }
   }
@@ -195,9 +195,9 @@ ARV_BINARIA *remover_arv_binaria(ARV_BINARIA **raiz, DADOS *info, int (*comparar
   return removeu;
 }
 
-ARV_BINARIA *buscar_arv_binaria(ARV_BINARIA *raiz, DADOS *info, int (*comparar)(DADOS *, DADOS *))
+ARV_AVL *buscar_arv_avl(ARV_AVL *raiz, DADOS *info, int (*comparar)(DADOS *, DADOS *))
 {
-  ARV_BINARIA *no = NULL;
+  ARV_AVL *no = NULL;
 
   if (raiz != NULL && info != NULL)
   {
@@ -209,11 +209,11 @@ ARV_BINARIA *buscar_arv_binaria(ARV_BINARIA *raiz, DADOS *info, int (*comparar)(
     {
       if (comparar(raiz->info, info) > 0)
       {
-        no = buscar_arv_binaria(raiz->esq, info, comparar);
+        no = buscar_arv_avl(raiz->esq, info, comparar);
       }
       else
       {
-        no = buscar_arv_binaria(raiz->dir, info, comparar);
+        no = buscar_arv_avl(raiz->dir, info, comparar);
       }
     }
   }

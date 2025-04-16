@@ -223,7 +223,7 @@ DADOS *digitar_cadastro_playlist()
     return aux;
 }
 
-void cadastrar_artista_interativo(ARV_BINARIA **raiz_artista)
+void cadastrar_artista_interativo(ARV_AVL **raiz_artista)
 {
     limpar_tela();
     print_amarelo("Cadastrar artista:\n");
@@ -242,11 +242,11 @@ void cadastrar_artista_interativo(ARV_BINARIA **raiz_artista)
     pausar_tela();
 }
 
-void cadastrar_album_interativo(ARV_BINARIA **raiz_artista)
+void cadastrar_album_interativo(ARV_AVL **raiz_artista)
 {
     print_amarelo("Cadastrar albuns:\n");
     print_amarelo("Deixe os campos vazios para sair\n\n");
-    ARV_BINARIA *artista_encontrado = encontrar_dado_na_arv_digitando(*raiz_artista, digitar_nome_artista, comparar_dados_nome_artista, liberar_dados_artista);
+    ARV_AVL *artista_encontrado = encontrar_dado_na_arv_digitando(*raiz_artista, digitar_nome_artista, comparar_dados_nome_artista, liberar_dados_artista);
 
     if (artista_encontrado != NULL)
     {
@@ -269,15 +269,15 @@ void cadastrar_album_interativo(ARV_BINARIA **raiz_artista)
     pausar_tela();
 }
 
-void cadastrar_musica_interativo(ARV_BINARIA **raiz_artista)
+void cadastrar_musica_interativo(ARV_AVL **raiz_artista)
 {
     print_amarelo("Cadastrar musicas:\n");
     print_amarelo("Deixe os campos vazios para sair\n\n");
-    ARV_BINARIA *artista_encontrado = encontrar_dado_na_arv_digitando(*raiz_artista, digitar_nome_artista, comparar_dados_nome_artista, liberar_dados_artista);
+    ARV_AVL *artista_encontrado = encontrar_dado_na_arv_digitando(*raiz_artista, digitar_nome_artista, comparar_dados_nome_artista, liberar_dados_artista);
 
     if (artista_encontrado != NULL)
     {
-        ARV_BINARIA *album_encontrado = encontrar_dado_na_arv_digitando(artista_encontrado->info->artista->albuns_raiz_arvore, digitar_titulo_album, comparar_dados_titulo_album, liberar_dados_album);
+        ARV_AVL *album_encontrado = encontrar_dado_na_arv_digitando(artista_encontrado->info->artista->albuns_raiz_arvore, digitar_titulo_album, comparar_dados_titulo_album, liberar_dados_album);
 
         if (album_encontrado != NULL)
         {
@@ -304,14 +304,14 @@ void cadastrar_musica_interativo(ARV_BINARIA **raiz_artista)
     pausar_tela();
 }
 
-void mostrar_artistas_interativo(ARV_BINARIA **raiz_artista)
+void mostrar_artistas_interativo(ARV_AVL **raiz_artista)
 {
     print_amarelo("Artistas cadastrados:\n");
     mostrar_artistas(*raiz_artista);
     pausar_tela();
 }
 
-void mostrar_artistas_de_um_tipo_interativo(ARV_BINARIA **raiz_artista)
+void mostrar_artistas_de_um_tipo_interativo(ARV_AVL **raiz_artista)
 {
     print_amarelo("Artistas cadastrados de um tipo:\n");
     DADOS *aux = digitar_tipo_artista();
@@ -320,7 +320,7 @@ void mostrar_artistas_de_um_tipo_interativo(ARV_BINARIA **raiz_artista)
     pausar_tela();
 }
 
-void mostrar_artistas_de_um_estilo_musical_interativo(ARV_BINARIA **raiz_artista)
+void mostrar_artistas_de_um_estilo_musical_interativo(ARV_AVL **raiz_artista)
 {
     print_amarelo("Artistas cadastrados de um estilo musical:\n");
     DADOS *aux = digitar_estilo_artista();
@@ -329,7 +329,7 @@ void mostrar_artistas_de_um_estilo_musical_interativo(ARV_BINARIA **raiz_artista
     pausar_tela();
 }
 
-void mostrar_artistas_de_um_estilo_musical_e_tipo_interativo(ARV_BINARIA **raiz_artista)
+void mostrar_artistas_de_um_estilo_musical_e_tipo_interativo(ARV_AVL **raiz_artista)
 {
     print_amarelo("Artistas cadastrados de um estilo musical e tipo:\n");
     DADOS *aux = digitar_tipo_e_estilo_artista();
@@ -338,10 +338,10 @@ void mostrar_artistas_de_um_estilo_musical_e_tipo_interativo(ARV_BINARIA **raiz_
     pausar_tela();
 }
 
-void mostrar_albuns_de_um_artista_interativo(ARV_BINARIA **raiz_artista)
+void mostrar_albuns_de_um_artista_interativo(ARV_AVL **raiz_artista)
 {
     print_amarelo("Albuns cadastrados de um artista:\n");
-    ARV_BINARIA *artista_encontrado = encontrar_dado_na_arv_digitando(*raiz_artista, digitar_nome_artista, comparar_dados_nome_artista, liberar_dados_artista);
+    ARV_AVL *artista_encontrado = encontrar_dado_na_arv_digitando(*raiz_artista, digitar_nome_artista, comparar_dados_nome_artista, liberar_dados_artista);
 
     if (artista_encontrado != NULL)
     {
@@ -354,10 +354,10 @@ void mostrar_albuns_de_um_artista_interativo(ARV_BINARIA **raiz_artista)
     pausar_tela();
 }
 
-void mostrar_albuns_de_um_ano_de_um_artista_interativo(ARV_BINARIA **raiz_artista)
+void mostrar_albuns_de_um_ano_de_um_artista_interativo(ARV_AVL **raiz_artista)
 {
     print_amarelo("Albuns cadastrados de um artista de um ano:\n");
-    ARV_BINARIA *artista_encontrado = encontrar_dado_na_arv_digitando(*raiz_artista, digitar_nome_artista, comparar_dados_nome_artista, liberar_dados_artista);
+    ARV_AVL *artista_encontrado = encontrar_dado_na_arv_digitando(*raiz_artista, digitar_nome_artista, comparar_dados_nome_artista, liberar_dados_artista);
 
     if (artista_encontrado != NULL)
     {
@@ -372,14 +372,14 @@ void mostrar_albuns_de_um_ano_de_um_artista_interativo(ARV_BINARIA **raiz_artist
     pausar_tela();
 }
 
-void mostrar_musicas_de_um_album_de_um_artista_interativo(ARV_BINARIA **raiz_artista)
+void mostrar_musicas_de_um_album_de_um_artista_interativo(ARV_AVL **raiz_artista)
 {
     print_amarelo("Musicas cadastradas de um album de um artista:\n");
-    ARV_BINARIA *artista_encontrado = encontrar_dado_na_arv_digitando(*raiz_artista, digitar_nome_artista, comparar_dados_nome_artista, liberar_dados_artista);
+    ARV_AVL *artista_encontrado = encontrar_dado_na_arv_digitando(*raiz_artista, digitar_nome_artista, comparar_dados_nome_artista, liberar_dados_artista);
 
     if (artista_encontrado != NULL)
     {
-        ARV_BINARIA *album_encontrado = encontrar_dado_na_arv_digitando(artista_encontrado->info->artista->albuns_raiz_arvore, digitar_titulo_album, comparar_dados_titulo_album, liberar_dados_album);
+        ARV_AVL *album_encontrado = encontrar_dado_na_arv_digitando(artista_encontrado->info->artista->albuns_raiz_arvore, digitar_titulo_album, comparar_dados_titulo_album, liberar_dados_album);
 
         if (album_encontrado != NULL)
         {
@@ -397,7 +397,7 @@ void mostrar_musicas_de_um_album_de_um_artista_interativo(ARV_BINARIA **raiz_art
     pausar_tela();
 }
 
-void mostrar_albuns_de_todos_artistas_de_um_ano_interativo(ARV_BINARIA **raiz_artista)
+void mostrar_albuns_de_todos_artistas_de_um_ano_interativo(ARV_AVL **raiz_artista)
 {
     print_amarelo("Albuns cadastrados de todos artista de um ano:\n");
     DADOS *ano_album = digitar_ano_album();
@@ -406,7 +406,7 @@ void mostrar_albuns_de_todos_artistas_de_um_ano_interativo(ARV_BINARIA **raiz_ar
     pausar_tela();
 }
 
-void mostrar_dados_de_uma_musica_interativo(ARV_BINARIA **raiz_artista)
+void mostrar_dados_de_uma_musica_interativo(ARV_AVL **raiz_artista)
 {
     print_amarelo("Dados de uma musica:\n");
     DADOS *aux = digitar_titulo_musica();
@@ -415,7 +415,7 @@ void mostrar_dados_de_uma_musica_interativo(ARV_BINARIA **raiz_artista)
     pausar_tela();
 }
 
-void cadastrar_playlist_interativo(ARV_BINARIA **raiz_playlist)
+void cadastrar_playlist_interativo(ARV_AVL **raiz_playlist)
 {
     print_amarelo("Cadastrar playlist:\n");
     print_amarelo("Deixe os campos vazios para sair\n\n");
@@ -432,23 +432,23 @@ void cadastrar_playlist_interativo(ARV_BINARIA **raiz_playlist)
     pausar_tela();
 }
 
-void cadastrar_musica_em_uma_playlist_interativo(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
+void cadastrar_musica_em_uma_playlist_interativo(ARV_AVL **raiz_artista, ARV_AVL **raiz_playlist)
 {
     print_amarelo("Cadastrar musica em uma playlist:\n");
     print_amarelo("Deixe os campos vazios para sair\n\n");
-    ARV_BINARIA *playlist_encontrada = encontrar_dado_na_arv_digitando(*raiz_playlist, digitar_nome_playlist, comparar_dados_nome_playlist, liberar_dados_playlist);
+    ARV_AVL *playlist_encontrada = encontrar_dado_na_arv_digitando(*raiz_playlist, digitar_nome_playlist, comparar_dados_nome_playlist, liberar_dados_playlist);
 
     if (playlist_encontrada != NULL)
     {
-        ARV_BINARIA *artista_encontrado = encontrar_dado_na_arv_digitando(*raiz_artista, digitar_nome_artista, comparar_dados_nome_artista, liberar_dados_artista);
+        ARV_AVL *artista_encontrado = encontrar_dado_na_arv_digitando(*raiz_artista, digitar_nome_artista, comparar_dados_nome_artista, liberar_dados_artista);
 
         if (artista_encontrado != NULL)
         {
-            ARV_BINARIA *album_encontrado = encontrar_dado_na_arv_digitando(artista_encontrado->info->artista->albuns_raiz_arvore, digitar_titulo_album, comparar_dados_titulo_album, liberar_dados_album);
+            ARV_AVL *album_encontrado = encontrar_dado_na_arv_digitando(artista_encontrado->info->artista->albuns_raiz_arvore, digitar_titulo_album, comparar_dados_titulo_album, liberar_dados_album);
 
             if (album_encontrado != NULL)
             {
-                ARV_BINARIA *musica_encontrada = encontrar_dado_na_arv_digitando(album_encontrado->info->album->musicas_raiz_arvore, digitar_titulo_musica, comparar_dados_titulo_musica, liberar_dados_musica);
+                ARV_AVL *musica_encontrada = encontrar_dado_na_arv_digitando(album_encontrado->info->album->musicas_raiz_arvore, digitar_titulo_musica, comparar_dados_titulo_musica, liberar_dados_musica);
 
                 if (musica_encontrada != NULL)
                 {
@@ -488,17 +488,17 @@ void cadastrar_musica_em_uma_playlist_interativo(ARV_BINARIA **raiz_artista, ARV
     pausar_tela();
 }
 
-void mostrar_playlists_interativo(ARV_BINARIA **raiz_playlist)
+void mostrar_playlists_interativo(ARV_AVL **raiz_playlist)
 {
     print_amarelo("Mostrar playlists:\n");
     mostrar_playlists(*raiz_playlist);
     pausar_tela();
 }
 
-void mostrar_dados_de_uma_playlist_interativo(ARV_BINARIA **raiz_playlist)
+void mostrar_dados_de_uma_playlist_interativo(ARV_AVL **raiz_playlist)
 {
     print_amarelo("Mostrar dados de uma playlist:\n");
-    ARV_BINARIA *playlist_encontrada = encontrar_dado_na_arv_digitando(*raiz_playlist, digitar_nome_playlist, comparar_dados_nome_playlist, liberar_dados_playlist);
+    ARV_AVL *playlist_encontrada = encontrar_dado_na_arv_digitando(*raiz_playlist, digitar_nome_playlist, comparar_dados_nome_playlist, liberar_dados_playlist);
 
     if (playlist_encontrada != NULL)
     {
@@ -507,11 +507,11 @@ void mostrar_dados_de_uma_playlist_interativo(ARV_BINARIA **raiz_playlist)
     pausar_tela();
 }
 
-void remover_musica_de_uma_playlist_interativo(ARV_BINARIA **raiz_playlist)
+void remover_musica_de_uma_playlist_interativo(ARV_AVL **raiz_playlist)
 {
     print_amarelo("Remover musica de uma playlist:\n");
     print_amarelo("Deixe os campos vazios para sair\n\n");
-    ARV_BINARIA *playlist_encontrada = encontrar_dado_na_arv_digitando(*raiz_playlist, digitar_nome_playlist, comparar_dados_nome_playlist, liberar_dados_playlist);
+    ARV_AVL *playlist_encontrada = encontrar_dado_na_arv_digitando(*raiz_playlist, digitar_nome_playlist, comparar_dados_nome_playlist, liberar_dados_playlist);
 
     if (playlist_encontrada != NULL)
     {
@@ -538,7 +538,7 @@ void remover_musica_de_uma_playlist_interativo(ARV_BINARIA **raiz_playlist)
     pausar_tela();
 }
 
-void remover_playlist_interativo(ARV_BINARIA **raiz_playlist)
+void remover_playlist_interativo(ARV_AVL **raiz_playlist)
 {
     print_amarelo("Remover uma playlist:\n");
     print_amarelo("Deixe os campos vazios para sair\n\n");
@@ -557,16 +557,16 @@ void remover_playlist_interativo(ARV_BINARIA **raiz_playlist)
     pausar_tela();
 }
 
-void remover_musica_de_um_album_de_um_artista_interativo(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
+void remover_musica_de_um_album_de_um_artista_interativo(ARV_AVL **raiz_artista, ARV_AVL **raiz_playlist)
 {
     print_amarelo("Remover uma musica de um album de um artista:\n");
     print_amarelo("Deixe os campos vazios para sair\n\n");
 
-    ARV_BINARIA *artista_encontrado = encontrar_dado_na_arv_digitando(*raiz_artista, digitar_nome_artista, comparar_dados_nome_artista, liberar_dados_artista);
+    ARV_AVL *artista_encontrado = encontrar_dado_na_arv_digitando(*raiz_artista, digitar_nome_artista, comparar_dados_nome_artista, liberar_dados_artista);
 
     if (artista_encontrado != NULL)
     {
-        ARV_BINARIA *album_encontrado = encontrar_dado_na_arv_digitando(artista_encontrado->info->artista->albuns_raiz_arvore, digitar_titulo_album, comparar_dados_titulo_album, liberar_dados_album);
+        ARV_AVL *album_encontrado = encontrar_dado_na_arv_digitando(artista_encontrado->info->artista->albuns_raiz_arvore, digitar_titulo_album, comparar_dados_titulo_album, liberar_dados_album);
 
         if (album_encontrado != NULL)
         {
@@ -594,7 +594,7 @@ void remover_musica_de_um_album_de_um_artista_interativo(ARV_BINARIA **raiz_arti
     pausar_tela();
 }
 
-void menu_principal(ARV_BINARIA **raiz_artista, ARV_BINARIA **raiz_playlist)
+void menu_principal(ARV_AVL **raiz_artista, ARV_AVL **raiz_playlist)
 {
 
     short int opcao = 0;
