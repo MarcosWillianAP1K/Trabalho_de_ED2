@@ -7,7 +7,6 @@ typedef struct ARV_AVL
 {
     DADOS *info;
     int altura;
-    int fb;
     struct ARV_AVL *esq;
     struct ARV_AVL *dir;
 } ARV_AVL;
