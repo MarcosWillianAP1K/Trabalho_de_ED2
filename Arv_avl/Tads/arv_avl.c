@@ -220,3 +220,98 @@ ARV_AVL *buscar_arv_avl(ARV_AVL *raiz, DADOS *info, int (*comparar)(DADOS *, DAD
 
   return no;
 }
+
+ARV_AVL *de_ladinho_para_direita(ARV_AVL **raiz)
+{
+  if (raiz != NULL && *raiz != NULL && (*raiz)->esq != NULL)
+  {
+    ARV_AVL *aux = *raiz;
+    *raiz = (*raiz)->esq;
+    aux->esq = (*raiz)->dir;
+    (*raiz)->dir = aux;
+  }
+  return *raiz;
+}
+
+ARV_AVL *de_ladinho_para_esquerda(ARV_AVL **raiz)
+{
+  if (raiz != NULL && *raiz != NULL && (*raiz)->dir != NULL)
+  {
+    ARV_AVL *aux = *raiz;
+    *raiz = (*raiz)->dir;
+    aux->dir = (*raiz)->esq;
+    (*raiz)->esq = aux;
+  }
+  return *raiz;
+}
+
+ARV_AVL *balanceamento(ARV_AVL **raiz, int (*comparar)(DADOS *, DADOS *))
+{
+  if (raiz != NULL && *raiz != NULL)
+  {
+    // esse vai de ladinho para a esquerda
+    if ((*raiz)->fb == 2)
+    {
+      if ((*raiz)->dir != NULL && (*raiz)->dir->fb == -1)
+      {
+        de_ladinho_para_direita(&(*raiz)->dir);
+        *raiz = de_ladinho_para_esquerda(raiz);
+      }
+      else
+      {
+        *raiz = de_ladinho_para_esquerda(raiz);
+      }
+    }
+    // esse vai de ladinho para a direita
+    else if ((*raiz)->fb == -2)
+    {
+      if ((*raiz)->esq != NULL && (*raiz)->esq->fb == 1)
+      {
+        de_ladinho_para_esquerda(&(*raiz)->esq);
+        *raiz = de_ladinho_para_direita(raiz);
+      }
+      else
+      {
+        *raiz = de_ladinho_para_direita(raiz);
+      }
+    }
+  }
+  return *raiz;
+}
+
+void ajuste_altura(ARV_AVL **raiz, int (*comparar)(DADOS *, DADOS *))
+{
+  if (raiz != NULL && *raiz != NULL)
+  {
+    int altura_esq;
+    if ((*raiz)->esq != NULL)
+    {
+      altura_esq = (*raiz)->esq->altura;
+    }
+    else
+    {
+      altura_esq = -1;
+    }
+
+    int altura_dir;
+    if ((*raiz)->dir != NULL)
+    {
+      altura_dir = (*raiz)->dir->altura;
+    }
+    else
+    {
+      altura_dir = -1;
+    }
+
+    (*raiz)->altura = (altura_esq > altura_dir ? altura_esq : altura_dir) + 1;
+    (*raiz)->fb = altura_dir - altura_esq;
+
+    if ((*raiz)->fb == 2 || (*raiz)->fb == -2)
+    {
+      balanceamento(raiz, comparar);
+    }
+
+    ajuste_altura(&(*raiz)->esq, comparar);
+    ajuste_altura(&(*raiz)->dir, comparar);
+  }
+}

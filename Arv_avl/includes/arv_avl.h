@@ -1,18 +1,16 @@
 #include "dados.h"
 
-
-
 #ifndef ARV_AVL_H
 #define ARV_AVL_H
 
-
-typedef struct ARV_AVL{
+typedef struct ARV_AVL
+{
     DADOS *info;
     int altura;
+    int fb;
     struct ARV_AVL *esq;
     struct ARV_AVL *dir;
 } ARV_AVL;
-
 
 ARV_AVL *alocar_arv_avl();
 
@@ -36,7 +34,14 @@ ARV_AVL *remover_arv_avl(ARV_AVL **raiz, DADOS *info, int (*comparar)(DADOS *, D
 
 ARV_AVL *buscar_arv_avl(ARV_AVL *raiz, DADOS *info, int (*comparar)(DADOS *, DADOS *));
 
-short int imprimir_arv_avl_filtro(ARV_AVL *raiz, DADOS *info,void (*printar_dados)(DADOS *), int (*comparar)(DADOS *, DADOS *));
+short int imprimir_arv_avl_filtro(ARV_AVL *raiz, DADOS *info, void (*printar_dados)(DADOS *), int (*comparar)(DADOS *, DADOS *));
 
+ARV_AVL *de_ladinho_para_direita(ARV_AVL **raiz);
+
+ARV_AVL *de_ladinho_para_esquerda(ARV_AVL **raiz);
+
+ARV_AVL *balanceamento(ARV_AVL **raiz, int (*comparar)(DADOS *, DADOS *));
+
+void ajuste_altura(ARV_AVL **raiz, int (*comparar)(DADOS *, DADOS *));
 
 #endif
