@@ -303,7 +303,15 @@ void ajuste_altura(ARV_AVL **raiz, int (*comparar)(DADOS *, DADOS *))
       altura_dir = -1;
     }
 
-    (*raiz)->altura = (altura_esq > altura_dir ? altura_esq : altura_dir) + 1;
+    (*raiz)->altura;
+    if (altura_esq > altura_dir)
+    {
+      (*raiz)->altura = altura_esq + 1;
+    }
+    else
+    {
+      (*raiz)->altura = altura_dir + 1;
+    }
     (*raiz)->fb = altura_dir - altura_esq;
 
     if ((*raiz)->fb == 2 || (*raiz)->fb == -2)
