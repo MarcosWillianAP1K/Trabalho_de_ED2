@@ -74,73 +74,7 @@ short int fator_balanceamento(ARV_AVL *raiz)
   return fb;
 }
 
-void de_ladinho_para_direita(ARV_AVL **raiz)
-{
-  if (raiz != NULL && *raiz != NULL)
-  {
-    ARV_AVL *aux = (*raiz)->esq;
-    (*raiz)->esq = aux->dir;
-    aux->dir = *raiz;
-    *raiz = aux;
-    
-  }
-}
-
-void de_ladinho_para_esquerda(ARV_AVL **raiz)
-{
-  if (raiz != NULL && *raiz != NULL)
-  {
-    ARV_AVL *aux = (*raiz)->dir;
-    (*raiz)->dir = aux->esq;
-    aux->esq = *raiz;
-    *raiz = aux;
-  }
-}
-
-short int balanceamento(ARV_AVL **raiz, int (*comparar)(DADOS *, DADOS *))
-{
-  short int retorno = 0;
-
-  if (raiz != NULL && *raiz != NULL)
-  {
-    short int fb = fator_balanceamento(*raiz);
-
-    //Pendente para esquerda, rotacionando para direita
-    if (fb == 2)
-    {
-      retorno = 1;
-      //Verifica se o nó da esquerda é pendente para direita, se sim deve fazer 2 rotações
-      if ((*raiz)->dir != NULL && fator_balanceamento((*raiz)->dir) == -1)
-      {
-        de_ladinho_para_esquerda(&(*raiz)->dir);
-        de_ladinho_para_direita(raiz);
-      }
-      else
-      {
-        de_ladinho_para_direita(raiz);
-      }
-    }
-    //Pendente para direita, rotacionando para esquerda
-    else if (fb == -2)
-    {
-      retorno = 1;
-      //Verifica se o nó da direita é pendente para esquerda, se sim deve fazer 2 rotações
-      if ((*raiz)->esq != NULL && fator_balanceamento((*raiz)->esq) == 1)
-      {
-        de_ladinho_para_direita(&(*raiz)->esq);
-        de_ladinho_para_esquerda(raiz);
-      }
-      else
-      {
-        de_ladinho_para_esquerda(raiz);
-      }
-    }
-  }
-
-  return retorno;
-}
-
-void ajuste_altura(ARV_AVL **raiz, int (*comparar)(DADOS *, DADOS *))
+void ajuste_altura(ARV_AVL **raiz)
 {
   if (raiz != NULL && *raiz != NULL)
   {
@@ -158,6 +92,79 @@ void ajuste_altura(ARV_AVL **raiz, int (*comparar)(DADOS *, DADOS *))
 
     (*raiz)->altura = (altura_esq > altura_dir ? altura_esq : altura_dir) + 1;
   }
+}
+
+void de_ladinho_para_direita(ARV_AVL **raiz)
+{
+  if (raiz != NULL && *raiz != NULL)
+  {
+    ARV_AVL *aux = (*raiz)->esq;
+    (*raiz)->esq = aux->dir;
+    aux->dir = *raiz;
+    *raiz = aux;
+
+    ajuste_altura(&(*raiz)->esq);
+    ajuste_altura(&(*raiz)->dir);
+    ajuste_altura(raiz);
+  }
+}
+
+void de_ladinho_para_esquerda(ARV_AVL **raiz)
+{
+  if (raiz != NULL && *raiz != NULL)
+  {
+    ARV_AVL *aux = (*raiz)->dir;
+    (*raiz)->dir = aux->esq;
+    aux->esq = *raiz;
+    *raiz = aux;
+
+    ajuste_altura(&(*raiz)->esq);
+    ajuste_altura(&(*raiz)->dir);
+    ajuste_altura(raiz);
+  }
+}
+
+short int balanceamento(ARV_AVL **raiz, int (*comparar)(DADOS *, DADOS *))
+{
+  short int retorno = 0;
+
+  if (raiz != NULL && *raiz != NULL)
+  {
+    short int fb = fator_balanceamento(*raiz);
+
+    // Pendente para esquerda, rotacionando para direita
+    if (fb == 2)
+    {
+      retorno = 1;
+      // Verifica se o nó da esquerda é pendente para direita, se sim deve fazer 2 rotações
+      if ((*raiz)->dir != NULL && fator_balanceamento((*raiz)->dir) == -1)
+      {
+        de_ladinho_para_esquerda(&(*raiz)->dir);
+        de_ladinho_para_direita(raiz);
+      }
+      else
+      {
+        de_ladinho_para_direita(raiz);
+      }
+    }
+    // Pendente para direita, rotacionando para esquerda
+    else if (fb == -2)
+    {
+      retorno = 1;
+      // Verifica se o nó da direita é pendente para esquerda, se sim deve fazer 2 rotações
+      if ((*raiz)->esq != NULL && fator_balanceamento((*raiz)->esq) == 1)
+      {
+        de_ladinho_para_direita(&(*raiz)->esq);
+        de_ladinho_para_esquerda(raiz);
+      }
+      else
+      {
+        de_ladinho_para_esquerda(raiz);
+      }
+    }
+  }
+
+  return retorno;
 }
 
 int inserir_arv_avl(ARV_AVL **raiz, DADOS *info, int (*comparar)(DADOS *, DADOS *))
@@ -185,12 +192,7 @@ int inserir_arv_avl(ARV_AVL **raiz, DADOS *info, int (*comparar)(DADOS *, DADOS 
 
     if (inseriu == 1)
     {
-      if (balanceamento(raiz, comparar) == 1)
-      {
-        ajuste_altura(&(*raiz)->esq, comparar);
-        ajuste_altura(&(*raiz)->dir, comparar);
-      }
-      ajuste_altura(raiz, comparar);
+      balanceamento(raiz, comparar);
     }
   }
 
@@ -315,12 +317,7 @@ ARV_AVL *remover_arv_avl(ARV_AVL **raiz, DADOS *info, int (*comparar)(DADOS *, D
 
     if (removeu != NULL)
     {
-      if (balanceamento(raiz, comparar) == 1)
-      {
-        ajuste_altura(&(*raiz)->esq, comparar);
-        ajuste_altura(&(*raiz)->dir, comparar);
-      }
-      ajuste_altura(raiz, comparar);
+      balanceamento(raiz, comparar);
     }
   }
 
