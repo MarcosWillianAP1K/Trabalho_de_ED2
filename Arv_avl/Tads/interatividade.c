@@ -307,7 +307,7 @@ void cadastrar_musica_interativo(ARV_AVL **raiz_artista)
 void mostrar_artistas_interativo(ARV_AVL **raiz_artista)
 {
     print_amarelo("Artistas cadastrados:\n");
-    printf("Altura: %d\n", (*raiz_artista)->altura);
+    // printf("Altura: %d\n", (*raiz_artista)->altura);
 
     mostrar_artistas(*raiz_artista);
     pausar_tela();
