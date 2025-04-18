@@ -137,7 +137,7 @@ short int balanceamento(ARV_AVL **raiz, int (*comparar)(DADOS *, DADOS *))
       // Verifica se o nó da esquerda é pendente para direita, se sim deve fazer 2 rotações
       if ((*raiz)->dir != NULL && fator_balanceamento((*raiz)->dir) == -1)
       {
-        de_ladinho_para_esquerda(&(*raiz)->dir);
+        de_ladinho_para_esquerda(&(*raiz)->esq);
         de_ladinho_para_direita(raiz);
       }
       else
@@ -152,7 +152,7 @@ short int balanceamento(ARV_AVL **raiz, int (*comparar)(DADOS *, DADOS *))
       // Verifica se o nó da direita é pendente para esquerda, se sim deve fazer 2 rotações
       if ((*raiz)->esq != NULL && fator_balanceamento((*raiz)->esq) == 1)
       {
-        de_ladinho_para_direita(&(*raiz)->esq);
+        de_ladinho_para_direita(&(*raiz)->dir);
         de_ladinho_para_esquerda(raiz);
       }
       else
