@@ -716,6 +716,8 @@ void menu_principal(ARV_AVL **raiz_artista, ARV_AVL **raiz_playlist)
             break;
 
         default:
+            mensagem_erro("Opcao invalida!\n");
+            pausar_tela();
             break;
         }
 
