@@ -103,7 +103,6 @@ void de_ladinho_para_direita(ARV_AVL **raiz)
     aux->dir = *raiz;
     *raiz = aux;
 
-    ajuste_altura(&(*raiz)->esq);
     ajuste_altura(&(*raiz)->dir);
     ajuste_altura(raiz);
   }
@@ -119,7 +118,6 @@ void de_ladinho_para_esquerda(ARV_AVL **raiz)
     *raiz = aux;
 
     ajuste_altura(&(*raiz)->esq);
-    ajuste_altura(&(*raiz)->dir);
     ajuste_altura(raiz);
   }
 }
