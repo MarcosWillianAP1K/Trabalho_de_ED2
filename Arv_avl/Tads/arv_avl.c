@@ -202,7 +202,7 @@ void imprimir_arv_avl(ARV_AVL *raiz, void (*printar_dados)(DADOS *))
   if (raiz != NULL)
   {
     imprimir_arv_avl(raiz->esq, printar_dados);
-    // printf("\nAltura: %d", raiz->altura);
+    printf("\nAltura: %d", raiz->altura);
     printar_dados(raiz->info);
     imprimir_arv_avl(raiz->dir, printar_dados);
   }
