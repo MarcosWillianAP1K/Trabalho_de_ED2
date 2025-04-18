@@ -103,9 +103,7 @@ void de_ladinho_para_direita(ARV_AVL **raiz)
     aux->dir = *raiz;
     *raiz = aux;
 
-    ajuste_altura(&(*raiz)->esq);
     ajuste_altura(&(*raiz)->dir);
-    ajuste_altura(raiz);
   }
 }
 
@@ -118,9 +116,7 @@ void de_ladinho_para_esquerda(ARV_AVL **raiz)
     aux->esq = *raiz;
     *raiz = aux;
 
-    ajuste_altura(&(*raiz)->dir);
     ajuste_altura(&(*raiz)->esq);
-    ajuste_altura(raiz);
   }
 }
 
@@ -193,6 +189,7 @@ int inserir_arv_avl(ARV_AVL **raiz, DADOS *info, int (*comparar)(DADOS *, DADOS 
     if (inseriu == 1)
     {
       balanceamento(raiz, comparar);
+      ajuste_altura(raiz);
     }
   }
 
@@ -318,6 +315,7 @@ ARV_AVL *remover_arv_avl(ARV_AVL **raiz, DADOS *info, int (*comparar)(DADOS *, D
     if (removeu != NULL)
     {
       balanceamento(raiz, comparar);
+      ajuste_altura(raiz);
     }
   }
 
