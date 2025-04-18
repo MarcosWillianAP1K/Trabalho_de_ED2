@@ -35,12 +35,4 @@ ARV_AVL *buscar_arv_avl(ARV_AVL *raiz, DADOS *info, int (*comparar)(DADOS *, DAD
 
 short int imprimir_arv_avl_filtro(ARV_AVL *raiz, DADOS *info, void (*printar_dados)(DADOS *), int (*comparar)(DADOS *, DADOS *));
 
-ARV_AVL *de_ladinho_para_direita(ARV_AVL **raiz);
-
-ARV_AVL *de_ladinho_para_esquerda(ARV_AVL **raiz);
-
-ARV_AVL *balanceamento(ARV_AVL **raiz, int (*comparar)(DADOS *, DADOS *));
-
-void ajuste_altura(ARV_AVL **raiz, int (*comparar)(DADOS *, DADOS *));
-
 #endif

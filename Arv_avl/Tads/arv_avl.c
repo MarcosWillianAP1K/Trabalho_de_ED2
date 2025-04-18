@@ -44,6 +44,7 @@ ARV_AVL *criar_no_arv_avl(DADOS *info)
 {
   ARV_AVL *nova_arv = alocar_arv_avl();
   nova_arv->info = info;
+  nova_arv->altura = 0;
   nova_arv->esq = NULL;
   nova_arv->dir = NULL;
   return nova_arv;
