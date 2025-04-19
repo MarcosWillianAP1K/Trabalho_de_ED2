@@ -238,14 +238,35 @@ void pecorrer_arquivo_artista(char *diretorio_artista, char *diretorio_album, ch
     
 }
 
+short int buscar_musica_de_um_album_de_um_artista(ARV_BINARIA *raiz_artista, char *artista, char *album, char *musica){
+    short int retorno = 0;
+    
+    if (raiz_artista != NULL && artista != NULL && album != NULL && musica != NULL)
+    {
+        DADOS *artista_dados = alocar_dados();
+        artista_dados->artista = criar_artista(artista, NULL, NULL, 0, NULL);
+
+        buscar_arv_binaria(raiz_artista->info->artista)
+        DADOS *album_dados = alocar_dados();
+        album_dados->album = criar_dados(NULL, album, NULL, 0, NULL);
+        
+        DADOS *musica_dados = alocar_dados();
+        musica_dados->musica = criar_dados(NULL, NULL, musica, 0, NULL);
+    }
+    
+}
+
+
 void insercao_crescente_na_arv_binaria(ARV_BINARIA **raiz_artista)
 {
     pecorrer_arquivo_artista(DIRETORIO_ARTISTA_CRESCENTE, DIRETORIO_ALBUM_CRESCENTE, DIRETORIO_MUSICA_CRESCENTE, raiz_artista);
 }
+
 void  insercao_decrescente_na_arv_binaria(ARV_BINARIA **raiz_artista)
 {
     pecorrer_arquivo_artista(DIRETORIO_ARTISTA_DECRESCENTE, DIRETORIO_ALBUM_DECRESCENTE, DIRETORIO_MUSICA_DECRESCENTE, raiz_artista);
 }
+
 void insercao_aleatoria_na_arv_binaria(ARV_BINARIA **raiz_artista)
 {
     pecorrer_arquivo_artista(DIRETORIO_ARTISTA_ALEATORIO, DIRETORIO_ALBUM_ALEATORIO, DIRETORIO_MUSICA_ALEATORIO, raiz_artista);
@@ -253,26 +274,109 @@ void insercao_aleatoria_na_arv_binaria(ARV_BINARIA **raiz_artista)
 
 int main()
 {
+    #define NOME_ARQUIVO_RESULTADO "RESULTADOS_TESTES.txt"
 
     if (verificar_se_existem_arquivos() == 1)
     {
-        criar_resetar_arquivo_resultado("RESULTADOS_TESTES.txt");
-
-        double tempo = 0.0;
         ARV_BINARIA *raiz_artista = NULL;
+        char buffer[256];
+        criar_resetar_arquivo_resultado(NOME_ARQUIVO_RESULTADO);
+
+
+
         time_t cronometro = cronometro_iniciar();
 
+        // Teste de inserção crescente
         insercao_crescente_na_arv_binaria(&raiz_artista);
 
-        insercao_decrescente_na_arv_binaria(&raiz_artista);
-        
-        insercao_aleatoria_na_arv_binaria(&raiz_artista);
+        cronometro = cronometro_finalizar(cronometro);
+        converter_para_string(cronometro, buffer, sizeof(buffer));
 
+        escrever_resultado(NOME_ARQUIVO_RESULTADO, "Tempo de insercao crescente: ");
+        escrever_resultado(NOME_ARQUIVO_RESULTADO, buffer);
+        escrever_resultado(NOME_ARQUIVO_RESULTADO, "\n");
+        
+
+
+
+
+
+
+        cronometro = cronometro_iniciar();
+
+        // Teste de deleção crescente
         delete_all(&raiz_artista, NULL);
 
-        imprimir_arv_binaria(raiz_artista, imprimir_dados_artista); 
+        cronometro = cronometro_finalizar(cronometro);
+        converter_para_string(cronometro, buffer, sizeof(buffer));
+        
+        escrever_resultado(NOME_ARQUIVO_RESULTADO, "Tempo de exclusao crescente: ");
+        escrever_resultado(NOME_ARQUIVO_RESULTADO, buffer);
+        escrever_resultado(NOME_ARQUIVO_RESULTADO, "\n\n");
 
-        delete_all(&raiz_artista, NULL); // Libera a memória alocada para a árvore binária de artistas
+
+
+        
+        
+
+
+        cronometro = cronometro_iniciar();
+        
+        // Teste de inserção decrescente
+        insercao_decrescente_na_arv_binaria(&raiz_artista);
+
+        cronometro = cronometro_finalizar(cronometro);
+        converter_para_string(cronometro, buffer, sizeof(buffer));
+        
+        escrever_resultado(NOME_ARQUIVO_RESULTADO, "Tempo de insercao decrescente: ");
+        escrever_resultado(NOME_ARQUIVO_RESULTADO, buffer);
+        escrever_resultado(NOME_ARQUIVO_RESULTADO, "\n");
+
+
+
+
+        cronometro = cronometro_iniciar();
+
+        // Teste de deleção decrescente
+        delete_all(&raiz_artista, NULL);
+
+        cronometro = cronometro_finalizar(cronometro);
+        converter_para_string(cronometro, buffer, sizeof(buffer));
+
+        escrever_resultado(NOME_ARQUIVO_RESULTADO, "Tempo de exclusao decrescente: ");
+        escrever_resultado(NOME_ARQUIVO_RESULTADO, buffer);
+        escrever_resultado(NOME_ARQUIVO_RESULTADO, "\n\n");
+
+
+        
+
+        cronometro = cronometro_iniciar();
+        
+        // Teste de inserção aleatória
+        insercao_aleatoria_na_arv_binaria(&raiz_artista);
+
+        cronometro = cronometro_finalizar(cronometro);
+
+        converter_para_string(cronometro, buffer, sizeof(buffer));
+
+
+        escrever_resultado(NOME_ARQUIVO_RESULTADO, "Tempo de insercao aleatoria: ");
+        escrever_resultado(NOME_ARQUIVO_RESULTADO, buffer);
+        escrever_resultado(NOME_ARQUIVO_RESULTADO, "\n");
+
+        
+        cronometro = cronometro_iniciar();
+
+        // Teste de deleção aleatória
+        delete_all(&raiz_artista, NULL);
+
+        cronometro = cronometro_finalizar(cronometro);
+        converter_para_string(cronometro, buffer, sizeof(buffer));
+
+        escrever_resultado(NOME_ARQUIVO_RESULTADO, "Tempo de exclusao aleatoria: ");
+        escrever_resultado(NOME_ARQUIVO_RESULTADO, buffer);
+        escrever_resultado(NOME_ARQUIVO_RESULTADO, "\n\n");
+
     }
 
     return 0;
