@@ -4,6 +4,7 @@
 #include <time.h>
 #include "../includes/func_interatividade.h"
 #include "../../Resultados_testes/Escrever_resultado.h"
+#include "Cronometro.h"
 
 // Mantenha a quantidade de artistas, albuns e musicas igual a quantidade de artistas, albuns e musicas que o gerador de testes gera
 #define QUANTIDADE_ARTISTAS 10
@@ -247,16 +248,26 @@ int main()
 
     if (verificar_se_existem_arquivos() == 1)
     {
+        criar_resetar_arquivo_resultado("RESULTADOS_TESTES.txt");
+
+        double tempo = 0.0;
         ARV_BINARIA *raiz_artista = NULL;
+        time_t cronometro = cronometro_iniciar();
+
         insercao_crescente_na_arv_binaria(&raiz_artista);
 
+        cronometro = cronometro_finalizar(cronometro);
+
+        tempo = converter_para_segundos(cronometro);
+
+        delete_all(&raiz_artista, NULL); // Libera a memória alocada para a árvore binária de artistas
+
         insercao_decrescente_na_arv_binaria(&raiz_artista);
-        
+
         insercao_aleatoria_na_arv_binaria(&raiz_artista);
 
         imprimir_arv_binaria(raiz_artista, imprimir_dados_artista); 
 
-        delete_all(&raiz_artista, NULL); // Libera a memória alocada para a árvore binária de artistas
     }
 
     return 0;
