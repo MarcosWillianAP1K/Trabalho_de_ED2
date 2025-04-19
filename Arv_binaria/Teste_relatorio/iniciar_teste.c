@@ -242,6 +242,14 @@ void insercao_crescente_na_arv_binaria(ARV_BINARIA **raiz_artista)
 {
     pecorrer_arquivo_artista(DIRETORIO_ARTISTA_CRESCENTE, DIRETORIO_ALBUM_CRESCENTE, DIRETORIO_MUSICA_CRESCENTE, raiz_artista);
 }
+void  insercao_decrescente_na_arv_binaria(ARV_BINARIA **raiz_artista)
+{
+    pecorrer_arquivo_artista(DIRETORIO_ARTISTA_DECRESCENTE, DIRETORIO_ALBUM_DECRESCENTE, DIRETORIO_MUSICA_DECRESCENTE, raiz_artista);
+}
+void insercao_aleatoria_na_arv_binaria(ARV_BINARIA **raiz_artista)
+{
+    pecorrer_arquivo_artista(DIRETORIO_ARTISTA_ALEATORIO, DIRETORIO_ALBUM_ALEATORIO, DIRETORIO_MUSICA_ALEATORIO, raiz_artista);
+}
 
 int main()
 {
@@ -256,18 +264,15 @@ int main()
 
         insercao_crescente_na_arv_binaria(&raiz_artista);
 
-        cronometro = cronometro_finalizar(cronometro);
-
-        tempo = converter_para_segundos(cronometro);
-
-        delete_all(&raiz_artista, NULL); // Libera a memória alocada para a árvore binária de artistas
-
         insercao_decrescente_na_arv_binaria(&raiz_artista);
-
+        
         insercao_aleatoria_na_arv_binaria(&raiz_artista);
+
+        delete_all(&raiz_artista, NULL);
 
         imprimir_arv_binaria(raiz_artista, imprimir_dados_artista); 
 
+        delete_all(&raiz_artista, NULL); // Libera a memória alocada para a árvore binária de artistas
     }
 
     return 0;
