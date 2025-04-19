@@ -1,0 +1,3 @@
+Resultados dos Testes:
+
+Tempo de insercao crescente: 0.02 segundos

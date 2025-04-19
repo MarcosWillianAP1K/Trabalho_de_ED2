@@ -246,14 +246,29 @@ short int buscar_musica_de_um_album_de_um_artista(ARV_BINARIA *raiz_artista, cha
         DADOS *artista_dados = alocar_dados();
         artista_dados->artista = criar_artista(artista, NULL, NULL, 0, NULL);
 
-        buscar_arv_binaria(raiz_artista->info->artista)
-        DADOS *album_dados = alocar_dados();
-        album_dados->album = criar_dados(NULL, album, NULL, 0, NULL);
-        
-        DADOS *musica_dados = alocar_dados();
-        musica_dados->musica = criar_dados(NULL, NULL, musica, 0, NULL);
-    }
+        ARV_BINARIA *retorno_artista = buscar_arv_binaria(raiz_artista, artista_dados, comparar_dados_nome_artista);
+        if (retorno_artista != NULL)
+        {
+            DADOS *album_dados = alocar_dados();
+            album_dados->album = criar_album(album, 0, 0, NULL);
+
+            ARV_BINARIA *retorno_album = buscar_arv_binaria(retorno_artista, album_dados, comparar_dados_titulo_album);
+            if (retorno_album != NULL)
+            {
+                DADOS *musica_dados = alocar_dados();
+                musica_dados->musica = criar_musica(musica, 0, 0);
+
+                ARV_BINARIA *retorno_musica = buscar_arv_binaria(retorno_album, musica_dados, comparar_dados_titulo_musica);
+                if (retorno_musica != NULL)
+                {
+                    retorno = 1;
+                }
+            }
+        }
+
+    }else retorno = 0;
     
+    return retorno;
 }
 
 
