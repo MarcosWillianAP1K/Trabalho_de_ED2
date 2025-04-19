@@ -365,14 +365,14 @@ void delete_playlist(ARV_AVL **raiz_playlist)
 
 void delete_all(ARV_AVL **raiz_artista, ARV_AVL **raiz_playlist)
 {
-    if (*raiz_playlist != NULL)
+    if (raiz_playlist != NULL &&*raiz_playlist != NULL)
     {
         printf("Entrou na playlist\n");
         delete_playlist(raiz_playlist);
         *raiz_playlist = NULL;
     }
 
-    if (*raiz_artista != NULL)
+    if (raiz_playlist != NULL && *raiz_artista != NULL)
     {
         printf("Entrou no artista\n");
         delete_artista(raiz_artista);
