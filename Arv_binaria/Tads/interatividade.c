@@ -148,6 +148,10 @@ DADOS *digitar_cadastro_artista()
     printf("Digite o estilo musical do artista\n");
     char *estilo = digitar_string();
 
+    corrigir_espacos(&nome);
+    corrigir_espacos(&tipo);
+    corrigir_espacos(&estilo);
+
     DADOS *aux = alocar_dados();
     aux->artista = criar_artista(nome, tipo, estilo, 0, NULL);
 
@@ -164,6 +168,8 @@ DADOS *digitar_cadastro_album()
 
     printf("Digite o titulo do album: ");
     char *titulo = digitar_string();
+
+    corrigir_espacos(&titulo);
 
     printf("Digite o ano de lancamento do album: ");
 
@@ -182,6 +188,8 @@ DADOS *digitar_cadastro_musica()
 {
     printf("Digite o titulo da musica: ");
     char *titulo = digitar_string();
+
+    corrigir_espacos(&titulo);
 
     printf("Digite o duracao da musica\n");
     printf("Digite os minutos: ");
@@ -211,6 +219,8 @@ DADOS *digitar_cadastro_playlist()
 {
     printf("Digite o nome da playlist: ");
     char *nome_playlist = digitar_string();
+
+    corrigir_espacos(&nome_playlist);
 
     DADOS *aux = alocar_dados();
     aux->playlist = criar_playlist(nome_playlist, 0, NULL);

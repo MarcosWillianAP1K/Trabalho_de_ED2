@@ -30,4 +30,6 @@ short int digitar_short_int();
 
 char digitar_um_caracter();
 
+void corrigir_espacos(char **str);
+
 #endif

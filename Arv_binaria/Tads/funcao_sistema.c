@@ -148,12 +148,12 @@ char digitar_um_caracter()
     return c;
 }
 
-void corrigir_espacos(char *str)
+void corrigir_espacos(char **str)
 {
-    if (str != NULL)
+    if (str != NULL && *str != NULL)
     {
         // Remover espaços à esquerda
-        char *inicio = str;
+        char *inicio = *str;
         while (*inicio == ' ')
             inicio++;
 
@@ -165,15 +165,15 @@ void corrigir_espacos(char *str)
         *(fim + 1) = '\0';
 
         // Verificar se há necessidade de alocar nova string
-        if (inicio != str || *(fim + 1) != '\0')
+        if (inicio != *str || *(fim + 1) != '\0')
         {
             char *corrigida = NULL;
             // Realocar a string corrigida
             corrigida = (char *)malloc((strlen(inicio) + 1) * sizeof(char));
             verificar_alocacao(corrigida);
             strcpy(corrigida, inicio);
-            free(str); // Liberar a string original, se necessário
-            str = corrigida;
+            free(*str); // Liberar a string original, se necessário
+            *str = corrigida;
         }
     }
 }
