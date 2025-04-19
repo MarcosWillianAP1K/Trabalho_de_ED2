@@ -327,11 +327,12 @@ int main()
         escrever_resultado(NOME_ARQUIVO_RESULTADO, BUSCAR_MUSICA);
         escrever_resultado(NOME_ARQUIVO_RESULTADO, "\n\n");
 
+        time_t cronometro;
 
         //CRESCENTE
         printf("CRESCENTE\n");
 
-        time_t cronometro = cronometro_iniciar();
+        cronometro = cronometro_iniciar();
 
         // Teste de inserção crescente
         insercao_crescente_na_arv_binaria(&raiz_artista);
@@ -373,7 +374,7 @@ int main()
         escrever_resultado(NOME_ARQUIVO_RESULTADO, "\n\n");
 
 
-
+        raiz_artista = NULL;
         
         //DECRESCENTE
         printf("\nDECRESCENTE\n");
@@ -420,7 +421,7 @@ int main()
         escrever_resultado(NOME_ARQUIVO_RESULTADO, "\n\n");
 
 
-
+        raiz_artista = NULL;
 
         //ALEATORIO
         printf("\nALEATORIO\n");
