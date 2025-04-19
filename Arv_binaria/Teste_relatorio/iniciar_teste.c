@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 #include "../includes/func_interatividade.h"
+#include "../../Resultados_testes/Escrever_resultado.h"
 
 // Mantenha a quantidade de artistas, albuns e musicas igual a quantidade de artistas, albuns e musicas que o gerador de testes gera
 #define QUANTIDADE_ARTISTAS 10
@@ -98,14 +100,7 @@ short int verificar_se_existem_arquivos()
     return retorno;
 }
 
-void verificar_abertura_arquivos(FILE *arquivo)
-{
-    if (arquivo == NULL)
-    {
-        printf("Erro ao abrir o arquivo.\n");
-        exit(1);
-    }
-}
+
 
 void remover_newline(char *str)
 {
