@@ -4,14 +4,11 @@
 
 //Detalhe, os albuns
 
-
-
-
-void gerar_testes_artistas_cresente(int quantidade_artistas)
+void gerar_testes_artistas_crescente(int quantidade_artistas)
 {
     int largura_digitos = snprintf(NULL, 0, "%d", quantidade_artistas);
 
-    FILE *arquivo = fopen("../Testes/Artistas_cresente.txt", "w");
+    FILE *arquivo = fopen("../Testes/Artistas_crescente.txt", "w");
 
     for (int i = 0; i < quantidade_artistas; i++)
     {
@@ -26,11 +23,11 @@ void gerar_testes_artistas_cresente(int quantidade_artistas)
     fclose(arquivo);
 }
 
-void gerar_testes_albuns_cresente(int quantidade_albuns)
+void gerar_testes_albuns_crescente(int quantidade_albuns)
 {
     int largura_digitos = snprintf(NULL, 0, "%d", quantidade_albuns);
 
-    FILE *arquivo = fopen("../Testes/Albuns_cresente.txt", "w");
+    FILE *arquivo = fopen("../Testes/Albuns_crescente.txt", "w");
 
     for (int i = 0; i < quantidade_albuns; i++)
     {
@@ -46,11 +43,11 @@ void gerar_testes_albuns_cresente(int quantidade_albuns)
     
 }
 
-void gerar_testes_musicas_cresente(int quantidade_musicas)
+void gerar_testes_musicas_crescente(int quantidade_musicas)
 {
     int largura_digitos = snprintf(NULL, 0, "%d", quantidade_musicas);
 
-    FILE *arquivo = fopen("../Testes/Musicas_cresente.txt", "w");
+    FILE *arquivo = fopen("../Testes/Musicas_crescente.txt", "w");
 
     for (int i = 0; i < quantidade_musicas; i++)
     {
@@ -65,7 +62,6 @@ void gerar_testes_musicas_cresente(int quantidade_musicas)
     fclose(arquivo);
     
 }
-
 
 void gerar_testes_artistas_decrescente(int quantidade_artistas)
 {
@@ -126,7 +122,6 @@ void gerar_testes_musicas_decrescente(int quantidade_musicas)
     fclose(arquivo);
     
 }
-
 
 void gerar_testes_artistas_aleatorio(int quantidade_artistas)
 {
@@ -220,12 +215,11 @@ void gerar_testes_musicas_aleatorio(int quantidade_musicas)
     
 }
 
-
 void gerar_testes(int quantidade_artistas, int quantidade_albuns, int quantidade_musicas)
 {
-    gerar_testes_artistas_cresente(quantidade_artistas);
-    gerar_testes_albuns_cresente(quantidade_albuns);
-    gerar_testes_musicas_cresente(quantidade_musicas);
+    gerar_testes_artistas_crescente(quantidade_artistas);
+    gerar_testes_albuns_crescente(quantidade_albuns);
+    gerar_testes_musicas_crescente(quantidade_musicas);
     
     gerar_testes_artistas_decrescente(quantidade_artistas);
     gerar_testes_albuns_decrescente(quantidade_albuns);
@@ -236,3 +230,13 @@ void gerar_testes(int quantidade_artistas, int quantidade_albuns, int quantidade
     gerar_testes_musicas_aleatorio(quantidade_musicas);
 }
 
+int main()
+{
+    #define QUANTIDADE_ARTISTAS 10
+    #define QUANTIDADE_ALBUNS 10
+    #define QUANTIDADE_MUSICAS 10
+
+    gerar_testes(QUANTIDADE_ARTISTAS, QUANTIDADE_ALBUNS, QUANTIDADE_MUSICAS);
+
+    return 0;
+}
