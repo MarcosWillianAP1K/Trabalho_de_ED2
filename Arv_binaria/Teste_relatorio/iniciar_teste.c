@@ -250,6 +250,10 @@ int main()
         ARV_BINARIA *raiz_artista = NULL;
         insercao_crescente_na_arv_binaria(&raiz_artista);
 
+        insercao_decrescente_na_arv_binaria(&raiz_artista);
+        
+        insercao_aleatoria_na_arv_binaria(&raiz_artista);
+
         imprimir_arv_binaria(raiz_artista, imprimir_dados_artista); 
 
         delete_all(&raiz_artista, NULL); // Libera a memória alocada para a árvore binária de artistas
