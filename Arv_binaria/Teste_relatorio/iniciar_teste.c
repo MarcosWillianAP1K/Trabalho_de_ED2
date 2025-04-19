@@ -1,10 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include "../includes/func_interatividade.h"
 
+// Mantenha a quantidade de artistas, albuns e musicas igual a quantidade de artistas, albuns e musicas que o gerador de testes gera
 #define QUANTIDADE_ARTISTAS 10
 #define QUANTIDADE_ALBUNS 10
 #define QUANTIDADE_MUSICAS 10
-
 
 #define DIRETORIO_ARTISTA_CRESCENTE "../../../Gerador_de_testes/Testes/Artistas_crescente.txt"
 #define DIRETORIO_ARTISTA_DECRESCENTE "../../../Gerador_de_testes/Testes/Artistas_decrescente.txt"
@@ -96,13 +98,166 @@ short int verificar_se_existem_arquivos()
     return retorno;
 }
 
+void verificar_abertura_arquivos(FILE *arquivo)
+{
+    if (arquivo == NULL)
+    {
+        printf("Erro ao abrir o arquivo.\n");
+        exit(1);
+    }
+}
+
+void remover_newline(char *str)
+{
+    size_t len = strlen(str);
+    if (len > 0 && str[len - 1] == '\n')
+    {
+        str[len - 1] = '\0';
+    }
+}
+
+ARTISTA *ler_artista(FILE *arquivo_artista)
+{
+    ARTISTA *artista = alocar_artista();
+
+    char buffer[256];
+    if (fgets(buffer, sizeof(buffer), arquivo_artista) != NULL)
+    {
+        remover_newline(buffer); // Remove o '\n' do final, se existir
+        artista->nome = malloc(strlen(buffer) + 1); // Aloca apenas a memória necessária
+        verificar_alocacao(artista->nome); // Verifica se a alocação de memória foi bem-sucedida
+
+        strcpy(artista->nome, buffer); // Copia a string para a memória alocada
+    }
+
+    return artista;
+}
+
+ALBUM *ler_album(FILE *arquivo_album)
+{
+    ALBUM *album = alocar_album();
+
+    char buffer[256];
+    if (fgets(buffer, sizeof(buffer), arquivo_album) != NULL)
+    {
+        remover_newline(buffer); // Remove o '\n' do final, se existir
+        album->titulo = malloc(strlen(buffer) + 1); // Aloca apenas a memória necessária
+        verificar_alocacao(album->titulo); // Verifica se a alocação de memória foi bem-sucedida
+
+        strcpy(album->titulo, buffer); // Copia a string para a memória alocada
+    }
+
+    return album;
+}
+
+MUSICA *ler_musica(FILE *arquivo_musica)
+{
+    MUSICA *musica = alocar_musica();
+
+    char buffer[256];
+    if (fgets(buffer, sizeof(buffer), arquivo_musica) != NULL)
+    {
+        remover_newline(buffer); // Remove o '\n' do final, se existir
+        musica->titulo = malloc(strlen(buffer) + 1); // Aloca apenas a memória necessária
+        verificar_alocacao(musica->titulo); // Verifica se a alocação de memória foi bem-sucedida
+
+        strcpy(musica->titulo, buffer); // Copia a string para a memória alocada
+    }
+
+    return musica;
+}
+
+
+void pecorrer_arquivo_musica(char *diretorio_musica, DADOS *album)
+{
+    FILE *arquivo_musica = fopen(diretorio_musica, "r");
+
+    verificar_abertura_arquivos(arquivo_musica);
+
+    for (int i = 0; i < QUANTIDADE_MUSICAS; i++)
+    {
+        DADOS *musica = alocar_dados();
+        musica->musica = ler_musica(arquivo_musica);
+    
+        if (cadastrar_musica(album, musica) != 1)
+        {
+            printf("Falha ao cadastrar a musica: %s\n", musica->musica->titulo);
+        }
+    }
+
+    fclose(arquivo_musica);
+    
+}
+
+void pecorrer_arquivo_album(char *diretorio_album, char *diretorio_musica, DADOS *artista)
+{
+    FILE *arquivo_album = fopen(diretorio_album, "r");
+
+    verificar_abertura_arquivos(arquivo_album);
+
+    for (int i = 0; i < QUANTIDADE_ALBUNS; i++)
+    {
+        DADOS *album = alocar_dados();
+        album->album = ler_album(arquivo_album);
+
+        if (cadastrar_album(artista, album) == 1)
+        {
+            pecorrer_arquivo_musica(diretorio_musica, album);
+        }
+        else
+        {
+            printf("Falha ao cadastrar o album: %s\n", album->album->titulo);
+        }
+
+    }
+
+    fclose(arquivo_album);
+    
+}
+
+void pecorrer_arquivo_artista(char *diretorio_artista, char *diretorio_album, char *diretorio_musica, ARV_BINARIA **raiz_artista)
+{
+    FILE *arquivo_artista = fopen(diretorio_artista, "r");
+
+    verificar_abertura_arquivos(arquivo_artista);
+
+    for (int i = 0; i < QUANTIDADE_ARTISTAS; i++)
+    {
+        DADOS *artista = alocar_dados();
+        artista->artista = ler_artista(arquivo_artista);
+
+        if (cadastrar_artista(raiz_artista, artista) == 1)
+        {
+            
+            pecorrer_arquivo_album(diretorio_album, diretorio_musica, artista);
+        }
+        else
+        {
+            printf("Falha ao cadastrar o artista: %s\n", artista->artista->nome);
+        }
+
+    }
+
+    fclose(arquivo_artista);
+    
+}
+
+void insercao_crescente_na_arv_binaria(ARV_BINARIA **raiz_artista)
+{
+    pecorrer_arquivo_artista(DIRETORIO_ARTISTA_CRESCENTE, DIRETORIO_ALBUM_CRESCENTE, DIRETORIO_MUSICA_CRESCENTE, raiz_artista);
+}
+
 int main()
 {
 
-
     if (verificar_se_existem_arquivos() == 1)
     {
-        
+        ARV_BINARIA *raiz_artista = NULL;
+        insercao_crescente_na_arv_binaria(&raiz_artista);
+
+        imprimir_arv_binaria(raiz_artista, imprimir_dados_artista); 
+
+        delete_all(&raiz_artista, NULL); // Libera a memória alocada para a árvore binária de artistas
     }
 
     return 0;
