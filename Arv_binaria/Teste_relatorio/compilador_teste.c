@@ -7,7 +7,7 @@ int main()
 {
     int compilador = 1;
     
-    compilador = system("gcc -o executavel_teste ../iniciar_teste.c ../../Tads/album.c ../../Tads/artista.c ../../Tads/arv_binaria.c ../../Tads/funcao_sistema.c  ../../Tads/func_interatividade.c ../../Tads/musica_playlist.c ../../Tads/musica.c ../../Tads/playlist.c ../../Tads/dados.c ");
+    compilador = system("gcc -o executavel_teste ../iniciar_teste.c ../Cronometro.c ../../../Resultados_testes/Escrever_resultado.c ../../Tads/album.c ../../Tads/artista.c ../../Tads/arv_binaria.c ../../Tads/funcao_sistema.c  ../../Tads/func_interatividade.c ../../Tads/musica_playlist.c ../../Tads/musica.c ../../Tads/playlist.c ../../Tads/dados.c ");
     
     if (compilador == 0)
     {
