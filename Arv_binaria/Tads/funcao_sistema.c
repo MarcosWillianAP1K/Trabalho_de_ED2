@@ -5,33 +5,33 @@
 
 void limpar_buffer()
 {
-    #ifdef _WIN32
-        fflush(stdin); // Para Windows
-    #else
-        char c;
-        while ((c = getchar()) != '\n' && c != EOF)
-            ; // Para Linux e MacOS
-    #endif
+#ifdef _WIN32
+    fflush(stdin); // Para Windows
+#else
+    char c;
+    while ((c = getchar()) != '\n' && c != EOF)
+        ; // Para Linux e MacOS
+#endif
 }
 
 void limpar_tela()
 {
-    #ifdef _WIN32
-        system("cls"); // Para Windows
-    #else
-        system("clear"); // Para Linux e MacOS
-    #endif
+#ifdef _WIN32
+    system("cls"); // Para Windows
+#else
+    system("clear"); // Para Linux e MacOS
+#endif
 }
 
 void pausar_tela()
 {
-    #ifdef _WIN32
+#ifdef _WIN32
     printf("\n");
-        system("pause"); // Para Windows
-    #else
-        printf("\nPressione qualquer tecla para continuar...");
-        getchar(); // Para Linux e MacOS
-    #endif
+    system("pause"); // Para Windows
+#else
+    printf("\nPressione qualquer tecla para continuar...");
+    getchar(); // Para Linux e MacOS
+#endif
 }
 
 void print_amarelo(char *mensagem)
@@ -105,7 +105,7 @@ char *digitar_string()
 
             if (fgets(nome + tam, ((TAM_PADRAO * cont) * sizeof(char)) - tam, stdin) == NULL)
             {
-                //xiu
+                // xiu
                 break;
             }
 
@@ -128,14 +128,14 @@ char *digitar_string()
 short int digitar_short_int()
 {
     short int numero = 0;
-    
+
     while (scanf("%hd", &numero) != 1 || numero < 0)
     {
         mensagem_erro("Numero invalido ");
         limpar_buffer();
         printf("Digite novamente: ");
     }
-    
+
     return numero;
 }
 
@@ -146,4 +146,34 @@ char digitar_um_caracter()
     limpar_buffer();
 
     return c;
+}
+
+void corrigir_espacos(char *str)
+{
+    if (str != NULL)
+    {
+        // Remover espaços à esquerda
+        char *inicio = str;
+        while (*inicio == ' ')
+            inicio++;
+
+        // Remover espaços à direita
+        char *fim = inicio + strlen(inicio) - 1;
+        while (fim > inicio && *fim == ' ')
+            fim--;
+
+        *(fim + 1) = '\0';
+
+        // Verificar se há necessidade de alocar nova string
+        if (inicio != str || *(fim + 1) != '\0')
+        {
+            char *corrigida = NULL;
+            // Realocar a string corrigida
+            corrigida = (char *)malloc((strlen(inicio) + 1) * sizeof(char));
+            verificar_alocacao(corrigida);
+            strcpy(corrigida, inicio);
+            free(str); // Liberar a string original, se necessário
+            str = corrigida;
+        }
+    }
 }
