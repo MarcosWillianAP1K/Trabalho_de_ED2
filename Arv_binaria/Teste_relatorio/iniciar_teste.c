@@ -305,7 +305,7 @@ void insercao_aleatoria_na_arv_binaria(ARV_BINARIA **raiz_artista)
 
 int main()
 {
-    #define NOME_ARQUIVO_RESULTADO "RESULTADOS_TESTES.txt"
+    #define NOME_ARQUIVO_RESULTADO "../RESULTADOS_TESTES.txt"
 
     #define BUSCAR_ARTISTA "Teste Artista 10"
     #define BUSCAR_ALBUM "Teste Album 10"
