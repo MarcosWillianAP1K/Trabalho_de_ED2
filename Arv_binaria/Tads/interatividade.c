@@ -582,9 +582,15 @@ void remover_musica_de_um_album_de_um_artista_interativo(ARV_BINARIA **raiz_arti
         {
             DADOS *musica_a_remover = digitar_titulo_musica();
 
-            if (remover_musica_de_album_de_artista(artista_encontrado->info, album_encontrado->info, musica_a_remover, *raiz_playlist) == 1)
+            short int retorno = remover_musica_de_um_album_de_um_artista(album_encontrado->info, artista_encontrado->info, musica_a_remover, raiz_playlist);
+
+            if (retorno == 1)
             {
                 mensagem_sucesso("Musica removida com sucesso!\n");
+            }
+            else if (retorno == -1)
+            {
+                mensagem_erro("Musica esta em uma playlist!\n");
             }
             else
             {

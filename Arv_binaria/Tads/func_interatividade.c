@@ -297,6 +297,10 @@ short int remover_musica_de_album_de_artista(DADOS *artista ,DADOS *album, DADOS
                 album->album->numero_de_musicas--;
             }
         }
+        else
+        {
+            retorno = -1;
+        }
         liberar_dados_musica_playlist(&musica_playlist);
     }
     return retorno;
