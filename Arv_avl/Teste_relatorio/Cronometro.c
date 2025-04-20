@@ -37,7 +37,7 @@ char *converter_para_string(clock_t tempo, char *buffer, size_t tamanho_buffer, 
     
     buffer[0] = '\0';
     double segundos = converter(tempo);
-    snprintf(buffer, tamanho_buffer, "%.10f", segundos);
+    snprintf(buffer, tamanho_buffer, "%.6f", segundos);
     
     return buffer;
 }

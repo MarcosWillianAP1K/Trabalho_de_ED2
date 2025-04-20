@@ -59,6 +59,11 @@ void imprimir_dados_musica_playlist(DADOS *dados)
     }
 }
 
+void imprimir_dados_vazio(DADOS *dados)
+{
+   
+}
+
 
 
 void liberar_dados(DADOS **dados)

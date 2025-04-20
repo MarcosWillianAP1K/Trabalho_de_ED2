@@ -23,6 +23,12 @@
 #define DIRETORIO_MUSICA_DECRESCENTE "../../../Gerador_de_testes/Testes/Musicas_decrescente.txt"
 #define DIRETORIO_MUSICA_ALEATORIO "../../../Gerador_de_testes/Testes/Musicas_aleatorio.txt"
 
+#define NOME_ARQUIVO_RESULTADO "../RESULTADOS_TESTES.txt"
+
+#define BUSCAR_ARTISTA "Teste Artista 10"
+#define BUSCAR_ALBUM "Teste Album 10"
+#define BUSCAR_MUSICA "Teste Musica 10"
+
 #define tamanho_buffer 200
 
 short int verificar_se_existem_arquivos()
@@ -103,8 +109,6 @@ short int verificar_se_existem_arquivos()
     return retorno;
 }
 
-
-
 void remover_newline(char *str)
 {
     size_t len = strlen(str);
@@ -126,12 +130,10 @@ ARTISTA *ler_artista(FILE *arquivo_artista)
         char *nome = (char *)malloc(strlen(buffer) + 1);
 
         verificar_alocacao(nome);
-        
 
         strcpy(nome, buffer); // Copia o nome do artista para a variável nome
 
         artista = criar_artista(nome, NULL, NULL, 0, NULL); // Aloca apenas a memória necessária
-
     }
 
     return artista;
@@ -147,7 +149,7 @@ ALBUM *ler_album(FILE *arquivo_album)
         remover_newline(buffer); // Remove o '\n' do final, se existir
 
         char *titulo = (char *)malloc(strlen(buffer) + 1);
-        
+
         verificar_alocacao(titulo);
 
         strcpy(titulo, buffer); // Copia o título do álbum para a variável título
@@ -180,6 +182,7 @@ MUSICA *ler_musica(FILE *arquivo_musica)
 }
 
 
+
 void pecorrer_arquivo_musica(char *diretorio_musica, DADOS *album)
 {
     FILE *arquivo_musica = fopen(diretorio_musica, "r");
@@ -190,7 +193,7 @@ void pecorrer_arquivo_musica(char *diretorio_musica, DADOS *album)
     {
         DADOS *musica = alocar_dados();
         musica->musica = ler_musica(arquivo_musica);
-    
+
         if (cadastrar_musica(album, musica) != 1)
         {
             printf("Falha ao cadastrar a musica: %s\n", musica->musica->titulo);
@@ -198,7 +201,6 @@ void pecorrer_arquivo_musica(char *diretorio_musica, DADOS *album)
     }
 
     fclose(arquivo_musica);
-    
 }
 
 void pecorrer_arquivo_album(char *diretorio_album, char *diretorio_musica, DADOS *artista)
@@ -220,11 +222,9 @@ void pecorrer_arquivo_album(char *diretorio_album, char *diretorio_musica, DADOS
         {
             printf("Falha ao cadastrar o album: %s\n", album->album->titulo);
         }
-
     }
 
     fclose(arquivo_album);
-    
 }
 
 void pecorrer_arquivo_artista(char *diretorio_artista, char *diretorio_album, char *diretorio_musica, ARV_BINARIA **raiz_artista)
@@ -240,53 +240,17 @@ void pecorrer_arquivo_artista(char *diretorio_artista, char *diretorio_album, ch
 
         if (cadastrar_artista(raiz_artista, artista) == 1)
         {
-            
+
             pecorrer_arquivo_album(diretorio_album, diretorio_musica, artista);
         }
         else
         {
             printf("Falha ao cadastrar o artista: %s\n", artista->artista->nome);
         }
-
     }
 
     fclose(arquivo_artista);
-    
 }
-
-short int buscar_musica_de_um_album_de_um_artista(ARV_BINARIA *raiz_artista, char *artista, char *album, char *musica){
-    short int retorno = 0;
-    
-    if (raiz_artista != NULL && artista != NULL && album != NULL && musica != NULL)
-    {
-        DADOS *artista_dados = alocar_dados();
-        artista_dados->artista = criar_artista(artista, NULL, NULL, 0, NULL);
-
-        ARV_BINARIA *retorno_artista = buscar_arv_binaria(raiz_artista, artista_dados, comparar_dados_nome_artista);
-        if (retorno_artista != NULL)
-        {
-            DADOS *album_dados = alocar_dados();
-            album_dados->album = criar_album(album, 0, 0, NULL);
-
-            ARV_BINARIA *retorno_album = buscar_arv_binaria(retorno_artista->info->artista->albuns_raiz_arvore, album_dados, comparar_dados_titulo_album);
-            if (retorno_album != NULL)
-            {
-                DADOS *musica_dados = alocar_dados();
-                musica_dados->musica = criar_musica(musica, 0, 0);
-
-                ARV_BINARIA *retorno_musica = buscar_arv_binaria(retorno_album->info->album->musicas_raiz_arvore, musica_dados, comparar_dados_titulo_musica);
-                if (retorno_musica != NULL)
-                {
-                    retorno = 1;
-                }
-            }
-        }
-
-    }
-    
-    return retorno;
-}
-
 
 void insercao_crescente_na_arv_binaria(ARV_BINARIA **raiz_artista)
 {
@@ -303,179 +267,303 @@ void insercao_aleatoria_na_arv_binaria(ARV_BINARIA **raiz_artista)
     pecorrer_arquivo_artista(DIRETORIO_ARTISTA_ALEATORIO, DIRETORIO_ALBUM_ALEATORIO, DIRETORIO_MUSICA_ALEATORIO, raiz_artista);
 }
 
-int main()
+void teste_crescente()
 {
-    #define NOME_ARQUIVO_RESULTADO "../RESULTADOS_TESTES.txt"
+    char buffer[256];
+    time_t cronometro;
+    ARV_BINARIA *raiz_artista = NULL;
 
-    #define BUSCAR_ARTISTA "Teste Artista 10"
-    #define BUSCAR_ALBUM "Teste Album 10"
-    #define BUSCAR_MUSICA "Teste Musica 10"
+    DADOS *buscar_artista = alocar_dados();
+    buscar_artista->artista = criar_artista(BUSCAR_ARTISTA, NULL, NULL, 0, NULL);
+    DADOS *buscar_album = alocar_dados();
+    buscar_album->album = criar_album(BUSCAR_ALBUM, 0, 0, NULL);
+    DADOS *buscar_musica = alocar_dados();
+    buscar_musica->musica = criar_musica(BUSCAR_MUSICA, 0, 0);
 
-    if (verificar_se_existem_arquivos() == 1)
-    {
-
-        ARV_BINARIA *raiz_artista = NULL;
-        char buffer[256];
-        criar_resetar_arquivo_resultado(NOME_ARQUIVO_RESULTADO);
-
-       
-        escrever_resultado(NOME_ARQUIVO_RESULTADO, "Teste de desempenho da arvore binaria\n\nAs buscas foram feitas com os seguintes dados:\n\n");
-        escrever_resultado(NOME_ARQUIVO_RESULTADO, BUSCAR_ARTISTA);
-        escrever_resultado(NOME_ARQUIVO_RESULTADO, "\n");
-        escrever_resultado(NOME_ARQUIVO_RESULTADO, BUSCAR_ALBUM);
-        escrever_resultado(NOME_ARQUIVO_RESULTADO, "\n");
-        escrever_resultado(NOME_ARQUIVO_RESULTADO, BUSCAR_MUSICA);
-        escrever_resultado(NOME_ARQUIVO_RESULTADO, "\n\n");
-
-        time_t cronometro;
-
-        //CRESCENTE
-        printf("CRESCENTE\n");
-
-        cronometro = cronometro_iniciar();
-
-        // Teste de inserção crescente
-        insercao_crescente_na_arv_binaria(&raiz_artista);
-
-        cronometro = cronometro_finalizar(cronometro);
-        converter_para_string(cronometro, buffer, sizeof(buffer), converter_para_milisegundos);
-
-        escrever_resultado(NOME_ARQUIVO_RESULTADO, "Tempo de insercao crescente: ");
-        escrever_resultado(NOME_ARQUIVO_RESULTADO, buffer);
-        escrever_resultado(NOME_ARQUIVO_RESULTADO, " Milisegundos\n");
-        
-
-
-
-        cronometro = cronometro_iniciar();
-        // Teste de busca de uma musica de um album de um artista
-        buscar_musica_de_um_album_de_um_artista(raiz_artista, BUSCAR_ARTISTA, BUSCAR_ALBUM, BUSCAR_MUSICA);
     
 
-        cronometro = cronometro_finalizar(cronometro);
-        converter_para_string(cronometro, buffer, sizeof(buffer), converter_para_milisegundos);
+    printf("\nCRESCENTE\n");
 
-        escrever_resultado(NOME_ARQUIVO_RESULTADO, "Tempo de busca: ");
-        escrever_resultado(NOME_ARQUIVO_RESULTADO, buffer);
-        escrever_resultado(NOME_ARQUIVO_RESULTADO, " Milisegundos\n");
+    cronometro = cronometro_iniciar();
 
+    // Teste de inserção crescente
+    insercao_crescente_na_arv_binaria(&raiz_artista);
 
-        
+    cronometro = cronometro_finalizar(cronometro);
+    converter_para_string(cronometro, buffer, sizeof(buffer), converter_para_milisegundos);
 
-        cronometro = cronometro_iniciar();
-
-        // Teste de deleção crescente
-        delete_all(&raiz_artista, NULL);
-
-        cronometro = cronometro_finalizar(cronometro);
-        converter_para_string(cronometro, buffer, sizeof(buffer), converter_para_milisegundos);
-        
-        escrever_resultado(NOME_ARQUIVO_RESULTADO, "Tempo de exclusao crescente: ");
-        escrever_resultado(NOME_ARQUIVO_RESULTADO, buffer);
-        escrever_resultado(NOME_ARQUIVO_RESULTADO, " Milisegundos\n\n");
-
-
-        // imprimir_arv_binaria(raiz_artista, imprimir_dados_artista);
-        // imprimir_arv_binaria(raiz_artista->info->artista->albuns_raiz_arvore, imprimir_dados_album);
-        // ARV_BINARIA *raiz_album = raiz_artista->info->artista->albuns_raiz_arvore;
-        // imprimir_arv_binaria(raiz_album->info->album->musicas_raiz_arvore, imprimir_dados_musica);
-
-      
-        
-        //DECRESCENTE
-        printf("\nDECRESCENTE\n");
-
-        cronometro = cronometro_iniciar();
-        
-        // Teste de inserção decrescente
-        insercao_decrescente_na_arv_binaria(&raiz_artista);
-
-        cronometro = cronometro_finalizar(cronometro);
-        converter_para_string(cronometro, buffer, sizeof(buffer), converter_para_milisegundos);
-        
-        escrever_resultado(NOME_ARQUIVO_RESULTADO, "Tempo de insercao decrescente: ");
-        escrever_resultado(NOME_ARQUIVO_RESULTADO, buffer);
-        escrever_resultado(NOME_ARQUIVO_RESULTADO, " Milisegundos\n");
+    escrever_resultado(NOME_ARQUIVO_RESULTADO, "Tempo de insercao crescente: ");
+    escrever_resultado(NOME_ARQUIVO_RESULTADO, buffer);
+    escrever_resultado(NOME_ARQUIVO_RESULTADO, " Milisegundos\n");
 
 
 
-        
-        cronometro = cronometro_iniciar();
+    cronometro = cronometro_iniciar();
 
-        // Teste de busca de uma musica de um album de um artista
-        buscar_musica_de_um_album_de_um_artista(raiz_artista, BUSCAR_ARTISTA, BUSCAR_ALBUM, BUSCAR_MUSICA);
-       
+    ARV_BINARIA *artista = buscar_arv_binaria(raiz_artista, buscar_artista, comparar_dados_nome_artista);
+    ARV_BINARIA *album = buscar_arv_binaria(artista->info->artista->albuns_raiz_arvore, buscar_album, comparar_dados_titulo_album);
 
-        cronometro = cronometro_finalizar(cronometro);
-        converter_para_string(cronometro, buffer, sizeof(buffer), converter_para_milisegundos);
+    imprimir_arv_binaria(album->info->album->musicas_raiz_arvore, imprimir_dados_vazio);
 
-        escrever_resultado(NOME_ARQUIVO_RESULTADO, "Tempo de busca: ");
-        escrever_resultado(NOME_ARQUIVO_RESULTADO, buffer);
-        escrever_resultado(NOME_ARQUIVO_RESULTADO, " Milisegundos\n");
+    cronometro = cronometro_finalizar(cronometro);
 
+    converter_para_string(cronometro, buffer, sizeof(buffer), converter_para_milisegundos);
 
-
-        cronometro = cronometro_iniciar();
-
-        // Teste de deleção decrescente
-        delete_all(&raiz_artista, NULL);
-
-        cronometro = cronometro_finalizar(cronometro);
-        converter_para_string(cronometro, buffer, sizeof(buffer), converter_para_milisegundos);
-
-        escrever_resultado(NOME_ARQUIVO_RESULTADO, "Tempo de exclusao decrescente: ");
-        escrever_resultado(NOME_ARQUIVO_RESULTADO, buffer);
-        escrever_resultado(NOME_ARQUIVO_RESULTADO, " Milisegundos\n\n");
-
-
-        raiz_artista = NULL;
-
-        //ALEATORIO
-        printf("\nALEATORIO\n");
-
-        cronometro = cronometro_iniciar();
-        
-        // Teste de inserção aleatória
-        insercao_aleatoria_na_arv_binaria(&raiz_artista);
-
-        cronometro = cronometro_finalizar(cronometro);
-
-        converter_para_string(cronometro, buffer, sizeof(buffer), converter_para_milisegundos);
-
-
-        escrever_resultado(NOME_ARQUIVO_RESULTADO, "Tempo de insercao aleatoria: ");
-        escrever_resultado(NOME_ARQUIVO_RESULTADO, buffer);
-        escrever_resultado(NOME_ARQUIVO_RESULTADO, " Milisegundos\n");
-
-
-        cronometro = cronometro_iniciar();
-
-        // Teste de busca de uma musica de um album de um artista
-        buscar_musica_de_um_album_de_um_artista(raiz_artista, BUSCAR_ARTISTA, BUSCAR_ALBUM, BUSCAR_MUSICA);
-        
-
-        cronometro = cronometro_finalizar(cronometro);
-        converter_para_string(cronometro, buffer, sizeof(buffer), converter_para_milisegundos);
-
-        escrever_resultado(NOME_ARQUIVO_RESULTADO, "Tempo de busca: ");
-        escrever_resultado(NOME_ARQUIVO_RESULTADO, buffer);
-        escrever_resultado(NOME_ARQUIVO_RESULTADO, " Milisegundos\n");
+    escrever_resultado(NOME_ARQUIVO_RESULTADO, "Tempo de busca: ");
+    escrever_resultado(NOME_ARQUIVO_RESULTADO, buffer);
+    escrever_resultado(NOME_ARQUIVO_RESULTADO, " Milisegundos\n");
 
 
 
-        
-        cronometro = cronometro_iniciar();
+    cronometro = cronometro_iniciar();
 
-        // Teste de deleção aleatória
-        delete_all(&raiz_artista, NULL);
 
-        cronometro = cronometro_finalizar(cronometro);
-        converter_para_string(cronometro, buffer, sizeof(buffer), converter_para_milisegundos);
+    // Teste de remoção de uma musica de um album de um artista crescente
+    remover_musica_de_album_de_artista(artista->info, album->info, buscar_musica, NULL);
 
-        escrever_resultado(NOME_ARQUIVO_RESULTADO, "Tempo de exclusao aleatoria: ");
-        escrever_resultado(NOME_ARQUIVO_RESULTADO, buffer);
-        escrever_resultado(NOME_ARQUIVO_RESULTADO, " Milisegundos\n\n");
+    cronometro = cronometro_finalizar(cronometro);
 
+    converter_para_string(cronometro, buffer, sizeof(buffer), converter_para_milisegundos);
+
+    escrever_resultado(NOME_ARQUIVO_RESULTADO, "Tempo de remocao: ");
+    escrever_resultado(NOME_ARQUIVO_RESULTADO, buffer);
+    escrever_resultado(NOME_ARQUIVO_RESULTADO, " Milisegundos\n");
+
+    
+    cronometro = cronometro_iniciar();
+    
+    
+    // Teste de deleção crescente
+    delete_all(&raiz_artista, NULL);
+    
+    cronometro = cronometro_finalizar(cronometro);
+    converter_para_string(cronometro, buffer, sizeof(buffer), converter_para_milisegundos);
+    
+    escrever_resultado(NOME_ARQUIVO_RESULTADO, "Tempo de liberacao crescente: ");
+    escrever_resultado(NOME_ARQUIVO_RESULTADO, buffer);
+    escrever_resultado(NOME_ARQUIVO_RESULTADO, " Milisegundos\n\n");
+    cronometro = cronometro_finalizar(cronometro);
+
+    liberar_dados(&buscar_artista);
+    liberar_dados(&buscar_album);
+    liberar_dados(&buscar_musica);
+}
+
+void teste_decrescente()
+{
+    char buffer[256];
+    time_t cronometro;
+    ARV_BINARIA *raiz_artista = NULL;
+
+    DADOS *buscar_artista = alocar_dados();
+    buscar_artista->artista = criar_artista(BUSCAR_ARTISTA, NULL, NULL, 0, NULL);
+    DADOS *buscar_album = alocar_dados();
+    buscar_album->album = criar_album(BUSCAR_ALBUM, 0, 0, NULL);
+    DADOS *buscar_musica = alocar_dados();
+    buscar_musica->musica = criar_musica(BUSCAR_MUSICA, 0, 0);
+
+    printf("\nDECRESCENTE\n");
+
+    cronometro = cronometro_iniciar();
+
+    // Teste de inserção decrescente
+    insercao_decrescente_na_arv_binaria(&raiz_artista);
+
+    cronometro = cronometro_finalizar(cronometro);
+    converter_para_string(cronometro, buffer, sizeof(buffer), converter_para_milisegundos);
+
+    escrever_resultado(NOME_ARQUIVO_RESULTADO, "Tempo de insercao decrescente: ");
+    escrever_resultado(NOME_ARQUIVO_RESULTADO, buffer);
+    escrever_resultado(NOME_ARQUIVO_RESULTADO, " Milisegundos\n");
+
+
+
+    cronometro = cronometro_iniciar();
+
+    ARV_BINARIA *artista = buscar_arv_binaria(raiz_artista, buscar_artista, comparar_dados_nome_artista);
+    ARV_BINARIA *album = buscar_arv_binaria(artista->info->artista->albuns_raiz_arvore, buscar_album, comparar_dados_titulo_album);
+
+    imprimir_arv_binaria(album->info->album->musicas_raiz_arvore, imprimir_dados_vazio);
+
+    cronometro = cronometro_finalizar(cronometro);
+
+    converter_para_string(cronometro, buffer, sizeof(buffer), converter_para_milisegundos);
+
+    escrever_resultado(NOME_ARQUIVO_RESULTADO, "Tempo de busca: ");
+    escrever_resultado(NOME_ARQUIVO_RESULTADO, buffer);
+    escrever_resultado(NOME_ARQUIVO_RESULTADO, " Milisegundos\n");
+
+    cronometro = cronometro_iniciar();
+
+
+    // Teste de remoção de uma musica de um album de um artista decrescente
+    remover_musica_de_album_de_artista(artista->info, album->info, buscar_musica, NULL);
+
+    cronometro = cronometro_finalizar(cronometro);
+
+    converter_para_string(cronometro, buffer, sizeof(buffer), converter_para_milisegundos);
+
+    escrever_resultado(NOME_ARQUIVO_RESULTADO, "Tempo de remocao: ");
+    escrever_resultado(NOME_ARQUIVO_RESULTADO, buffer);
+    escrever_resultado(NOME_ARQUIVO_RESULTADO, " Milisegundos\n");
+
+    cronometro = cronometro_iniciar();
+
+    // Teste de deleção decrescente
+    delete_all(&raiz_artista, NULL);
+
+    cronometro = cronometro_finalizar(cronometro);
+    converter_para_string(cronometro, buffer, sizeof(buffer), converter_para_milisegundos);
+
+    escrever_resultado(NOME_ARQUIVO_RESULTADO, "Tempo de liberacao decrescente: ");
+    escrever_resultado(NOME_ARQUIVO_RESULTADO, buffer);
+    escrever_resultado(NOME_ARQUIVO_RESULTADO, " Milisegundos\n\n");
+
+    liberar_dados(&buscar_artista);
+    liberar_dados(&buscar_album);
+    liberar_dados(&buscar_musica);
+}
+
+void teste_aleatorio()
+{
+    char buffer[256];
+    time_t cronometro;
+    ARV_BINARIA *raiz_artista = NULL;
+
+    DADOS *buscar_artista = alocar_dados();
+    buscar_artista->artista = criar_artista(BUSCAR_ARTISTA, NULL, NULL, 0, NULL);
+    DADOS *buscar_album = alocar_dados();
+    buscar_album->album = criar_album(BUSCAR_ALBUM, 0, 0, NULL);
+    DADOS *buscar_musica = alocar_dados();
+    buscar_musica->musica = criar_musica(BUSCAR_MUSICA, 0, 0);
+
+    printf("\nALEATORIO\n");
+
+    cronometro = cronometro_iniciar();
+
+    // Teste de inserção aleatória
+    insercao_aleatoria_na_arv_binaria(&raiz_artista);
+
+    cronometro = cronometro_finalizar(cronometro);
+
+    converter_para_string(cronometro, buffer, sizeof(buffer), converter_para_milisegundos);
+
+    escrever_resultado(NOME_ARQUIVO_RESULTADO, "Tempo de insercao aleatoria: ");
+    escrever_resultado(NOME_ARQUIVO_RESULTADO, buffer);
+    escrever_resultado(NOME_ARQUIVO_RESULTADO, " Milisegundos\n");
+
+
+    cronometro = cronometro_iniciar();
+
+    ARV_BINARIA *artista = buscar_arv_binaria(raiz_artista, buscar_artista, comparar_dados_nome_artista);
+    ARV_BINARIA *album = buscar_arv_binaria(artista->info->artista->albuns_raiz_arvore, buscar_album, comparar_dados_titulo_album);
+
+    imprimir_arv_binaria(album->info->album->musicas_raiz_arvore, imprimir_dados_vazio);
+
+    cronometro = cronometro_finalizar(cronometro);
+
+    converter_para_string(cronometro, buffer, sizeof(buffer), converter_para_milisegundos);
+
+    escrever_resultado(NOME_ARQUIVO_RESULTADO, "Tempo de busca: ");
+    escrever_resultado(NOME_ARQUIVO_RESULTADO, buffer);
+    escrever_resultado(NOME_ARQUIVO_RESULTADO, " Milisegundos\n");
+
+
+
+    cronometro = cronometro_iniciar();
+
+    
+
+    // Teste de remoção de uma musica de um album de um artista aleatório
+    remover_musica_de_album_de_artista(artista->info, album->info, buscar_musica, NULL);
+
+    cronometro = cronometro_finalizar(cronometro);
+
+    converter_para_string(cronometro, buffer, sizeof(buffer), converter_para_milisegundos);
+
+    escrever_resultado(NOME_ARQUIVO_RESULTADO, "Tempo de remocao: ");
+    escrever_resultado(NOME_ARQUIVO_RESULTADO, buffer);
+    escrever_resultado(NOME_ARQUIVO_RESULTADO, " Milisegundos\n");
+
+    cronometro = cronometro_iniciar();
+
+    // Teste de deleção aleatória
+    delete_all(&raiz_artista, NULL);
+
+    cronometro = cronometro_finalizar(cronometro);
+    converter_para_string(cronometro, buffer, sizeof(buffer), converter_para_milisegundos);
+
+    escrever_resultado(NOME_ARQUIVO_RESULTADO, "Tempo de liberacao aleatoria: ");
+    escrever_resultado(NOME_ARQUIVO_RESULTADO, buffer);
+    escrever_resultado(NOME_ARQUIVO_RESULTADO, " Milisegundos\n\n");
+
+    liberar_dados(&buscar_artista);
+    liberar_dados(&buscar_album);
+    liberar_dados(&buscar_musica);
+}
+
+int main()
+{
+#define EXECUTAR 10
+
+    if (verificar_se_existem_arquivos() == 0)
+    {
+        printf("Arquivos de teste não encontrados. Verifique se os arquivos estão no diretório correto.\n");
+        return 1;
+    }
+
+    criar_resetar_arquivo_resultado(NOME_ARQUIVO_RESULTADO);
+
+    escrever_resultado(NOME_ARQUIVO_RESULTADO, "Teste de desempenho da arvore binaria\n\nAs buscas foram feitas com os seguintes dados:\n\n");
+    escrever_resultado(NOME_ARQUIVO_RESULTADO, BUSCAR_ARTISTA);
+    escrever_resultado(NOME_ARQUIVO_RESULTADO, "\n");
+    escrever_resultado(NOME_ARQUIVO_RESULTADO, BUSCAR_ALBUM);
+    escrever_resultado(NOME_ARQUIVO_RESULTADO, "\n");
+    escrever_resultado(NOME_ARQUIVO_RESULTADO, BUSCAR_MUSICA);
+    escrever_resultado(NOME_ARQUIVO_RESULTADO, "\n\n");
+
+    if (EXECUTAR == 1)
+    {
+        teste_crescente();
+        teste_decrescente();
+        teste_aleatorio();
+    }
+    else if (EXECUTAR > 1)
+    {
+        char buffer[256];
+
+        escrever_resultado(NOME_ARQUIVO_RESULTADO, "CRESCENTE\n\n");
+        for (int i = 0; i < EXECUTAR; i++)
+        {
+            escrever_resultado(NOME_ARQUIVO_RESULTADO, "TESTE ");
+            sprintf(buffer, "%d", i + 1);
+            escrever_resultado(NOME_ARQUIVO_RESULTADO, buffer);
+            escrever_resultado(NOME_ARQUIVO_RESULTADO, ":\n\n");
+
+            teste_crescente();
+        }
+
+        escrever_resultado(NOME_ARQUIVO_RESULTADO, "\n\n\nDECRESCENTE\n\n");
+        for (int i = 0; i < EXECUTAR; i++)
+        {
+            escrever_resultado(NOME_ARQUIVO_RESULTADO, "TESTE ");
+            sprintf(buffer, "%d", i + 1);
+            escrever_resultado(NOME_ARQUIVO_RESULTADO, buffer);
+            escrever_resultado(NOME_ARQUIVO_RESULTADO, ":\n\n");
+
+            teste_decrescente();
+        }
+
+        escrever_resultado(NOME_ARQUIVO_RESULTADO, "\n\n\nALEATORIO\n\n");
+        for (int i = 0; i < EXECUTAR; i++)
+        {
+            escrever_resultado(NOME_ARQUIVO_RESULTADO, "TESTE ");
+            sprintf(buffer, "%d", i + 1);
+            escrever_resultado(NOME_ARQUIVO_RESULTADO, buffer);
+            escrever_resultado(NOME_ARQUIVO_RESULTADO, ":\n\n");
+
+            teste_aleatorio();
+        }
     }
 
     return 0;

@@ -1,6 +1,6 @@
 Resultados dos Testes:
 
-Teste de desempenho da arvore avl
+Teste de desempenho da arvore avlbuscar_arv_avl
 
 As buscas foram feitas com os seguintes dados:
 
@@ -8,18 +8,225 @@ Teste Artista 10
 Teste Album 10
 Teste Musica 10
 
-Tempo de insercao crescente: 36.0000000000 Milisegundos
-Musica encontrada com sucesso!
-Tempo de busca: 17.0000000000 Milisegundos
-Tempo de exclusao crescente: 0.0000000000 Milisegundos
+CRESCENTE
 
-Tempo de insercao decrescente: 37.0000000000 Milisegundos
-Musica encontrada com sucesso!
-Tempo de busca: 12.0000000000 Milisegundos
-Tempo de exclusao decrescente: 1.0000000000 Milisegundos
+TESTE 1:
 
-Tempo de insercao aleatoria: 29.0000000000 Milisegundos
-Musica encontrada com sucesso!
-Tempo de busca: 9.0000000000 Milisegundos
-Tempo de exclusao aleatoria: 1.0000000000 Milisegundos
+Tempo de insercao crescente: 34.000000 Milisegundos
+Tempo de busca: 0.000000 Milisegundos
+Tempo de remocao: 1.000000 Milisegundos
+Tempo de liberacao crescente: 1.000000 Milisegundos
+
+TESTE 2:
+
+Tempo de insercao crescente: 34.000000 Milisegundos
+Tempo de busca: 0.000000 Milisegundos
+Tempo de remocao: 0.000000 Milisegundos
+Tempo de liberacao crescente: 0.000000 Milisegundos
+
+TESTE 3:
+
+Tempo de insercao crescente: 45.000000 Milisegundos
+Tempo de busca: 0.000000 Milisegundos
+Tempo de remocao: 0.000000 Milisegundos
+Tempo de liberacao crescente: 0.000000 Milisegundos
+
+TESTE 4:
+
+Tempo de insercao crescente: 34.000000 Milisegundos
+Tempo de busca: 1.000000 Milisegundos
+Tempo de remocao: 0.000000 Milisegundos
+Tempo de liberacao crescente: 1.000000 Milisegundos
+
+TESTE 5:
+
+Tempo de insercao crescente: 34.000000 Milisegundos
+Tempo de busca: 0.000000 Milisegundos
+Tempo de remocao: 0.000000 Milisegundos
+Tempo de liberacao crescente: 0.000000 Milisegundos
+
+TESTE 6:
+
+Tempo de insercao crescente: 38.000000 Milisegundos
+Tempo de busca: 0.000000 Milisegundos
+Tempo de remocao: 0.000000 Milisegundos
+Tempo de liberacao crescente: 1.000000 Milisegundos
+
+TESTE 7:
+
+Tempo de insercao crescente: 35.000000 Milisegundos
+Tempo de busca: 0.000000 Milisegundos
+Tempo de remocao: 0.000000 Milisegundos
+Tempo de liberacao crescente: 0.000000 Milisegundos
+
+TESTE 8:
+
+Tempo de insercao crescente: 39.000000 Milisegundos
+Tempo de busca: 0.000000 Milisegundos
+Tempo de remocao: 0.000000 Milisegundos
+Tempo de liberacao crescente: 0.000000 Milisegundos
+
+TESTE 9:
+
+Tempo de insercao crescente: 43.000000 Milisegundos
+Tempo de busca: 0.000000 Milisegundos
+Tempo de remocao: 0.000000 Milisegundos
+Tempo de liberacao crescente: 0.000000 Milisegundos
+
+TESTE 10:
+
+Tempo de insercao crescente: 49.000000 Milisegundos
+Tempo de busca: 0.000000 Milisegundos
+Tempo de remocao: 0.000000 Milisegundos
+Tempo de liberacao crescente: 0.000000 Milisegundos
+
+
+
+
+DECRESCENTE
+
+TESTE 1:
+
+Tempo de insercao decrescente: 36.000000 Milisegundos
+Tempo de busca: 0.000000 Milisegundos
+Tempo de remocao: 0.000000 Milisegundos
+Tempo de liberacao decrescente: 0.000000 Milisegundos
+
+TESTE 2:
+
+Tempo de insercao decrescente: 35.000000 Milisegundos
+Tempo de busca: 0.000000 Milisegundos
+Tempo de remocao: 0.000000 Milisegundos
+Tempo de liberacao decrescente: 1.000000 Milisegundos
+
+TESTE 3:
+
+Tempo de insercao decrescente: 37.000000 Milisegundos
+Tempo de busca: 0.000000 Milisegundos
+Tempo de remocao: 0.000000 Milisegundos
+Tempo de liberacao decrescente: 0.000000 Milisegundos
+
+TESTE 4:
+
+Tempo de insercao decrescente: 31.000000 Milisegundos
+Tempo de busca: 0.000000 Milisegundos
+Tempo de remocao: 0.000000 Milisegundos
+Tempo de liberacao decrescente: 0.000000 Milisegundos
+
+TESTE 5:
+
+Tempo de insercao decrescente: 27.000000 Milisegundos
+Tempo de busca: 0.000000 Milisegundos
+Tempo de remocao: 0.000000 Milisegundos
+Tempo de liberacao decrescente: 0.000000 Milisegundos
+
+TESTE 6:
+
+Tempo de insercao decrescente: 27.000000 Milisegundos
+Tempo de busca: 0.000000 Milisegundos
+Tempo de remocao: 0.000000 Milisegundos
+Tempo de liberacao decrescente: 0.000000 Milisegundos
+
+TESTE 7:
+
+Tempo de insercao decrescente: 28.000000 Milisegundos
+Tempo de busca: 0.000000 Milisegundos
+Tempo de remocao: 0.000000 Milisegundos
+Tempo de liberacao decrescente: 1.000000 Milisegundos
+
+TESTE 8:
+
+Tempo de insercao decrescente: 31.000000 Milisegundos
+Tempo de busca: 0.000000 Milisegundos
+Tempo de remocao: 0.000000 Milisegundos
+Tempo de liberacao decrescente: 0.000000 Milisegundos
+
+TESTE 9:
+
+Tempo de insercao decrescente: 27.000000 Milisegundos
+Tempo de busca: 0.000000 Milisegundos
+Tempo de remocao: 0.000000 Milisegundos
+Tempo de liberacao decrescente: 0.000000 Milisegundos
+
+TESTE 10:
+
+Tempo de insercao decrescente: 27.000000 Milisegundos
+Tempo de busca: 0.000000 Milisegundos
+Tempo de remocao: 0.000000 Milisegundos
+Tempo de liberacao decrescente: 0.000000 Milisegundos
+
+
+
+
+ALEATORIO
+
+TESTE 1:
+
+Tempo de insercao aleatoria: 27.000000 Milisegundos
+Tempo de busca: 0.000000 Milisegundos
+Tempo de remocao: 0.000000 Milisegundos
+Tempo de liberacao aleatoria: 1.000000 Milisegundos
+
+TESTE 2:
+
+Tempo de insercao aleatoria: 28.000000 Milisegundos
+Tempo de busca: 0.000000 Milisegundos
+Tempo de remocao: 0.000000 Milisegundos
+Tempo de liberacao aleatoria: 1.000000 Milisegundos
+
+TESTE 3:
+
+Tempo de insercao aleatoria: 28.000000 Milisegundos
+Tempo de busca: 0.000000 Milisegundos
+Tempo de remocao: 0.000000 Milisegundos
+Tempo de liberacao aleatoria: 0.000000 Milisegundos
+
+TESTE 4:
+
+Tempo de insercao aleatoria: 28.000000 Milisegundos
+Tempo de busca: 0.000000 Milisegundos
+Tempo de remocao: 0.000000 Milisegundos
+Tempo de liberacao aleatoria: 0.000000 Milisegundos
+
+TESTE 5:
+
+Tempo de insercao aleatoria: 42.000000 Milisegundos
+Tempo de busca: 0.000000 Milisegundos
+Tempo de remocao: 0.000000 Milisegundos
+Tempo de liberacao aleatoria: 0.000000 Milisegundos
+
+TESTE 6:
+
+Tempo de insercao aleatoria: 28.000000 Milisegundos
+Tempo de busca: 0.000000 Milisegundos
+Tempo de remocao: 0.000000 Milisegundos
+Tempo de liberacao aleatoria: 0.000000 Milisegundos
+
+TESTE 7:
+
+Tempo de insercao aleatoria: 44.000000 Milisegundos
+Tempo de busca: 0.000000 Milisegundos
+Tempo de remocao: 0.000000 Milisegundos
+Tempo de liberacao aleatoria: 1.000000 Milisegundos
+
+TESTE 8:
+
+Tempo de insercao aleatoria: 27.000000 Milisegundos
+Tempo de busca: 0.000000 Milisegundos
+Tempo de remocao: 0.000000 Milisegundos
+Tempo de liberacao aleatoria: 0.000000 Milisegundos
+
+TESTE 9:
+
+Tempo de insercao aleatoria: 26.000000 Milisegundos
+Tempo de busca: 0.000000 Milisegundos
+Tempo de remocao: 0.000000 Milisegundos
+Tempo de liberacao aleatoria: 0.000000 Milisegundos
+
+TESTE 10:
+
+Tempo de insercao aleatoria: 41.000000 Milisegundos
+Tempo de busca: 0.000000 Milisegundos
+Tempo de remocao: 0.000000 Milisegundos
+Tempo de liberacao aleatoria: 0.000000 Milisegundos
 
