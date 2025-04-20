@@ -359,7 +359,7 @@ int main()
         escrever_resultado(NOME_ARQUIVO_RESULTADO, "\n");
 
 
-
+        
 
         cronometro = cronometro_iniciar();
 
@@ -374,7 +374,12 @@ int main()
         escrever_resultado(NOME_ARQUIVO_RESULTADO, "\n\n");
 
 
-        raiz_artista = NULL;
+        // imprimir_arv_binaria(raiz_artista, imprimir_dados_artista);
+        // imprimir_arv_binaria(raiz_artista->info->artista->albuns_raiz_arvore, imprimir_dados_album);
+        // ARV_BINARIA *raiz_album = raiz_artista->info->artista->albuns_raiz_arvore;
+        // imprimir_arv_binaria(raiz_album->info->album->musicas_raiz_arvore, imprimir_dados_musica);
+
+      
         
         //DECRESCENTE
         printf("\nDECRESCENTE\n");
