@@ -8,18 +8,15 @@ Teste Artista 10
 Teste Album 10
 Teste Musica 10
 
-Tempo de insercao crescente: 28.0000000000 Milisegundos
-Musica encontrada com sucesso!
-Tempo de busca: 1.0000000000 Milisegundos
-Tempo de exclusao crescente: 131.0000000000 Milisegundos
+Tempo de insercao crescente: 40.0000000000 Milisegundos
+Tempo de busca: 0.0000000000 Milisegundos
+Tempo de exclusao crescente: 0.0000000000 Milisegundos
 
-Tempo de insercao decrescente: 38.0000000000 Milisegundos
-Musica encontrada com sucesso!
-Tempo de busca: 11.0000000000 Milisegundos
-Tempo de exclusao decrescente: 150.0000000000 Milisegundos
+Tempo de insercao decrescente: 28.0000000000 Milisegundos
+Tempo de busca: 0.0000000000 Milisegundos
+Tempo de exclusao decrescente: 0.0000000000 Milisegundos
 
-Tempo de insercao aleatoria: 27.0000000000 Milisegundos
-Musica encontrada com sucesso!
-Tempo de busca: 8.0000000000 Milisegundos
-Tempo de exclusao aleatoria: 153.0000000000 Milisegundos
+Tempo de insercao aleatoria: 33.0000000000 Milisegundos
+Tempo de busca: 0.0000000000 Milisegundos
+Tempo de exclusao aleatoria: 1.0000000000 Milisegundos
 

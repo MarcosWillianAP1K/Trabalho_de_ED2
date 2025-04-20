@@ -317,8 +317,6 @@ void cadastrar_musica_interativo(ARV_AVL **raiz_artista)
 void mostrar_artistas_interativo(ARV_AVL **raiz_artista)
 {
     print_amarelo("Artistas cadastrados:\n");
-    printf("Altura: %d\n", (*raiz_artista)->altura);
-
     mostrar_artistas(*raiz_artista);
     pausar_tela();
 }
@@ -503,6 +501,7 @@ void cadastrar_musica_em_uma_playlist_interativo(ARV_AVL **raiz_artista, ARV_AVL
 void mostrar_playlists_interativo(ARV_AVL **raiz_playlist)
 {
     print_amarelo("Mostrar playlists:\n");
+    
     mostrar_playlists(*raiz_playlist);
     pausar_tela();
 }
@@ -584,7 +583,7 @@ void remover_musica_de_um_album_de_um_artista_interativo(ARV_AVL **raiz_artista,
         {
             DADOS *musica_a_remover = digitar_titulo_musica();
 
-            short int retorno = remover_musica_de_um_album_de_um_artista(album_encontrado->info, artista_encontrado->info, musica_a_remover, raiz_playlist);
+            short int retorno = remover_musica_de_album_de_artista(artista_encontrado->info, album_encontrado->info, musica_a_remover, *raiz_playlist);
 
             if (retorno == 1)
             {
