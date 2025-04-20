@@ -1,0 +1,22 @@
+Resultados dos Testes:
+
+Teste de desempenho da arvore avl
+
+As buscas foram feitas com os seguintes dados:
+
+Teste Artista 10
+Teste Album 10
+Teste Musica 10
+
+Tempo de insercao crescente: 0.0080000000 segundos
+Tempo de busca: 0.0000000000 segundos
+Tempo de exclusao crescente: 0.0000000000 segundos
+
+Tempo de insercao decrescente: 0.0090000000 segundos
+Tempo de busca: 0.0000000000 segundos
+Tempo de exclusao decrescente: 0.0000000000 segundos
+
+Tempo de insercao aleatoria: 0.0120000000 segundos
+Tempo de busca: 0.0000000000 segundos
+Tempo de exclusao aleatoria: 0.0010000000 segundos
+
