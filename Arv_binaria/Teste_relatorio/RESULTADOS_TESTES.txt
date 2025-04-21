@@ -4,39 +4,11 @@ Teste de desempenho da arvore BINARIA
 
 As buscas foram feitas com os seguintes dados:
 
-Teste Artista 10
-Teste Album 10
-Teste Musica 10
+Teste Artista 1000
+Teste Album 1000
+Teste Musica 1000
 
 Foi executado cada caso 10 vezes!!!!!
 
 ----------TESTE CRESCENTE----------
 
-Tempo medio de insercao crescente: 28.0000000000 Milisegundos
-Tempo medio de busca: 0.0000000000 Milisegundos
-Tempo medio de remocao: 0.0000000000 Milisegundos
-Tempo medio de liberacao: 0.0000000000 Milisegundos
-
-Tempo total executando 10 vezes: 292.0000000000 Milisegundos
-
-----------TESTE DECRESCENTE----------
-
-Tempo medio de insercao crescente: 30.0000000000 Milisegundos
-Tempo medio de busca: 0.0000000000 Milisegundos
-Tempo medio de remocao: 0.0000000000 Milisegundos
-Tempo medio de liberacao: 0.0000000000 Milisegundos
-
-Tempo total executando 10 vezes: 307.0000000000 Milisegundos
-
-----------TESTE ALEATORIO----------
-
-Tempo medio de insercao crescente: 29.0000000000 Milisegundos
-Tempo medio de busca: 0.0000000000 Milisegundos
-Tempo medio de remocao: 0.0000000000 Milisegundos
-Tempo medio de liberacao: 0.0000000000 Milisegundos
-
-Tempo total executando 10 vezes: 299.0000000000 Milisegundos
-
-
-
-Tempo total de execução de todos casos: 1.4900000000 Segundos
