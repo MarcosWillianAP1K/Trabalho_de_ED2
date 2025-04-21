@@ -272,32 +272,32 @@ void escrever_no_arquivo_resultado(time_t media_insercao, time_t media_busca, ti
     char buffer[tamanho_buffer];
 
     escrever_resultado(NOME_ARQUIVO_RESULTADO, "Tempo medio de insercao crescente: ");
-    converter_para_string(media_insercao, buffer, sizeof(buffer), converter_para_milisegundos);
+    converter_para_string(media_insercao, buffer, sizeof(buffer), converter_para_segundos);
     escrever_resultado(NOME_ARQUIVO_RESULTADO, buffer);
-    escrever_resultado(NOME_ARQUIVO_RESULTADO, " Milisegundos\n");
+    escrever_resultado(NOME_ARQUIVO_RESULTADO, " Segundos\n");
 
     escrever_resultado(NOME_ARQUIVO_RESULTADO, "Tempo medio de busca: ");
-    converter_para_string(media_busca, buffer, sizeof(buffer), converter_para_milisegundos);
+    converter_para_string(media_busca, buffer, sizeof(buffer), converter_para_segundos);
     escrever_resultado(NOME_ARQUIVO_RESULTADO, buffer);
-    escrever_resultado(NOME_ARQUIVO_RESULTADO, " Milisegundos\n");
+    escrever_resultado(NOME_ARQUIVO_RESULTADO, " Segundos\n");
 
     escrever_resultado(NOME_ARQUIVO_RESULTADO, "Tempo medio de remocao: ");
-    converter_para_string(media_remocao, buffer, sizeof(buffer), converter_para_milisegundos);
+    converter_para_string(media_remocao, buffer, sizeof(buffer), converter_para_segundos);
     escrever_resultado(NOME_ARQUIVO_RESULTADO, buffer);
-    escrever_resultado(NOME_ARQUIVO_RESULTADO, " Milisegundos\n");
+    escrever_resultado(NOME_ARQUIVO_RESULTADO, " Segundos\n");
 
     escrever_resultado(NOME_ARQUIVO_RESULTADO, "Tempo medio de liberacao: ");
-    converter_para_string(media_liberacao, buffer, sizeof(buffer), converter_para_milisegundos);
+    converter_para_string(media_liberacao, buffer, sizeof(buffer), converter_para_segundos);
     escrever_resultado(NOME_ARQUIVO_RESULTADO, buffer);
-    escrever_resultado(NOME_ARQUIVO_RESULTADO, " Milisegundos\n");
+    escrever_resultado(NOME_ARQUIVO_RESULTADO, " Segundos\n");
 
     escrever_resultado(NOME_ARQUIVO_RESULTADO, "\nTempo total executando ");
     snprintf(buffer, sizeof(buffer), "%d", EXECUTAR);
     escrever_resultado(NOME_ARQUIVO_RESULTADO, buffer);
     escrever_resultado(NOME_ARQUIVO_RESULTADO, " vezes: ");
-    converter_para_string(tempo_total, buffer, sizeof(buffer), converter_para_milisegundos);
+    converter_para_string(tempo_total, buffer, sizeof(buffer), converter_para_segundos);
     escrever_resultado(NOME_ARQUIVO_RESULTADO, buffer);
-    escrever_resultado(NOME_ARQUIVO_RESULTADO, " Milisegundos\n\n");
+    escrever_resultado(NOME_ARQUIVO_RESULTADO, " Segundos\n\n");
 }
 
 void teste_crescente()
