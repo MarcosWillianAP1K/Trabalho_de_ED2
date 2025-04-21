@@ -29,7 +29,7 @@
 #define DIRETORIO_MUSICA_DECRESCENTE "../../../Gerador_de_testes/Testes/Musicas_decrescente.txt"
 #define DIRETORIO_MUSICA_ALEATORIO "../../../Gerador_de_testes/Testes/Musicas_aleatorio.txt"
 
-#define NOME_ARQUIVO_RESULTADO "../RESULTADOS_TESTES.txt"
+#define NOME_ARQUIVO_RESULTADO "../RESULTADOS_TESTES_ARV_AVL.txt"
 
 #define tamanho_buffer 200
 
