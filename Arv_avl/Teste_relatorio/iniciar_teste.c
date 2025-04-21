@@ -553,16 +553,31 @@ int main()
 
     criar_resetar_arquivo_resultado(NOME_ARQUIVO_RESULTADO);
 
-    escrever_resultado(NOME_ARQUIVO_RESULTADO, "Teste de desempenho da arvore AVL\n\nAs buscas foram feitas com os seguintes dados:\n\n");
+    escrever_resultado(NOME_ARQUIVO_RESULTADO, "Teste de desempenho da ARVORE AVL\n\nAs buscas foram feitas com os seguintes dados:\n\n");
     escrever_resultado(NOME_ARQUIVO_RESULTADO, BUSCAR_ARTISTA);
     escrever_resultado(NOME_ARQUIVO_RESULTADO, "\n");
     escrever_resultado(NOME_ARQUIVO_RESULTADO, BUSCAR_ALBUM);
     escrever_resultado(NOME_ARQUIVO_RESULTADO, "\n");
     escrever_resultado(NOME_ARQUIVO_RESULTADO, BUSCAR_MUSICA);
     escrever_resultado(NOME_ARQUIVO_RESULTADO, "\n\n");
+    char buffer[tamanho_buffer];
+
+    escrever_resultado(NOME_ARQUIVO_RESULTADO, "Os testes foram feitos com os seguintes quantidade de dados:\n\n");
+    escrever_resultado(NOME_ARQUIVO_RESULTADO, "Artistas: ");
+    snprintf(buffer, sizeof(buffer), "%d", QUANTIDADE_ARTISTAS);
+    escrever_resultado(NOME_ARQUIVO_RESULTADO, buffer);
+    escrever_resultado(NOME_ARQUIVO_RESULTADO, "\nAlbuns: ");
+    snprintf(buffer, sizeof(buffer), "%d", QUANTIDADE_ALBUNS);
+    escrever_resultado(NOME_ARQUIVO_RESULTADO, buffer);
+    escrever_resultado(NOME_ARQUIVO_RESULTADO, "\nMusicas: ");
+    snprintf(buffer, sizeof(buffer), "%d", QUANTIDADE_MUSICAS);
+    escrever_resultado(NOME_ARQUIVO_RESULTADO, buffer);
+    escrever_resultado(NOME_ARQUIVO_RESULTADO, "\n");
+
+    escrever_resultado(NOME_ARQUIVO_RESULTADO, "Considerando que o artista vai ter esse numero de albuns e cada album esse numero de musicas.\n\n");
+    
 
     escrever_resultado(NOME_ARQUIVO_RESULTADO, "Foi executado cada caso ");
-    char buffer[tamanho_buffer];
     snprintf(buffer, sizeof(buffer), "%d", EXECUTAR);
     escrever_resultado(NOME_ARQUIVO_RESULTADO, buffer);
     escrever_resultado(NOME_ARQUIVO_RESULTADO, " vezes!!!!!\n\n");
