@@ -7,9 +7,9 @@
 #include "Cronometro.h"
 
 // Mantenha a quantidade de artistas, albuns e musicas igual a quantidade de artistas, albuns e musicas que o gerador de testes gera
-#define QUANTIDADE_ARTISTAS 1000
+#define QUANTIDADE_ARTISTAS 100
 #define QUANTIDADE_ALBUNS 1000
-#define QUANTIDADE_MUSICAS 1000
+#define QUANTIDADE_MUSICAS 100
 
 #define EXECUTAR 10
 

@@ -232,9 +232,9 @@ void gerar_testes(int quantidade_artistas, int quantidade_albuns, int quantidade
 
 int main()
 {
-    #define QUANTIDADE_ARTISTAS 1000
-    #define QUANTIDADE_ALBUNS 1000
-    #define QUANTIDADE_MUSICAS 1000
+    #define QUANTIDADE_ARTISTAS 100
+    #define QUANTIDADE_ALBUNS 100
+    #define QUANTIDADE_MUSICAS 100
 
     gerar_testes(QUANTIDADE_ARTISTAS, QUANTIDADE_ALBUNS, QUANTIDADE_MUSICAS);
 
