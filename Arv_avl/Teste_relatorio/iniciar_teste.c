@@ -327,7 +327,7 @@ void teste_crescente()
     for (int i = 0; i < EXECUTAR; i++)
     {
 
-        printf("\nCRESCENTE\n");
+        printf("\nCRESCENTE: %d\n" , i + 1);
 
         cronometro = cronometro_iniciar();
 
@@ -407,7 +407,7 @@ void teste_decrescente()
     for (int i = 0; i < EXECUTAR; i++)
     {
 
-        printf("\nDECRESCENTE\n");
+        printf("\nDECRESCENTE: %d\n", i + 1);
 
         cronometro = cronometro_iniciar();
 
@@ -487,7 +487,7 @@ void teste_aleatorio()
     for (int i = 0; i < EXECUTAR; i++)
     {
 
-        printf("\nALEATORIO\n");
+        printf("\nALEATORIO %d\n", i + 1);
 
         cronometro = cronometro_iniciar();
 
@@ -567,15 +567,24 @@ int main()
     escrever_resultado(NOME_ARQUIVO_RESULTADO, buffer);
     escrever_resultado(NOME_ARQUIVO_RESULTADO, " vezes!!!!!\n\n");
 
+    printf("Iniciando teste...\n");
+    printf("Executando %d vezes cada.\n", EXECUTAR);
+
     time_t tempo_total = cronometro_iniciar();
 
     teste_crescente();
 
+    printf("\n\n");
+
     teste_decrescente();
+    
+    printf("\n\n");
 
     teste_aleatorio();
 
     tempo_total = cronometro_finalizar(tempo_total);
+
+    printf("\n\n");
 
     converter_para_string(tempo_total, buffer, sizeof(buffer), converter_para_segundos);
     escrever_resultado(NOME_ARQUIVO_RESULTADO, "\n\nTempo total de execução de todos casos: ");
