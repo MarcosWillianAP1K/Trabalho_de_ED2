@@ -10,9 +10,9 @@ Teste Musica 1000
 
 Os testes foram feitos com os seguintes quantidade de dados:
 
-Artistas: 1000
+Artistas: 100
 Albuns: 1000
-Musicas: 1000
+Musicas: 100
 Considerando que o artista vai ter esse numero de albuns e cada album esse numero de musicas.
 
 Foi executado cada caso 10 vezes!!!!!

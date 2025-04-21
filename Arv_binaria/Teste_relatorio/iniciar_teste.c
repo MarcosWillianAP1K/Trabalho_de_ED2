@@ -8,14 +8,14 @@
 
 // Mantenha a quantidade de artistas, albuns e musicas igual a quantidade de artistas, albuns e musicas que o gerador de testes gera
 #define QUANTIDADE_ARTISTAS 100
-#define QUANTIDADE_ALBUNS 1000
+#define QUANTIDADE_ALBUNS 100
 #define QUANTIDADE_MUSICAS 100
 
 #define EXECUTAR 10
 
-#define BUSCAR_ARTISTA "Teste Artista 1000"
-#define BUSCAR_ALBUM "Teste Album 1000"
-#define BUSCAR_MUSICA "Teste Musica 1000"
+#define BUSCAR_ARTISTA "Teste Artista 100"
+#define BUSCAR_ALBUM "Teste Album 100"
+#define BUSCAR_MUSICA "Teste Musica 100"
 
 #define DIRETORIO_ARTISTA_CRESCENTE "../../../Gerador_de_testes/Testes/Artistas_crescente.txt"
 #define DIRETORIO_ARTISTA_DECRESCENTE "../../../Gerador_de_testes/Testes/Artistas_decrescente.txt"
