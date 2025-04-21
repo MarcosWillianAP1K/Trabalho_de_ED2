@@ -1,0 +1,49 @@
+Resultados dos Testes:
+
+Teste de desempenho da ARVORE AVL
+
+As buscas foram feitas com os seguintes dados:
+
+Teste Artista 100
+Teste Album 100
+Teste Musica 100
+
+Os testes foram feitos com os seguintes quantidade de dados:
+
+Artistas: 100
+Albuns: 100
+Musicas: 100
+Considerando que o artista vai ter esse numero de albuns e cada album esse numero de musicas.
+
+Foi executado cada caso 10 vezes!!!!!
+
+----------TESTE CRESCENTE----------
+
+Tempo medio de insercao crescente: 3427.000000 Milisegundos
+Tempo medio de busca: 0.000000 Milisegundos
+Tempo medio de remocao: 0.000000 Milisegundos
+Tempo medio de liberacao: 204.000000 Milisegundos
+
+Tempo total executando 10 vezes: 36.316000 Segundos
+
+----------TESTE DECRESCENTE----------
+
+Tempo medio de insercao crescente: 3292.000000 Milisegundos
+Tempo medio de busca: 0.000000 Milisegundos
+Tempo medio de remocao: 0.000000 Milisegundos
+Tempo medio de liberacao: 230.000000 Milisegundos
+
+Tempo total executando 10 vezes: 35.227000 Segundos
+
+----------TESTE ALEATORIO----------
+
+Tempo medio de insercao crescente: 3384.000000 Milisegundos
+Tempo medio de busca: 0.000000 Milisegundos
+Tempo medio de remocao: 0.000000 Milisegundos
+Tempo medio de liberacao: 216.000000 Milisegundos
+
+Tempo total executando 10 vezes: 36.007000 Segundos
+
+
+
+Tempo total de execução de todos casos: 108.116000 Segundos

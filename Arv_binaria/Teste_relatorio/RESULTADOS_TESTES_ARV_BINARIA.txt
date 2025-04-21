@@ -19,31 +19,31 @@ Foi executado cada caso 10 vezes!!!!!
 
 ----------TESTE CRESCENTE----------
 
-Tempo medio de insercao crescente: 6.0220000000 Segundos
-Tempo medio de busca: 0.0000000000 Segundos
-Tempo medio de remocao: 0.0000000000 Segundos
-Tempo medio de liberacao: 0.2240000000 Segundos
+Tempo medio de insercao crescente: 6004.0000000000 Milisegundos
+Tempo medio de busca: 0.0000000000 Milisegundos
+Tempo medio de remocao: 0.0000000000 Milisegundos
+Tempo medio de liberacao: 263.0000000000 Milisegundos
 
-Tempo total executando 10 vezes: 62.4700000000 Segundos
+Tempo total executando 10 vezes: 62.6860000000 Segundos
 
 ----------TESTE DECRESCENTE----------
 
-Tempo medio de insercao crescente: 4.7500000000 Segundos
-Tempo medio de busca: 0.0000000000 Segundos
-Tempo medio de remocao: 0.0000000000 Segundos
-Tempo medio de liberacao: 0.2260000000 Segundos
+Tempo medio de insercao crescente: 4754.0000000000 Milisegundos
+Tempo medio de busca: 0.0000000000 Milisegundos
+Tempo medio de remocao: 0.0000000000 Milisegundos
+Tempo medio de liberacao: 220.0000000000 Milisegundos
 
-Tempo total executando 10 vezes: 49.7690000000 Segundos
+Tempo total executando 10 vezes: 49.7490000000 Segundos
 
 ----------TESTE ALEATORIO----------
 
-Tempo medio de insercao crescente: 3.3040000000 Segundos
-Tempo medio de busca: 0.0000000000 Segundos
-Tempo medio de remocao: 0.0000000000 Segundos
-Tempo medio de liberacao: 0.2200000000 Segundos
+Tempo medio de insercao crescente: 3217.0000000000 Milisegundos
+Tempo medio de busca: 0.0000000000 Milisegundos
+Tempo medio de remocao: 0.0000000000 Milisegundos
+Tempo medio de liberacao: 219.0000000000 Milisegundos
 
-Tempo total executando 10 vezes: 35.2530000000 Segundos
+Tempo total executando 10 vezes: 34.3750000000 Segundos
 
 
 
-Tempo total de execução de todos casos: 148.0890000000 Segundos
+Tempo total de execução de todos casos: 147.4170000000 Segundos
