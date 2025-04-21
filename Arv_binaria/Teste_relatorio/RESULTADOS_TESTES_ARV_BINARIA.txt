@@ -4,14 +4,14 @@ Teste de desempenho ARVORE BINARIA
 
 As buscas foram feitas com os seguintes dados:
 
-Teste Artista 1000
-Teste Album 1000
-Teste Musica 1000
+Teste Artista 100
+Teste Album 100
+Teste Musica 100
 
 Os testes foram feitos com os seguintes quantidade de dados:
 
 Artistas: 100
-Albuns: 1000
+Albuns: 100
 Musicas: 100
 Considerando que o artista vai ter esse numero de albuns e cada album esse numero de musicas.
 
@@ -19,3 +19,31 @@ Foi executado cada caso 10 vezes!!!!!
 
 ----------TESTE CRESCENTE----------
 
+Tempo medio de insercao crescente: 6.0220000000 Segundos
+Tempo medio de busca: 0.0000000000 Segundos
+Tempo medio de remocao: 0.0000000000 Segundos
+Tempo medio de liberacao: 0.2240000000 Segundos
+
+Tempo total executando 10 vezes: 62.4700000000 Segundos
+
+----------TESTE DECRESCENTE----------
+
+Tempo medio de insercao crescente: 4.7500000000 Segundos
+Tempo medio de busca: 0.0000000000 Segundos
+Tempo medio de remocao: 0.0000000000 Segundos
+Tempo medio de liberacao: 0.2260000000 Segundos
+
+Tempo total executando 10 vezes: 49.7690000000 Segundos
+
+----------TESTE ALEATORIO----------
+
+Tempo medio de insercao crescente: 3.3040000000 Segundos
+Tempo medio de busca: 0.0000000000 Segundos
+Tempo medio de remocao: 0.0000000000 Segundos
+Tempo medio de liberacao: 0.2200000000 Segundos
+
+Tempo total executando 10 vezes: 35.2530000000 Segundos
+
+
+
+Tempo total de execução de todos casos: 148.0890000000 Segundos
