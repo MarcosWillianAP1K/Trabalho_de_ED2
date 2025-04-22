@@ -92,7 +92,7 @@ short int verificar_se_existem_arquivos()
     }
     if (arquivo_musica_aleatorio == NULL)
     {
-        printf("Falha ao abrir o arquivo: Musica_aleatorio.txt\n");
+        printf("'avez-vous un fichier : Musica_aleatorio.txt\n");
         retorno = 0;
     }
 
@@ -240,7 +240,6 @@ void pecorrer_arquivo_artista(char *diretorio_artista, char *diretorio_album, ch
 
         if (cadastrar_artista(raiz_artista, artista) == 1)
         {
-
             pecorrer_arquivo_album(diretorio_album, diretorio_musica, artista);
         }
         else
@@ -267,11 +266,39 @@ void insercao_aleatoria_na_arv_avl(ARV_AVL **raiz_artista)
     pecorrer_arquivo_artista(DIRETORIO_ARTISTA_ALEATORIO, DIRETORIO_ALBUM_ALEATORIO, DIRETORIO_MUSICA_ALEATORIO, raiz_artista);
 }
 
-void escrever_no_arquivo_resultado(time_t media_insercao, time_t media_busca, time_t media_remocao, time_t media_liberacao, time_t tempo_total)
+void escrever_no_arquivo_resultado(time_t media_insercao, time_t media_busca, time_t media_remocao, time_t media_liberacao, time_t tempo_total, time_t *tempos_insercao, time_t *tempos_busca, time_t *tempos_remocao, time_t *tempos_liberacao)
 {
     char buffer[tamanho_buffer];
 
-    escrever_resultado(NOME_ARQUIVO_RESULTADO, "Tempo medio de insercao crescente: ");
+    // Escrever tempos individuais de cada execução
+    for (int i = 0; i < EXECUTAR; i++) {
+        snprintf(buffer, sizeof(buffer), "Execucao %d:\n", i + 1);
+        escrever_resultado(NOME_ARQUIVO_RESULTADO, buffer);
+
+        escrever_resultado(NOME_ARQUIVO_RESULTADO, "  Tempo de insercao: ");
+        converter_para_string(tempos_insercao[i], buffer, sizeof(buffer), converter_para_milisegundos);
+        escrever_resultado(NOME_ARQUIVO_RESULTADO, buffer);
+        escrever_resultado(NOME_ARQUIVO_RESULTADO, " Milisegundos\n");
+
+        escrever_resultado(NOME_ARQUIVO_RESULTADO, "  Tempo de busca: ");
+        converter_para_string(tempos_busca[i], buffer, sizeof(buffer), converter_para_milisegundos);
+        escrever_resultado(NOME_ARQUIVO_RESULTADO, buffer);
+        escrever_resultado(NOME_ARQUIVO_RESULTADO, " Milisegundos\n");
+
+        escrever_resultado(NOME_ARQUIVO_RESULTADO, "  Tempo de remocao: ");
+        converter_para_string(tempos_remocao[i], buffer, sizeof(buffer), converter_para_milisegundos);
+        escrever_resultado(NOME_ARQUIVO_RESULTADO, buffer);
+        escrever_resultado(NOME_ARQUIVO_RESULTADO, " Milisegundos\n");
+
+        escrever_resultado(NOME_ARQUIVO_RESULTADO, "  Tempo de liberacao: ");
+        converter_para_string(tempos_liberacao[i], buffer, sizeof(buffer), converter_para_milisegundos);
+        escrever_resultado(NOME_ARQUIVO_RESULTADO, buffer);
+        escrever_resultado(NOME_ARQUIVO_RESULTADO, " Milisegundos\n\n");
+    }
+
+    // Escrever tempos médios
+    escrever_resultado(NOME_ARQUIVO_RESULTADO, "Resumo:\n");
+    escrever_resultado(NOME_ARQUIVO_RESULTADO, "Tempo medio de insercao: ");
     converter_para_string(media_insercao, buffer, sizeof(buffer), converter_para_milisegundos);
     escrever_resultado(NOME_ARQUIVO_RESULTADO, buffer);
     escrever_resultado(NOME_ARQUIVO_RESULTADO, " Milisegundos\n");
@@ -318,54 +345,43 @@ void teste_crescente()
     time_t media_remocao = 0;
     time_t media_liberacao = 0;
 
-
+    // Arrays para armazenar os tempos individuais de cada execução
+    time_t tempos_insercao[EXECUTAR];
+    time_t tempos_busca[EXECUTAR];
+    time_t tempos_remocao[EXECUTAR];
+    time_t tempos_liberacao[EXECUTAR];
 
     escrever_resultado(NOME_ARQUIVO_RESULTADO, "----------TESTE CRESCENTE----------\n\n");
     time_t tempo_total = cronometro_iniciar();
 
-
     for (int i = 0; i < EXECUTAR; i++)
     {
-
-        printf("\nCRESCENTE: %d\n" , i + 1);
+        printf("\nCRESCENTE: %d\n", i + 1);
 
         cronometro = cronometro_iniciar();
-
         // Teste de inserção crescente
         insercao_crescente_na_arv_avl(&raiz_artista);
-
-        cronometro = cronometro_finalizar(cronometro);
-
-        media_insercao += cronometro;
+        tempos_insercao[i] = cronometro_finalizar(cronometro);
+        media_insercao += tempos_insercao[i];
 
         cronometro = cronometro_iniciar();
-
         ARV_AVL *artista = buscar_arv_avl(raiz_artista, buscar_artista, comparar_dados_nome_artista);
         ARV_AVL *album = buscar_arv_avl(artista->info->artista->albuns_raiz_arvore, buscar_album, comparar_dados_titulo_album);
-
         imprimir_arv_avl(album->info->album->musicas_raiz_arvore, imprimir_dados_vazio);
-
-        cronometro = cronometro_finalizar(cronometro);
-
-        media_busca += cronometro;
+        tempos_busca[i] = cronometro_finalizar(cronometro);
+        media_busca += tempos_busca[i];
 
         cronometro = cronometro_iniciar();
-
-        // Teste de remoção de uma musica de um album de um artista crescente
+        // Teste de remoção de uma música de um álbum de um artista crescente
         remover_musica_de_album_de_artista(artista->info, album->info, buscar_musica, NULL);
-
-        cronometro = cronometro_finalizar(cronometro);
-
-        media_remocao += cronometro;
+        tempos_remocao[i] = cronometro_finalizar(cronometro);
+        media_remocao += tempos_remocao[i];
 
         cronometro = cronometro_iniciar();
-
         // Teste de deleção crescente
         delete_all(&raiz_artista, NULL);
-
-        cronometro = cronometro_finalizar(cronometro);
-
-        media_liberacao += cronometro;
+        tempos_liberacao[i] = cronometro_finalizar(cronometro);
+        media_liberacao += tempos_liberacao[i];
     }
 
     tempo_total = cronometro_finalizar(tempo_total);
@@ -375,7 +391,8 @@ void teste_crescente()
     media_remocao /= EXECUTAR;
     media_liberacao /= EXECUTAR;
 
-    escrever_no_arquivo_resultado(media_insercao, media_busca, media_remocao, media_liberacao, tempo_total);
+    // Escrever os tempos individuais e médios no arquivo
+    escrever_no_arquivo_resultado(media_insercao, media_busca, media_remocao, media_liberacao, tempo_total, tempos_insercao, tempos_busca, tempos_remocao, tempos_liberacao);
 
     liberar_dados(&buscar_artista);
     liberar_dados(&buscar_album);
@@ -400,52 +417,43 @@ void teste_decrescente()
     time_t media_remocao = 0;
     time_t media_liberacao = 0;
 
-    escrever_resultado(NOME_ARQUIVO_RESULTADO, "----------TESTE DECRESCENTE----------\n\n");
+    // Arrays para armazenar os tempos individuais de cada execução
+    time_t tempos_insercao[EXECUTAR];
+    time_t tempos_busca[EXECUTAR];
+    time_t tempos_remocao[EXECUTAR];
+    time_t tempos_liberacao[EXECUTAR];
 
+    escrever_resultado(NOME_ARQUIVO_RESULTADO, "----------TESTE DECRESCENTE----------\n\n");
     time_t tempo_total = cronometro_iniciar();
 
     for (int i = 0; i < EXECUTAR; i++)
     {
-
         printf("\nDECRESCENTE: %d\n", i + 1);
 
         cronometro = cronometro_iniciar();
-
         // Teste de inserção decrescente
         insercao_decrescente_na_arv_avl(&raiz_artista);
-
-        cronometro = cronometro_finalizar(cronometro);
-
-        media_insercao += cronometro;
+        tempos_insercao[i] = cronometro_finalizar(cronometro);
+        media_insercao += tempos_insercao[i];
 
         cronometro = cronometro_iniciar();
-
         ARV_AVL *artista = buscar_arv_avl(raiz_artista, buscar_artista, comparar_dados_nome_artista);
         ARV_AVL *album = buscar_arv_avl(artista->info->artista->albuns_raiz_arvore, buscar_album, comparar_dados_titulo_album);
-
         imprimir_arv_avl(album->info->album->musicas_raiz_arvore, imprimir_dados_vazio);
-
-        cronometro = cronometro_finalizar(cronometro);
-
-        media_busca += cronometro;
+        tempos_busca[i] = cronometro_finalizar(cronometro);
+        media_busca += tempos_busca[i];
 
         cronometro = cronometro_iniciar();
-
-        // Teste de remoção de uma musica de um album de um artista decrescente
+        // Teste de remoção de uma música de um álbum de um artista decrescente
         remover_musica_de_album_de_artista(artista->info, album->info, buscar_musica, NULL);
-
-        cronometro = cronometro_finalizar(cronometro);
-
-        media_remocao += cronometro;
+        tempos_remocao[i] = cronometro_finalizar(cronometro);
+        media_remocao += tempos_remocao[i];
 
         cronometro = cronometro_iniciar();
-
         // Teste de deleção decrescente
         delete_all(&raiz_artista, NULL);
-
-        cronometro = cronometro_finalizar(cronometro);
-
-        media_liberacao += cronometro;
+        tempos_liberacao[i] = cronometro_finalizar(cronometro);
+        media_liberacao += tempos_liberacao[i];
     }
 
     tempo_total = cronometro_finalizar(tempo_total);
@@ -455,7 +463,8 @@ void teste_decrescente()
     media_remocao /= EXECUTAR;
     media_liberacao /= EXECUTAR;
 
-    escrever_no_arquivo_resultado(media_insercao, media_busca, media_remocao, media_liberacao, tempo_total);
+    // Escrever os tempos individuais e médios no arquivo
+    escrever_no_arquivo_resultado(media_insercao, media_busca, media_remocao, media_liberacao, tempo_total, tempos_insercao, tempos_busca, tempos_remocao, tempos_liberacao);
 
     liberar_dados(&buscar_artista);
     liberar_dados(&buscar_album);
@@ -480,52 +489,43 @@ void teste_aleatorio()
     time_t media_remocao = 0;
     time_t media_liberacao = 0;
 
-    escrever_resultado(NOME_ARQUIVO_RESULTADO, "----------TESTE ALEATORIO----------\n\n");
+    // Arrays para armazenar os tempos individuais de cada execução
+    time_t tempos_insercao[EXECUTAR];
+    time_t tempos_busca[EXECUTAR];
+    time_t tempos_remocao[EXECUTAR];
+    time_t tempos_liberacao[EXECUTAR];
 
+    escrever_resultado(NOME_ARQUIVO_RESULTADO, "----------TESTE ALEATORIO----------\n\n");
     time_t tempo_total = cronometro_iniciar();
 
     for (int i = 0; i < EXECUTAR; i++)
     {
-
-        printf("\nALEATORIO %d\n", i + 1);
+        printf("\nALEATORIO: %d\n", i + 1);
 
         cronometro = cronometro_iniciar();
-
         // Teste de inserção aleatória
         insercao_aleatoria_na_arv_avl(&raiz_artista);
-
-        cronometro = cronometro_finalizar(cronometro);
-
-        media_insercao += cronometro;
+        tempos_insercao[i] = cronometro_finalizar(cronometro);
+        media_insercao += tempos_insercao[i];
 
         cronometro = cronometro_iniciar();
-
         ARV_AVL *artista = buscar_arv_avl(raiz_artista, buscar_artista, comparar_dados_nome_artista);
         ARV_AVL *album = buscar_arv_avl(artista->info->artista->albuns_raiz_arvore, buscar_album, comparar_dados_titulo_album);
-
         imprimir_arv_avl(album->info->album->musicas_raiz_arvore, imprimir_dados_vazio);
-
-        cronometro = cronometro_finalizar(cronometro);
-
-        media_busca += cronometro;
+        tempos_busca[i] = cronometro_finalizar(cronometro);
+        media_busca += tempos_busca[i];
 
         cronometro = cronometro_iniciar();
-
-        // Teste de remoção de uma musica de um album de um artista aleatório
+        // Teste de remoção de uma música de um álbum de um artista aleatório
         remover_musica_de_album_de_artista(artista->info, album->info, buscar_musica, NULL);
-
-        cronometro = cronometro_finalizar(cronometro);
-
-        media_remocao += cronometro;
+        tempos_remocao[i] = cronometro_finalizar(cronometro);
+        media_remocao += tempos_remocao[i];
 
         cronometro = cronometro_iniciar();
-
         // Teste de deleção aleatória
         delete_all(&raiz_artista, NULL);
-
-        cronometro = cronometro_finalizar(cronometro);
-
-        media_liberacao += cronometro;
+        tempos_liberacao[i] = cronometro_finalizar(cronometro);
+        media_liberacao += tempos_liberacao[i];
     }
 
     tempo_total = cronometro_finalizar(tempo_total);
@@ -535,7 +535,8 @@ void teste_aleatorio()
     media_remocao /= EXECUTAR;
     media_liberacao /= EXECUTAR;
 
-    escrever_no_arquivo_resultado(media_insercao, media_busca, media_remocao, media_liberacao, tempo_total);
+    // Escrever os tempos individuais e médios no arquivo
+    escrever_no_arquivo_resultado(media_insercao, media_busca, media_remocao, media_liberacao, tempo_total, tempos_insercao, tempos_busca, tempos_remocao, tempos_liberacao);
 
     liberar_dados(&buscar_artista);
     liberar_dados(&buscar_album);
@@ -544,7 +545,6 @@ void teste_aleatorio()
 
 int main()
 {
-
     if (verificar_se_existem_arquivos() == 0)
     {
         printf("Arquivos de teste não encontrados. Verifique se os arquivos estão no diretório correto.\n");
@@ -560,8 +560,8 @@ int main()
     escrever_resultado(NOME_ARQUIVO_RESULTADO, "\n");
     escrever_resultado(NOME_ARQUIVO_RESULTADO, BUSCAR_MUSICA);
     escrever_resultado(NOME_ARQUIVO_RESULTADO, "\n\n");
-    char buffer[tamanho_buffer];
 
+    char buffer[tamanho_buffer];
     escrever_resultado(NOME_ARQUIVO_RESULTADO, "Os testes foram feitos com os seguintes quantidade de dados:\n\n");
     escrever_resultado(NOME_ARQUIVO_RESULTADO, "Artistas: ");
     snprintf(buffer, sizeof(buffer), "%d", QUANTIDADE_ARTISTAS);
@@ -575,7 +575,6 @@ int main()
     escrever_resultado(NOME_ARQUIVO_RESULTADO, "\n");
 
     escrever_resultado(NOME_ARQUIVO_RESULTADO, "Considerando que o artista vai ter esse numero de albuns e cada album esse numero de musicas.\n\n");
-    
 
     escrever_resultado(NOME_ARQUIVO_RESULTADO, "Foi executado cada caso ");
     snprintf(buffer, sizeof(buffer), "%d", EXECUTAR);
@@ -592,7 +591,7 @@ int main()
     printf("\n\n");
 
     teste_decrescente();
-    
+
     printf("\n\n");
 
     teste_aleatorio();
