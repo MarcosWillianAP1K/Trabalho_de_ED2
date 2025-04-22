@@ -15,7 +15,7 @@
 
 #define BUSCAR_ARTISTA "Teste Artista 0100"
 #define BUSCAR_ALBUM "Teste Album 40"
-#define BUSCAR_MUSICA "Teste Musica 10"
+#define BUSCAR_MUSICA "Teste Musica 40"
 
 #define DIRETORIO_ARTISTA_CRESCENTE "../../../Gerador_de_testes/Testes/Artistas_crescente.txt"
 #define DIRETORIO_ARTISTA_DECRESCENTE "../../../Gerador_de_testes/Testes/Artistas_decrescente.txt"
