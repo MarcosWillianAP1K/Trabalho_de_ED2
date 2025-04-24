@@ -11,7 +11,7 @@
 #define QUANTIDADE_ALBUNS 50
 #define QUANTIDADE_MUSICAS 50
 
-#define EXECUTAR 10
+#define EXECUTAR 30
 
 #define BUSCAR_ARTISTA "Teste Artista 0100"
 #define BUSCAR_ALBUM "Teste Album 40"
