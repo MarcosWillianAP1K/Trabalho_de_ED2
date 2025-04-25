@@ -4,15 +4,15 @@ Teste de desempenho da ARVORE AVL
 
 As buscas foram feitas com os seguintes dados:
 
-Teste Artista 0100
-Teste Album 40
-Teste Musica 40
+Teste Artista 1000
+Teste Album 100
+Teste Musica 100
 
 Os testes foram feitos com os seguintes quantidade de dados:
 
-Artistas: 2000
-Albuns: 50
-Musicas: 50
+Artistas: 1000
+Albuns: 100
+Musicas: 100
 Considerando que o artista vai ter esse numero de albuns e cada album esse numero de musicas.
 
 Foi executado cada caso 30 vezes!!!!!
@@ -20,573 +20,573 @@ Foi executado cada caso 30 vezes!!!!!
 ----------TESTE CRESCENTE----------
 
 Execucao 1:
-  Tempo de insercao: 9171.000000 Milisegundos
+  Tempo de insercao: 34128.000000 Milisegundos
   Tempo de busca: 0.000000 Milisegundos
   Tempo de remocao: 0.000000 Milisegundos
-  Tempo de liberacao: 976.000000 Milisegundos
+  Tempo de liberacao: 2136.000000 Milisegundos
 
 Execucao 2:
-  Tempo de insercao: 7457.000000 Milisegundos
+  Tempo de insercao: 33704.000000 Milisegundos
   Tempo de busca: 0.000000 Milisegundos
   Tempo de remocao: 0.000000 Milisegundos
-  Tempo de liberacao: 937.000000 Milisegundos
+  Tempo de liberacao: 2200.000000 Milisegundos
 
 Execucao 3:
-  Tempo de insercao: 6917.000000 Milisegundos
+  Tempo de insercao: 33507.000000 Milisegundos
   Tempo de busca: 0.000000 Milisegundos
   Tempo de remocao: 0.000000 Milisegundos
-  Tempo de liberacao: 940.000000 Milisegundos
+  Tempo de liberacao: 2177.000000 Milisegundos
 
 Execucao 4:
-  Tempo de insercao: 6658.000000 Milisegundos
+  Tempo de insercao: 33589.000000 Milisegundos
   Tempo de busca: 0.000000 Milisegundos
   Tempo de remocao: 0.000000 Milisegundos
-  Tempo de liberacao: 921.000000 Milisegundos
+  Tempo de liberacao: 2144.000000 Milisegundos
 
 Execucao 5:
-  Tempo de insercao: 6360.000000 Milisegundos
+  Tempo de insercao: 33662.000000 Milisegundos
   Tempo de busca: 0.000000 Milisegundos
   Tempo de remocao: 0.000000 Milisegundos
-  Tempo de liberacao: 905.000000 Milisegundos
+  Tempo de liberacao: 2182.000000 Milisegundos
 
 Execucao 6:
-  Tempo de insercao: 6229.000000 Milisegundos
+  Tempo de insercao: 33477.000000 Milisegundos
   Tempo de busca: 0.000000 Milisegundos
   Tempo de remocao: 0.000000 Milisegundos
-  Tempo de liberacao: 873.000000 Milisegundos
+  Tempo de liberacao: 2266.000000 Milisegundos
 
 Execucao 7:
-  Tempo de insercao: 6303.000000 Milisegundos
+  Tempo de insercao: 33747.000000 Milisegundos
   Tempo de busca: 0.000000 Milisegundos
   Tempo de remocao: 0.000000 Milisegundos
-  Tempo de liberacao: 906.000000 Milisegundos
+  Tempo de liberacao: 2166.000000 Milisegundos
 
 Execucao 8:
-  Tempo de insercao: 6239.000000 Milisegundos
+  Tempo de insercao: 33448.000000 Milisegundos
   Tempo de busca: 0.000000 Milisegundos
   Tempo de remocao: 0.000000 Milisegundos
-  Tempo de liberacao: 888.000000 Milisegundos
+  Tempo de liberacao: 2163.000000 Milisegundos
 
 Execucao 9:
-  Tempo de insercao: 6331.000000 Milisegundos
+  Tempo de insercao: 33921.000000 Milisegundos
   Tempo de busca: 0.000000 Milisegundos
   Tempo de remocao: 0.000000 Milisegundos
-  Tempo de liberacao: 980.000000 Milisegundos
+  Tempo de liberacao: 2218.000000 Milisegundos
 
 Execucao 10:
-  Tempo de insercao: 6584.000000 Milisegundos
+  Tempo de insercao: 33669.000000 Milisegundos
   Tempo de busca: 0.000000 Milisegundos
   Tempo de remocao: 0.000000 Milisegundos
-  Tempo de liberacao: 937.000000 Milisegundos
+  Tempo de liberacao: 2244.000000 Milisegundos
 
 Execucao 11:
-  Tempo de insercao: 6295.000000 Milisegundos
+  Tempo de insercao: 33879.000000 Milisegundos
   Tempo de busca: 0.000000 Milisegundos
   Tempo de remocao: 0.000000 Milisegundos
-  Tempo de liberacao: 876.000000 Milisegundos
+  Tempo de liberacao: 2162.000000 Milisegundos
 
 Execucao 12:
-  Tempo de insercao: 6215.000000 Milisegundos
+  Tempo de insercao: 33745.000000 Milisegundos
   Tempo de busca: 0.000000 Milisegundos
   Tempo de remocao: 0.000000 Milisegundos
-  Tempo de liberacao: 898.000000 Milisegundos
+  Tempo de liberacao: 2214.000000 Milisegundos
 
 Execucao 13:
-  Tempo de insercao: 6308.000000 Milisegundos
+  Tempo de insercao: 33592.000000 Milisegundos
   Tempo de busca: 0.000000 Milisegundos
   Tempo de remocao: 0.000000 Milisegundos
-  Tempo de liberacao: 873.000000 Milisegundos
+  Tempo de liberacao: 2179.000000 Milisegundos
 
 Execucao 14:
-  Tempo de insercao: 6325.000000 Milisegundos
+  Tempo de insercao: 33817.000000 Milisegundos
   Tempo de busca: 0.000000 Milisegundos
   Tempo de remocao: 0.000000 Milisegundos
-  Tempo de liberacao: 855.000000 Milisegundos
+  Tempo de liberacao: 2187.000000 Milisegundos
 
 Execucao 15:
-  Tempo de insercao: 6391.000000 Milisegundos
+  Tempo de insercao: 33552.000000 Milisegundos
   Tempo de busca: 0.000000 Milisegundos
   Tempo de remocao: 0.000000 Milisegundos
-  Tempo de liberacao: 913.000000 Milisegundos
+  Tempo de liberacao: 2277.000000 Milisegundos
 
 Execucao 16:
-  Tempo de insercao: 6408.000000 Milisegundos
+  Tempo de insercao: 33682.000000 Milisegundos
   Tempo de busca: 0.000000 Milisegundos
   Tempo de remocao: 0.000000 Milisegundos
-  Tempo de liberacao: 884.000000 Milisegundos
+  Tempo de liberacao: 2184.000000 Milisegundos
 
 Execucao 17:
-  Tempo de insercao: 6354.000000 Milisegundos
+  Tempo de insercao: 33684.000000 Milisegundos
   Tempo de busca: 0.000000 Milisegundos
   Tempo de remocao: 0.000000 Milisegundos
-  Tempo de liberacao: 1022.000000 Milisegundos
+  Tempo de liberacao: 2189.000000 Milisegundos
 
 Execucao 18:
-  Tempo de insercao: 8284.000000 Milisegundos
+  Tempo de insercao: 33400.000000 Milisegundos
   Tempo de busca: 0.000000 Milisegundos
   Tempo de remocao: 0.000000 Milisegundos
-  Tempo de liberacao: 876.000000 Milisegundos
+  Tempo de liberacao: 2227.000000 Milisegundos
 
 Execucao 19:
-  Tempo de insercao: 6371.000000 Milisegundos
+  Tempo de insercao: 33865.000000 Milisegundos
   Tempo de busca: 0.000000 Milisegundos
   Tempo de remocao: 0.000000 Milisegundos
-  Tempo de liberacao: 961.000000 Milisegundos
+  Tempo de liberacao: 2183.000000 Milisegundos
 
 Execucao 20:
-  Tempo de insercao: 6454.000000 Milisegundos
+  Tempo de insercao: 33383.000000 Milisegundos
   Tempo de busca: 0.000000 Milisegundos
   Tempo de remocao: 0.000000 Milisegundos
-  Tempo de liberacao: 908.000000 Milisegundos
+  Tempo de liberacao: 2213.000000 Milisegundos
 
 Execucao 21:
-  Tempo de insercao: 6406.000000 Milisegundos
+  Tempo de insercao: 33362.000000 Milisegundos
   Tempo de busca: 0.000000 Milisegundos
   Tempo de remocao: 0.000000 Milisegundos
-  Tempo de liberacao: 971.000000 Milisegundos
+  Tempo de liberacao: 2237.000000 Milisegundos
 
 Execucao 22:
-  Tempo de insercao: 6746.000000 Milisegundos
+  Tempo de insercao: 33913.000000 Milisegundos
   Tempo de busca: 0.000000 Milisegundos
   Tempo de remocao: 0.000000 Milisegundos
-  Tempo de liberacao: 972.000000 Milisegundos
+  Tempo de liberacao: 2188.000000 Milisegundos
 
 Execucao 23:
-  Tempo de insercao: 6950.000000 Milisegundos
+  Tempo de insercao: 33457.000000 Milisegundos
   Tempo de busca: 0.000000 Milisegundos
   Tempo de remocao: 0.000000 Milisegundos
-  Tempo de liberacao: 1018.000000 Milisegundos
+  Tempo de liberacao: 2190.000000 Milisegundos
 
 Execucao 24:
-  Tempo de insercao: 7022.000000 Milisegundos
+  Tempo de insercao: 33696.000000 Milisegundos
   Tempo de busca: 0.000000 Milisegundos
   Tempo de remocao: 0.000000 Milisegundos
-  Tempo de liberacao: 926.000000 Milisegundos
+  Tempo de liberacao: 2251.000000 Milisegundos
 
 Execucao 25:
-  Tempo de insercao: 6367.000000 Milisegundos
+  Tempo de insercao: 33406.000000 Milisegundos
   Tempo de busca: 0.000000 Milisegundos
   Tempo de remocao: 0.000000 Milisegundos
-  Tempo de liberacao: 885.000000 Milisegundos
+  Tempo de liberacao: 2242.000000 Milisegundos
 
 Execucao 26:
-  Tempo de insercao: 6176.000000 Milisegundos
+  Tempo de insercao: 33582.000000 Milisegundos
   Tempo de busca: 0.000000 Milisegundos
   Tempo de remocao: 0.000000 Milisegundos
-  Tempo de liberacao: 937.000000 Milisegundos
+  Tempo de liberacao: 2197.000000 Milisegundos
 
 Execucao 27:
-  Tempo de insercao: 6290.000000 Milisegundos
+  Tempo de insercao: 33557.000000 Milisegundos
   Tempo de busca: 0.000000 Milisegundos
   Tempo de remocao: 0.000000 Milisegundos
-  Tempo de liberacao: 876.000000 Milisegundos
+  Tempo de liberacao: 2243.000000 Milisegundos
 
 Execucao 28:
-  Tempo de insercao: 6227.000000 Milisegundos
+  Tempo de insercao: 33621.000000 Milisegundos
   Tempo de busca: 0.000000 Milisegundos
   Tempo de remocao: 0.000000 Milisegundos
-  Tempo de liberacao: 904.000000 Milisegundos
+  Tempo de liberacao: 2198.000000 Milisegundos
 
 Execucao 29:
-  Tempo de insercao: 6321.000000 Milisegundos
+  Tempo de insercao: 33397.000000 Milisegundos
   Tempo de busca: 0.000000 Milisegundos
   Tempo de remocao: 0.000000 Milisegundos
-  Tempo de liberacao: 911.000000 Milisegundos
+  Tempo de liberacao: 2193.000000 Milisegundos
 
 Execucao 30:
-  Tempo de insercao: 6263.000000 Milisegundos
+  Tempo de insercao: 33507.000000 Milisegundos
   Tempo de busca: 0.000000 Milisegundos
   Tempo de remocao: 0.000000 Milisegundos
-  Tempo de liberacao: 920.000000 Milisegundos
+  Tempo de liberacao: 2250.000000 Milisegundos
 
 Resumo:
-Tempo medio de insercao: 6614.000000 Milisegundos
+Tempo medio de insercao: 33631.000000 Milisegundos
 Tempo medio de busca: 0.000000 Milisegundos
 Tempo medio de remocao: 0.000000 Milisegundos
-Tempo medio de liberacao: 921.000000 Milisegundos
+Tempo medio de liberacao: 2203.000000 Milisegundos
 
-Tempo total executando 30 vezes: 226.077000 Segundos
+Tempo total executando 30 vezes: 1075.058000 Segundos
 
 ----------TESTE DECRESCENTE----------
 
 Execucao 1:
-  Tempo de insercao: 6028.000000 Milisegundos
+  Tempo de insercao: 32624.000000 Milisegundos
   Tempo de busca: 0.000000 Milisegundos
   Tempo de remocao: 0.000000 Milisegundos
-  Tempo de liberacao: 950.000000 Milisegundos
+  Tempo de liberacao: 2350.000000 Milisegundos
 
 Execucao 2:
-  Tempo de insercao: 6138.000000 Milisegundos
+  Tempo de insercao: 32629.000000 Milisegundos
   Tempo de busca: 0.000000 Milisegundos
   Tempo de remocao: 0.000000 Milisegundos
-  Tempo de liberacao: 949.000000 Milisegundos
+  Tempo de liberacao: 2386.000000 Milisegundos
 
 Execucao 3:
-  Tempo de insercao: 6248.000000 Milisegundos
+  Tempo de insercao: 32422.000000 Milisegundos
   Tempo de busca: 0.000000 Milisegundos
   Tempo de remocao: 0.000000 Milisegundos
-  Tempo de liberacao: 999.000000 Milisegundos
+  Tempo de liberacao: 2478.000000 Milisegundos
 
 Execucao 4:
-  Tempo de insercao: 6050.000000 Milisegundos
+  Tempo de insercao: 32713.000000 Milisegundos
   Tempo de busca: 0.000000 Milisegundos
   Tempo de remocao: 0.000000 Milisegundos
-  Tempo de liberacao: 953.000000 Milisegundos
+  Tempo de liberacao: 2345.000000 Milisegundos
 
 Execucao 5:
-  Tempo de insercao: 6133.000000 Milisegundos
+  Tempo de insercao: 32560.000000 Milisegundos
   Tempo de busca: 0.000000 Milisegundos
   Tempo de remocao: 0.000000 Milisegundos
-  Tempo de liberacao: 937.000000 Milisegundos
+  Tempo de liberacao: 2354.000000 Milisegundos
 
 Execucao 6:
-  Tempo de insercao: 6005.000000 Milisegundos
+  Tempo de insercao: 32705.000000 Milisegundos
   Tempo de busca: 0.000000 Milisegundos
   Tempo de remocao: 0.000000 Milisegundos
-  Tempo de liberacao: 951.000000 Milisegundos
+  Tempo de liberacao: 2416.000000 Milisegundos
 
 Execucao 7:
-  Tempo de insercao: 6041.000000 Milisegundos
+  Tempo de insercao: 32554.000000 Milisegundos
   Tempo de busca: 0.000000 Milisegundos
   Tempo de remocao: 0.000000 Milisegundos
-  Tempo de liberacao: 963.000000 Milisegundos
+  Tempo de liberacao: 2342.000000 Milisegundos
 
 Execucao 8:
-  Tempo de insercao: 5936.000000 Milisegundos
+  Tempo de insercao: 32722.000000 Milisegundos
   Tempo de busca: 0.000000 Milisegundos
   Tempo de remocao: 0.000000 Milisegundos
-  Tempo de liberacao: 945.000000 Milisegundos
+  Tempo de liberacao: 2372.000000 Milisegundos
 
 Execucao 9:
-  Tempo de insercao: 6015.000000 Milisegundos
+  Tempo de insercao: 32858.000000 Milisegundos
   Tempo de busca: 0.000000 Milisegundos
   Tempo de remocao: 0.000000 Milisegundos
-  Tempo de liberacao: 953.000000 Milisegundos
+  Tempo de liberacao: 2421.000000 Milisegundos
 
 Execucao 10:
-  Tempo de insercao: 6033.000000 Milisegundos
+  Tempo de insercao: 32858.000000 Milisegundos
   Tempo de busca: 0.000000 Milisegundos
   Tempo de remocao: 0.000000 Milisegundos
-  Tempo de liberacao: 946.000000 Milisegundos
+  Tempo de liberacao: 2357.000000 Milisegundos
 
 Execucao 11:
-  Tempo de insercao: 5950.000000 Milisegundos
+  Tempo de insercao: 32899.000000 Milisegundos
   Tempo de busca: 0.000000 Milisegundos
   Tempo de remocao: 0.000000 Milisegundos
-  Tempo de liberacao: 1017.000000 Milisegundos
+  Tempo de liberacao: 2355.000000 Milisegundos
 
 Execucao 12:
-  Tempo de insercao: 5937.000000 Milisegundos
+  Tempo de insercao: 32629.000000 Milisegundos
   Tempo de busca: 0.000000 Milisegundos
   Tempo de remocao: 0.000000 Milisegundos
-  Tempo de liberacao: 971.000000 Milisegundos
+  Tempo de liberacao: 2494.000000 Milisegundos
 
 Execucao 13:
-  Tempo de insercao: 6048.000000 Milisegundos
+  Tempo de insercao: 32525.000000 Milisegundos
   Tempo de busca: 0.000000 Milisegundos
   Tempo de remocao: 0.000000 Milisegundos
-  Tempo de liberacao: 943.000000 Milisegundos
+  Tempo de liberacao: 2382.000000 Milisegundos
 
 Execucao 14:
-  Tempo de insercao: 5966.000000 Milisegundos
+  Tempo de insercao: 32759.000000 Milisegundos
   Tempo de busca: 0.000000 Milisegundos
   Tempo de remocao: 0.000000 Milisegundos
-  Tempo de liberacao: 932.000000 Milisegundos
+  Tempo de liberacao: 2390.000000 Milisegundos
 
 Execucao 15:
-  Tempo de insercao: 5939.000000 Milisegundos
+  Tempo de insercao: 32446.000000 Milisegundos
   Tempo de busca: 0.000000 Milisegundos
   Tempo de remocao: 0.000000 Milisegundos
-  Tempo de liberacao: 922.000000 Milisegundos
+  Tempo de liberacao: 2452.000000 Milisegundos
 
 Execucao 16:
-  Tempo de insercao: 5980.000000 Milisegundos
-  Tempo de busca: 0.000000 Milisegundos
+  Tempo de insercao: 32858.000000 Milisegundos
+  Tempo de busca: 1.000000 Milisegundos
   Tempo de remocao: 0.000000 Milisegundos
-  Tempo de liberacao: 953.000000 Milisegundos
+  Tempo de liberacao: 2397.000000 Milisegundos
 
 Execucao 17:
-  Tempo de insercao: 6122.000000 Milisegundos
+  Tempo de insercao: 32484.000000 Milisegundos
   Tempo de busca: 0.000000 Milisegundos
   Tempo de remocao: 0.000000 Milisegundos
-  Tempo de liberacao: 951.000000 Milisegundos
+  Tempo de liberacao: 2439.000000 Milisegundos
 
 Execucao 18:
-  Tempo de insercao: 6028.000000 Milisegundos
+  Tempo de insercao: 32838.000000 Milisegundos
   Tempo de busca: 0.000000 Milisegundos
   Tempo de remocao: 0.000000 Milisegundos
-  Tempo de liberacao: 1138.000000 Milisegundos
+  Tempo de liberacao: 2446.000000 Milisegundos
 
 Execucao 19:
-  Tempo de insercao: 6186.000000 Milisegundos
+  Tempo de insercao: 32748.000000 Milisegundos
   Tempo de busca: 0.000000 Milisegundos
   Tempo de remocao: 0.000000 Milisegundos
-  Tempo de liberacao: 836.000000 Milisegundos
+  Tempo de liberacao: 2416.000000 Milisegundos
 
 Execucao 20:
-  Tempo de insercao: 4199.000000 Milisegundos
+  Tempo de insercao: 33022.000000 Milisegundos
   Tempo de busca: 0.000000 Milisegundos
   Tempo de remocao: 0.000000 Milisegundos
-  Tempo de liberacao: 967.000000 Milisegundos
+  Tempo de liberacao: 2454.000000 Milisegundos
 
 Execucao 21:
-  Tempo de insercao: 6351.000000 Milisegundos
+  Tempo de insercao: 35262.000000 Milisegundos
   Tempo de busca: 0.000000 Milisegundos
   Tempo de remocao: 0.000000 Milisegundos
-  Tempo de liberacao: 936.000000 Milisegundos
+  Tempo de liberacao: 2626.000000 Milisegundos
 
 Execucao 22:
-  Tempo de insercao: 6059.000000 Milisegundos
+  Tempo de insercao: 35294.000000 Milisegundos
   Tempo de busca: 0.000000 Milisegundos
   Tempo de remocao: 0.000000 Milisegundos
-  Tempo de liberacao: 940.000000 Milisegundos
+  Tempo de liberacao: 2645.000000 Milisegundos
 
 Execucao 23:
-  Tempo de insercao: 6022.000000 Milisegundos
+  Tempo de insercao: 34129.000000 Milisegundos
   Tempo de busca: 0.000000 Milisegundos
   Tempo de remocao: 0.000000 Milisegundos
-  Tempo de liberacao: 966.000000 Milisegundos
+  Tempo de liberacao: 2413.000000 Milisegundos
 
 Execucao 24:
-  Tempo de insercao: 6099.000000 Milisegundos
+  Tempo de insercao: 34248.000000 Milisegundos
   Tempo de busca: 0.000000 Milisegundos
   Tempo de remocao: 0.000000 Milisegundos
-  Tempo de liberacao: 968.000000 Milisegundos
+  Tempo de liberacao: 2587.000000 Milisegundos
 
 Execucao 25:
-  Tempo de insercao: 6074.000000 Milisegundos
+  Tempo de insercao: 34190.000000 Milisegundos
   Tempo de busca: 0.000000 Milisegundos
   Tempo de remocao: 0.000000 Milisegundos
-  Tempo de liberacao: 935.000000 Milisegundos
+  Tempo de liberacao: 2519.000000 Milisegundos
 
 Execucao 26:
-  Tempo de insercao: 5897.000000 Milisegundos
+  Tempo de insercao: 34581.000000 Milisegundos
   Tempo de busca: 0.000000 Milisegundos
   Tempo de remocao: 0.000000 Milisegundos
-  Tempo de liberacao: 937.000000 Milisegundos
+  Tempo de liberacao: 2408.000000 Milisegundos
 
 Execucao 27:
-  Tempo de insercao: 5991.000000 Milisegundos
+  Tempo de insercao: 33773.000000 Milisegundos
   Tempo de busca: 0.000000 Milisegundos
   Tempo de remocao: 0.000000 Milisegundos
-  Tempo de liberacao: 952.000000 Milisegundos
+  Tempo de liberacao: 2765.000000 Milisegundos
 
 Execucao 28:
-  Tempo de insercao: 6034.000000 Milisegundos
+  Tempo de insercao: 34142.000000 Milisegundos
   Tempo de busca: 0.000000 Milisegundos
   Tempo de remocao: 0.000000 Milisegundos
-  Tempo de liberacao: 965.000000 Milisegundos
+  Tempo de liberacao: 2678.000000 Milisegundos
 
 Execucao 29:
-  Tempo de insercao: 6080.000000 Milisegundos
+  Tempo de insercao: 33993.000000 Milisegundos
   Tempo de busca: 0.000000 Milisegundos
-  Tempo de remocao: 0.000000 Milisegundos
-  Tempo de liberacao: 1028.000000 Milisegundos
+  Tempo de remocao: 1.000000 Milisegundos
+  Tempo de liberacao: 2397.000000 Milisegundos
 
 Execucao 30:
-  Tempo de insercao: 6023.000000 Milisegundos
+  Tempo de insercao: 33766.000000 Milisegundos
   Tempo de busca: 0.000000 Milisegundos
   Tempo de remocao: 0.000000 Milisegundos
-  Tempo de liberacao: 961.000000 Milisegundos
+  Tempo de liberacao: 2449.000000 Milisegundos
 
 Resumo:
-Tempo medio de insercao: 5987.000000 Milisegundos
+Tempo medio de insercao: 33241.000000 Milisegundos
 Tempo medio de busca: 0.000000 Milisegundos
 Tempo medio de remocao: 0.000000 Milisegundos
-Tempo medio de liberacao: 958.000000 Milisegundos
+Tempo medio de liberacao: 2451.000000 Milisegundos
 
-Tempo total executando 30 vezes: 208.402000 Segundos
+Tempo total executando 30 vezes: 1070.771000 Segundos
 
 ----------TESTE ALEATORIO----------
 
 Execucao 1:
-  Tempo de insercao: 6025.000000 Milisegundos
+  Tempo de insercao: 34770.000000 Milisegundos
   Tempo de busca: 0.000000 Milisegundos
   Tempo de remocao: 0.000000 Milisegundos
-  Tempo de liberacao: 1054.000000 Milisegundos
+  Tempo de liberacao: 2905.000000 Milisegundos
 
 Execucao 2:
-  Tempo de insercao: 6303.000000 Milisegundos
+  Tempo de insercao: 34998.000000 Milisegundos
   Tempo de busca: 0.000000 Milisegundos
   Tempo de remocao: 0.000000 Milisegundos
-  Tempo de liberacao: 1108.000000 Milisegundos
+  Tempo de liberacao: 2610.000000 Milisegundos
 
 Execucao 3:
-  Tempo de insercao: 6037.000000 Milisegundos
+  Tempo de insercao: 34278.000000 Milisegundos
   Tempo de busca: 0.000000 Milisegundos
   Tempo de remocao: 0.000000 Milisegundos
-  Tempo de liberacao: 1092.000000 Milisegundos
+  Tempo de liberacao: 2608.000000 Milisegundos
 
 Execucao 4:
-  Tempo de insercao: 6109.000000 Milisegundos
+  Tempo de insercao: 34167.000000 Milisegundos
   Tempo de busca: 0.000000 Milisegundos
   Tempo de remocao: 0.000000 Milisegundos
-  Tempo de liberacao: 1087.000000 Milisegundos
+  Tempo de liberacao: 2454.000000 Milisegundos
 
 Execucao 5:
-  Tempo de insercao: 6156.000000 Milisegundos
+  Tempo de insercao: 34327.000000 Milisegundos
   Tempo de busca: 0.000000 Milisegundos
   Tempo de remocao: 0.000000 Milisegundos
-  Tempo de liberacao: 1076.000000 Milisegundos
+  Tempo de liberacao: 2627.000000 Milisegundos
 
 Execucao 6:
-  Tempo de insercao: 6151.000000 Milisegundos
+  Tempo de insercao: 34348.000000 Milisegundos
   Tempo de busca: 0.000000 Milisegundos
   Tempo de remocao: 0.000000 Milisegundos
-  Tempo de liberacao: 1045.000000 Milisegundos
+  Tempo de liberacao: 2526.000000 Milisegundos
 
 Execucao 7:
-  Tempo de insercao: 6156.000000 Milisegundos
+  Tempo de insercao: 34929.000000 Milisegundos
   Tempo de busca: 0.000000 Milisegundos
   Tempo de remocao: 0.000000 Milisegundos
-  Tempo de liberacao: 1037.000000 Milisegundos
+  Tempo de liberacao: 2427.000000 Milisegundos
 
 Execucao 8:
-  Tempo de insercao: 6126.000000 Milisegundos
+  Tempo de insercao: 33980.000000 Milisegundos
   Tempo de busca: 0.000000 Milisegundos
   Tempo de remocao: 0.000000 Milisegundos
-  Tempo de liberacao: 1030.000000 Milisegundos
+  Tempo de liberacao: 2456.000000 Milisegundos
 
 Execucao 9:
-  Tempo de insercao: 6114.000000 Milisegundos
+  Tempo de insercao: 34779.000000 Milisegundos
   Tempo de busca: 0.000000 Milisegundos
   Tempo de remocao: 0.000000 Milisegundos
-  Tempo de liberacao: 1090.000000 Milisegundos
+  Tempo de liberacao: 2433.000000 Milisegundos
 
 Execucao 10:
-  Tempo de insercao: 6143.000000 Milisegundos
+  Tempo de insercao: 34403.000000 Milisegundos
   Tempo de busca: 0.000000 Milisegundos
   Tempo de remocao: 0.000000 Milisegundos
-  Tempo de liberacao: 1046.000000 Milisegundos
+  Tempo de liberacao: 2481.000000 Milisegundos
 
 Execucao 11:
-  Tempo de insercao: 6069.000000 Milisegundos
+  Tempo de insercao: 35394.000000 Milisegundos
   Tempo de busca: 0.000000 Milisegundos
   Tempo de remocao: 0.000000 Milisegundos
-  Tempo de liberacao: 1031.000000 Milisegundos
+  Tempo de liberacao: 2474.000000 Milisegundos
 
 Execucao 12:
-  Tempo de insercao: 6086.000000 Milisegundos
+  Tempo de insercao: 34881.000000 Milisegundos
   Tempo de busca: 0.000000 Milisegundos
   Tempo de remocao: 0.000000 Milisegundos
-  Tempo de liberacao: 1024.000000 Milisegundos
+  Tempo de liberacao: 2509.000000 Milisegundos
 
 Execucao 13:
-  Tempo de insercao: 6108.000000 Milisegundos
+  Tempo de insercao: 34098.000000 Milisegundos
   Tempo de busca: 0.000000 Milisegundos
   Tempo de remocao: 0.000000 Milisegundos
-  Tempo de liberacao: 1035.000000 Milisegundos
+  Tempo de liberacao: 2566.000000 Milisegundos
 
 Execucao 14:
-  Tempo de insercao: 6147.000000 Milisegundos
+  Tempo de insercao: 34907.000000 Milisegundos
   Tempo de busca: 0.000000 Milisegundos
   Tempo de remocao: 0.000000 Milisegundos
-  Tempo de liberacao: 1077.000000 Milisegundos
+  Tempo de liberacao: 2393.000000 Milisegundos
 
 Execucao 15:
-  Tempo de insercao: 6343.000000 Milisegundos
+  Tempo de insercao: 34469.000000 Milisegundos
   Tempo de busca: 0.000000 Milisegundos
   Tempo de remocao: 0.000000 Milisegundos
-  Tempo de liberacao: 1150.000000 Milisegundos
+  Tempo de liberacao: 2423.000000 Milisegundos
 
 Execucao 16:
-  Tempo de insercao: 6350.000000 Milisegundos
+  Tempo de insercao: 34914.000000 Milisegundos
   Tempo de busca: 0.000000 Milisegundos
   Tempo de remocao: 0.000000 Milisegundos
-  Tempo de liberacao: 1018.000000 Milisegundos
+  Tempo de liberacao: 2465.000000 Milisegundos
 
 Execucao 17:
-  Tempo de insercao: 6078.000000 Milisegundos
-  Tempo de busca: 2.000000 Milisegundos
+  Tempo de insercao: 34332.000000 Milisegundos
+  Tempo de busca: 0.000000 Milisegundos
   Tempo de remocao: 0.000000 Milisegundos
-  Tempo de liberacao: 1032.000000 Milisegundos
+  Tempo de liberacao: 2503.000000 Milisegundos
 
 Execucao 18:
-  Tempo de insercao: 6103.000000 Milisegundos
+  Tempo de insercao: 34305.000000 Milisegundos
   Tempo de busca: 0.000000 Milisegundos
   Tempo de remocao: 0.000000 Milisegundos
-  Tempo de liberacao: 1061.000000 Milisegundos
+  Tempo de liberacao: 2655.000000 Milisegundos
 
 Execucao 19:
-  Tempo de insercao: 6053.000000 Milisegundos
+  Tempo de insercao: 34505.000000 Milisegundos
   Tempo de busca: 0.000000 Milisegundos
   Tempo de remocao: 0.000000 Milisegundos
-  Tempo de liberacao: 1030.000000 Milisegundos
+  Tempo de liberacao: 2485.000000 Milisegundos
 
 Execucao 20:
-  Tempo de insercao: 6150.000000 Milisegundos
+  Tempo de insercao: 33958.000000 Milisegundos
   Tempo de busca: 0.000000 Milisegundos
   Tempo de remocao: 0.000000 Milisegundos
-  Tempo de liberacao: 1121.000000 Milisegundos
+  Tempo de liberacao: 2445.000000 Milisegundos
 
 Execucao 21:
-  Tempo de insercao: 6118.000000 Milisegundos
+  Tempo de insercao: 34641.000000 Milisegundos
   Tempo de busca: 0.000000 Milisegundos
   Tempo de remocao: 0.000000 Milisegundos
-  Tempo de liberacao: 1075.000000 Milisegundos
+  Tempo de liberacao: 2434.000000 Milisegundos
 
 Execucao 22:
-  Tempo de insercao: 6183.000000 Milisegundos
+  Tempo de insercao: 34006.000000 Milisegundos
   Tempo de busca: 0.000000 Milisegundos
   Tempo de remocao: 0.000000 Milisegundos
-  Tempo de liberacao: 1042.000000 Milisegundos
+  Tempo de liberacao: 2412.000000 Milisegundos
 
 Execucao 23:
-  Tempo de insercao: 6055.000000 Milisegundos
+  Tempo de insercao: 34395.000000 Milisegundos
   Tempo de busca: 0.000000 Milisegundos
   Tempo de remocao: 0.000000 Milisegundos
-  Tempo de liberacao: 1046.000000 Milisegundos
+  Tempo de liberacao: 2482.000000 Milisegundos
 
 Execucao 24:
-  Tempo de insercao: 6098.000000 Milisegundos
+  Tempo de insercao: 33976.000000 Milisegundos
   Tempo de busca: 0.000000 Milisegundos
   Tempo de remocao: 0.000000 Milisegundos
-  Tempo de liberacao: 1098.000000 Milisegundos
+  Tempo de liberacao: 2475.000000 Milisegundos
 
 Execucao 25:
-  Tempo de insercao: 6136.000000 Milisegundos
+  Tempo de insercao: 34269.000000 Milisegundos
   Tempo de busca: 0.000000 Milisegundos
   Tempo de remocao: 0.000000 Milisegundos
-  Tempo de liberacao: 1092.000000 Milisegundos
+  Tempo de liberacao: 2460.000000 Milisegundos
 
 Execucao 26:
-  Tempo de insercao: 6073.000000 Milisegundos
+  Tempo de insercao: 34867.000000 Milisegundos
   Tempo de busca: 0.000000 Milisegundos
   Tempo de remocao: 0.000000 Milisegundos
-  Tempo de liberacao: 1035.000000 Milisegundos
+  Tempo de liberacao: 2467.000000 Milisegundos
 
 Execucao 27:
-  Tempo de insercao: 6114.000000 Milisegundos
+  Tempo de insercao: 33446.000000 Milisegundos
   Tempo de busca: 0.000000 Milisegundos
   Tempo de remocao: 0.000000 Milisegundos
-  Tempo de liberacao: 1075.000000 Milisegundos
+  Tempo de liberacao: 2520.000000 Milisegundos
 
 Execucao 28:
-  Tempo de insercao: 6183.000000 Milisegundos
+  Tempo de insercao: 33995.000000 Milisegundos
   Tempo de busca: 0.000000 Milisegundos
   Tempo de remocao: 0.000000 Milisegundos
-  Tempo de liberacao: 1108.000000 Milisegundos
+  Tempo de liberacao: 2438.000000 Milisegundos
 
 Execucao 29:
-  Tempo de insercao: 6062.000000 Milisegundos
+  Tempo de insercao: 34179.000000 Milisegundos
   Tempo de busca: 0.000000 Milisegundos
   Tempo de remocao: 0.000000 Milisegundos
-  Tempo de liberacao: 1079.000000 Milisegundos
+  Tempo de liberacao: 2466.000000 Milisegundos
 
 Execucao 30:
-  Tempo de insercao: 6034.000000 Milisegundos
+  Tempo de insercao: 34981.000000 Milisegundos
   Tempo de busca: 0.000000 Milisegundos
   Tempo de remocao: 0.000000 Milisegundos
-  Tempo de liberacao: 1064.000000 Milisegundos
+  Tempo de liberacao: 2536.000000 Milisegundos
 
 Resumo:
-Tempo medio de insercao: 6128.000000 Milisegundos
+Tempo medio de insercao: 34449.000000 Milisegundos
 Tempo medio de busca: 0.000000 Milisegundos
 Tempo medio de remocao: 0.000000 Milisegundos
-Tempo medio de liberacao: 1065.000000 Milisegundos
+Tempo medio de liberacao: 2504.000000 Milisegundos
 
-Tempo total executando 30 vezes: 215.849000 Segundos
+Tempo total executando 30 vezes: 1108.640000 Segundos
 
 
 
-Tempo total de execução de todos casos: 650.545000 Segundos
+Tempo total de execução de todos casos: 3265.482000 Segundos
