@@ -122,7 +122,7 @@ void de_ladinho_para_esquerda(ARV_AVL **raiz)
   }
 }
 
-short int balanceamento(ARV_AVL **raiz, int (*comparar)(DADOS *, DADOS *))
+short int balanceamento(ARV_AVL **raiz)
 {
   short int retorno = 0;
 
@@ -190,7 +190,7 @@ int inserir_arv_avl(ARV_AVL **raiz, DADOS *info, int (*comparar)(DADOS *, DADOS 
 
     if (inseriu == 1)
     {
-      balanceamento(raiz, comparar);
+      balanceamento(raiz);
       ajuste_altura(raiz);
     }
   }
@@ -316,7 +316,7 @@ ARV_AVL *remover_arv_avl(ARV_AVL **raiz, DADOS *info, int (*comparar)(DADOS *, D
 
     if (removeu != NULL)
     {
-      balanceamento(raiz, comparar);
+      balanceamento(raiz);
       ajuste_altura(raiz);
     }
   }
