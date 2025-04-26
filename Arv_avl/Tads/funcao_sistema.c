@@ -9,7 +9,7 @@ void limpar_buffer()
         fflush(stdin); // Para Windows
     #else
         char c;
-        while ((c = getchar()) != '\n' && c != EOF)
+        while (c != EOF && (c = getchar()) != '\n')
             ; // Para Linux e MacOS
     #endif
 }
